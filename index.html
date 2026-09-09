@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Learn English Here</title>
+<meta name="description" content="Free interactive English lessons for beginner to pre-intermediate learners — built for real classrooms, made to actually stick.">
+<style>
+  :root{
+    --ink:#132a2e;
+    --paper:#f6faf9;
+    --accent:#1f7a6c;
+    --accent2:#e0a548;
+    --line:#dbe8e5;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+  }
+  header{
+    padding:1.2rem 6vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    background:#fff;
+  }
+  .logo{
+    font-weight:700;
+    font-size:1.15rem;
+    display:flex;
+    align-items:center;
+    gap:.5em;
+  }
+  .logo .mark{
+    width:32px;height:32px;border-radius:8px;
+    background:var(--accent);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:Georgia, serif;
+    font-weight:700;
+  }
+  nav a{
+    color:var(--ink);
+    text-decoration:none;
+    margin-left:1.6rem;
+    font-size:.92rem;
+    font-weight:500;
+  }
+  nav a:hover{color:var(--accent);}
+  .hero{
+    padding:9vh 6vw 7vh 6vw;
+    max-width:960px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:.25em;
+    font-size:.72rem;
+    color:var(--accent);
+    font-weight:700;
+    margin-bottom:1.2rem;
+  }
+  h1{
+    font-size:clamp(2rem,5vw,3.2rem);
+    line-height:1.12;
+    margin:0 0 1rem 0;
+  }
+  h1 span{color:var(--accent);}
+  .hero p{
+    font-size:1.15rem;
+    color:#3f5a56;
+    max-width:640px;
+    margin:0 auto 2.2rem auto;
+    line-height:1.6;
+  }
+  .cta-row{
+    display:flex;
+    gap:1rem;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .btn{
+    padding:.9em 1.7em;
+    border-radius:8px;
+    font-weight:600;
+    text-decoration:none;
+    font-size:.98rem;
+    display:inline-block;
+  }
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:#175f54;}
+  .btn-secondary{background:#fff;color:var(--ink);border:1px solid var(--line);}
+  .btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
+  section.strip{
+    background:#fff;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:5vh 6vw;
+  }
+  .cards{
+    max-width:1080px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:1.4rem;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.6rem;
+  }
+  .card .tag{
+    display:inline-block;
+    font-size:.7rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--accent2);
+    font-weight:700;
+    margin-bottom:.6rem;
+  }
+  .card h3{margin:.2rem 0 .5rem 0;font-size:1.08rem;}
+  .card p{margin:0;color:#54706c;font-size:.94rem;line-height:1.55;}
+  .badge-soon{
+    display:inline-block;
+    margin-top:.8rem;
+    font-size:.72rem;
+    background:#fdf0e0;
+    color:#a56a1c;
+    padding:.25em .7em;
+    border-radius:999px;
+    font-weight:600;
+  }
+  .ecosystem{
+    max-width:900px;
+    margin:6vh auto;
+    padding:0 6vw;
+    text-align:center;
+  }
+  .ecosystem h2{font-size:1.5rem;margin-bottom:.6rem;}
+  .ecosystem p{color:#3f5a56;line-height:1.6;margin-bottom:2rem;}
+  .links-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+    justify-content:center;
+  }
+  .links-grid a{
+    border:1px solid var(--line);
+    background:#fff;
+    padding:.8em 1.3em;
+    border-radius:10px;
+    text-decoration:none;
+    color:var(--ink);
+    font-size:.9rem;
+    font-weight:500;
+  }
+  .links-grid a:hover{border-color:var(--accent);color:var(--accent);}
+  footer{
+    text-align:center;
+    padding:4vh 6vw 6vh 6vw;
+    color:#7d938f;
+    font-size:.82rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span class="mark">E</span> I Learn English Here</div>
+  <nav>
+    <a href="#lessons">Lessons</a>
+    <a href="#about">About</a>
+    <a href="https://www.udemy.com/course/learn-english-like-a-local-uk-culture-accents-real-life/" target="_blank" rel="noopener">Full Course</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">Free English Lessons</div>
+  <h1>Real lessons, built for <span>real classrooms.</span></h1>
+  <p>
+    Interactive English lessons for beginner to pre-intermediate learners —
+    grammar, vocabulary and real-life English taught the way it actually gets
+    used, with local context that makes it stick.
+  </p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#lessons">Browse Lessons</a>
+    <a class="btn btn-secondary" href="https://www.udemy.com/course/learn-english-like-a-local-uk-culture-accents-real-life/" target="_blank" rel="noopener">Take the Full Course</a>
+  </div>
+</div>
+
+<section class="strip" id="lessons">
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Grammar</span>
+      <h3>Present Perfect: Past → Now</h3>
+      <p>A 14-slide interactive deck with vote/quiz/fill-gap activities and instant feedback.</p>
+      <span class="badge-soon">Adding soon</span>
+    </div>
+    <div class="card">
+      <span class="tag">Reading</span>
+      <h3>Bring Words to Life</h3>
+      <p>A 90-minute classroom tool for reading fluency, punctuation and emotional expression.</p>
+      <span class="badge-soon">Adding soon</span>
+    </div>
+    <div class="card">
+      <span class="tag">Speaking</span>
+      <h3>Stative Verbs &amp; Activities</h3>
+      <p>Animated slides, an auto-marking quiz, and a printable formula guide.</p>
+      <span class="badge-soon">Adding soon</span>
+    </div>
+  </div>
+</section>
+
+<div class="ecosystem" id="about">
+  <h2>Part of a bigger classroom</h2>
+  <p>
+    This site is the home for a growing library of self-contained interactive
+    English lessons, built for beginner to pre-intermediate learners in Cambodia
+    and beyond. More lessons are being added regularly.
+  </p>
+  <div class="links-grid">
+    <a href="https://cryptoizfuture.blogspot.com" target="_blank" rel="noopener">The Learning Centre (blog)</a>
+    <a href="https://www.youtube.com/@TTTT-BCN" target="_blank" rel="noopener">YouTube: TT aka Titty</a>
+    <a href="https://www.udemy.com/course/learn-english-like-a-local-uk-culture-accents-real-life/" target="_blank" rel="noopener">Learn English Like a Local (Udemy)</a>
+  </div>
+</div>
+
+<footer>&copy; 2026 I Learn English Here</footer>
+
+</body>
+</html>
