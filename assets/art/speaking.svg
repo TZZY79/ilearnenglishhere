@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-labelledby="t">
+<title id="t">Two friends taking turns speaking English</title>
+<style>
+  .b1{transform-box:fill-box;transform-origin:20% 100%;animation:talkA 4s ease-in-out infinite}
+  .b2{transform-box:fill-box;transform-origin:80% 100%;animation:talkB 4s ease-in-out infinite}
+  @keyframes talkA{0%,5%{transform:scale(0);opacity:0}12%,42%{transform:scale(1);opacity:1}50%,100%{transform:scale(0);opacity:0}}
+  @keyframes talkB{0%,50%{transform:scale(0);opacity:0}58%,90%{transform:scale(1);opacity:1}97%,100%{transform:scale(0);opacity:0}}
+  .wave{transform-box:fill-box;transform-origin:90% 90%;animation:wave 1s ease-in-out infinite alternate}
+  @keyframes wave{from{transform:rotate(-12deg)}to{transform:rotate(14deg)}}
+  .dot{animation:blink 1.2s ease-in-out infinite}.d2{animation-delay:.2s}.d3{animation-delay:.4s}
+  @keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important}.b1,.b2{opacity:1}}
+</style>
+<rect width="400" height="300" rx="24" fill="#e9eefb"/>
+<!-- bubble A -->
+<g class="b1">
+  <rect x="30" y="30" width="150" height="56" rx="18" fill="#fff" stroke="#1f7a6c" stroke-width="3"/>
+  <path d="M70 84l-4 18 18-16z" fill="#fff" stroke="#1f7a6c" stroke-width="3" stroke-linejoin="round"/>
+  <text x="105" y="64" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="700" fill="#132a2e">How are you?</text>
+</g>
+<!-- bubble B -->
+<g class="b2">
+  <rect x="210" y="40" width="160" height="56" rx="18" fill="#fff" stroke="#e0a548" stroke-width="3"/>
+  <path d="M330 94l6 18-20-16z" fill="#fff" stroke="#e0a548" stroke-width="3" stroke-linejoin="round"/>
+  <text x="290" y="74" text-anchor="middle" font-family="'Segoe UI',sans-serif" font-size="16" font-weight="700" fill="#132a2e">Great, thanks!</text>
+</g>
+<!-- person A -->
+<g>
+  <rect x="60" y="175" width="70" height="110" rx="28" fill="#e0a548"/>
+  <g class="wave"><rect x="118" y="182" width="16" height="58" rx="8" fill="#e0a548" transform="rotate(-30 126 186)"/><circle cx="150" cy="160" r="9" fill="#a8704a"/></g>
+  <circle cx="95" cy="145" r="30" fill="#a8704a"/>
+  <path d="M65 140c0-20 13-32 30-32s30 12 30 32c-5-9-15-13-30-13s-25 4-30 13z" fill="#20160f"/>
+  <circle cx="86" cy="148" r="3" fill="#132a2e"/><circle cx="106" cy="148" r="3" fill="#132a2e"/>
+  <ellipse cx="96" cy="162" rx="6" ry="4" fill="#5a1f1f"/>
+</g>
+<!-- person B -->
+<g>
+  <rect x="270" y="178" width="70" height="110" rx="28" fill="#1f7a6c"/>
+  <circle cx="305" cy="148" r="30" fill="#e3b38a"/>
+  <path d="M275 150c-2-22 12-34 30-34s32 12 30 34c-3-12-10-18-30-18s-27 6-30 18z" fill="#3b2a1e"/>
+  <circle cx="305" cy="112" r="12" fill="#3b2a1e"/>
+  <circle cx="296" cy="150" r="3" fill="#132a2e"/><circle cx="316" cy="150" r="3" fill="#132a2e"/>
+  <path d="M296 163q9 7 18 0" stroke="#132a2e" stroke-width="3" fill="none" stroke-linecap="round"/>
+</g>
+<!-- typing dots -->
+<circle class="dot" cx="186" cy="200" r="6" fill="#1f7a6c"/>
+<circle class="dot d2" cx="202" cy="200" r="6" fill="#1f7a6c"/>
+<circle class="dot d3" cx="218" cy="200" r="6" fill="#1f7a6c"/>
+</svg>
