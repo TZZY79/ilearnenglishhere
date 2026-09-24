@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B1 Revision Slideshow 🎓 | I Learn English Here</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Poppins:wght@400;600;800&display=swap');
+
+  :root {
+    --blue: #1a73e8; --purple: #7c3aed; --green: #16a34a; --orange: #ea580c;
+    --pink: #ec4899; --teal: #0891b2; --yellow: #ca8a04; --red: #dc2626;
+    --bg: #0f0c29; --card: rgba(255,255,255,0.07); --glass: rgba(255,255,255,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh; color: #fff; overflow-x: hidden;
+  }
+
+  /* ── NAV BAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(15,12,41,0.95); backdrop-filter: blur(12px);
+    padding: 10px 20px; display: flex; align-items: center; gap: 10px;
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+  }
+  nav h1 { font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 800; 
+    background: linear-gradient(90deg,#f59e0b,#ef4444,#8b5cf6); -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent; flex:1; }
+  .nav-btn {
+    background: var(--glass); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; padding: 6px 14px; border-radius: 20px; cursor: pointer;
+    font-size: 0.85rem; font-family: 'Nunito', sans-serif; font-weight: 700;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { background: var(--blue); transform: scale(1.05); }
+  #slide-counter { font-size: 0.85rem; opacity: 0.7; white-space: nowrap; }
+
+  /* ── PROGRESS ── */
+  .progress-bar {
+    position: fixed; top: 54px; left: 0; right: 0; height: 4px; z-index: 999;
+    background: rgba(255,255,255,0.1);
+  }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, #f59e0b, #ef4444, #8b5cf6);
+    transition: width 0.5s ease; width: 0%;
+  }
+
+  /* ── SLIDES CONTAINER ── */
+  .slides-wrapper { padding-top: 70px; min-height: 100vh; }
+
+  .slide {
+    display: none; min-height: calc(100vh - 70px);
+    padding: 30px 20px 80px; max-width: 1000px; margin: 0 auto;
+    animation: slideIn 0.5s ease;
+  }
+  .slide.active { display: block; }
+
+  @keyframes slideIn {
+    from { opacity:0; transform: translateY(20px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  /* ── SLIDE TYPES ── */
+  .slide-title {
+    text-align: center; padding: 60px 20px;
+  }
+  .slide-title .main-emoji { font-size: 5rem; display: block; margin-bottom: 20px;
+    animation: bounce 2s infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
+  .slide-title h2 {
+    font-family: 'Poppins', sans-serif; font-size: clamp(1.8rem,5vw,3rem);
+    font-weight: 900; line-height: 1.2; margin-bottom: 15px;
+    background: linear-gradient(135deg, #fbbf24, #f87171, #a78bfa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .slide-title p { font-size: 1.1rem; opacity: 0.8; max-width: 600px; margin: 0 auto; }
+
+  .topic-tag {
+    display: inline-block; padding: 4px 14px; border-radius: 20px;
+    font-size: 0.8rem; font-weight: 700; margin-bottom: 16px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .tag-grammar { background: rgba(124,58,237,0.3); border: 1px solid #7c3aed; color: #c4b5fd; }
+  .tag-vocab { background: rgba(8,145,178,0.3); border: 1px solid #0891b2; color: #7dd3fc; }
+  .tag-listening { background: rgba(22,163,74,0.3); border: 1px solid #16a34a; color: #86efac; }
+  .tag-cheatcode { background: rgba(234,88,12,0.3); border: 1px solid #ea580c; color: #fdba74; }
+
+  .slide h2 {
+    font-family: 'Poppins', sans-serif; font-size: clamp(1.4rem,4vw,2rem);
+    font-weight: 800; margin-bottom: 20px;
+    background: linear-gradient(90deg, #fbbf24, #f87171);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  /* ── GRAMMAR CARDS ── */
+  .grammar-box {
+    background: var(--card); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px; padding: 20px; margin: 14px 0;
+    border-left: 4px solid var(--blue);
+  }
+  .grammar-box.purple { border-left-color: var(--purple); }
+  .grammar-box.green  { border-left-color: var(--green); }
+  .grammar-box.orange { border-left-color: var(--orange); }
+  .grammar-box.teal   { border-left-color: var(--teal); }
+  .grammar-box.pink   { border-left-color: var(--pink); }
+
+  .grammar-box h3 {
+    font-size: 1.1rem; font-weight: 800; margin-bottom: 12px; color: #fbbf24;
+  }
+  .grammar-box .formula {
+    background: rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 14px;
+    font-family: monospace; font-size: 1rem; margin: 8px 0; color: #a5f3fc;
+    border: 1px dashed rgba(255,255,255,0.2);
+  }
+  .grammar-box .example {
+    padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-size: 0.95rem; line-height: 1.6;
+  }
+  .grammar-box .example:last-child { border-bottom: none; }
+  .grammar-box em { color: #fde68a; font-style: normal; font-weight: 700; }
+
+  .tip-box {
+    background: linear-gradient(135deg, rgba(251,191,36,0.15), rgba(234,88,12,0.15));
+    border: 1px solid rgba(251,191,36,0.3); border-radius: 12px;
+    padding: 14px 18px; margin: 12px 0;
+  }
+  .tip-box strong { color: #fbbf24; }
+
+  /* ── VOCAB GRID ── */
+  .vocab-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px; margin: 14px 0;
+  }
+  .vocab-card {
+    background: var(--card); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px; padding: 12px; text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s; cursor: default;
+  }
+  .vocab-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+  .vocab-card .emoji { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+  .vocab-card .word { font-weight: 700; font-size: 0.9rem; color: #e0f2fe; }
+  .vocab-card .def  { font-size: 0.75rem; opacity: 0.7; margin-top: 4px; }
+
+  /* ── QUESTIONS ── */
+  .question-card {
+    background: var(--card); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px; padding: 20px; margin: 14px 0;
+  }
+  .question-card .q-text { font-size: 1rem; font-weight: 700; margin-bottom: 14px; 
+    color: #e0f2fe; line-height: 1.5; }
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+  .option-btn {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; padding: 10px 14px; border-radius: 10px; cursor: pointer;
+    font-size: 0.9rem; font-family: 'Nunito', sans-serif; font-weight: 600;
+    text-align: left; transition: all 0.2s;
+  }
+  .option-btn:hover:not(.answered) { background: rgba(99,102,241,0.3); border-color: #818cf8; }
+  .option-btn.correct { background: rgba(22,163,74,0.4) !important; border-color: #4ade80 !important;
+    color: #bbf7d0 !important; }
+  .option-btn.wrong   { background: rgba(220,38,38,0.4) !important; border-color: #f87171 !important;
+    color: #fecaca !important; }
+  .option-btn.reveal  { background: rgba(22,163,74,0.25); border-color: #4ade80; color: #bbf7d0; }
+
+  .reveal-btn {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    border: none; color: #fff; padding: 10px 22px; border-radius: 25px;
+    cursor: pointer; font-size: 0.9rem; font-family: 'Nunito', sans-serif;
+    font-weight: 700; transition: all 0.2s; display: flex; align-items: center; gap: 8px;
+  }
+  .reveal-btn:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(124,58,237,0.5); }
+  .answer-box {
+    display: none; background: rgba(22,163,74,0.15); border: 1px solid #4ade80;
+    border-radius: 10px; padding: 14px; margin-top: 10px; color: #bbf7d0;
+    font-size: 0.95rem; line-height: 1.6;
+  }
+  .answer-box.shown { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── CHEAT CODE ── */
+  .cheat-box {
+    background: linear-gradient(135deg, rgba(234,88,12,0.2), rgba(251,191,36,0.15));
+    border: 2px solid rgba(251,191,36,0.4); border-radius: 16px;
+    padding: 20px; margin: 14px 0; position: relative; overflow: hidden;
+  }
+  .cheat-box::before {
+    content: '🔑'; position: absolute; top: 12px; right: 16px; font-size: 2rem; opacity: 0.3;
+  }
+  .cheat-box h3 { color: #fbbf24; font-size: 1.1rem; margin-bottom: 10px; }
+  .cheat-box .trick { padding: 8px 0; color: #fde68a; font-size: 0.95rem; line-height: 1.6;
+    border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .cheat-box .trick:last-child { border-bottom: none; }
+
+  /* ── CELEBRATION ── */
+  .confetti-container {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 9999;
+  }
+  .confetti-piece {
+    position: absolute; width: 10px; height: 10px; border-radius: 2px;
+    animation: confetti-fall linear forwards;
+  }
+  @keyframes confetti-fall {
+    0%   { top: -20px; opacity: 1; transform: rotate(0deg) translateX(0); }
+    100% { top: 100vh; opacity: 0; transform: rotate(720deg) translateX(var(--drift)); }
+  }
+
+  /* ── FOOTER NAV ── */
+  .foot-nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(15,12,41,0.95); backdrop-filter: blur(12px);
+    padding: 12px 20px; display: flex; justify-content: center;
+    gap: 12px; border-top: 1px solid rgba(255,255,255,0.1); z-index: 999;
+  }
+  .foot-btn {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    border: none; color: #fff; padding: 10px 28px; border-radius: 25px;
+    cursor: pointer; font-size: 1rem; font-family: 'Nunito', sans-serif;
+    font-weight: 800; transition: all 0.2s;
+  }
+  .foot-btn:hover { transform: scale(1.07); box-shadow: 0 4px 20px rgba(99,102,241,0.5); }
+  .foot-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+  .home-btn {
+    background: linear-gradient(135deg, #ea580c, #dc2626);
+  }
+
+  /* ── LISTEN SECTION ── */
+  .listen-box {
+    background: linear-gradient(135deg, rgba(8,145,178,0.2), rgba(16,185,129,0.15));
+    border: 1px solid rgba(8,145,178,0.4); border-radius: 16px;
+    padding: 20px; margin: 14px 0;
+  }
+  .listen-box h3 { color: #7dd3fc; margin-bottom: 10px; font-size: 1.1rem; }
+  .listen-script { font-size: 0.95rem; line-height: 1.8; color: #e0f2fe; }
+  .listen-script strong { color: #67e8f9; }
+  .tts-btn {
+    background: rgba(8,145,178,0.3); border: 1px solid #0891b2; color: #7dd3fc;
+    padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 0.85rem;
+    font-family: 'Nunito', sans-serif; font-weight: 700; margin-bottom: 12px;
+    transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+  }
+  .tts-btn:hover { background: rgba(8,145,178,0.5); }
+
+  /* ── MENU SLIDE ── */
+  .menu-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px; margin-top: 20px;
+  }
+  .menu-card {
+    background: var(--card); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px; padding: 18px; text-align: center; cursor: pointer;
+    transition: all 0.25s;
+  }
+  .menu-card:hover { transform: translateY(-5px); border-color: rgba(139,92,246,0.5);
+    box-shadow: 0 8px 30px rgba(139,92,246,0.2); }
+  .menu-card .m-emoji { font-size: 2.5rem; display: block; margin-bottom: 10px; }
+  .menu-card .m-title { font-weight: 800; font-size: 0.95rem; color: #e0f2fe; }
+  .menu-card .m-num   { font-size: 0.75rem; color: #a5b4fc; margin-top: 4px; }
+
+  /* ── SCORE ── */
+  #score-display {
+    position: fixed; top: 62px; right: 16px; z-index: 990;
+    background: rgba(251,191,36,0.2); border: 1px solid rgba(251,191,36,0.4);
+    border-radius: 20px; padding: 4px 14px; font-size: 0.85rem;
+    font-weight: 700; color: #fbbf24;
+  }
+
+  /* Two column layout for info */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width:600px){ .two-col{grid-template-columns:1fr;} .options{grid-template-columns:1fr;} }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.9rem; }
+  th { background: rgba(99,102,241,0.3); padding: 10px; text-align: left; color: #c4b5fd; 
+    font-weight: 700; border-bottom: 2px solid rgba(99,102,241,0.4); }
+  td { padding: 9px 10px; border-bottom: 1px solid rgba(255,255,255,0.07); color: #e2e8f0; }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+
+  .badge {
+    display: inline-block; padding: 2px 10px; border-radius: 12px;
+    font-size: 0.75rem; font-weight: 700; margin: 2px;
+  }
+  .badge-pos { background: rgba(22,163,74,0.3); color: #86efac; border:1px solid #16a34a; }
+  .badge-neg { background: rgba(220,38,38,0.3); color: #fca5a5; border:1px solid #dc2626; }
+  .badge-q   { background: rgba(8,145,178,0.3); color: #7dd3fc; border:1px solid #0891b2; }
+
+  .modal-overlay {
+    display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85);
+    z-index:2000; align-items:center; justify-content:center;
+  }
+  .modal-overlay.open { display:flex; }
+  .modal-box {
+    background: linear-gradient(135deg,#1e1b4b,#312e81);
+    border:2px solid rgba(139,92,246,0.5); border-radius:20px;
+    padding:30px; max-width:480px; width:90%; text-align:center;
+  }
+  .modal-box h2 { font-size:2rem; margin-bottom:10px; }
+  .modal-box p  { opacity:0.8; margin-bottom:20px; }
+  .modal-close {
+    background: linear-gradient(135deg,#7c3aed,#4f46e5);
+    border:none; color:#fff; padding:10px 30px; border-radius:25px;
+    cursor:pointer; font-size:1rem; font-family:'Nunito',sans-serif; font-weight:700;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <h1>🎓 B1 Intermediate Revision</h1>
+  <span id="slide-counter">1 / 1</span>
+  <button class="nav-btn" onclick="goHome()">🏠 Menu</button>
+</nav>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+<div id="score-display">⭐ Score: <span id="score">0</span></div>
+
+<!-- CONFETTI -->
+<div class="confetti-container" id="confetti"></div>
+
+<!-- SLIDES -->
+<div class="slides-wrapper" id="slides">
+
+<!-- ═══════════════════ SLIDE 0: MENU ═══════════════════ -->
+<div class="slide active" id="slide-0">
+  <div class="slide-title">
+    <span class="main-emoji">🎓</span>
+    <h2>B1 Intermediate Revision · I Learn English Here</h2>
+    <p>Tap a topic to jump straight in! All lessons, grammar, vocabulary & cheat codes. 💪</p>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-card" onclick="goToSlide(1)">
+      <span class="m-emoji">🏫</span>
+      <div class="m-title">College Vocabulary</div>
+      <div class="m-num">Lesson 10</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(4)">
+      <span class="m-emoji">🔢</span>
+      <div class="m-title">Noun Phrases – Quantity</div>
+      <div class="m-num">Lesson 11</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(7)">
+      <span class="m-emoji">🍳</span>
+      <div class="m-title">Cooking Vocabulary</div>
+      <div class="m-num">Lesson 12</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(9)">
+      <span class="m-emoji">🔮</span>
+      <div class="m-title">Future: going to</div>
+      <div class="m-num">Lesson 12 Grammar</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(12)">
+      <span class="m-emoji">🏠</span>
+      <div class="m-title">Home Vocabulary</div>
+      <div class="m-num">Lesson 14</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(14)">
+      <span class="m-emoji">💼</span>
+      <div class="m-title">Have to / Don't have to</div>
+      <div class="m-num">Lesson 15</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(17)">
+      <span class="m-emoji">💊</span>
+      <div class="m-title">Health Vocabulary</div>
+      <div class="m-num">Lesson 16</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(19)">
+      <span class="m-emoji">✅</span>
+      <div class="m-title">Should / Shouldn't</div>
+      <div class="m-num">Lesson 16 Grammar</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(22)">
+      <span class="m-emoji">⏰</span>
+      <div class="m-title">Since / For / Ago</div>
+      <div class="m-num">Lessons 17–18</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(25)">
+      <span class="m-emoji">🔄</span>
+      <div class="m-title">Present Perfect Continuous</div>
+      <div class="m-num">Special Focus ⭐</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(30)">
+      <span class="m-emoji">🤝</span>
+      <div class="m-title">People & Relationships</div>
+      <div class="m-num">Listening & Vocab</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(33)">
+      <span class="m-emoji">🔑</span>
+      <div class="m-title">CHEAT CODES 🔥</div>
+      <div class="m-num">All tricks &amp; formulas</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(37)">
+      <span class="m-emoji">🗣️</span>
+      <div class="m-title">Modal Verbs Master</div>
+      <div class="m-num">Special Focus ⭐</div>
+    </div>
+    <div class="menu-card" onclick="goToSlide(41)">
+      <span class="m-emoji">🏆</span>
+      <div class="m-title">Final Challenge!</div>
+      <div class="m-num">Mixed Questions</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 1: COLLEGE VOCAB ═══════════════════ -->
+<div class="slide" id="slide-1">
+  <div class="topic-tag tag-vocab">📚 Vocabulary – Lesson 10</div>
+  <h2>🏫 College & Education Vocabulary</h2>
+  <div class="vocab-grid">
+    <div class="vocab-card"><span class="emoji">🎓</span><div class="word">graduate</div><div class="def">finish university / get a degree</div></div>
+    <div class="vocab-card"><span class="emoji">🏫</span><div class="word">college</div><div class="def">place of higher education</div></div>
+    <div class="vocab-card"><span class="emoji">🚪</span><div class="word">drop out</div><div class="def">leave school without finishing</div></div>
+    <div class="vocab-card"><span class="emoji">🎤</span><div class="word">lecture</div><div class="def">formal talk by a professor</div></div>
+    <div class="vocab-card"><span class="emoji">📖</span><div class="word">major</div><div class="def">main subject you study</div></div>
+    <div class="vocab-card"><span class="emoji">👨‍🎓</span><div class="word">graduate student</div><div class="def">studying after first degree</div></div>
+    <div class="vocab-card"><span class="emoji">🗣️</span><div class="word">seminar</div><div class="def">small discussion class</div></div>
+    <div class="vocab-card"><span class="emoji">💰</span><div class="word">scholarship</div><div class="def">money given for studying</div></div>
+    <div class="vocab-card"><span class="emoji">📜</span><div class="word">degree</div><div class="def">qualification from university</div></div>
+  </div>
+  <div class="tip-box">
+    <strong>💡 Memory Trick:</strong> "S-M-D-G-L" → <em>Scholarship, Major, Degree, Graduate, Lecture</em> — think "Students Must Do Great Learning!" 🧠
+  </div>
+</div>
+
+<!-- SLIDE 2: College LISTENING -->
+<div class="slide" id="slide-2">
+  <div class="topic-tag tag-listening">🎧 Listening – Lesson 10</div>
+  <h2>🎧 Listen & Understand: College Life</h2>
+  <div class="listen-box">
+    <button class="tts-btn" onclick="speak('slide-2-text')">🔊 Read Aloud</button>
+    <div class="listen-script" id="slide-2-text">
+      <strong>Conversation:</strong><br><br>
+      🧑 Alex: "Did you hear? <strong>Maria got a scholarship</strong> to study medicine! 🎉"<br>
+      👩 Beth: "Wow! That's amazing. I heard she wants to <strong>major in biology</strong> first."<br>
+      🧑 Alex: "She almost <strong>dropped out</strong> last year because of the fees. 😮"<br>
+      👩 Beth: "I know. She has a <strong>lecture</strong> at 8am every morning. That's tough!"<br>
+      🧑 Alex: "She'll definitely <strong>graduate</strong> with a great <strong>degree</strong>. 💪"
+    </div>
+  </div>
+  <div class="grammar-box">
+    <h3>🔑 Key Phrases from the Dialogue</h3>
+    <div class="example">✅ <em>got a scholarship</em> = past simple (received money for studying)</div>
+    <div class="example">✅ <em>major in biology</em> = choose biology as the main subject</div>
+    <div class="example">✅ <em>dropped out</em> = phrasal verb (stopped studying)</div>
+    <div class="example">✅ <em>graduate WITH a degree</em> = notice the preposition WITH</div>
+  </div>
+</div>
+
+<!-- SLIDE 3: College Questions -->
+<div class="slide" id="slide-3">
+  <div class="topic-tag tag-vocab">📝 Questions – Lesson 10</div>
+  <h2>📝 Test Yourself! College Vocabulary</h2>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ I studied for 4 years and now I have a __________. 🎓</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) lecture</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) degree</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) scholarship</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) seminar</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ She stopped university after 2 years. She __________ of college. 😔</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) graduated out</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) lectured out</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">C) dropped out</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) majored out</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ The professor talked to 200 students at once. What was this? 🎤</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) A seminar</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) A degree</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">C) A lecture</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) A scholarship</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">4️⃣ Fill in the blank: "She __________ in Chemistry at university." 🧪</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Reveal Answer</button>
+    <div class="answer-box">✅ <strong>majored</strong> — "She majored in Chemistry at university." The verb is "to major in" + subject.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 4: QUANTITY ═══════════════════ -->
+<div class="slide" id="slide-4">
+  <div class="topic-tag tag-grammar">📐 Grammar – Lesson 11</div>
+  <h2>🔢 Noun Phrases – Quantity Words</h2>
+  <div class="grammar-box">
+    <h3>📊 The Big Table — When to Use Which Word</h3>
+    <table>
+      <tr><th>Word</th><th>With countable ✅</th><th>With uncountable ✅</th><th>Negative/Question only</th></tr>
+      <tr><td><strong>much</strong></td><td>❌</td><td>✅</td><td>⚠️ Usually negatives & questions</td></tr>
+      <tr><td><strong>many</strong></td><td>✅</td><td>❌</td><td>⚠️ Usually negatives & questions</td></tr>
+      <tr><td><strong>a little</strong></td><td>❌</td><td>✅</td><td>✅ All sentences</td></tr>
+      <tr><td><strong>a few</strong></td><td>✅</td><td>❌</td><td>✅ All sentences</td></tr>
+      <tr><td><strong>a lot of</strong></td><td>✅</td><td>✅</td><td>✅ All sentences</td></tr>
+      <tr><td><strong>lots of</strong></td><td>✅</td><td>✅</td><td>✅ All sentences (informal)</td></tr>
+    </table>
+  </div>
+  <div class="tip-box">
+    <strong>💡 EASY TRICK — The CAN YOU COUNT? Test:</strong><br>
+    Ask yourself: CAN I count this? → 1 book, 2 books? → YES = COUNTABLE → Use <em>many / a few</em><br>
+    Water? → 1 water? No! → UNCOUNTABLE → Use <em>much / a little</em> ✅
+  </div>
+</div>
+
+<!-- SLIDE 5: Quantity Examples -->
+<div class="slide" id="slide-5">
+  <div class="topic-tag tag-grammar">📐 Grammar – Lesson 11</div>
+  <h2>🔢 Quantity – Real Sentence Examples</h2>
+  <div class="two-col">
+    <div class="grammar-box green">
+      <h3>✅ MANY (countable)</h3>
+      <div class="example">📚 "There aren't <em>many</em> books left."</div>
+      <div class="example">🍕 "How <em>many</em> slices do you want?"</div>
+      <div class="example">🧑‍🤝‍🧑 "Not <em>many</em> students passed."</div>
+    </div>
+    <div class="grammar-box purple">
+      <h3>✅ MUCH (uncountable)</h3>
+      <div class="example">💧 "There isn't <em>much</em> water."</div>
+      <div class="example">⏰ "How <em>much</em> time do we have?"</div>
+      <div class="example">💰 "I don't have <em>much</em> money."</div>
+    </div>
+    <div class="grammar-box teal">
+      <h3>✅ A FEW (countable, positive)</h3>
+      <div class="example">🍪 "I ate <em>a few</em> cookies. 😋"</div>
+      <div class="example">👫 "<em>A few</em> friends came over."</div>
+    </div>
+    <div class="grammar-box orange">
+      <h3>✅ A LITTLE (uncountable, positive)</h3>
+      <div class="example">🧂 "Add <em>a little</em> salt. 🍳"</div>
+      <div class="example">☕ "I want <em>a little</em> coffee."</div>
+    </div>
+  </div>
+  <div class="grammar-box pink">
+    <h3>✅ A LOT OF / LOTS OF (both types)</h3>
+    <div class="example">📚 "She has <em>a lot of</em> books AND <em>a lot of</em> knowledge."</div>
+    <div class="example">🎉 "There were <em>lots of</em> people at the party!"</div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Quantity Questions -->
+<div class="slide" id="slide-6">
+  <div class="topic-tag tag-grammar">📝 Questions – Lesson 11</div>
+  <h2>📝 Test Yourself! Quantity Words</h2>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ "I don't have ________ money for the ticket." 💸</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) many</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) much</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) a few</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) lots</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ "There are ________ chairs in the room." 🪑 (small positive number)</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) a little</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) a few</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) much</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) any</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ "How ________ students are in your class?" 🧑‍🏫</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">A) many</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) much</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) little</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) lot of</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">4️⃣ Write a sentence using "a lot of" with an uncountable noun. 🌊</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Example Answer</button>
+    <div class="answer-box">✅ "There is <strong>a lot of</strong> water in the ocean." 🌊<br>Other examples: "a lot of music / a lot of information / a lot of homework"</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">5️⃣ Correct the mistake: "I have much books at home." 📚</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Reveal Correction</button>
+    <div class="answer-box">❌ <strong>much books</strong> → ✅ <strong>"I have many books at home."</strong><br>Books = countable → use MANY, not MUCH!</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 7: COOKING VOCAB ═══════════════════ -->
+<div class="slide" id="slide-7">
+  <div class="topic-tag tag-vocab">🍳 Vocabulary – Lesson 12</div>
+  <h2>🍳 Cooking Verbs – Everyday Life</h2>
+  <div class="vocab-grid">
+    <div class="vocab-card"><span class="emoji">🥔</span><div class="word">peel</div><div class="def">remove the skin</div></div>
+    <div class="vocab-card"><span class="emoji">🔪</span><div class="word">slice</div><div class="def">cut into thin pieces</div></div>
+    <div class="vocab-card"><span class="emoji">♨️</span><div class="word">boil</div><div class="def">heat water to 100°C</div></div>
+    <div class="vocab-card"><span class="emoji">🌡️</span><div class="word">heat</div><div class="def">make something warm/hot</div></div>
+    <div class="vocab-card"><span class="emoji">🔥</span><div class="word">roast</div><div class="def">cook in oven with dry heat</div></div>
+    <div class="vocab-card"><span class="emoji">🥚</span><div class="word">beat</div><div class="def">mix quickly (eggs etc.)</div></div>
+    <div class="vocab-card"><span class="emoji">➕</span><div class="word">add</div><div class="def">put something in</div></div>
+    <div class="vocab-card"><span class="emoji">🛢️</span><div class="word">fry</div><div class="def">cook in hot oil</div></div>
+  </div>
+  <div class="tip-box">
+    <strong>💡 Recipe Memory Order:</strong> 🥔 Peel → 🔪 Slice → ➕ Add → ♨️ Boil/🛢️ Fry → 🔥 Roast → 🌡️ Heat → 🥚 Beat eggs for dessert! Perfect recipe sequence!
+  </div>
+</div>
+
+<!-- SLIDE 8: Cooking listening & questions -->
+<div class="slide" id="slide-8">
+  <div class="topic-tag tag-listening">🎧 Listening – Lesson 12</div>
+  <h2>🎧 Cooking Dialogue + Questions</h2>
+  <div class="listen-box">
+    <button class="tts-btn" onclick="speak('cook-text')">🔊 Read Aloud</button>
+    <div class="listen-script" id="cook-text">
+      👨‍🍳 Chef: "OK everyone, today we make a Khmer curry! 🍛 First, <strong>peel</strong> the potatoes and <strong>slice</strong> them into small pieces. Then <strong>fry</strong> the onions in hot oil for 5 minutes. <strong>Add</strong> the spices and <strong>heat</strong> everything together. Finally, <strong>boil</strong> the coconut milk and add the meat. Let it <strong>roast</strong> in the oven for 30 minutes! 🔥"
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ What do you use to remove the skin from a potato? 🥔</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) fry it</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) peel it</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) beat it</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) roast it</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ You cut the potatoes into thin pieces. What verb is this? 🔪</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Reveal Answer</button>
+    <div class="answer-box">✅ <strong>Slice</strong> — "Slice the potatoes into thin pieces." Slice = cut thinly and evenly.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ Order these cooking steps correctly: fry 🛢️ / peel 🥔 / add ➕ / boil ♨️</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Reveal Order</button>
+    <div class="answer-box">✅ <strong>peel → fry → add → boil</strong><br>You usually prep first (peel), then cook (fry), then combine (add), then finish (boil).</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 9: GOING TO ═══════════════════ -->
+<div class="slide" id="slide-9">
+  <div class="topic-tag tag-grammar">📐 Grammar – Lesson 12</div>
+  <h2>🔮 Future: <em>going to</em></h2>
+  <div class="grammar-box">
+    <h3>📌 When to Use "going to"</h3>
+    <div class="example">✅ Use for <em>future PLANS or INTENTIONS already decided</em> 🎯</div>
+    <div class="example">✅ "I <em>am going to study</em> medicine." (I already decided this!)</div>
+    <div class="example">✅ "She <em>is going to cook</em> dinner tonight." (already planned!)</div>
+  </div>
+  <div class="grammar-box purple">
+    <h3>📐 The Formula</h3>
+    <div class="formula">Subject + am/is/are + going to + INFINITIVE (base verb)</div>
+    <div class="example">➕ I <em>am going to</em> travel. | She <em>is going to</em> call.</div>
+    <div class="example">➖ I <em>am not going to</em> travel. | She <em>isn't going to</em> call.</div>
+    <div class="example">❓ <em>Are</em> you going to travel? | <em>Is</em> she going to call?</div>
+  </div>
+  <div class="two-col">
+    <div class="grammar-box green">
+      <h3>✅ Positive Examples</h3>
+      <div class="example">🛫 "We <em>are going to fly</em> to Bangkok."</div>
+      <div class="example">🎂 "He <em>is going to bake</em> a cake."</div>
+      <div class="example">📚 "I <em>am going to study</em> tonight."</div>
+    </div>
+    <div class="grammar-box orange">
+      <h3>❌ Negative Examples</h3>
+      <div class="example">🚗 "I <em>am not going to drive</em>."</div>
+      <div class="example">🎮 "She <em>isn't going to play</em> games."</div>
+      <div class="example">🏃 "They <em>aren't going to run</em>."</div>
+    </div>
+  </div>
+  <div class="tip-box">
+    <strong>🔑 Cheat Code:</strong> "going to" = already DECIDED. "will" = decided NOW in the moment. Example: "I am going to travel next week" (planned last month) vs "I will carry your bag!" (just decided now) 💡
+  </div>
+</div>
+
+<!-- SLIDE 10: Going To Questions -->
+<div class="slide" id="slide-10">
+  <div class="topic-tag tag-grammar">📝 Questions – Going To</div>
+  <h2>📝 Test Yourself! Going to</h2>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ Choose the correct form: "She ________ a party next weekend." 🎉</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) is go to have</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) is going to have</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) are going to have</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) going to has</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ Make this question: "You / go / to the gym / tomorrow?" 🏋️</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Reveal Answer</button>
+    <div class="answer-box">✅ "<strong>Are you going to go to the gym tomorrow?</strong>"<br>Formula: Are/Is/Am + subject + going to + infinitive?</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ Why do we use "going to" here? → "I'm going to graduate next year." 🎓</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Explain</button>
+    <div class="answer-box">✅ Because it's a <strong>future plan already decided</strong>. The speaker enrolled in university years ago and graduation is a fixed plan, not a sudden decision.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">4️⃣ Correct the error: "They going to visit us on Sunday." 📅</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) They are go to visit</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) They are going to visit</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) They going visit</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) They will going to visit</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">5️⃣ Write a negative sentence about your weekend plans. 📝</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Example</button>
+    <div class="answer-box">✅ "I <strong>am not going to</strong> work this weekend." 😴<br>"She <strong>isn't going to</strong> attend the party." 🚫🎉</div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Going To More Questions -->
+<div class="slide" id="slide-11">
+  <div class="topic-tag tag-grammar">📝 More Questions – Going To</div>
+  <h2>📝 Going To – Extra Practice!</h2>
+
+  <div class="question-card">
+    <div class="q-text">6️⃣ Fill in: "________ he going to study engineering?" 🔧</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">A) Is</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) Are</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) Am</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) Be</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">7️⃣ Which sentence is WRONG? ❌</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) I am going to cook dinner.</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) We are going to travel.</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">C) She is going to went shopping.</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) They are going to buy tickets.</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">8️⃣ Write 2 sentences: one positive, one negative using "going to". ✍️</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Examples</button>
+    <div class="answer-box">✅ Positive: "I <strong>am going to</strong> pass my exams next month." 🎉<br>✅ Negative: "I <strong>am not going to</strong> fail this time." 💪</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 12: HOME VOCAB ═══════════════════ -->
+<div class="slide" id="slide-12">
+  <div class="topic-tag tag-vocab">🏠 Vocabulary – Lesson 14</div>
+  <h2>🏠 Home & Housing Vocabulary</h2>
+  <div class="vocab-grid">
+    <div class="vocab-card"><span class="emoji">❄️</span><div class="word">air conditioning</div><div class="def">machine to cool the room</div></div>
+    <div class="vocab-card"><span class="emoji">🚪</span><div class="word">front door</div><div class="def">main entrance door</div></div>
+    <div class="vocab-card"><span class="emoji">🚪</span><div class="word">back door</div><div class="def">door at the back</div></div>
+    <div class="vocab-card"><span class="emoji">⬆️</span><div class="word">upstairs</div><div class="def">the floor above</div></div>
+    <div class="vocab-card"><span class="emoji">⬇️</span><div class="word">downstairs</div><div class="def">the floor below</div></div>
+    <div class="vocab-card"><span class="emoji">🛋️</span><div class="word">living room</div><div class="def">room where family relaxes</div></div>
+    <div class="vocab-card"><span class="emoji">🚗</span><div class="word">garage</div><div class="def">place to park cars</div></div>
+    <div class="vocab-card"><span class="emoji">🌿</span><div class="word">yard</div><div class="def">outdoor space / garden</div></div>
+    <div class="vocab-card"><span class="emoji">🪑</span><div class="word">furniture</div><div class="def">tables, chairs, beds etc.</div></div>
+  </div>
+  <div class="tip-box">
+    <strong>💡 Tip:</strong> Remember UP = stairs going up 🏠, DOWN = stairs going down 🏠. Air conditioning = the thing that saves you in Cambodia! ❄️😂
+  </div>
+</div>
+
+<!-- SLIDE 13: Home Questions -->
+<div class="slide" id="slide-13">
+  <div class="topic-tag tag-vocab">📝 Questions – Lesson 14</div>
+  <h2>📝 Test Yourself! Home Vocabulary</h2>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ The bedroom is on the second floor. Where is it? 🛏️</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">A) Upstairs</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) Downstairs</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) In the yard</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) In the garage</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ All the tables, chairs, and sofas in your house — what is the general word? 🛋️</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Reveal</button>
+    <div class="answer-box">✅ <strong>Furniture</strong> — "furniture" is uncountable! We say "some furniture" NOT "a furniture" ✅</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ Which room do you use for watching TV and relaxing with the family? 📺</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) Garage</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) Yard</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">C) Living room</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) Upstairs</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">4️⃣ Fill the blank: "It's very hot in Cambodia 🥵, so we always use the __________."</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Answer</button>
+    <div class="answer-box">✅ <strong>air conditioning</strong> (or "air conditioner / AC") — the essential Cambodian appliance! ❄️</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 14: HAVE TO ═══════════════════ -->
+<div class="slide" id="slide-14">
+  <div class="topic-tag tag-grammar">📐 Grammar – Lesson 15</div>
+  <h2>💼 Auxiliary Verbs: <em>have to / don't have to</em></h2>
+  <div class="grammar-box">
+    <h3>📌 Meaning</h3>
+    <div class="example">✅ <strong>Have to</strong> = It is NECESSARY / OBLIGATORY 📋</div>
+    <div class="example">✅ <strong>Don't have to</strong> = It is NOT NECESSARY (but you can if you want) 🆓</div>
+    <div class="example">⚠️ <strong>Don't have to ≠ Must not!</strong> "Must not" = FORBIDDEN. "Don't have to" = just not required.</div>
+  </div>
+  <div class="grammar-box purple">
+    <h3>📐 Formula</h3>
+    <div class="formula">✅ Positive: Subject + have/has to + infinitive</div>
+    <div class="formula">❌ Negative: Subject + don't/doesn't + have to + infinitive</div>
+    <div class="formula">❓ Question: Do/Does + subject + have to + infinitive?</div>
+  </div>
+  <div class="two-col">
+    <div class="grammar-box green">
+      <h3>✅ Examples: HAVE TO</h3>
+      <div class="example">📋 "Students <em>have to</em> wear uniform." (necessary!)</div>
+      <div class="example">👩‍💼 "She <em>has to</em> finish the report." (she/he/it → HAS)</div>
+      <div class="example">⏰ "I <em>have to</em> wake up at 6am."</div>
+    </div>
+    <div class="grammar-box teal">
+      <h3>❌ Examples: DON'T HAVE TO</h3>
+      <div class="example">😎 "You <em>don't have to</em> wear a tie."</div>
+      <div class="example">🏖️ "She <em>doesn't have to</em> work on Sundays."</div>
+      <div class="example">🚗 "We <em>don't have to</em> drive — it's close!"</div>
+    </div>
+  </div>
+  <div class="tip-box">
+    <strong>🔑 He/She/It Rule:</strong> Always use <strong>HAS to</strong> (not have) with he, she, it. → "He <em>has to</em> study." ✅ | "He <em>have to</em> study." ❌
+  </div>
+</div>
+
+<!-- SLIDE 15: Have To Listening -->
+<div class="slide" id="slide-15">
+  <div class="topic-tag tag-listening">🎧 Listening – Lesson 15</div>
+  <h2>🎧 Dialogue: Responsibilities at Work 💼</h2>
+  <div class="listen-box">
+    <button class="tts-btn" onclick="speak('work-text')">🔊 Read Aloud</button>
+    <div class="listen-script" id="work-text">
+      👔 Boss: "Welcome to the team! 🎉 You <strong>have to</strong> arrive at 8am every day. You also <strong>have to</strong> write a daily report."<br><br>
+      🧑 Employee: "Do I <strong>have to</strong> wear a suit? 👔"<br><br>
+      👔 Boss: "No, you <strong>don't have to</strong> wear a suit — smart casual is fine! But you <strong>have to</strong> attend the Monday meeting."<br><br>
+      🧑 Employee: "Does everyone <strong>have to</strong> attend?"<br><br>
+      👔 Boss: "Yes! Everyone <strong>has to</strong> be there. It's mandatory! 📋"
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ Does the employee HAVE TO wear a suit? 👔</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) Yes, every day</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) No, it's not necessary</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) Yes, on Mondays</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) No, it's forbidden</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ Why is it "HAS to" for "everyone has to be there"? 🤔</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Explain</button>
+    <div class="answer-box">✅ "Everyone" is treated as a <strong>singular</strong> subject (like he/she/it), so we use <strong>has to</strong> not "have to". Rule: he/she/it/everyone/nobody → HAS TO</div>
+  </div>
+</div>
+
+<!-- SLIDE 16: Have To Questions -->
+<div class="slide" id="slide-16">
+  <div class="topic-tag tag-grammar">📝 Questions – Lesson 15</div>
+  <h2>📝 Test Yourself! Have to / Don't have to</h2>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ "She ________ work on Saturdays. (not necessary)" 📅</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) doesn't must work</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) doesn't have to work</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) don't have to work</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) hasn't work</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ Make a question: "he / has to / submit the form today?" 📝</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Answer</button>
+    <div class="answer-box">✅ "<strong>Does he have to submit the form today?</strong>"<br>Questions: Do/Does + subject + have to + infinitive</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ "You ________ be quiet in the library." (it's necessary!!) 📚🤫</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">A) have to</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) don't have to</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) having to</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) to have</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">4️⃣ What's the difference? "You <strong>don't have to</strong> eat it." vs "You <strong>must not</strong> eat it." 🍔</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Explain</button>
+    <div class="answer-box">✅ <strong>Don't have to</strong> = You can choose — it's not necessary but OK if you want.<br>✅ <strong>Must not</strong> = FORBIDDEN — you are not allowed! Big difference! 🚫</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 17: HEALTH VOCAB ═══════════════════ -->
+<div class="slide" id="slide-17">
+  <div class="topic-tag tag-vocab">💊 Vocabulary – Lesson 16</div>
+  <h2>💊 Health & Illness Vocabulary</h2>
+  <div class="vocab-grid">
+    <div class="vocab-card"><span class="emoji">🤧</span><div class="word">catch a cold</div><div class="def">get a cold (illness)</div></div>
+    <div class="vocab-card"><span class="emoji">🤒</span><div class="word">sore throat</div><div class="def">pain in your throat</div></div>
+    <div class="vocab-card"><span class="emoji">😷</span><div class="word">what's the matter?</div><div class="def">asking "what's wrong?"</div></div>
+    <div class="vocab-card"><span class="emoji">🫁</span><div class="word">cough</div><div class="def">force air from the throat</div></div>
+    <div class="vocab-card"><span class="emoji">🤧</span><div class="word">sneeze</div><div class="def">sudden air from nose</div></div>
+    <div class="vocab-card"><span class="emoji">🔙</span><div class="word">my back aches</div><div class="def">my back has pain</div></div>
+    <div class="vocab-card"><span class="emoji">😵</span><div class="word">feel dizzy</div><div class="def">feel like spinning/falling</div></div>
+    <div class="vocab-card"><span class="emoji">💊</span><div class="word">take medicine</div><div class="def">use pills or syrup</div></div>
+    <div class="vocab-card"><span class="emoji">🌡️</span><div class="word">fever</div><div class="def">high body temperature</div></div>
+    <div class="vocab-card"><span class="emoji">🦵</span><div class="word">have a pain in the leg</div><div class="def">leg hurts</div></div>
+  </div>
+  <div class="tip-box">
+    <strong>💡 Remember:</strong> "Catch a cold" 🤧 NOT "get a cold disease". We use CATCH like catching a ball — the virus "catches" you! 😂
+  </div>
+</div>
+
+<!-- SLIDE 18: Health Questions -->
+<div class="slide" id="slide-18">
+  <div class="topic-tag tag-vocab">📝 Questions – Health</div>
+  <h2>📝 Health Questions + Dialogue</h2>
+  <div class="listen-box">
+    <button class="tts-btn" onclick="speak('health-text')">🔊 Read Aloud</button>
+    <div class="listen-script" id="health-text">
+      👨‍⚕️ Doctor: "Good morning! <strong>What's the matter?</strong> 😷"<br>
+      🤒 Patient: "I <strong>have a sore throat</strong> and I <strong>feel dizzy</strong>. I also <strong>have a fever</strong> of 38°C."<br>
+      👨‍⚕️ Doctor: "Do you <strong>cough</strong> or <strong>sneeze</strong>?"<br>
+      🤒 Patient: "Yes, I <strong>cough</strong> a lot at night. And <strong>my back aches</strong> too."<br>
+      👨‍⚕️ Doctor: "I see. You need to <strong>take this medicine</strong> three times a day. Rest and drink water! 💧"
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ What phrase does the doctor use to ask "what's wrong?" 🤔</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) How are you?</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) What's the matter?</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) What do you feel?</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) How is the sickness?</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ The patient's temperature is high. What illness do they have? 🌡️</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Answer</button>
+    <div class="answer-box">✅ <strong>A fever</strong> — "have a fever" = high body temperature (over 37.5°C). Also "catch a cold" could apply here.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 19: SHOULD / SHOULDN'T ═══════════════════ -->
+<div class="slide" id="slide-19">
+  <div class="topic-tag tag-grammar">📐 Grammar – Lesson 16</div>
+  <h2>✅ Modal Verb: <em>should / shouldn't</em></h2>
+  <div class="grammar-box">
+    <h3>📌 Meaning</h3>
+    <div class="example">✅ <strong>Should</strong> = It's a good idea / advice / recommendation 💡</div>
+    <div class="example">❌ <strong>Shouldn't</strong> = It's NOT a good idea / bad advice 🚫</div>
+    <div class="example">⚠️ <em>Should is WEAKER than have to</em> — it's advice, not a rule!</div>
+  </div>
+  <div class="grammar-box purple">
+    <h3>📐 Formula</h3>
+    <div class="formula">✅ Positive: Subject + should + infinitive (no "to")</div>
+    <div class="formula">❌ Negative: Subject + should + not (shouldn't) + infinitive</div>
+    <div class="formula">❓ Question: Should + subject + infinitive?</div>
+  </div>
+  <div class="two-col">
+    <div class="grammar-box green">
+      <h3>✅ SHOULD Examples</h3>
+      <div class="example">💊 "You <em>should take</em> medicine." (advice)</div>
+      <div class="example">💤 "He <em>should sleep</em> more."</div>
+      <div class="example">🥗 "We <em>should eat</em> healthily."</div>
+    </div>
+    <div class="grammar-box orange">
+      <h3>❌ SHOULDN'T Examples</h3>
+      <div class="example">🚬 "You <em>shouldn't smoke</em>." (bad idea!)</div>
+      <div class="example">🌙 "He <em>shouldn't stay</em> up late."</div>
+      <div class="example">🍔 "She <em>shouldn't eat</em> junk food."</div>
+    </div>
+  </div>
+  <div class="tip-box">
+    <strong>🔑 Key Rule:</strong> After "should/shouldn't", the verb is ALWAYS bare infinitive (no "to", no "s"). ✅ "should <em>go</em>" ❌ NOT "should <em>to go</em>" / "should <em>goes</em>"
+  </div>
+</div>
+
+<!-- SLIDE 20: Should Questions -->
+<div class="slide" id="slide-20">
+  <div class="topic-tag tag-grammar">📝 Questions – Should</div>
+  <h2>📝 Test Yourself! Should / Shouldn't</h2>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ "You have a headache. You ________ rest." 🛌</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">A) should</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) shouldn't</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) should to</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) shoulding</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ "You are trying to sleep. You ________ use your phone." 📱</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) should</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) shouldn't</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) should to not</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) don't should</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ Find the MISTAKE: "She should goes to the doctor." 🏥</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Fix It</button>
+    <div class="answer-box">❌ <strong>"goes"</strong> → ✅ <strong>"go"</strong><br>After "should", always use the BASE FORM (infinitive without "to"): "She <strong>should go</strong> to the doctor." ✅</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">4️⃣ Make a question: "I / should / call / the doctor?" 📞</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Answer</button>
+    <div class="answer-box">✅ "<strong>Should I call the doctor?</strong>"<br>Questions: Should + subject + base verb?</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">5️⃣ Give advice to a classmate who has a cold. Write 2 sentences! 🤒</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Examples</button>
+    <div class="answer-box">✅ "You <strong>should</strong> rest at home." 🛌<br>✅ "You <strong>shouldn't</strong> come to school." 🏫<br>✅ "You <strong>should</strong> drink hot tea and take medicine." ☕💊</div>
+  </div>
+</div>
+
+<!-- SLIDE 21: Should More Questions -->
+<div class="slide" id="slide-21">
+  <div class="topic-tag tag-grammar">📝 More Questions – Should</div>
+  <h2>📝 Should/Shouldn't – More Practice</h2>
+
+  <div class="question-card">
+    <div class="q-text">6️⃣ "________ students use phones in class?" 📱 (asking for advice)</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">A) Should</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) Do should</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) Are should</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) Must</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">7️⃣ What is the main difference between "should" and "have to"? 🤔</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Explain</button>
+    <div class="answer-box">✅ <strong>Should</strong> = ADVICE (good idea but not forced). "You should exercise more." 💪<br>✅ <strong>Have to</strong> = OBLIGATION (necessary, a rule). "You have to pay taxes." 📋<br>Think of "should" as your mum's advice and "have to" as the law!</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">8️⃣ Write a "shouldn't" sentence about exam preparation. ✍️</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Examples</button>
+    <div class="answer-box">✅ "You <strong>shouldn't</strong> leave studying until the night before." 😰<br>✅ "You <strong>shouldn't</strong> use your phone during revision." 📵</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 22: SINCE / FOR / AGO ═══════════════════ -->
+<div class="slide" id="slide-22">
+  <div class="topic-tag tag-grammar">📐 Grammar – Lessons 17–18</div>
+  <h2>⏰ Time Words: <em>since / for / ago / from…to / until</em></h2>
+  <div class="grammar-box">
+    <h3>📌 Core Meanings</h3>
+    <table>
+      <tr><th>Word</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td>⏰ <strong>since</strong></td><td>When something STARTED (and still continues now)</td><td>"I've lived here <em>since</em> 2020."</td></tr>
+      <tr><td>⌛ <strong>for</strong></td><td>HOW LONG something lasts (a duration)</td><td>"I've studied <em>for</em> 3 years."</td></tr>
+      <tr><td>🔙 <strong>ago</strong></td><td>How far BEFORE NOW something happened (past)</td><td>"I arrived 2 days <em>ago</em>."</td></tr>
+      <tr><td>↔️ <strong>from…to</strong></td><td>Start time TO end time</td><td>"I work <em>from</em> 8am <em>to</em> 5pm."</td></tr>
+      <tr><td>🛑 <strong>until</strong></td><td>Up to the point in time when something stops</td><td>"Wait <em>until</em> I arrive."</td></tr>
+    </table>
+  </div>
+  <div class="tip-box">
+    <strong>🔑 SINCE vs FOR Memory Trick:</strong><br>
+    <strong>SINCE</strong> = a specific POINT in time → 2020, Monday, last week, I was 5 years old 📍<br>
+    <strong>FOR</strong> = a PERIOD of time → 3 years, 2 hours, a long time ⏱️<br>
+    Ask: "Is it a POINT or a PERIOD?" → That decides your answer!
+  </div>
+</div>
+
+<!-- SLIDE 23: Since/For Examples -->
+<div class="slide" id="slide-23">
+  <div class="topic-tag tag-grammar">📐 Grammar – Time Words</div>
+  <h2>⏰ Since / For – Examples & Context</h2>
+  <div class="two-col">
+    <div class="grammar-box teal">
+      <h3>📍 SINCE = specific starting point</h3>
+      <div class="example">📅 "I've studied English <em>since</em> 2019."</div>
+      <div class="example">📅 "She's lived in Phnom Penh <em>since</em> January."</div>
+      <div class="example">📅 "He's been sick <em>since</em> Monday."</div>
+      <div class="example">📅 "We've been friends <em>since</em> we were kids."</div>
+    </div>
+    <div class="grammar-box purple">
+      <h3>⏱️ FOR = duration (length of time)</h3>
+      <div class="example">🕐 "I've studied English <em>for</em> 5 years."</div>
+      <div class="example">🕐 "She worked there <em>for</em> 6 months."</div>
+      <div class="example">🕐 "He's been sick <em>for</em> 3 days."</div>
+      <div class="example">🕐 "We've been friends <em>for</em> a long time."</div>
+    </div>
+  </div>
+  <div class="grammar-box green">
+    <h3>🔙 AGO – Used with PAST SIMPLE (finished action)</h3>
+    <div class="example">⚠️ AGO always goes at the END of the time expression</div>
+    <div class="example">📅 "I moved here 3 years <em>ago</em>." (= 3 years before NOW)</div>
+    <div class="example">📅 "She called me 10 minutes <em>ago</em>."</div>
+    <div class="example">📅 "They met 5 years <em>ago</em>."</div>
+  </div>
+</div>
+
+<!-- SLIDE 24: Time Word Questions -->
+<div class="slide" id="slide-24">
+  <div class="topic-tag tag-grammar">📝 Questions – Time Words</div>
+  <h2>📝 Since / For / Ago – Test Yourself!</h2>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ "I have lived in Cambodia ________ 2018." 🇰🇭</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">A) since</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) for</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) ago</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) until</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ "She studied at this college ________ two years." 📚</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) since</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) for</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) ago</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) from</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ "He graduated three years __________." 🎓</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) since</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) for</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">C) ago</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) until</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">4️⃣ "The library is open ________ 9am ________ 6pm." 📚</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Answer</button>
+    <div class="answer-box">✅ "The library is open <strong>from</strong> 9am <strong>to</strong> 6pm."<br>FROM…TO = fixed start and end time.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">5️⃣ Choose: SINCE or FOR? "I've known her ________ we were in primary school." 🏫</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Answer</button>
+    <div class="answer-box">✅ <strong>Since</strong> — "when we were in primary school" is a POINT in time (a specific moment), not a duration.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 25: PRESENT PERFECT CONTINUOUS ═══════════════════ -->
+<div class="slide" id="slide-25">
+  <div class="topic-tag tag-grammar">⭐ Special Focus – Present Perfect Continuous</div>
+  <h2>🔄 Present Perfect Continuous (PPC) – Deep Dive!</h2>
+  <div class="grammar-box">
+    <h3>📌 When to Use PPC</h3>
+    <div class="example">1️⃣ An action that <em>STARTED in the past and is STILL happening NOW</em> 🔄</div>
+    <div class="example">2️⃣ An action <em>RECENTLY STOPPED but with visible results now</em> 👀</div>
+    <div class="example">3️⃣ To emphasise the <em>DURATION or CONTINUITY</em> of an action ⏳</div>
+  </div>
+  <div class="grammar-box purple">
+    <h3>📐 The Formula</h3>
+    <div class="formula">Subject + have/has + been + verb-ING</div>
+    <div class="example">➕ "I <em>have been studying</em> English for 5 years."</div>
+    <div class="example">➖ "She <em>hasn't been sleeping</em> well lately."</div>
+    <div class="example">❓ "How long <em>have you been waiting</em>?"</div>
+  </div>
+  <div class="tip-box">
+    <strong>🔑 EASY MEMORY FORMULA:</strong><br>
+    have/has + <strong>been</strong> + verb<strong>-ING</strong><br>
+    Think: "HAVE BEEN = past started | ING = still going on!" 🎯<br>
+    He → HAS been | I/You/We/They → HAVE been
+  </div>
+</div>
+
+<!-- SLIDE 26: PPC vs Past Simple -->
+<div class="slide" id="slide-26">
+  <div class="topic-tag tag-grammar">⭐ Present Perfect Continuous</div>
+  <h2>🔄 PPC vs Present Perfect Simple — What's the Difference?</h2>
+  <div class="two-col">
+    <div class="grammar-box green">
+      <h3>🔄 PPC – Focus on DURATION/PROCESS</h3>
+      <div class="example">📖 "I <em>have been reading</em> this book all day." (still reading, or just finished)</div>
+      <div class="example">🏋️ "She <em>has been exercising</em> since morning."</div>
+      <div class="example">😴 "He <em>has been sleeping</em> for 10 hours."</div>
+    </div>
+    <div class="grammar-box orange">
+      <h3>✅ PP Simple – Focus on COMPLETION/RESULT</h3>
+      <div class="example">📖 "I <em>have read</em> this book." (finished! ✅)</div>
+      <div class="example">🏋️ "She <em>has exercised</em> today." (completed)</div>
+      <div class="example">😴 "He <em>has slept</em> well." (result: feels rested)</div>
+    </div>
+  </div>
+  <div class="grammar-box teal">
+    <h3>🎭 Real Context Examples</h3>
+    <div class="example">💧 "Your hands are wet. Have you <em>been washing</em> them?" (PPC — the process)</div>
+    <div class="example">💧 "Have you <em>washed</em> the dishes?" (PP Simple — done or not?)</div>
+    <div class="example">📝 "I <em>have been writing</em> this essay for 3 hours." (still going)</div>
+    <div class="example">📝 "I <em>have written</em> the essay." (it's done!)</div>
+  </div>
+</div>
+
+<!-- SLIDE 27: PPC with Since/For -->
+<div class="slide" id="slide-27">
+  <div class="topic-tag tag-grammar">⭐ Present Perfect Continuous</div>
+  <h2>🔄 PPC + Since / For = Perfect Partners! 💑</h2>
+  <div class="grammar-box">
+    <h3>PPC LOVES since and for! 🎉</h3>
+    <div class="example">⏱️ "I <em>have been studying</em> <strong>for</strong> 3 hours." (duration = FOR)</div>
+    <div class="example">📍 "I <em>have been studying</em> <strong>since</strong> 9am." (starting point = SINCE)</div>
+    <div class="example">⏱️ "She <em>has been working here</em> <strong>for</strong> 2 years."</div>
+    <div class="example">📍 "He <em>has been living</em> in Phnom Penh <strong>since</strong> 2019."</div>
+    <div class="example">⏱️ "They <em>have been waiting</em> <strong>for</strong> 30 minutes." 😤</div>
+  </div>
+  <div class="cheat-box">
+    <h3>🔑 PPC CHEAT CODE 🔥</h3>
+    <div class="trick">Formula: <strong>have/has + been + VERB-ING</strong></div>
+    <div class="trick">With "how long?" questions → always use PPC!</div>
+    <div class="trick">"How long HAVE you BEEN WORKING here?" ✅</div>
+    <div class="trick">Signs of PPC: "lately", "recently", "all day", "for + time", "since + point"</div>
+    <div class="trick">He/She/It = HAS been | I/You/We/They = HAVE been</div>
+  </div>
+</div>
+
+<!-- SLIDE 28: PPC Questions Part 1 -->
+<div class="slide" id="slide-28">
+  <div class="topic-tag tag-grammar">📝 Questions – PPC</div>
+  <h2>📝 Present Perfect Continuous – Test Yourself!</h2>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ "She ________ (study) all night. She looks tired." 😴</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) has studying</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) has been studying</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) have been studying</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) has study</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ "How long ________ you ________ English?" 🗣️</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) did / studied</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) have / studying</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">C) have / been studying</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) are / studying</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ "They ________ (wait) for the bus since 7am!" 🚌</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Answer</button>
+    <div class="answer-box">✅ "They <strong>have been waiting</strong> for the bus since 7am!"<br>Formula: they → HAVE + been + wait-ING ✅</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">4️⃣ Which shows DURATION: "I have written 3 emails" OR "I have been writing emails all morning"?</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Explain</button>
+    <div class="answer-box">✅ <strong>"I have been writing emails all morning"</strong> = shows DURATION (continuous process)<br>"I have written 3 emails" = shows RESULT (how many = count)</div>
+  </div>
+</div>
+
+<!-- SLIDE 29: PPC Questions Part 2 -->
+<div class="slide" id="slide-29">
+  <div class="topic-tag tag-grammar">📝 More PPC Questions</div>
+  <h2>📝 PPC – More Practice! 🔥</h2>
+
+  <div class="question-card">
+    <div class="q-text">5️⃣ "I ________ (learn) Khmer since I moved to Cambodia." 🇰🇭</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) am learning</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) have been learning</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) have learn</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) was learning</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">6️⃣ What are the TWO signals in this sentence? → "She has been cooking for 2 hours." 🍳</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Identify Signals</button>
+    <div class="answer-box">✅ Signal 1: <strong>has been cooking</strong> = PPC formula (has + been + -ING)<br>✅ Signal 2: <strong>for 2 hours</strong> = duration (FOR + period of time)<br>Both together = classic Present Perfect Continuous! 🎯</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">7️⃣ Make a PPC sentence about yourself using "since". ✍️</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Example</button>
+    <div class="answer-box">✅ "I <strong>have been studying</strong> at this college since September." 📚<br>"I <strong>have been living</strong> in Phnom Penh since I was born." 🏙️<br>"I <strong>have been learning</strong> English since I was 10 years old." 🗣️</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">8️⃣ Fix the error: "He have been work here for six months." 💼</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Correction</button>
+    <div class="answer-box">✅ "He <strong>has been working</strong> here for six months."<br>Errors fixed: have → <strong>has</strong> (he = singular) | work → <strong>working</strong> (needs -ING)</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 30: PEOPLE & RELATIONSHIPS ═══════════════════ -->
+<div class="slide" id="slide-30">
+  <div class="topic-tag tag-vocab">🤝 Vocabulary – People & Relationships</div>
+  <h2>🤝 People & Relationships Vocabulary</h2>
+  <div class="vocab-grid">
+    <div class="vocab-card"><span class="emoji">🌐</span><div class="word">networking</div><div class="def">meeting people professionally</div></div>
+    <div class="vocab-card"><span class="emoji">🦋</span><div class="word">social butterfly</div><div class="def">person who loves socialising</div></div>
+    <div class="vocab-card"><span class="emoji">💬</span><div class="word">chit-chat</div><div class="def">informal small talk</div></div>
+    <div class="vocab-card"><span class="emoji">🌱</span><div class="word">down-to-earth</div><div class="def">practical, not pretentious</div></div>
+    <div class="vocab-card"><span class="emoji">😊</span><div class="word">easy-going</div><div class="def">relaxed, not stressed</div></div>
+    <div class="vocab-card"><span class="emoji">📖</span><div class="word">background</div><div class="def">where you come from (history)</div></div>
+    <div class="vocab-card"><span class="emoji">❤️</span><div class="word">be into (something)</div><div class="def">like or enjoy something very much</div></div>
+    <div class="vocab-card"><span class="emoji">🚶</span><div class="word">hang out</div><div class="def">spend time with friends casually</div></div>
+  </div>
+  <div class="tip-box">
+    <strong>💡 Phrasal Verbs:</strong> "be into" and "hang out" are phrasal verbs! Common in speaking.<br>
+    "I'm <em>into</em> music." = I love music 🎵 | "Let's <em>hang out</em> this weekend!" = spend time together 🤝
+  </div>
+</div>
+
+<!-- SLIDE 31: People Adjectives & Feelings -->
+<div class="slide" id="slide-31">
+  <div class="topic-tag tag-vocab">😊 Vocabulary – Feelings</div>
+  <h2>😊 Feelings & Emotions Vocabulary</h2>
+  <div class="vocab-grid">
+    <div class="vocab-card"><span class="emoji">😲</span><div class="word">surprised</div><div class="def">shocked by something unexpected</div></div>
+    <div class="vocab-card"><span class="emoji">🤩</span><div class="word">excited</div><div class="def">very happy and enthusiastic</div></div>
+    <div class="vocab-card"><span class="emoji">😢</span><div class="word">upset</div><div class="def">unhappy and disturbed</div></div>
+    <div class="vocab-card"><span class="emoji">😟</span><div class="word">worried</div><div class="def">anxious about something</div></div>
+    <div class="vocab-card"><span class="emoji">😌</span><div class="word">relaxed</div><div class="def">calm and not stressed</div></div>
+    <div class="vocab-card"><span class="emoji">😑</span><div class="word">bored</div><div class="def">not interested, nothing to do</div></div>
+    <div class="vocab-card"><span class="emoji">😔</span><div class="word">lonely</div><div class="def">sad from being alone</div></div>
+    <div class="vocab-card"><span class="emoji">😨</span><div class="word">frightened</div><div class="def">scared, afraid</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 32: People Questions -->
+<div class="slide" id="slide-32">
+  <div class="topic-tag tag-vocab">📝 Questions – People & Feelings</div>
+  <h2>📝 Test Yourself! People & Relationships</h2>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ She loves meeting new people and going to parties. She is a __________. 🎉</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) chit-chat</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) social butterfly</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) networking</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) easy-going</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ "I ________ K-pop. I listen to it every day!" 🎵</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) hang out</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) am into</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) networking</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) chit-chat</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ "She was ________ when she saw her exam results. She didn't expect to pass!" 😲</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Answer</button>
+    <div class="answer-box">✅ <strong>surprised</strong> — "She was surprised when she saw her exam results."<br>Surprised = shocked by something unexpected (positive or negative)</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">4️⃣ What does "down-to-earth" mean? 🌱</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) someone who works in nature</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) someone who is always sad</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">C) someone practical and not pretentious</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) someone who travels a lot</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 33: CHEAT CODES ═══════════════════ -->
+<div class="slide" id="slide-33">
+  <div class="topic-tag tag-cheatcode">🔑 CHEAT CODES</div>
+  <h2>🔑 CHEAT CODES: Formulas & Tricks! 🔥</h2>
+  <div class="cheat-box">
+    <h3>⚡ QUICK FORMULA REFERENCE</h3>
+    <div class="trick">🔮 <strong>Going to (future plan):</strong> Subject + am/is/are + going to + BASE VERB</div>
+    <div class="trick">💼 <strong>Have to (obligation):</strong> Subject + have/has + to + BASE VERB</div>
+    <div class="trick">✅ <strong>Should (advice):</strong> Subject + should + BASE VERB (no "to"!)</div>
+    <div class="trick">🔄 <strong>Present Perfect Continuous:</strong> Subject + have/has + been + VERB-ING</div>
+    <div class="trick">⏰ <strong>SINCE</strong> = specific POINT | <strong>FOR</strong> = PERIOD of time | <strong>AGO</strong> = before NOW</div>
+  </div>
+  <div class="cheat-box">
+    <h3>🧠 THE "HE/SHE/IT" RULE — NEVER FORGET!</h3>
+    <div class="trick">With HE/SHE/IT/EVERYONE: is going to ✅ | has to ✅ | has been ✅</div>
+    <div class="trick">With I/YOU/WE/THEY: am/are going to ✅ | have to ✅ | have been ✅</div>
+    <div class="trick">⚠️ "EVERYONE" and "NOBODY" = singular → HAS / IS / WAS</div>
+  </div>
+</div>
+
+<!-- SLIDE 34: More Cheat Codes -->
+<div class="slide" id="slide-34">
+  <div class="topic-tag tag-cheatcode">🔑 More Cheat Codes</div>
+  <h2>🔥 More Cheat Codes – Vocab & Grammar Tricks!</h2>
+  <div class="cheat-box">
+    <h3>🔢 QUANTITY CHEAT CODE</h3>
+    <div class="trick">❓ Can you COUNT it? → YES = <strong>many / a few</strong> | NO = <strong>much / a little</strong></div>
+    <div class="trick">✅ Works ALWAYS: <strong>a lot of / lots of</strong> (countable AND uncountable!)</div>
+    <div class="trick">⚠️ MUCH = usually in negatives & questions ONLY (not positive statements)</div>
+    <div class="trick">Rule: "I have MUCH time" ❌ → "I have A LOT OF time" ✅</div>
+  </div>
+  <div class="cheat-box">
+    <h3>🍳 COOKING VERB ORDER</h3>
+    <div class="trick">🥔 Peel → 🔪 Slice → ➕ Add → 🛢️ Fry → ♨️ Boil → 🔥 Roast → 🥚 Beat</div>
+    <div class="trick">"Please Stop All Food Before Really Baking" = Peel Slice Add Fry Boil Roast Beat</div>
+  </div>
+  <div class="cheat-box">
+    <h3>😊 FEELING ADJECTIVES — NEVER SAY "BORING PERSON"!</h3>
+    <div class="trick">😑 Bored = the person FEELS bored (I am bored) ✅</div>
+    <div class="trick">😑 Boring = the thing/person CAUSES boredom (The lesson is boring) ✅</div>
+    <div class="trick">Same for: excited/exciting | frightened/frightening | surprised/surprising | worried/worrying</div>
+  </div>
+</div>
+
+<!-- SLIDE 35: Cheat Code Practice -->
+<div class="slide" id="slide-35">
+  <div class="topic-tag tag-cheatcode">🔑 Cheat Code Practice</div>
+  <h2>🔑 Apply Your Cheat Codes!</h2>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ Quick Formula Check! How do you form "Present Perfect Continuous" positive? 🔄</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Formula</button>
+    <div class="answer-box">✅ <strong>Subject + have/has + been + verb-ING</strong><br>"I have been studying." | "She has been cooking." | "They have been waiting."</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ Quick Fire: Which word? "I've had this phone ________ three years." ⏱️</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) since</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) for</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) ago</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) until</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ Should or Have to? "Students ________ show ID to enter the exam hall." (RULE!) 🪪</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) should</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) have to</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) are going to</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) shouldn't</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">4️⃣ Scared or Scary? "The movie was so __________ that I couldn't sleep!" 😱</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) frightened</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) frightening</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) worry</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) lonely</button>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 36: More Cheat Code Questions -->
+<div class="slide" id="slide-36">
+  <div class="topic-tag tag-cheatcode">🔑 Cheat Code Challenge</div>
+  <h2>🔥 Cheat Code Challenge – All Topics!</h2>
+
+  <div class="question-card">
+    <div class="q-text">5️⃣ Fix ALL errors: "She have been study English since 3 years." ✍️</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Full Correction</button>
+    <div class="answer-box">✅ "She <strong>has been studying</strong> English <strong>for</strong> 3 years."<br>Fixes: have→has (she) | study→studying (-ING) | since 3 years→for 3 years (duration=FOR)</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">6️⃣ "There aren't ________ chairs in the waiting room." 🪑</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">A) many</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) much</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) a little</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) a lot</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">7️⃣ "I ________ visit my grandmother this Sunday." (already planned) 👵</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) will</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) am going to</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) should</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) have to</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 37: MODAL VERBS MASTER ═══════════════════ -->
+<div class="slide" id="slide-37">
+  <div class="topic-tag tag-grammar">⭐ Special Focus – Modal Verbs</div>
+  <h2>🗣️ Modal Verbs – Complete Master Guide!</h2>
+  <div class="grammar-box">
+    <h3>📌 What ARE Modal Verbs?</h3>
+    <div class="example">Modal verbs are HELPER verbs that show how CERTAIN, NECESSARY, or POSSIBLE something is.</div>
+    <div class="example">⚠️ Golden Rule: After modal verbs, ALWAYS use BASE VERB (no "to", no "s", no "-ing")</div>
+    <div class="example">✅ "She <em>can</em> speak Khmer." ❌ NOT "She can speaks" | NOT "She can to speak"</div>
+  </div>
+  <table>
+    <tr><th>Modal</th><th>Meaning</th><th>Example</th></tr>
+    <tr><td>🔵 <strong>can</strong></td><td>Ability / permission</td><td>"I <em>can</em> swim." 🏊</td></tr>
+    <tr><td>🟢 <strong>could</strong></td><td>Past ability / polite request</td><td>"<em>Could</em> you help me?" 🙏</td></tr>
+    <tr><td>🟡 <strong>should</strong></td><td>Advice / recommendation</td><td>"You <em>should</em> sleep." 😴</td></tr>
+    <tr><td>🟠 <strong>have to</strong></td><td>Obligation / necessity</td><td>"I <em>have to</em> study." 📚</td></tr>
+    <tr><td>🔴 <strong>must</strong></td><td>Strong obligation / must not = forbidden</td><td>"You <em>must not</em> cheat." 🚫</td></tr>
+    <tr><td>🟣 <strong>will</strong></td><td>Future (instant decision)</td><td>"I <em>will</em> help!" 🙋</td></tr>
+    <tr><td>⚪ <strong>would</strong></td><td>Conditional / polite</td><td>"I <em>would</em> like a coffee." ☕</td></tr>
+    <tr><td>🔵 <strong>might/may</strong></td><td>Possibility (not sure)</td><td>"It <em>might</em> rain today." 🌧️</td></tr>
+  </table>
+</div>
+
+<!-- SLIDE 38: Modal Verb Rules -->
+<div class="slide" id="slide-38">
+  <div class="topic-tag tag-grammar">⭐ Modal Verbs Rules</div>
+  <h2>🗣️ Modal Verb Rules – No Exceptions!</h2>
+  <div class="two-col">
+    <div class="grammar-box green">
+      <h3>✅ Correct Modal Structures</h3>
+      <div class="example">She <em>can speak</em> three languages. ✅</div>
+      <div class="example">You <em>should rest</em> today. ✅</div>
+      <div class="example">I <em>must finish</em> this. ✅</div>
+      <div class="example">He <em>might come</em> later. ✅</div>
+      <div class="example">We <em>could try</em> a new restaurant. ✅</div>
+    </div>
+    <div class="grammar-box orange">
+      <h3>❌ Common Mistakes</h3>
+      <div class="example">She can <em>speaks</em> ❌ → can <em>speak</em> ✅</div>
+      <div class="example">You should <em>to rest</em> ❌ → should <em>rest</em> ✅</div>
+      <div class="example">I must <em>to finish</em> ❌ → must <em>finish</em> ✅</div>
+      <div class="example">He <em>might comes</em> ❌ → <em>might come</em> ✅</div>
+      <div class="example">She <em>cans</em> swim ❌ → <em>can</em> swim ✅</div>
+    </div>
+  </div>
+  <div class="cheat-box">
+    <h3>🔑 MODAL VERB CHEAT CODES</h3>
+    <div class="trick">1. Modal verbs NEVER change for he/she/it — no "s"! ✅</div>
+    <div class="trick">2. NEVER use "to" after: can, could, should, must, will, would, might, may</div>
+    <div class="trick">3. EXCEPTION: "have to" — this IS followed by "to"! (have TO + infinitive)</div>
+    <div class="trick">4. Negatives: can't | couldn't | shouldn't | must not | won't | wouldn't | might not</div>
+    <div class="trick">5. Questions: flip the modal and subject! → "Should I...?" "Can you...?" "Must we...?"</div>
+  </div>
+</div>
+
+<!-- SLIDE 39: Modal Verbs Questions Part 1 -->
+<div class="slide" id="slide-39">
+  <div class="topic-tag tag-grammar">📝 Questions – Modal Verbs</div>
+  <h2>📝 Modal Verbs – Test Yourself!</h2>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ "You ________ use your phone during the exam." 📱 (FORBIDDEN!)</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) shouldn't</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) must not</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) don't have to</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) couldn't</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ "________ you pass me the salt please?" 🧂 (polite request)</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) Must</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) Could</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) Should</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) Have to</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ Find the mistake: "It might rains tonight." 🌧️</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) might → must</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) rains → rain</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) tonight → tomorrow</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) It → They</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">4️⃣ "I ________ swim when I was 5 years old. My dad taught me!" 🏊 (past ability)</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Answer</button>
+    <div class="answer-box">✅ <strong>could</strong> — "I <strong>could</strong> swim when I was 5 years old."<br>COULD = past ability (CAN = present ability)</div>
+  </div>
+</div>
+
+<!-- SLIDE 40: Modal Verbs Questions Part 2 -->
+<div class="slide" id="slide-40">
+  <div class="topic-tag tag-grammar">📝 More Modal Questions</div>
+  <h2>📝 Modal Verbs – Final Round! 🏆</h2>
+
+  <div class="question-card">
+    <div class="q-text">5️⃣ Choose the RIGHT modal: "I think it ________ be Maria calling. She said she'd call at 3." ☎️</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">A) might</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) must not</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) have to</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) could not</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">6️⃣ What's the modal for polite requests in a formal setting? 🤝</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Answer</button>
+    <div class="answer-box">✅ <strong>Could</strong> or <strong>Would</strong> — both are polite.<br>"<strong>Could</strong> I see the menu?" | "<strong>Would</strong> you like more water?" ☕<br>CAN is less formal. COULD/WOULD = more polite ✅</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">7️⃣ Write one sentence with "must not" and one with "don't have to". Show the DIFFERENCE! ✍️</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Examples</button>
+    <div class="answer-box">✅ "You <strong>must not</strong> talk during the exam." 🚫 (FORBIDDEN — it's a rule!)<br>✅ "You <strong>don't have to</strong> bring food — lunch is provided." 🆓 (NOT necessary, but you could if you wanted)</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 41: FINAL CHALLENGE ═══════════════════ -->
+<div class="slide" id="slide-41">
+  <div class="topic-tag tag-cheatcode">🏆 FINAL CHALLENGE</div>
+  <h2>🏆 Final Challenge – Mix of Everything!</h2>
+
+  <div class="question-card">
+    <div class="q-text">1️⃣ "Maria ________ (work) at this college since 2021." (show ongoing activity)</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) is working</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) has been working</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) worked</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) have been working</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">2️⃣ Choose the correct pair: "There isn't ________ time but we have ________ ideas." ⏰💡</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">A) many / much</button>
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">B) much / many</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) a few / a little</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) lots / many</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">3️⃣ MEGA ERROR HUNT! Fix everything: "He have been study cooking since 3 years ago and now he should to opens a restaurant." 🍳</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Full Correction</button>
+    <div class="answer-box">✅ "He <strong>has been studying</strong> cooking <strong>for</strong> 3 years and now he <strong>should open</strong> a restaurant."<br>Fixes: have→has | study→studying | since 3 years→for 3 years | should to opens→should open (no "to", no "s")</div>
+  </div>
+</div>
+
+<!-- SLIDE 42: Final Challenge Part 2 -->
+<div class="slide" id="slide-42">
+  <div class="topic-tag tag-cheatcode">🏆 Final Challenge – Part 2</div>
+  <h2>🏆 Last Questions – Give it Your All! 💪</h2>
+
+  <div class="question-card">
+    <div class="q-text">4️⃣ "The exam starts in 5 minutes. You ________ check your pencils." ✏️ (advice)</div>
+    <div class="options">
+      <button class="option-btn" onclick="checkAnswer(this,'correct')">A) should</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">B) must not</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">C) are going to</button>
+      <button class="option-btn" onclick="checkAnswer(this,'wrong')">D) might</button>
+    </div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">5️⃣ Tell me about a REAL plan for this weekend using "going to". ✍️</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Example</button>
+    <div class="answer-box">✅ "I <strong>am going to</strong> study for my exams this Saturday." 📚<br>"My family <strong>is going to</strong> have dinner together on Sunday." 🍽️<br>"I <strong>am going to</strong> go to the night market with my friends!" 🌙</div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-text">6️⃣ FINAL: Write 3 sentences about YOURSELF using: (1) PPC, (2) going to, (3) should. ✍️🌟</div>
+    <button class="reveal-btn" onclick="revealAnswer(this)">👁️ Model Answers</button>
+    <div class="answer-box">✅ PPC: "I <strong>have been learning</strong> English since I was young." 🗣️<br>✅ Going to: "I <strong>am going to</strong> work hard to get a good career." 💼<br>✅ Should: "I <strong>should</strong> practise English every day." 📚<br><br>⭐ If you can write all 3 correctly — you're ready for the exam! 🎓</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ SLIDE 43: WELL DONE ═══════════════════ -->
+<div class="slide" id="slide-43">
+  <div class="slide-title">
+    <span class="main-emoji" style="animation: none; font-size: 6rem;">🏆</span>
+    <h2>Revision Complete! You Did It! 🎉</h2>
+    <p>You have covered ALL the key topics from this course. Now go back and review anything you found tricky!</p>
+  </div>
+  <div class="cheat-box" style="text-align: center; margin-top: 20px;">
+    <h3>⭐ Your Final Score: <span id="final-score-display">0</span> points!</h3>
+    <div class="trick">Remember: Practice makes perfect! 💪</div>
+    <div class="trick">Review the CHEAT CODES slides before your exam 🔑</div>
+    <div class="trick">Good luck! 🎓 You've got this! 🚀</div>
+  </div>
+  <div style="text-align:center; margin-top:20px;">
+    <button class="foot-btn home-btn" onclick="goHome(); launchConfetti();" style="font-size:1.2rem; padding: 14px 40px;">🎊 Celebrate & Go to Menu!</button>
+  </div>
+</div>
+
+</div><!-- /slides-wrapper -->
+
+<!-- FOOTER NAV -->
+<div class="foot-nav">
+  <button class="foot-btn home-btn" id="btn-home" onclick="goHome()">🏠 Menu</button>
+  <button class="foot-btn" id="btn-prev" onclick="prevSlide()" disabled>◀ Back</button>
+  <button class="foot-btn" id="btn-next" onclick="nextSlide()">Next ▶</button>
+</div>
+
+<!-- CELEBRATION MODAL -->
+<div class="modal-overlay" id="celebrate-modal">
+  <div class="modal-box">
+    <h2>🎉</h2>
+    <h2>Correct!</h2>
+    <p>Great job! Keep it up! 💪⭐</p>
+    <button class="modal-close" onclick="closeCelebrate()">Continue →</button>
+  </div>
+</div>
+
+<script>
+  const TOTAL_SLIDES = 44;
+  let current = 0;
+  let score = 0;
+
+  function updateNav() {
+    document.getElementById('slide-counter').textContent = `${current + 1} / ${TOTAL_SLIDES}`;
+    document.getElementById('btn-prev').disabled = current === 0;
+    document.getElementById('btn-next').disabled = current === TOTAL_SLIDES - 1;
+    const pct = ((current) / (TOTAL_SLIDES - 1)) * 100;
+    document.getElementById('progress').style.width = pct + '%';
+    document.getElementById('final-score-display').textContent = score;
+  }
+
+  function goToSlide(n) {
+    document.getElementById('slide-' + current).classList.remove('active');
+    current = n;
+    const el = document.getElementById('slide-' + current);
+    if (el) { el.classList.add('active'); window.scrollTo(0,0); }
+    updateNav();
+  }
+
+  function nextSlide() { if (current < TOTAL_SLIDES - 1) goToSlide(current + 1); }
+  function prevSlide() { if (current > 0) goToSlide(current - 1); }
+  function goHome() { goToSlide(0); }
+
+  function checkAnswer(btn, result) {
+    const card = btn.closest('.question-card');
+    if (card.dataset.answered) return;
+    card.dataset.answered = 'true';
+    const allBtns = card.querySelectorAll('.option-btn');
+    allBtns.forEach(b => b.classList.add('answered'));
+    if (result === 'correct') {
+      btn.classList.add('correct');
+      score += 10;
+      document.getElementById('score').textContent = score;
+      launchConfetti();
+      setTimeout(() => document.getElementById('celebrate-modal').classList.add('open'), 300);
+    } else {
+      btn.classList.add('wrong');
+      allBtns.forEach(b => { if (b.getAttribute('onclick').includes("'correct'")) b.classList.add('reveal'); });
+    }
+  }
+
+  function revealAnswer(btn) {
+    const box = btn.nextElementSibling;
+    if (box && box.classList.contains('answer-box')) {
+      box.classList.add('shown');
+      btn.style.display = 'none';
+    }
+  }
+
+  function closeCelebrate() {
+    document.getElementById('celebrate-modal').classList.remove('open');
+  }
+
+  function launchConfetti() {
+    const container = document.getElementById('confetti');
+    const colors = ['#fbbf24','#f87171','#a78bfa','#34d399','#60a5fa','#f472b6'];
+    for (let i = 0; i < 60; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti-piece';
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.width = (Math.random() * 10 + 5) + 'px';
+      c.style.height = (Math.random() * 10 + 5) + 'px';
+      c.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
+      c.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+      c.style.animationDelay = Math.random() * 0.5 + 's';
+      container.appendChild(c);
+      setTimeout(() => c.remove(), 3500);
+    }
+  }
+
+  function speak(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const text = el.innerText;
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utt = new SpeechSynthesisUtterance(text);
+      utt.rate = 0.88; utt.pitch = 1; utt.lang = 'en-US';
+      const voices = speechSynthesis.getVoices();
+      const preferred = voices.find(v => v.lang.startsWith('en') && v.name.includes('Female'))
+        || voices.find(v => v.lang.startsWith('en')) || voices[0];
+      if (preferred) utt.voice = preferred;
+      window.speechSynthesis.speak(utt);
+    } else { alert('Text-to-speech not supported in your browser.'); }
+  }
+
+  // keyboard nav
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft')  prevSlide();
+    if (e.key === 'Escape') closeCelebrate();
+  });
+
+  updateNav();
+</script>
+<!-- I Learn English Here nav --><a href="../lessons.html" style="position:fixed;left:12px;bottom:12px;z-index:2147483000;background:#1f7a6c;color:#fff;font:700 13px/1 system-ui,sans-serif;padding:9px 13px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)" aria-label="Back to I Learn English Here lessons">← I Learn English Here</a>
+</body>
+</html>

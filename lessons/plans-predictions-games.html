@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plans & Predictions — 5 Classroom Games | I Learn English Here</title>
+<style>
+/* ===== RESET ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0f1e;color:#f0ece0;font-family:Georgia,serif;min-height:100vh}
+
+/* ===== TOP NAV ===== */
+.top-nav{display:flex;background:#060c18;border-bottom:2px solid #1a2a4a;padding:0 24px}
+.top-nav-btn{background:none;border:none;color:#6a8aaa;padding:14px 28px;cursor:pointer;font-family:Georgia,serif;font-size:14px;letter-spacing:1px;border-bottom:3px solid transparent;transition:all .2s}
+.top-nav-btn.active{color:#f5a623;border-bottom-color:#f5a623;font-weight:bold}
+
+/* ===== HEADER ===== */
+.site-header{background:linear-gradient(135deg,#1a2a4a 0%,#0a0f1e 100%);border-bottom:3px solid #f5a623;padding:28px 32px 20px;text-align:center}
+.hdr-tag{font-size:12px;letter-spacing:4px;color:#f5a623;text-transform:uppercase;margin-bottom:8px}
+.hdr-title{font-size:clamp(22px,4vw,36px);font-weight:bold;color:#fff;margin-bottom:6px}
+.hdr-sub{color:#aac4e0;font-size:14px}
+
+/* ===== SECTION TOGGLE ===== */
+.guide-section{display:block}
+.cards-section{display:none}
+
+/* ===== LESSON TABS ===== */
+.lesson-tabs{display:flex;overflow-x:auto;background:#0d1525;border-bottom:1px solid #1e2f4a;padding:0 16px}
+.ltab{background:none;border:none;color:#8aa0be;padding:12px 16px;cursor:pointer;font-size:12px;font-family:Georgia,serif;white-space:nowrap;border-bottom:3px solid transparent;flex-shrink:0;transition:all .2s;letter-spacing:.5px}
+.ltab.al1{background:#f5a623!important;color:#000!important;font-weight:bold;border-bottom-color:#f5a623}
+.ltab.al2{background:#ff6b8a!important;color:#000!important;font-weight:bold;border-bottom-color:#ff6b8a}
+.ltab.al3{background:#4caf50!important;color:#000!important;font-weight:bold;border-bottom-color:#4caf50}
+.ltab.al4{background:#c9a84c!important;color:#000!important;font-weight:bold;border-bottom-color:#c9a84c}
+.ltab.al5{background:#26c6a0!important;color:#000!important;font-weight:bold;border-bottom-color:#26c6a0}
+
+/* ===== GAME PANELS ===== */
+.gpanel{display:none;max-width:800px;margin:0 auto;padding:24px 20px 60px}
+.gpanel.active{display:block}
+
+/* ===== GAME HERO ===== */
+.ghero{border-radius:16px;padding:28px;margin-bottom:20px;position:relative;overflow:hidden}
+.ghero-bg{position:absolute;top:-20px;right:-10px;font-size:100px;opacity:.08;pointer-events:none}
+.hero-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.hero-title{font-size:28px;font-weight:bold;color:#fff;margin-bottom:12px}
+.hero-badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.badge{background:rgba(255,255,255,.08);border-radius:20px;padding:4px 14px;font-size:13px;color:#ccc}
+.hero-goal{background:rgba(255,255,255,.06);border-radius:8px;padding:12px 16px;font-size:14px;color:#e0dcd0;font-style:italic}
+
+/* ===== CONTENT BLOCKS ===== */
+.cblock{background:#101828;border:1px solid #1e3050;border-radius:12px;padding:20px 24px;margin-bottom:16px}
+.btitle{font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.srow{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.snum{border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;flex-shrink:0;margin-top:2px;color:#000}
+.snum-sq{border-radius:6px;width:28px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;flex-shrink:0;margin-top:2px;border:1px solid;background:rgba(255,255,255,.06)}
+.stext{font-size:14px;line-height:1.7;color:#e0dcd0}
+.setuptext{font-size:14px;line-height:1.6;color:#c8d8e8}
+.tipblock{border:1px dashed;border-radius:12px;padding:18px 24px}
+.tiptext{font-size:13px;line-height:1.7;color:#f0ece0}
+
+/* ===== FOOTER ===== */
+.site-footer{text-align:center;padding:16px;color:#3a5070;font-size:12px;border-top:1px solid #1a2a3a;letter-spacing:1px}
+
+/* ===== CARDS SECTION ===== */
+.cards-hdr{background:#101828;border-bottom:1px solid #1e2f4a;padding:20px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.cards-hdr h2{font-size:18px;color:#f5a623}
+.print-btn{background:#f5a623;color:#000;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;font-family:Georgia,serif;font-size:14px;font-weight:bold;letter-spacing:1px}
+.print-btn:hover{opacity:.9}
+.cards-wrap{max-width:960px;margin:0 auto;padding:32px 24px}
+
+/* ===== GAME CARD SECTIONS ===== */
+.gcs{margin-bottom:48px}
+.gcs-hdr{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid}
+.gcs-emoji{font-size:28px}
+.gcs-title{font-size:20px;font-weight:bold;color:#fff}
+.gcs-sub{font-size:12px;letter-spacing:2px;text-transform:uppercase}
+.gcs-note{color:#aac4e0;font-size:13px;margin-bottom:16px;font-style:italic}
+.cat-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;margin-top:16px}
+
+/* ===== CARD GRIDS ===== */
+.cgrid{display:grid;gap:10px;margin-bottom:12px}
+.cg4{grid-template-columns:repeat(4,1fr)}
+.cg3{grid-template-columns:repeat(3,1fr)}
+.cg2{grid-template-columns:repeat(2,1fr)}
+
+/* ===== PRINTABLE CARD ===== */
+.pcard{border:2px solid;border-radius:8px;padding:12px 8px;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px}
+.pcard-cat{font-size:9px;letter-spacing:2px;text-transform:uppercase}
+.pcard-text{font-size:14px;font-weight:bold;line-height:1.4}
+
+/* ===== BINGO ===== */
+.bingo-wrap{border:3px solid #ff6b8a;border-radius:12px;overflow:hidden;margin-bottom:24px;page-break-inside:avoid}
+.bingo-hdr-row{text-align:center;padding:10px;font-size:14px;font-weight:bold;letter-spacing:3px;text-transform:uppercase}
+.bingo-hdr-bg{background:#6b1a3a;color:#fff}
+.bingo-letters{display:grid;grid-template-columns:repeat(5,1fr)}
+.bingo-letter{border:1px solid rgba(0,0,0,.15);padding:6px 4px;text-align:center;font-weight:bold;font-size:15px}
+.bingo-letter-bg{background:#ff6b8a;color:#000}
+.bingo-grid5{display:grid;grid-template-columns:repeat(5,1fr)}
+.bcell{border:1px solid rgba(0,0,0,.15);padding:8px 4px;text-align:center;font-size:10.5px;min-height:58px;display:flex;align-items:center;justify-content:center;line-height:1.3}
+.bcell-normal{background:#101828;color:#e0dcd0}
+.bcell-free{background:#6b1a3a;color:#ff6b8a;font-weight:bold;font-size:16px}
+.bingo-names-bar{background:#0d1525;padding:8px}
+.bingo-name-grid{display:grid;grid-template-columns:repeat(5,1fr)}
+.bingo-name-slot{border:1px solid #2a3a4a;padding:6px 4px;text-align:center;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#6a8aaa;min-height:24px}
+
+/* ===== BINGO CONTROLS ===== */
+.bingo-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:16px;padding:16px;background:#101828;border-radius:12px;border:1px solid #2a3050}
+.bingo-controls label{color:#aac4e0;font-size:14px}
+.bingo-controls input{width:60px;padding:6px;background:#0a0f1e;border:1px solid #ff6b8a;color:#fff;border-radius:6px;font-size:14px;text-align:center}
+.bingo-controls button{background:#ff6b8a;color:#000;border:none;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:bold;font-family:Georgia,serif}
+
+/* ===== SCISSORS DIVIDER ===== */
+.cut-line{border:none;border-top:2px dashed rgba(255,255,255,.1);margin:20px 0;position:relative}
+
+/* ===== PRINT STYLES ===== */
+@media print{
+  body{background:white!important;color:#000!important}
+  .site-header,.top-nav,.lesson-tabs,.guide-section,.site-footer,.cards-hdr,.bingo-controls,.gcs-note,.no-print{display:none!important}
+  .cards-section{display:block!important;background:white}
+  .cards-wrap{padding:0;max-width:100%}
+  
+  .gcs{page-break-after:always;margin-bottom:0}
+  .gcs:last-child{page-break-after:auto}
+  .gcs-title{color:#000!important}
+  .gcs-sub{color:#333!important}
+
+  .cat-label{color:#000!important}
+
+  /* cards */
+  .pcard{background:white!important}
+  .pcard-cat{color:#555!important}
+  .pcard-text{color:#000!important}
+
+  /* bingo */
+  .bingo-wrap{page-break-inside:avoid;border-color:#ff6b8a!important}
+  .bingo-hdr-bg{background:#ff6b8a!important;color:#000!important}
+  .bingo-letter-bg{background:#ff6b8a!important;color:#000!important}
+  .bcell-normal{background:white!important;color:#000!important;border-color:#ddd!important}
+  .bcell-free{background:#ffe8a0!important;color:#000!important}
+  .bingo-names-bar{background:#f5f5f5!important}
+  .bingo-name-slot{color:#000!important;border-color:#ccc!important}
+
+  /* grids look good on paper */
+  .cg4{grid-template-columns:repeat(4,1fr)}
+  .cg3{grid-template-columns:repeat(3,1fr)}
+  .cut-line{border-top-color:#ccc!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<div class="site-header">
+  <div class="hdr-tag">I Learn English Here · B1 Intermediate</div>
+  <h1 class="hdr-title">🎮 Plans &amp; Predictions</h1>
+  <p class="hdr-sub">5 Physical Classroom Games &nbsp;·&nbsp; No Devices &nbsp;·&nbsp; Max 1 Hour Each</p>
+</div>
+
+<!-- ========== TOP NAV ========== -->
+<div class="top-nav">
+  <button class="top-nav-btn active" onclick="showView('guide')">📖 Game Guide</button>
+  <button class="top-nav-btn" onclick="showView('cards')">🖨️ Print Cards</button>
+</div>
+
+<!-- ================================================================ -->
+<!-- GUIDE SECTION -->
+<!-- ================================================================ -->
+<div class="guide-section" id="guide-sec">
+
+  <div class="lesson-tabs">
+    <button class="ltab al1" onclick="showLesson(1)">🏃 Lesson 1</button>
+    <button class="ltab" onclick="showLesson(2)">💘 Lesson 2</button>
+    <button class="ltab" onclick="showLesson(3)">🎬 Lesson 3</button>
+    <button class="ltab" onclick="showLesson(4)">🌙 Lesson 4</button>
+    <button class="ltab" onclick="showLesson(5)">🗺️ Lesson 5</button>
+  </div>
+
+  <!-- ===== GAME 1 ===== -->
+  <div class="gpanel active" id="gp1">
+    <div class="ghero" style="background:linear-gradient(135deg,#1a3a5c,#0a0f1e);border:2px solid #f5a623">
+      <div class="ghero-bg">🏃</div>
+      <div class="hero-tag" style="color:#f5a623">Visiting Relatives · Future Tense</div>
+      <div class="hero-title">🏃 Future Relay Race</div>
+      <div class="hero-badges">
+        <span class="badge">⏱ 45 mins</span>
+        <span class="badge">👥 Whole class — teams of 4–5</span>
+      </div>
+      <div class="hero-goal" style="border-left:4px solid #f5a623">
+        🎯 <strong>Goal:</strong> Be the first team to make 5 correct future tense sentences about visiting relatives!
+      </div>
+    </div>
+    <div class="cblock">
+      <div class="btitle" style="color:#f5a623">📦 What You Need</div>
+      <ul style="padding-left:20px;color:#c8d8e8;font-size:14px;line-height:2.1">
+        <li>Word cards (use the Print Cards section)</li>
+        <li>Blu-tack or tape to stick cards on the board</li>
+        <li>A wall or board</li>
+        <li>Paper &amp; pen per team</li>
+      </ul>
+    </div>
+    <div class="cblock">
+      <div class="btitle" style="color:#f5a623">🔧 Setup — Teacher Does This First</div>
+      <div class="srow"><div class="snum" style="background:#f5a623">1</div><div class="setuptext">Stick all word cards on the board — mix them up. There are 4 types: <strong>Subjects</strong> (I, She, We...), <strong>Verbs</strong> (will visit, will bring...), <strong>Objects</strong> (my aunt, some gifts...), and <strong>Time Words</strong> (tonight, next week...).</div></div>
+      <div class="srow"><div class="snum" style="background:#f5a623">2</div><div class="setuptext">Divide the class into teams of 4–5. Teams stand in a line, far from the board.</div></div>
+      <div class="srow"><div class="snum" style="background:#f5a623">3</div><div class="setuptext">Give each team a piece of paper and a pen.</div></div>
+    </div>
+    <div class="cblock" style="border-color:#f5a623">
+      <div class="btitle" style="color:#f5a623">🕹️ How to Play</div>
+      <div class="srow"><div class="snum-sq" style="color:#f5a623;border-color:#f5a623">1</div><div class="stext">The first player runs to the board and takes ONE word card.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#f5a623;border-color:#f5a623">2</div><div class="stext">They run back and give the card to their team.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#f5a623;border-color:#f5a623">3</div><div class="stext">The next player runs and takes another card. Keep going!</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#f5a623;border-color:#f5a623">4</div><div class="stext">When your team has enough words, build a sentence and write it on your paper. Example: <em>"She will visit her cousins tonight."</em></div></div>
+      <div class="srow"><div class="snum-sq" style="color:#f5a623;border-color:#f5a623">5</div><div class="stext">Show the teacher. ✅ Correct → keep the cards and start a new sentence. ❌ Wrong → put the cards back on the board.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#f5a623;border-color:#f5a623">6</div><div class="stext">First team with 5 correct sentences WINS! 🏆</div></div>
+    </div>
+    <div class="tipblock" style="background:#1a3a5c55;border-color:#f5a623">
+      <div class="tiptext">💡 <strong style="color:#f5a623">Teacher Tip:</strong> After the game, ask each team to read their sentences aloud. Correct any mistakes together as a class.</div>
+    </div>
+  </div>
+
+  <!-- ===== GAME 2 ===== -->
+  <div class="gpanel" id="gp2">
+    <div class="ghero" style="background:linear-gradient(135deg,#6b1a3a,#0a0f1e);border:2px solid #ff6b8a">
+      <div class="ghero-bg">💘</div>
+      <div class="hero-tag" style="color:#ff6b8a">Blind Date · Dating Phrases · Predictions</div>
+      <div class="hero-title">💘 Blind Date Bingo</div>
+      <div class="hero-badges">
+        <span class="badge">⏱ 50 mins</span>
+        <span class="badge">👥 Whole class</span>
+      </div>
+      <div class="hero-goal" style="border-left:4px solid #ff6b8a">
+        🎯 <strong>Goal:</strong> Find a classmate for each square on your Bingo card. Get 5 in a row to win!
+      </div>
+    </div>
+    <div class="cblock">
+      <div class="btitle" style="color:#ff6b8a">📦 What You Need</div>
+      <ul style="padding-left:20px;color:#c8d8e8;font-size:14px;line-height:2.1">
+        <li>1 Bingo card per student — printed from the Print Cards section</li>
+        <li>Pens or pencils</li>
+        <li>Dating phrases list written on the board</li>
+      </ul>
+    </div>
+    <div class="cblock">
+      <div class="btitle" style="color:#ff6b8a">🔧 Setup — Teacher Does This First</div>
+      <div class="srow"><div class="snum" style="background:#ff6b8a">1</div><div class="setuptext">Print one Bingo card per student from the Print Cards section. Each card has squares with predictions like "Will probably be funny" or "Might like action movies".</div></div>
+      <div class="srow"><div class="snum" style="background:#ff6b8a">2</div><div class="setuptext">Give each student one card and a pen.</div></div>
+      <div class="srow"><div class="snum" style="background:#ff6b8a">3</div><div class="setuptext">Write these dating phrases on the board: <em>"What are your hobbies?" / "Do you think you will...?" / "I think you might..." / "Will you...?"</em></div></div>
+    </div>
+    <div class="cblock" style="border-color:#ff6b8a">
+      <div class="btitle" style="color:#ff6b8a">🕹️ How to Play</div>
+      <div class="srow"><div class="snum-sq" style="color:#ff6b8a;border-color:#ff6b8a">1</div><div class="stext">Stand up and walk around the classroom.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#ff6b8a;border-color:#ff6b8a">2</div><div class="stext">Find a partner. Introduce yourselves using the phrases on the board.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#ff6b8a;border-color:#ff6b8a">3</div><div class="stext">If a square on your card matches your partner (e.g. they ARE probably funny), write their <strong>name</strong> in that square.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#ff6b8a;border-color:#ff6b8a">4</div><div class="stext">One name per square. You cannot use the same person twice. Then find a new partner!</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#ff6b8a;border-color:#ff6b8a">5</div><div class="stext">Get 5 names in a row (across, down, or diagonal) → shout <strong>"BINGO! 💘"</strong></div></div>
+      <div class="srow"><div class="snum-sq" style="color:#ff6b8a;border-color:#ff6b8a">6</div><div class="stext">Read your winning row aloud to the class using full sentences: <em>"Omar will probably be funny. He might like..."</em></div></div>
+      <div class="srow"><div class="snum-sq" style="color:#ff6b8a;border-color:#ff6b8a">7</div><div class="stext">Teacher checks sentences. Correct = YOU WIN! 🎉</div></div>
+    </div>
+    <div class="tipblock" style="background:#6b1a3a55;border-color:#ff6b8a">
+      <div class="tiptext">💡 <strong style="color:#ff6b8a">Teacher Tip:</strong> Play two rounds. Round 1 = find your Bingo. Round 2 = share the funniest or most surprising prediction with the class!</div>
+    </div>
+  </div>
+
+  <!-- ===== GAME 3 ===== -->
+  <div class="gpanel" id="gp3">
+    <div class="ghero" style="background:linear-gradient(135deg,#1a2e1a,#0a0f1e);border:2px solid #4caf50">
+      <div class="ghero-bg">🎬</div>
+      <div class="hero-tag" style="color:#4caf50">Going to the Movies · Movie Types · Modals of Possibility</div>
+      <div class="hero-title">🎬 Movie Mime Madness</div>
+      <div class="hero-badges">
+        <span class="badge">⏱ 40 mins</span>
+        <span class="badge">👥 Whole class — teams of 3–4</span>
+      </div>
+      <div class="hero-goal" style="border-left:4px solid #4caf50">
+        🎯 <strong>Goal:</strong> Act out movie scenes! Other teams guess using "might", "could", and "must be".
+      </div>
+    </div>
+    <div class="cblock">
+      <div class="btitle" style="color:#4caf50">📦 What You Need</div>
+      <ul style="padding-left:20px;color:#c8d8e8;font-size:14px;line-height:2.1">
+        <li>Movie Genre Cards + Scene Cards — printed and folded</li>
+        <li>A hat or bag to draw cards from</li>
+        <li>Score chart on the board</li>
+      </ul>
+    </div>
+    <div class="cblock">
+      <div class="btitle" style="color:#4caf50">🔧 Setup — Teacher Does This First</div>
+      <div class="srow"><div class="snum" style="background:#4caf50">1</div><div class="setuptext">Print, cut, and fold the Genre Cards and Scene Cards from the Print Cards section. Put them all in a hat.</div></div>
+      <div class="srow"><div class="snum" style="background:#4caf50">2</div><div class="setuptext">Divide the class into teams of 3–4. Draw a score chart on the board with team names.</div></div>
+      <div class="srow"><div class="snum" style="background:#4caf50">3</div><div class="setuptext">Write the guessing rules on the board: <em>"It might be... / It could be... / It must be..."</em></div></div>
+    </div>
+    <div class="cblock" style="border-color:#4caf50">
+      <div class="btitle" style="color:#4caf50">🕹️ How to Play</div>
+      <div class="srow"><div class="snum-sq" style="color:#4caf50;border-color:#4caf50">1</div><div class="stext">One player from Team A picks a card from the hat. They do NOT show anyone.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#4caf50;border-color:#4caf50">2</div><div class="stext">They have 30 seconds to act out the movie. <strong>NO talking. NO sounds.</strong></div></div>
+      <div class="srow"><div class="snum-sq" style="color:#4caf50;border-color:#4caf50">3</div><div class="stext">The other teams guess — Team A's own members cannot guess!</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#4caf50;border-color:#4caf50">4</div><div class="stext">Guesses <strong>must</strong> use a modal: <em>"It could be a horror film!" / "It must be science fiction!"</em></div></div>
+      <div class="srow"><div class="snum-sq" style="color:#4caf50;border-color:#4caf50">5</div><div class="stext">A plain guess like <em>"Horror!"</em> gets <strong>NO point</strong>. Always use the modal!</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#4caf50;border-color:#4caf50">6</div><div class="stext">First team to guess correctly with a modal verb gets <strong>1 point</strong>.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#4caf50;border-color:#4caf50">7</div><div class="stext">Rotate — next team sends an actor. After all cards, most points WINS! 🎬</div></div>
+    </div>
+    <div class="tipblock" style="background:#1a2e1a55;border-color:#4caf50">
+      <div class="tiptext">💡 <strong style="color:#4caf50">Teacher Tip:</strong> Before you start, practice the modals together. Write on the board: <em>"It might be... / It could be... / It must be..."</em> — insist students use them every time. No modal = no point!</div>
+    </div>
+  </div>
+
+  <!-- ===== GAME 4 ===== -->
+  <div class="gpanel" id="gp4">
+    <div class="ghero" style="background:linear-gradient(135deg,#0d1b2e,#0a0f1e);border:2px solid #c9a84c">
+      <div class="ghero-bg">🌙</div>
+      <div class="hero-tag" style="color:#c9a84c">Nightlife · That Clause · A New Business</div>
+      <div class="hero-title">🌙 Nightlife Story Chain</div>
+      <div class="hero-badges">
+        <span class="badge">⏱ 55 mins</span>
+        <span class="badge">👥 Groups of 5–6</span>
+      </div>
+      <div class="hero-goal" style="border-left:4px solid #c9a84c">
+        🎯 <strong>Goal:</strong> Build a crazy nightlife story using "that" clauses — then pitch a new business idea!
+      </div>
+    </div>
+    <div class="cblock">
+      <div class="btitle" style="color:#c9a84c">📦 What You Need</div>
+      <ul style="padding-left:20px;color:#c8d8e8;font-size:14px;line-height:2.1">
+        <li>Nightlife vocabulary cards — one set per group</li>
+        <li>A soft ball or rolled-up paper ball per group</li>
+        <li>Paper &amp; pens for the pitch task</li>
+      </ul>
+    </div>
+    <div class="cblock">
+      <div class="btitle" style="color:#c9a84c">🔧 Setup — Teacher Does This First</div>
+      <div class="srow"><div class="snum" style="background:#c9a84c">1</div><div class="setuptext">Print and cut the nightlife vocabulary cards. Give one full set to each group.</div></div>
+      <div class="srow"><div class="snum" style="background:#c9a84c">2</div><div class="setuptext">Students sit in circles of 5–6. Each group gets one soft ball.</div></div>
+      <div class="srow"><div class="snum" style="background:#c9a84c">3</div><div class="setuptext">Write on the board: <em>"I think that... / I heard that... / I know that... / We believe that..."</em></div></div>
+    </div>
+    <div class="cblock" style="border-color:#c9a84c">
+      <div class="btitle" style="color:#c9a84c">🕹️ How to Play</div>
+      <div class="srow"><div class="snum-sq" style="color:#c9a84c;border-color:#c9a84c">1</div><div class="stext"><strong>PART 1 — Story Chain (20 mins).</strong> The first player holds the ball and starts: <em>"I think that we should go to a nightclub tonight."</em></div></div>
+      <div class="srow"><div class="snum-sq" style="color:#c9a84c;border-color:#c9a84c">2</div><div class="stext">They throw the ball to any other player. That player continues the story with <strong>"that"</strong>: <em>"I heard that the nightclub has live music!"</em></div></div>
+      <div class="srow"><div class="snum-sq" style="color:#c9a84c;border-color:#c9a84c">3</div><div class="stext">Every sentence MUST include <strong>"that"</strong>. If someone cannot say a sentence in 5 seconds — they are OUT for this round.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#c9a84c;border-color:#c9a84c">4</div><div class="stext">Last person left in the circle wins the round! Play 2–3 rounds.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#c9a84c;border-color:#c9a84c">5</div><div class="stext"><strong>PART 2 — Business Pitch (25 mins).</strong> Groups invent a new nightlife business using their vocabulary cards.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#c9a84c;border-color:#c9a84c">6</div><div class="stext">Write 5 sentences about your business. Every sentence must use <strong>"that"</strong>: <em>"We believe that people want..."</em></div></div>
+      <div class="srow"><div class="snum-sq" style="color:#c9a84c;border-color:#c9a84c">7</div><div class="stext">Each group stands up and presents. The class votes for the best idea! 🌙</div></div>
+    </div>
+    <div class="tipblock" style="background:#0d1b2e55;border-color:#c9a84c">
+      <div class="tiptext">💡 <strong style="color:#c9a84c">Teacher Tip:</strong> For Part 2, give groups this template on the board: <em>"We believe that... / We know that... / We think that... / Our idea is that... / We hope that..."</em></div>
+    </div>
+  </div>
+
+  <!-- ===== GAME 5 ===== -->
+  <div class="gpanel" id="gp5">
+    <div class="ghero" style="background:linear-gradient(135deg,#1a3c2e,#0a0f1e);border:2px solid #26c6a0">
+      <div class="ghero-bg">🗺️</div>
+      <div class="hero-tag" style="color:#26c6a0">Day Trips · Weekend Plans · Suggesting with Modal Verbs</div>
+      <div class="hero-title">🗺️ Weekend Trip Negotiation</div>
+      <div class="hero-badges">
+        <span class="badge">⏱ 50 mins</span>
+        <span class="badge">👥 Groups of 4</span>
+      </div>
+      <div class="hero-goal" style="border-left:4px solid #26c6a0">
+        🎯 <strong>Goal:</strong> Plan the PERFECT weekend trip — but your group must AGREE using modal verbs!
+      </div>
+    </div>
+    <div class="cblock">
+      <div class="btitle" style="color:#26c6a0">📦 What You Need</div>
+      <ul style="padding-left:20px;color:#c8d8e8;font-size:14px;line-height:2.1">
+        <li>Destination cards, Budget cards, Problem cards (printed)</li>
+        <li>Large paper or poster board per group</li>
+        <li>Markers</li>
+      </ul>
+    </div>
+    <div class="cblock">
+      <div class="btitle" style="color:#26c6a0">🔧 Setup — Teacher Does This First</div>
+      <div class="srow"><div class="snum" style="background:#26c6a0">1</div><div class="setuptext">Print and cut the three card types: <strong>Destination</strong> (beach, mountain...), <strong>Budget</strong> ("You have $50 each"), and <strong>Problem</strong> cards (face down — reveal later!).</div></div>
+      <div class="srow"><div class="snum" style="background:#26c6a0">2</div><div class="setuptext">Divide into groups of 4. Each group draws 1 Destination card, 1 Budget card, and 1 Problem card (do NOT look at the Problem card yet).</div></div>
+      <div class="srow"><div class="snum" style="background:#26c6a0">3</div><div class="setuptext">Write the Modal Menu on the board: <em>"Why don't we... / We could... / Shall we... / Let's... / We might... / How about..."</em></div></div>
+    </div>
+    <div class="cblock" style="border-color:#26c6a0">
+      <div class="btitle" style="color:#26c6a0">🕹️ How to Play</div>
+      <div class="srow"><div class="snum-sq" style="color:#26c6a0;border-color:#26c6a0">1</div><div class="stext">Look at your Destination and Budget. Plan your weekend trip! You have <strong>10 minutes</strong>.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#26c6a0;border-color:#26c6a0">2</div><div class="stext"><strong>RULE:</strong> Every suggestion must use a modal verb. If someone forgets, the group says "Use a modal!" and they try again.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#26c6a0;border-color:#26c6a0">3</div><div class="stext">After 10 minutes, the teacher reveals the <strong>Problem card</strong>. You have 5 more minutes to solve it — still using modals!</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#26c6a0;border-color:#26c6a0">4</div><div class="stext">Each group presents in 2 minutes: <strong>WHERE</strong> you are going, <strong>HOW</strong> you get there, <strong>WHAT</strong> you will do, and how you solved the <strong>PROBLEM</strong>.</div></div>
+      <div class="srow"><div class="snum-sq" style="color:#26c6a0;border-color:#26c6a0">5</div><div class="stext">Class votes: Which trip is most fun? Which team used the most modal verbs? 🗺️</div></div>
+    </div>
+    <div class="tipblock" style="background:#1a3c2e55;border-color:#26c6a0">
+      <div class="tiptext">💡 <strong style="color:#26c6a0">Teacher Tip:</strong> Keep the Problem card face-down until you say "Problem time!" — the surprise makes it more exciting and forces real-time negotiation.</div>
+    </div>
+  </div>
+
+</div><!-- /guide-sec -->
+
+<!-- ================================================================ -->
+<!-- PRINT CARDS SECTION -->
+<!-- ================================================================ -->
+<div class="cards-section" id="cards-sec">
+
+  <div class="cards-hdr no-print">
+    <h2>🖨️ Printable Cards — All 5 Games</h2>
+    <button class="print-btn" onclick="window.print()">🖨️ Print All Cards</button>
+  </div>
+
+  <div class="cards-wrap">
+
+    <!-- ============ GAME 1 WORD CARDS ============ -->
+    <div class="gcs">
+      <div class="gcs-hdr" style="border-color:#f5a623">
+        <div class="gcs-emoji">🏃</div>
+        <div>
+          <div class="gcs-title">Game 1 — Future Relay Race</div>
+          <div class="gcs-sub" style="color:#f5a623">Word Cards · Print, cut, stick on the board</div>
+        </div>
+      </div>
+      <p class="gcs-note no-print">Print this page, cut the cards out, and stick them on the board before the game. Mix all four types together!</p>
+
+      <div class="cat-label" style="color:#f5a623">📌 Subjects (8 cards)</div>
+      <div class="cgrid cg4">
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Subject</div><div class="pcard-text" style="color:#fff">I</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Subject</div><div class="pcard-text" style="color:#fff">She</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Subject</div><div class="pcard-text" style="color:#fff">He</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Subject</div><div class="pcard-text" style="color:#fff">We</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Subject</div><div class="pcard-text" style="color:#fff">They</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Subject</div><div class="pcard-text" style="color:#fff">My family</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Subject</div><div class="pcard-text" style="color:#fff">My mother</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Subject</div><div class="pcard-text" style="color:#fff">My brother</div></div>
+      </div>
+
+      <div class="cat-label" style="color:#f5a623">📌 Verbs — Future (8 cards)</div>
+      <div class="cgrid cg4">
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Verb</div><div class="pcard-text" style="color:#fff">will visit</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Verb</div><div class="pcard-text" style="color:#fff">will bring</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Verb</div><div class="pcard-text" style="color:#fff">will cook</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Verb</div><div class="pcard-text" style="color:#fff">will travel</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Verb</div><div class="pcard-text" style="color:#fff">will stay</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Verb</div><div class="pcard-text" style="color:#fff">will call</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Verb</div><div class="pcard-text" style="color:#fff">will send</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Verb</div><div class="pcard-text" style="color:#fff">will meet</div></div>
+      </div>
+
+      <div class="cat-label" style="color:#f5a623">📌 Objects (8 cards)</div>
+      <div class="cgrid cg4">
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Object</div><div class="pcard-text" style="color:#fff">my aunt</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Object</div><div class="pcard-text" style="color:#fff">my cousins</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Object</div><div class="pcard-text" style="color:#fff">my grandparents</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Object</div><div class="pcard-text" style="color:#fff">some gifts</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Object</div><div class="pcard-text" style="color:#fff">a cake</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Object</div><div class="pcard-text" style="color:#fff">dinner</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Object</div><div class="pcard-text" style="color:#fff">my uncle</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Object</div><div class="pcard-text" style="color:#fff">a letter</div></div>
+      </div>
+
+      <div class="cat-label" style="color:#f5a623">📌 Time Words (8 cards)</div>
+      <div class="cgrid cg4">
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Time</div><div class="pcard-text" style="color:#fff">tonight</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Time</div><div class="pcard-text" style="color:#fff">tomorrow</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Time</div><div class="pcard-text" style="color:#fff">next week</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Time</div><div class="pcard-text" style="color:#fff">this weekend</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Time</div><div class="pcard-text" style="color:#fff">on Friday</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Time</div><div class="pcard-text" style="color:#fff">soon</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Time</div><div class="pcard-text" style="color:#fff">next month</div></div>
+        <div class="pcard" style="border-color:#f5a623;background:#0a0f1e"><div class="pcard-cat" style="color:#f5a623">Time</div><div class="pcard-text" style="color:#fff">after school</div></div>
+      </div>
+    </div>
+
+    <!-- ============ GAME 2 BINGO ============ -->
+    <div class="gcs">
+      <div class="gcs-hdr" style="border-color:#ff6b8a">
+        <div class="gcs-emoji">💘</div>
+        <div>
+          <div class="gcs-title">Game 2 — Blind Date Bingo</div>
+          <div class="gcs-sub" style="color:#ff6b8a">Bingo Cards · 1 per student · Each card is different</div>
+        </div>
+      </div>
+      <p class="gcs-note no-print">Each card below has the squares in a different order. Generate as many cards as you need. Click the button to create a new random set!</p>
+
+      <div id="bingo-cards-container"></div>
+
+      <div class="bingo-controls no-print">
+        <label>Number of cards:</label>
+        <input type="number" id="bingo-count" value="8" min="1" max="40">
+        <button onclick="genBingo()">🔄 Generate New Cards</button>
+      </div>
+    </div>
+
+    <!-- ============ GAME 3 MOVIE CARDS ============ -->
+    <div class="gcs">
+      <div class="gcs-hdr" style="border-color:#4caf50">
+        <div class="gcs-emoji">🎬</div>
+        <div>
+          <div class="gcs-title">Game 3 — Movie Mime Madness</div>
+          <div class="gcs-sub" style="color:#4caf50">Genre Cards + Scene Cards · Fold and place in a hat</div>
+        </div>
+      </div>
+      <p class="gcs-note no-print">Print, cut, fold each card in half, and put them all in a hat. Students pick one card at a time.</p>
+
+      <div class="cat-label" style="color:#4caf50">🎭 Genre Cards (12 cards)</div>
+      <div class="cgrid cg4" style="margin-bottom:20px">
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#4caf50">Genre</div><div class="pcard-text" style="color:#fff">🎬 Action</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#4caf50">Genre</div><div class="pcard-text" style="color:#fff">😱 Horror</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#4caf50">Genre</div><div class="pcard-text" style="color:#fff">😂 Comedy</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#4caf50">Genre</div><div class="pcard-text" style="color:#fff">💕 Romance</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#4caf50">Genre</div><div class="pcard-text" style="color:#fff">🎙️ Documentary</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#4caf50">Genre</div><div class="pcard-text" style="color:#fff">🐭 Animation</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#4caf50">Genre</div><div class="pcard-text" style="color:#fff">🚀 Science Fiction</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#4caf50">Genre</div><div class="pcard-text" style="color:#fff">🔪 Thriller</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#4caf50">Genre</div><div class="pcard-text" style="color:#fff">🐉 Fantasy</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#4caf50">Genre</div><div class="pcard-text" style="color:#fff">🎭 Drama</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#4caf50">Genre</div><div class="pcard-text" style="color:#fff">🎵 Musical</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#4caf50">Genre</div><div class="pcard-text" style="color:#fff">🔍 Mystery</div></div>
+      </div>
+
+      <div class="cat-label" style="color:#4caf50">🎬 Scene Cards (10 cards)</div>
+      <div class="cgrid cg3">
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#4caf50">Scene</div><div class="pcard-text" style="color:#fff;font-size:12px">Two people fall in love on a ship</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#4caf50">Scene</div><div class="pcard-text" style="color:#fff;font-size:12px">A robot saves the world</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#4caf50">Scene</div><div class="pcard-text" style="color:#fff;font-size:12px">A detective solves a mystery</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#4caf50">Scene</div><div class="pcard-text" style="color:#fff;font-size:12px">Friends go on a funny road trip</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#4caf50">Scene</div><div class="pcard-text" style="color:#fff;font-size:12px">A superhero fights villains</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#4caf50">Scene</div><div class="pcard-text" style="color:#fff;font-size:12px">Animals talk and go on adventures</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#4caf50">Scene</div><div class="pcard-text" style="color:#fff;font-size:12px">A ghost haunts an old house</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#4caf50">Scene</div><div class="pcard-text" style="color:#fff;font-size:12px">People travel to another planet</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#4caf50">Scene</div><div class="pcard-text" style="color:#fff;font-size:12px">A singer becomes famous overnight</div></div>
+        <div class="pcard" style="border-color:#4caf50;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#4caf50">Scene</div><div class="pcard-text" style="color:#fff;font-size:12px">A family survives a disaster together</div></div>
+      </div>
+    </div>
+
+    <!-- ============ GAME 4 VOCAB CARDS ============ -->
+    <div class="gcs">
+      <div class="gcs-hdr" style="border-color:#c9a84c">
+        <div class="gcs-emoji">🌙</div>
+        <div>
+          <div class="gcs-title">Game 4 — Nightlife Story Chain</div>
+          <div class="gcs-sub" style="color:#c9a84c">Vocabulary Cards · One full set per group</div>
+        </div>
+      </div>
+      <p class="gcs-note no-print">Print enough copies for all groups (one full set per group of 5–6 students). Each group keeps their cards face-up to use as vocabulary help during the game.</p>
+
+      <div class="cgrid cg4">
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">🎵 Nightclub</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">🎸 Live Music</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">🍽️ Restaurant</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">🌮 Street Food</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">🏙️ Rooftop Bar</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">🎤 Concert</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">🎙️ Karaoke</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">😄 Comedy Show</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">🎪 Festival</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">☕ Late-Night Café</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">🎧 DJ</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">💃 Dance Floor</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">⭐ VIP Area</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">🎤 Open Mic Night</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">🚚 Food Truck</div></div>
+        <div class="pcard" style="border-color:#c9a84c;background:#0a0f1e"><div class="pcard-cat" style="color:#c9a84c">Nightlife</div><div class="pcard-text" style="color:#fff">🍹 Outdoor Bar</div></div>
+      </div>
+    </div>
+
+    <!-- ============ GAME 5 TRIP CARDS ============ -->
+    <div class="gcs">
+      <div class="gcs-hdr" style="border-color:#26c6a0">
+        <div class="gcs-emoji">🗺️</div>
+        <div>
+          <div class="gcs-title">Game 5 — Weekend Trip Negotiation</div>
+          <div class="gcs-sub" style="color:#26c6a0">Destination · Budget · Problem Cards</div>
+        </div>
+      </div>
+      <p class="gcs-note no-print">Print one copy. Each group draws 1 Destination card, 1 Budget card, and 1 Problem card (face down!). Cut and separate the three sets before class.</p>
+
+      <div class="cat-label" style="color:#26c6a0">📍 Destination Cards (8 cards)</div>
+      <div class="cgrid cg4" style="margin-bottom:20px">
+        <div class="pcard" style="border-color:#26c6a0;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#26c6a0">Destination</div><div class="pcard-text" style="color:#fff">🏖️ Beach</div></div>
+        <div class="pcard" style="border-color:#26c6a0;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#26c6a0">Destination</div><div class="pcard-text" style="color:#fff">⛰️ Mountain</div></div>
+        <div class="pcard" style="border-color:#26c6a0;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#26c6a0">Destination</div><div class="pcard-text" style="color:#fff">🏛️ Old City</div></div>
+        <div class="pcard" style="border-color:#26c6a0;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#26c6a0">Destination</div><div class="pcard-text" style="color:#fff">🎢 Theme Park</div></div>
+        <div class="pcard" style="border-color:#26c6a0;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#26c6a0">Destination</div><div class="pcard-text" style="color:#fff">🌾 Countryside</div></div>
+        <div class="pcard" style="border-color:#26c6a0;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#26c6a0">Destination</div><div class="pcard-text" style="color:#fff">🏞️ Lake</div></div>
+        <div class="pcard" style="border-color:#26c6a0;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#26c6a0">Destination</div><div class="pcard-text" style="color:#fff">🛒 Market Town</div></div>
+        <div class="pcard" style="border-color:#26c6a0;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#26c6a0">Destination</div><div class="pcard-text" style="color:#fff">🌲 National Park</div></div>
+      </div>
+
+      <div class="cat-label" style="color:#26c6a0">💰 Budget Cards (4 cards)</div>
+      <div class="cgrid cg4" style="margin-bottom:20px">
+        <div class="pcard" style="border-color:#26c6a0;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#26c6a0">Budget</div><div class="pcard-text" style="color:#fff">💰 $20 each</div></div>
+        <div class="pcard" style="border-color:#26c6a0;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#26c6a0">Budget</div><div class="pcard-text" style="color:#fff">💰 $50 each</div></div>
+        <div class="pcard" style="border-color:#26c6a0;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#26c6a0">Budget</div><div class="pcard-text" style="color:#fff">💰 $100 each</div></div>
+        <div class="pcard" style="border-color:#26c6a0;background:#0a0f1e;min-height:90px"><div class="pcard-cat" style="color:#26c6a0">Budget</div><div class="pcard-text" style="color:#fff">💰 $150 each</div></div>
+      </div>
+
+      <div class="cat-label" style="color:#ff6b8a">⚠️ Problem Cards — Reveal After 10 Minutes! (8 cards)</div>
+      <div class="cgrid cg4">
+        <div class="pcard" style="border-color:#ff6b8a;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#ff6b8a">⚠️ Problem!</div><div class="pcard-text" style="color:#fff;font-size:12px">One person cannot swim</div></div>
+        <div class="pcard" style="border-color:#ff6b8a;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#ff6b8a">⚠️ Problem!</div><div class="pcard-text" style="color:#fff;font-size:12px">It will rain all day</div></div>
+        <div class="pcard" style="border-color:#ff6b8a;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#ff6b8a">⚠️ Problem!</div><div class="pcard-text" style="color:#fff;font-size:12px">The train is full</div></div>
+        <div class="pcard" style="border-color:#ff6b8a;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#ff6b8a">⚠️ Problem!</div><div class="pcard-text" style="color:#fff;font-size:12px">One person is scared of heights</div></div>
+        <div class="pcard" style="border-color:#ff6b8a;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#ff6b8a">⚠️ Problem!</div><div class="pcard-text" style="color:#fff;font-size:12px">Someone forgot their money</div></div>
+        <div class="pcard" style="border-color:#ff6b8a;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#ff6b8a">⚠️ Problem!</div><div class="pcard-text" style="color:#fff;font-size:12px">The hotel is fully booked</div></div>
+        <div class="pcard" style="border-color:#ff6b8a;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#ff6b8a">⚠️ Problem!</div><div class="pcard-text" style="color:#fff;font-size:12px">The main attraction is closed today</div></div>
+        <div class="pcard" style="border-color:#ff6b8a;background:#0a0f1e;min-height:100px"><div class="pcard-cat" style="color:#ff6b8a">⚠️ Problem!</div><div class="pcard-text" style="color:#fff;font-size:12px">One person in the group is vegetarian</div></div>
+      </div>
+    </div>
+
+  </div><!-- /cards-wrap -->
+</div><!-- /cards-sec -->
+
+<div class="site-footer">Plans &amp; Predictions · I Learn English Here</div>
+
+<!-- ================================================================ -->
+<script>
+// ===== VIEW SWITCHING =====
+function showView(view){
+  var guide = document.getElementById('guide-sec');
+  var cards = document.getElementById('cards-sec');
+  var btns = document.querySelectorAll('.top-nav-btn');
+  if(view==='guide'){
+    guide.style.display='block';
+    cards.style.display='none';
+    btns[0].classList.add('active');
+    btns[1].classList.remove('active');
+  } else {
+    guide.style.display='none';
+    cards.style.display='block';
+    btns[0].classList.remove('active');
+    btns[1].classList.add('active');
+  }
+}
+
+// ===== LESSON TABS =====
+var lessonColors = ['al1','al2','al3','al4','al5'];
+function showLesson(n){
+  for(var i=1;i<=5;i++){
+    var p=document.getElementById('gp'+i);
+    if(p) p.classList.remove('active');
+  }
+  var target=document.getElementById('gp'+n);
+  if(target) target.classList.add('active');
+  var tabs=document.querySelectorAll('.ltab');
+  tabs.forEach(function(t){ lessonColors.forEach(function(c){t.classList.remove(c);}); });
+  if(tabs[n-1]) tabs[n-1].classList.add('al'+n);
+}
+
+// ===== BINGO GENERATOR =====
+var bSquares = [
+  "Will probably be funny",
+  "Might like action movies",
+  "Could be a good cook",
+  "Will definitely be kind",
+  "Probably won't like horror",
+  "Might enjoy dancing",
+  "Could speak another language",
+  "Will probably love music",
+  "Might be very sporty",
+  "Could be a night owl",
+  "Will probably like travelling",
+  "Might prefer staying home",
+  "Could be very creative",
+  "Will definitely like food",
+  "Might enjoy reading",
+  "Could be very organised",
+  "Will probably be adventurous",
+  "Might not like mornings",
+  "Could be very funny",
+  "Will probably enjoy parties",
+  "Might like animals",
+  "Could be a good singer",
+  "Will probably be generous",
+  "Might love the outdoors"
+];
+
+function shuffle(a){
+  var arr=a.slice();
+  for(var i=arr.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var tmp=arr[i]; arr[i]=arr[j]; arr[j]=tmp;
+  }
+  return arr;
+}
+
+function genBingo(){
+  var count=parseInt(document.getElementById('bingo-count').value)||8;
+  if(count<1) count=1;
+  if(count>40) count=40;
+  var container=document.getElementById('bingo-cards-container');
+  container.innerHTML='';
+  for(var c=0;c<count;c++){
+    var shuffled=shuffle(bSquares);
+    var grid=shuffled.slice(0,12).concat(['⭐ FREE']).concat(shuffled.slice(12));
+    var card=document.createElement('div');
+    card.className='bingo-wrap';
+    card.innerHTML='<div class="bingo-hdr-row bingo-hdr-bg">💘 BLIND DATE BINGO &nbsp;—&nbsp; Card '+(c+1)+'</div>'
+      +'<div class="bingo-letters">'
+      +['B','I','N','G','O'].map(function(l){return '<div class="bingo-letter bingo-letter-bg">'+l+'</div>';}).join('')
+      +'</div>'
+      +'<div class="bingo-grid5">'
+      +grid.map(function(sq){
+        var isFree=sq==='⭐ FREE';
+        return '<div class="bcell '+(isFree?'bcell-free':'bcell-normal')+'">'+sq+'</div>';
+      }).join('')
+      +'</div>'
+      +'<div class="bingo-names-bar">'
+      +'<p style="font-size:10px;color:#6a8aaa;text-align:center;padding:4px 0 4px;letter-spacing:1px">WRITE THE NAME OF YOUR PARTNER IN EACH MATCHING SQUARE ABOVE</p>'
+      +'</div>';
+    container.appendChild(card);
+  }
+}
+
+genBingo();
+</script>
+<!-- I Learn English Here nav --><a href="../lessons.html" style="position:fixed;left:12px;bottom:12px;z-index:2147483000;background:#1f7a6c;color:#fff;font:700 13px/1 system-ui,sans-serif;padding:9px 13px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)" aria-label="Back to I Learn English Here lessons">← I Learn English Here</a>
+</body>
+</html>

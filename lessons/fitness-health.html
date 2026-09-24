@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitness & Health — Free English Lesson | I Learn English Here</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* TOP BAR */
+#topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  background: #1e293b;
+  border-bottom: 2px solid #334155;
+  flex-shrink: 0;
+}
+#topbar .left .tag { font-size:10px; color:#94a3b8; letter-spacing:2px; text-transform:uppercase; }
+#topbar .left h1  { font-size:15px; font-weight:700; }
+#topbar .right    { font-size:12px; color:#94a3b8; }
+
+/* PROGRESS */
+#progress { height:4px; background:#1e293b; flex-shrink:0; }
+#pbar     { height:4px; background:#0d9488; transition:width .2s; }
+
+/* TABS */
+#tabs {
+  display:flex; gap:4px; padding:6px 14px;
+  background:#1e293b; border-bottom:1px solid #334155;
+  flex-shrink:0; overflow-x:auto;
+}
+#tabs::-webkit-scrollbar { display:none; }
+.tab {
+  padding:4px 13px; border-radius:20px;
+  border:1px solid #475569; background:transparent;
+  color:#94a3b8; font-size:11px; cursor:pointer;
+  white-space:nowrap; font-family:Arial,sans-serif;
+}
+.tab:hover { border-color:#5eead4; color:#5eead4; }
+.tab.on    { background:#0d9488; color:#fff; border-color:#0d9488; font-weight:700; }
+
+/* SLIDE AREA */
+#stage { flex:1; position:relative; overflow:hidden; }
+
+.slide {
+  display:none;
+  position:absolute; inset:0;
+  flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:24px 36px;
+  overflow-y:auto;
+}
+.slide.on { display:flex; }
+
+/* NAV */
+#nav {
+  display:flex; align-items:center;
+  justify-content:space-between;
+  padding:10px 20px;
+  background:#1e293b;
+  border-top:1px solid #334155;
+  flex-shrink:0;
+}
+.nbtn {
+  padding:8px 22px; border-radius:8px;
+  border:1px solid #475569; background:transparent;
+  color:#fff; font-size:14px; cursor:pointer;
+  font-family:Arial,sans-serif;
+}
+.nbtn:hover   { background:#334155; }
+.nbtn:disabled{ opacity:.3; cursor:default; }
+.nbtn.go      { background:#0d9488; border-color:#0d9488; }
+.nbtn.go:hover{ background:#0f766e; }
+
+/* DOTS */
+#dots { display:flex; gap:5px; flex-wrap:wrap; justify-content:center; max-width:300px; }
+.dot  {
+  width:7px; height:7px; border-radius:50%;
+  background:#334155; cursor:pointer; border:none; padding:0;
+  transition:background .15s, transform .15s;
+}
+.dot.on { background:#5eead4; transform:scale(1.5); }
+
+/* ── CONTENT HELPERS ── */
+.tag  { font-size:10px; letter-spacing:3px; text-transform:uppercase; padding:4px 14px; border-radius:20px; border:1px solid currentColor; margin-bottom:14px; }
+.big  { font-size:clamp(22px,4vw,46px); font-weight:900; text-align:center; line-height:1.15; margin-bottom:10px; }
+.sub  { font-size:14px; color:#94a3b8; text-align:center; max-width:520px; line-height:1.6; }
+.sh   { font-size:clamp(17px,2.8vw,28px); font-weight:700; text-align:center; margin-bottom:8px; }
+.acc  { width:48px; height:4px; border-radius:2px; margin:6px auto 16px; }
+
+/* Formula */
+.formula {
+  font-family:'Courier New',monospace;
+  font-size:clamp(13px,2vw,19px);
+  padding:12px 22px; border-radius:8px;
+  text-align:center; margin:10px 0;
+  width:100%; max-width:640px;
+}
+.f-teal   { background:rgba(13,148,136,.15);  border:1px solid rgba(94,234,212,.3);  color:#5eead4; }
+.f-amber  { background:rgba(245,158,11,.12);  border:1px solid rgba(253,230,138,.3); color:#fde68a; }
+.f-purple { background:rgba(139,92,246,.12);  border:1px solid rgba(221,214,254,.3); color:#ddd6fe; }
+.f-rose   { background:rgba(244,63,94,.12);   border:1px solid rgba(253,164,175,.3); color:#fda4af; }
+.f-sky    { background:rgba(14,165,233,.12);  border:1px solid rgba(186,230,253,.3); color:#bae6fd; }
+.f-green  { background:rgba(34,197,94,.12);   border:1px solid rgba(134,239,172,.3); color:#86efac; }
+
+/* Examples */
+.exbox { width:100%; max-width:640px; margin:6px 0; }
+.ex {
+  padding:7px 0 7px 14px;
+  border-left:3px solid #f59e0b;
+  color:#fde68a; font-size:14px;
+  margin:5px 0; font-style:italic; line-height:1.5;
+}
+.ex b { color:#5eead4; font-style:normal; }
+
+/* Two columns */
+.two { display:grid; grid-template-columns:1fr 1fr; gap:14px; width:100%; max-width:720px; }
+.box {
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px; padding:16px;
+}
+.box h3 { font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:9px; padding-bottom:7px; border-bottom:1px solid rgba(255,255,255,.07); }
+.box li { font-size:13px; color:#cbd5e1; margin:5px 0; padding-left:14px; position:relative; list-style:none; line-height:1.5; }
+.box li::before { content:'▸'; position:absolute; left:0; color:#5eead4; font-size:11px; }
+
+/* Vocab grid */
+.vgrid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; width:100%; max-width:720px; }
+.vc { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:10px; padding:11px 8px; text-align:center; }
+.vc .em { font-size:22px; display:block; margin-bottom:4px; }
+.vc .wd { font-size:13px; font-weight:700; margin-bottom:2px; }
+.vc .df { font-size:10px; color:#94a3b8; line-height:1.3; }
+
+/* Dialogue */
+.dlg { display:flex; flex-direction:column; gap:9px; width:100%; max-width:620px; }
+.bub { padding:10px 15px; border-radius:13px; font-size:14px; max-width:85%; line-height:1.5; }
+.bub .sp { font-size:9px; letter-spacing:2px; text-transform:uppercase; opacity:.6; margin-bottom:2px; }
+.bub.L { align-self:flex-start; background:rgba(14,165,233,.15); border:1px solid rgba(14,165,233,.3); color:#bae6fd; border-bottom-left-radius:3px; }
+.bub.R { align-self:flex-end;   background:rgba(13,148,136,.15); border:1px solid rgba(13,148,136,.3); color:#5eead4;  border-bottom-right-radius:3px; }
+.hl { background:rgba(245,158,11,.25); border-radius:3px; padding:1px 4px; color:#fbbf24; font-weight:700; }
+
+/* Quiz */
+.qwrap { width:100%; max-width:640px; }
+.qi { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:10px; padding:11px 16px; margin:5px 0; font-size:14px; color:#e2e8f0; line-height:1.6; }
+.rb {
+  display:inline-block; min-width:90px;
+  border:none; border-bottom:2px solid #5eead4;
+  color:#5eead4; font-weight:700; cursor:pointer;
+  padding:0 6px; font-size:14px; background:none;
+  font-family:Arial,sans-serif; text-align:center;
+}
+.rb.done { color:#fbbf24; border-bottom-color:#f59e0b; cursor:default; }
+
+/* Tip */
+.tip {
+  background:rgba(245,158,11,.1);
+  border:1px solid rgba(245,158,11,.25);
+  border-left:4px solid #f59e0b;
+  border-radius:8px; padding:11px 16px;
+  width:100%; max-width:640px;
+  margin-top:12px; font-size:13px; color:#fde68a; line-height:1.6;
+}
+.tip b { color:#fbbf24; }
+
+/* Comparison table */
+.ct { width:100%; max-width:680px; border-collapse:separate; border-spacing:0; }
+.ct th { padding:9px 14px; font-size:11px; letter-spacing:2px; text-transform:uppercase; text-align:left; background:rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.1); }
+.ct td { padding:9px 14px; font-size:13px; border-bottom:1px solid rgba(255,255,255,.05); color:#cbd5e1; vertical-align:top; }
+.ct tr:last-child td { border-bottom:none; }
+.ct .k { color:#5eead4; font-weight:600; white-space:nowrap; }
+.ct .e { color:#fde68a; font-style:italic; font-size:12px; }
+
+/* Modal cards */
+.mgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; width:100%; max-width:720px; }
+.mc { border-radius:10px; padding:13px; text-align:center; }
+.mc .mw { font-size:16px; font-weight:700; margin-bottom:3px; }
+.mc .mm { font-size:9px; text-transform:uppercase; letter-spacing:1px; opacity:.7; margin-bottom:7px; }
+.mc .me { font-size:12px; opacity:.85; font-style:italic; line-height:1.4; }
+
+/* Summary rows */
+.srow { display:flex; gap:12px; align-items:flex-start; padding:9px 0; border-bottom:1px solid rgba(255,255,255,.05); width:100%; max-width:660px; }
+.srow:last-child { border-bottom:none; }
+.sn { width:28px; height:28px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; }
+.st h4 { font-size:14px; font-weight:700; margin-bottom:1px; }
+.st p  { font-size:12px; color:#94a3b8; }
+
+/* Game card */
+.gcard { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:18px 22px; width:100%; max-width:680px; }
+.gcard h3 { font-size:14px; font-weight:700; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,.07); }
+.gcard ol { padding-left:20px; }
+.gcard ol li { font-size:13px; color:#cbd5e1; margin:6px 0; line-height:1.5; }
+.gcard .gmeta { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+.gcard .pill { padding:3px 10px; border-radius:12px; font-size:10px; background:rgba(255,255,255,.07); color:#94a3b8; }
+
+/* Intensifier scale */
+.iscale { display:flex; align-items:center; gap:0; width:100%; max-width:620px; margin:12px 0; }
+.ib { flex:1; padding:12px 8px; text-align:center; font-size:13px; font-weight:700; }
+.ib .lbl { font-size:10px; color:#94a3b8; margin-top:4px; }
+
+/* Station cards */
+.stations { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; width:100%; max-width:720px; }
+.station { border-radius:10px; padding:14px; text-align:center; }
+.station .snum { font-size:22px; font-weight:900; margin-bottom:4px; opacity:.4; }
+.station .sttl { font-size:13px; font-weight:700; margin-bottom:4px; }
+.station .sdsc { font-size:11px; opacity:.75; line-height:1.4; }
+
+/* Word chips */
+.chips { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0; }
+.chip { padding:3px 12px; border:1px solid rgba(255,255,255,.15); border-radius:20px; font-size:12px; color:#e2e8f0; }
+
+@media(max-width:560px){
+  .two,.vgrid,.mgrid,.stations { grid-template-columns:1fr 1fr; }
+  .slide { padding:14px 14px; }
+  .iscale { flex-direction:column; }
+}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="left">
+    <div class="tag">Fitness &amp; Health · I Learn English Here</div>
+    <h1>Take Care of Yourself</h1>
+  </div>
+  <div class="right" id="ctr">1 / 40</div>
+</div>
+<div id="progress"><div id="pbar" style="width:2.5%"></div></div>
+
+<div id="tabs">
+  <button class="tab on"  onclick="goL(0)">🏠 Overview</button>
+  <button class="tab"     onclick="goL(1)">Future Continuous</button>
+  <button class="tab"     onclick="goL(2)">Intensifiers</button>
+  <button class="tab"     onclick="goL(3)">L1 · Doctor's Appt</button>
+  <button class="tab"     onclick="goL(4)">L2 · At the Doctor</button>
+  <button class="tab"     onclick="goL(5)">L3 · Flossing</button>
+  <button class="tab"     onclick="goL(6)">L4 · Therapy</button>
+  <button class="tab"     onclick="goL(7)">L5 · Pharmacy</button>
+  <button class="tab"     onclick="goL(8)">🎮 Games</button>
+  <button class="tab"     onclick="goL(9)">📝 Exam Tips</button>
+</div>
+
+<div id="stage">
+
+<!-- ══ 0: COVER ══ -->
+<div class="slide on" id="s0" style="background:radial-gradient(ellipse at 30% 40%,#0d4f47,#0f172a)">
+  <span style="font-size:60px;display:block;margin-bottom:14px">🏥💪</span>
+  <div class="tag" style="color:#5eead4">Fitness &amp; Health</div>
+  <div class="big">Fitness &amp; Health<br><span style="color:#5eead4">Take Care of Yourself</span></div>
+  <div class="sub">Complete teaching pack — grammar, vocabulary, games &amp; exam prep.<br>Use ← → keys or buttons below to navigate.</div>
+</div>
+
+<!-- ══ 1: UNIT MAP ══ -->
+<div class="slide" id="s1">
+  <div class="sh">What We Cover</div>
+  <div class="acc" style="background:#0d9488"></div>
+  <div style="width:100%;max-width:660px">
+    <div class="srow"><div class="sn" style="background:rgba(34,197,94,.2);color:#86efac">FC</div><div class="st"><h4>Future Continuous</h4><p>will + be + verb-ing · Fitness actions · Freeze Time game</p></div></div>
+    <div class="srow"><div class="sn" style="background:rgba(245,158,11,.2);color:#fde68a">IN</div><div class="st"><h4>Intensifiers</h4><p>very / really / extremely / a little · Body parts · Doctor roleplay</p></div></div>
+    <div class="srow"><div class="sn" style="background:rgba(13,148,136,.2);color:#5eead4">L1</div><div class="st"><h4>Making a Doctor's Appointment</h4><p>Present Perfect · have/has + pp · Signal words</p></div></div>
+    <div class="srow"><div class="sn" style="background:rgba(14,165,233,.2);color:#bae6fd">L2</div><div class="st"><h4>At the Doctor's Office</h4><p>Symptoms · PP vs. Simple Past</p></div></div>
+    <div class="srow"><div class="sn" style="background:rgba(245,158,11,.2);color:#fde68a">L3</div><div class="st"><h4>How Often Do You Floss?</h4><p>Dental vocab · Too &amp; Enough</p></div></div>
+    <div class="srow"><div class="sn" style="background:rgba(139,92,246,.2);color:#ddd6fe">L4</div><div class="st"><h4>A Therapist's Advice</h4><p>Mental health · Past Continuous · When clauses</p></div></div>
+    <div class="srow"><div class="sn" style="background:rgba(244,63,94,.2);color:#fda4af">L5</div><div class="st"><h4>Are There Any Side Effects?</h4><p>Pharmacy vocab · Modals of obligation</p></div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+     FUTURE CONTINUOUS
+══════════════════════ -->
+
+<!-- ══ 2: FC HEADER ══ -->
+<div class="slide" id="s2" style="background:radial-gradient(ellipse at 50% 50%,#052e16,#0f172a)">
+  <div class="tag" style="color:#86efac">Lesson 3 — Get in Shape</div>
+  <div class="big" style="color:#86efac">Future Continuous</div>
+  <div class="sub">will + be + verb-ing · Fitness actions · Time expressions</div>
+</div>
+
+<!-- ══ 3: FC FORMULA ══ -->
+<div class="slide" id="s3">
+  <div class="sh">Future Continuous — Formula</div>
+  <div class="acc" style="background:#22c55e"></div>
+  <div style="width:100%;max-width:640px">
+    <p style="font-size:11px;color:#94a3b8;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">✦ Formula</p>
+    <div class="formula f-green">Subject + will + be + verb-ing</div>
+    <p style="font-size:11px;color:#94a3b8;letter-spacing:2px;text-transform:uppercase;margin:12px 0 6px">✦ Examples</p>
+    <div class="exbox">
+      <div class="ex">I <b>will be exercising</b> tomorrow.</div>
+      <div class="ex">She <b>will be running</b> at 7 AM.</div>
+      <div class="ex">They <b>will be studying</b> after school.</div>
+      <div class="ex">At 8 PM tonight, I <b>will be sleeping</b>.</div>
+    </div>
+    <p style="font-size:11px;color:#94a3b8;letter-spacing:2px;text-transform:uppercase;margin:12px 0 6px">✦ Question Form</p>
+    <div class="formula f-green">Will + subject + be + verb-ing?</div>
+    <div class="exbox">
+      <div class="ex"><b>What will</b> you <b>be doing</b> tomorrow morning?</div>
+      <div class="ex"><b>Will</b> you <b>be exercising</b> this weekend?</div>
+    </div>
+    <div class="tip">💡 <b>Memory Trick:</b> WILL + BE + ING = an action happening at a specific point in the future.<br>"At 7 PM tomorrow, I will be eating dinner."</div>
+  </div>
+</div>
+
+<!-- ══ 4: FC IT/THAT CLAUSES ══ -->
+<div class="slide" id="s4">
+  <div class="sh">Fitness Tips — "It is / That" Clauses</div>
+  <div class="acc" style="background:#22c55e"></div>
+  <div style="width:100%;max-width:640px">
+    <p style="font-size:11px;color:#94a3b8;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">✦ Formula</p>
+    <div class="formula f-green">It is + adjective + that + subject + verb</div>
+    <p style="font-size:11px;color:#94a3b8;letter-spacing:2px;text-transform:uppercase;margin:12px 0 6px">✦ Examples</p>
+    <div class="exbox">
+      <div class="ex">It is <b>important</b> that you drink water.</div>
+      <div class="ex">It is <b>necessary</b> that students exercise.</div>
+      <div class="ex">It is <b>healthy</b> that people sleep early.</div>
+      <div class="ex">It is <b>good</b> that you stretch before sports.</div>
+    </div>
+    <div class="two" style="margin-top:14px">
+      <div class="box" style="border-color:rgba(34,197,94,.3)">
+        <h3 style="color:#86efac">Common Adjectives</h3>
+        <ul>
+          <li>important</li><li>necessary</li><li>healthy</li>
+          <li>good</li><li>essential</li><li>vital</li>
+        </ul>
+      </div>
+      <div class="box" style="border-color:rgba(34,197,94,.3)">
+        <h3 style="color:#86efac">Bad Coach → Good Coach</h3>
+        <ul>
+          <li><span style="color:#fda4af">❌ "Eat candy every day."</span></li>
+          <li><span style="color:#86efac">✔ "It is important that you eat healthy food."</span></li>
+          <li><span style="color:#fda4af">❌ "Skip breakfast."</span></li>
+          <li><span style="color:#86efac">✔ "It is necessary that you eat breakfast."</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 5: FC DIALOGUE ══ -->
+<div class="slide" id="s5">
+  <div class="sh">Future Continuous — Fitness Dialogue</div>
+  <div class="acc" style="background:#22c55e"></div>
+  <div class="dlg">
+    <div class="bub L"><div class="sp">Coach</div>What <span class="hl">will</span> you <span class="hl">be doing</span> this weekend for fitness?</div>
+    <div class="bub R"><div class="sp">Student</div>I <span class="hl">will be running</span> in the park on Saturday morning.</div>
+    <div class="bub L"><div class="sp">Coach</div>And what about Sunday? <span class="hl">Will</span> you <span class="hl">be resting</span>?</div>
+    <div class="bub R"><div class="sp">Student</div>Yes, on Sunday I <span class="hl">will be sleeping</span> and <span class="hl">will be eating</span> healthy food.</div>
+    <div class="bub L"><div class="sp">Coach</div>It is important that you rest. <span class="hl">Will</span> you <span class="hl">be exercising</span> again on Monday?</div>
+    <div class="bub R"><div class="sp">Student</div>Definitely! I <span class="hl">will be lifting</span> weights at 7 AM.</div>
+  </div>
+</div>
+
+<!-- ══ 6: FC QUIZ ══ -->
+<div class="slide" id="s6">
+  <div class="sh">Future Continuous — Quick Check</div>
+  <div class="acc" style="background:#22c55e"></div>
+  <p style="font-size:12px;color:#94a3b8;margin-bottom:12px">Click each button to reveal the answer.</p>
+  <div class="qwrap">
+    <div class="qi">1. Tomorrow I __________ (exercise) at the gym. → <button class="rb" onclick="rev(this,'will be exercising')">reveal</button></div>
+    <div class="qi">2. She __________ (run) in the park at 6 PM. → <button class="rb" onclick="rev(this,'will be running')">reveal</button></div>
+    <div class="qi">3. __________ they __________ (swim) tomorrow? → <button class="rb" onclick="rev(this,'Will / be swimming')">reveal</button></div>
+    <div class="qi">4. It is important that you __________ (drink) water. → <button class="rb" onclick="rev(this,'drink')">reveal</button></div>
+    <div class="qi">5. At 7 AM, he __________ (lift) weights. → <button class="rb" onclick="rev(this,'will be lifting')">reveal</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+     INTENSIFIERS
+══════════════════════ -->
+
+<!-- ══ 7: INTENSIFIERS HEADER ══ -->
+<div class="slide" id="s7" style="background:radial-gradient(ellipse at 50% 50%,#431407,#0f172a)">
+  <div class="tag" style="color:#fed7aa">Lesson 5 — It's Very Painful</div>
+  <div class="big" style="color:#fed7aa">Intensifiers</div>
+  <div class="sub">very · really · extremely · a little<br>Body parts vocabulary · Doctor roleplay</div>
+</div>
+
+<!-- ══ 8: INTENSIFIERS GRAMMAR ══ -->
+<div class="slide" id="s8">
+  <div class="sh">Intensifiers — Making Adjectives Stronger</div>
+  <div class="acc" style="background:#f97316"></div>
+  <div style="width:100%;max-width:640px">
+    <p style="font-size:11px;color:#94a3b8;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">✦ The Intensifier Scale</p>
+    <div class="iscale">
+      <div class="ib" style="background:rgba(134,239,172,.15);border-radius:8px 0 0 8px;border:1px solid rgba(134,239,172,.2)">
+        <div style="color:#86efac">a little</div>
+        <div class="lbl">weak — small amount</div>
+      </div>
+      <div class="ib" style="background:rgba(253,230,138,.15);border:1px solid rgba(253,230,138,.2)">
+        <div style="color:#fde68a">very</div>
+        <div class="lbl">medium — stronger</div>
+      </div>
+      <div class="ib" style="background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.2)">
+        <div style="color:#fed7aa">really</div>
+        <div class="lbl">strong</div>
+      </div>
+      <div class="ib" style="background:rgba(244,63,94,.2);border-radius:0 8px 8px 0;border:1px solid rgba(244,63,94,.3)">
+        <div style="color:#fda4af">extremely</div>
+        <div class="lbl">strongest!</div>
+      </div>
+    </div>
+    <div class="formula f-amber" style="margin-top:14px">Intensifier + adjective</div>
+    <div class="exbox" style="margin-top:10px">
+      <div class="ex">My head is <b>a little</b> painful.</div>
+      <div class="ex">I feel <b>very</b> tired today.</div>
+      <div class="ex">My back hurts <b>really</b> badly.</div>
+      <div class="ex">My leg is <b>extremely</b> painful.</div>
+    </div>
+    <div class="tip">💡 <b>Memory Trick:</b> Intensifiers make adjectives stronger — like turning up the volume!<br>a little → very → really → extremely 🔊</div>
+  </div>
+</div>
+
+<!-- ══ 9: BODY PARTS VOCAB ══ -->
+<div class="slide" id="s9">
+  <div class="sh">Body Parts Vocabulary</div>
+  <div class="acc" style="background:#f97316"></div>
+  <div class="vgrid">
+    <div class="vc"><span class="em">💪</span><div class="wd">arm</div><div class="df">upper or lower limb</div></div>
+    <div class="vc"><span class="em">🦵</span><div class="wd">leg</div><div class="df">lower limb</div></div>
+    <div class="vc"><span class="em">🔙</span><div class="wd">back</div><div class="df">rear of the body</div></div>
+    <div class="vc"><span class="em">🦒</span><div class="wd">neck</div><div class="df">connects head to body</div></div>
+    <div class="vc"><span class="em">🤰</span><div class="wd">stomach</div><div class="df">abdomen area</div></div>
+    <div class="vc"><span class="em">🤕</span><div class="wd">head</div><div class="df">top of the body</div></div>
+    <div class="vc"><span class="em">🦷</span><div class="wd">tooth / teeth</div><div class="df">used for chewing</div></div>
+    <div class="vc"><span class="em">👂</span><div class="wd">ear</div><div class="df">used for hearing</div></div>
+  </div>
+</div>
+
+<!-- ══ 10: INTENSIFIERS QUIZ ══ -->
+<div class="slide" id="s10">
+  <div class="sh">Intensifiers — Fill in the Gap</div>
+  <div class="acc" style="background:#f97316"></div>
+  <p style="font-size:12px;color:#94a3b8;margin-bottom:12px">Click to reveal. Word bank: <span style="color:#fbbf24">very · really · extremely · a little</span></p>
+  <div class="qwrap">
+    <div class="qi">1. My head is __________ painful. (strongest) → <button class="rb" onclick="rev(this,'extremely')">reveal</button></div>
+    <div class="qi">2. I feel __________ tired today. (medium) → <button class="rb" onclick="rev(this,'very')">reveal</button></div>
+    <div class="qi">3. My back hurts __________ badly. (strong) → <button class="rb" onclick="rev(this,'really')">reveal</button></div>
+    <div class="qi">4. I am __________ sick — just a slight cold. (small) → <button class="rb" onclick="rev(this,'a little')">reveal</button></div>
+    <div class="qi">5. My leg feels __________ sore after the race! → <button class="rb" onclick="rev(this,'extremely / really')">reveal</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+     L1: DOCTOR'S APPOINTMENT
+══════════════════════ -->
+
+<!-- ══ 11: L1 HEADER ══ -->
+<div class="slide" id="s11" style="background:radial-gradient(ellipse at 50% 50%,#042f2e,#0f172a)">
+  <div class="tag" style="color:#5eead4">Lesson 1</div>
+  <div class="big" style="color:#5eead4">Making a Doctor's<br>Appointment</div>
+  <div class="sub">Present Perfect · Signal words · Appointment roleplay</div>
+</div>
+
+<!-- ══ 12: L1 VOCAB ══ -->
+<div class="slide" id="s12">
+  <div class="sh">Sick Day Vocabulary</div>
+  <div class="acc" style="background:#0d9488"></div>
+  <div class="vgrid">
+    <div class="vc"><span class="em">🤒</span><div class="wd">feel unwell</div><div class="df">not feeling healthy</div></div>
+    <div class="vc"><span class="em">📞</span><div class="wd">call in sick</div><div class="df">tell work you're ill</div></div>
+    <div class="vc"><span class="em">📅</span><div class="wd">appointment</div><div class="df">scheduled time with doctor</div></div>
+    <div class="vc"><span class="em">💊</span><div class="wd">prescription</div><div class="df">medicine ordered by doctor</div></div>
+    <div class="vc"><span class="em">🩺</span><div class="wd">GP / doctor</div><div class="df">general practitioner</div></div>
+    <div class="vc"><span class="em">🏥</span><div class="wd">clinic</div><div class="df">small medical centre</div></div>
+    <div class="vc"><span class="em">⏰</span><div class="wd">available slot</div><div class="df">free time for booking</div></div>
+    <div class="vc"><span class="em">📋</span><div class="wd">referral</div><div class="df">note to see a specialist</div></div>
+  </div>
+</div>
+
+<!-- ══ 13: L1 PRESENT PERFECT ══ -->
+<div class="slide" id="s13">
+  <div class="sh">Present Perfect Tense</div>
+  <div class="acc" style="background:#0d9488"></div>
+  <div style="width:100%;max-width:640px">
+    <div class="formula f-teal">Subject + have / has + Past Participle</div>
+    <div class="exbox" style="margin-top:12px">
+      <div class="ex">I <b>have visited</b> the doctor.</div>
+      <div class="ex">She <b>has taken</b> medicine.</div>
+      <div class="ex">They <b>have stayed</b> home.</div>
+      <div class="ex"><b>Have</b> you ever <b>broken</b> a bone?</div>
+    </div>
+    <p style="font-size:11px;color:#94a3b8;letter-spacing:2px;text-transform:uppercase;margin:12px 0 6px">✦ Signal Words</p>
+    <div class="chips">
+      <span class="chip" style="color:#5eead4;border-color:rgba(94,234,212,.3)">already</span>
+      <span class="chip" style="color:#5eead4;border-color:rgba(94,234,212,.3)">never</span>
+      <span class="chip" style="color:#5eead4;border-color:rgba(94,234,212,.3)">ever</span>
+      <span class="chip" style="color:#5eead4;border-color:rgba(94,234,212,.3)">yet</span>
+      <span class="chip" style="color:#5eead4;border-color:rgba(94,234,212,.3)">since</span>
+      <span class="chip" style="color:#5eead4;border-color:rgba(94,234,212,.3)">for</span>
+      <span class="chip" style="color:#5eead4;border-color:rgba(94,234,212,.3)">just</span>
+    </div>
+    <div class="tip" style="margin-top:10px">💡 <b>Memory Trick:</b> Present Perfect = a past action still connected to NOW.<br>"I have called the clinic." (I called it and it's still relevant now.)</div>
+  </div>
+</div>
+
+<!-- ══ 14: L1 DIALOGUE ══ -->
+<div class="slide" id="s14">
+  <div class="sh">Roleplay: Appointment Call</div>
+  <div class="acc" style="background:#0d9488"></div>
+  <div class="dlg">
+    <div class="bub L"><div class="sp">Receptionist</div>Good morning, City Clinic. How can I help you?</div>
+    <div class="bub R"><div class="sp">Patient</div>Hello, I'd like to make an appointment. I <span class="hl">have been</span> feeling unwell for a few days.</div>
+    <div class="bub L"><div class="sp">Receptionist</div><span class="hl">Have</span> you <span class="hl">seen</span> a doctor about this before?</div>
+    <div class="bub R"><div class="sp">Patient</div>No, I <span class="hl">haven't</span>. I <span class="hl">haven't had</span> time yet.</div>
+    <div class="bub L"><div class="sp">Receptionist</div>We <span class="hl">have</span> an available slot on Thursday at 10 a.m. Does that work?</div>
+    <div class="bub R"><div class="sp">Patient</div>Perfect. I <span class="hl">have already</span> written down the address.</div>
+  </div>
+</div>
+
+<!-- ══ 15: L1 QUIZ ══ -->
+<div class="slide" id="s15">
+  <div class="sh">Present Perfect — Fill the Gap</div>
+  <div class="acc" style="background:#0d9488"></div>
+  <p style="font-size:12px;color:#94a3b8;margin-bottom:12px">Click to reveal.</p>
+  <div class="qwrap">
+    <div class="qi">1. I __________ visited a hospital. → <button class="rb" onclick="rev(this,'have')">reveal</button></div>
+    <div class="qi">2. She __________ taken medicine already. → <button class="rb" onclick="rev(this,'has')">reveal</button></div>
+    <div class="qi">3. __________ you ever __________ (miss) school because you were sick? → <button class="rb" onclick="rev(this,'Have / missed')">reveal</button></div>
+    <div class="qi">4. He __________ (never / see) a dentist. → <button class="rb" onclick="rev(this,'has never seen')">reveal</button></div>
+    <div class="qi">5. We __________ (just / call) the doctor. → <button class="rb" onclick="rev(this,'have just called')">reveal</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+     L2: AT THE DOCTOR
+══════════════════════ -->
+
+<!-- ══ 16: L2 HEADER ══ -->
+<div class="slide" id="s16" style="background:radial-gradient(ellipse at 50% 50%,#082f49,#0f172a)">
+  <div class="tag" style="color:#bae6fd">Lesson 2</div>
+  <div class="big" style="color:#bae6fd">At the Doctor's Office</div>
+  <div class="sub">Symptoms Vocabulary · Present Perfect vs. Simple Past</div>
+</div>
+
+<!-- ══ 17: L2 SYMPTOMS ══ -->
+<div class="slide" id="s17">
+  <div class="sh">Symptoms &amp; Illnesses</div>
+  <div class="acc" style="background:#0ea5e9"></div>
+  <div class="vgrid">
+    <div class="vc"><span class="em">🔥</span><div class="wd">fever</div><div class="df">high body temperature</div></div>
+    <div class="vc"><span class="em">🤧</span><div class="wd">runny nose</div><div class="df">liquid from the nose</div></div>
+    <div class="vc"><span class="em">🤢</span><div class="wd">nausea</div><div class="df">feeling like vomiting</div></div>
+    <div class="vc"><span class="em">😵</span><div class="wd">dizziness</div><div class="df">feeling unbalanced</div></div>
+    <div class="vc"><span class="em">💢</span><div class="wd">sore throat</div><div class="df">pain when swallowing</div></div>
+    <div class="vc"><span class="em">🩹</span><div class="wd">rash</div><div class="df">red marks on skin</div></div>
+    <div class="vc"><span class="em">😮‍💨</span><div class="wd">shortness of breath</div><div class="df">hard to breathe</div></div>
+    <div class="vc"><span class="em">🦴</span><div class="wd">ache</div><div class="df">a dull, steady pain</div></div>
+  </div>
+</div>
+
+<!-- ══ 18: L2 PP VS SP ══ -->
+<div class="slide" id="s18">
+  <div class="sh">Present Perfect vs. Simple Past</div>
+  <div class="acc" style="background:#0ea5e9"></div>
+  <table class="ct">
+    <thead>
+      <tr><th></th><th style="color:#bae6fd">Present Perfect</th><th style="color:#fde68a">Simple Past</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="k">When?</td><td>No specific time / ongoing</td><td>Specific, finished time</td></tr>
+      <tr><td class="k">Signal words</td><td>ever, never, already, yet, since, for</td><td>yesterday, last week, ago, in 2020</td></tr>
+      <tr><td class="k">Formula</td><td>have/has + past participle</td><td>verb-ed / irregular</td></tr>
+      <tr><td class="k">Example</td><td class="e">I have had a headache.</td><td class="e">I had a headache yesterday.</td></tr>
+      <tr><td class="k">Example</td><td class="e">Have you ever had a fever?</td><td class="e">She visited the doctor last week.</td></tr>
+    </tbody>
+  </table>
+  <div class="tip" style="margin-top:12px">💡 <b>Rule:</b> No exact time? → Present Perfect. &nbsp;Specific time? → Simple Past.</div>
+</div>
+
+<!-- ══ 19: L2 QUIZ ══ -->
+<div class="slide" id="s19">
+  <div class="sh">PP or Simple Past?</div>
+  <div class="acc" style="background:#0ea5e9"></div>
+  <p style="font-size:12px;color:#94a3b8;margin-bottom:12px">Click to reveal.</p>
+  <div class="qwrap">
+    <div class="qi">1. I __________ (see) the doctor yesterday. → <button class="rb" onclick="rev(this,'saw — SP (yesterday)')">reveal</button></div>
+    <div class="qi">2. She __________ (have) a fever since Monday. → <button class="rb" onclick="rev(this,'has had — PP (since)')">reveal</button></div>
+    <div class="qi">3. We __________ (visit) the hospital last week. → <button class="rb" onclick="rev(this,'visited — SP (last week)')">reveal</button></div>
+    <div class="qi">4. He __________ (take) medicine already. → <button class="rb" onclick="rev(this,'has taken — PP (already)')">reveal</button></div>
+    <div class="qi">5. They __________ (feel) sick yesterday. → <button class="rb" onclick="rev(this,'felt — SP (yesterday)')">reveal</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+     L3: FLOSSING
+══════════════════════ -->
+
+<!-- ══ 20: L3 HEADER ══ -->
+<div class="slide" id="s20" style="background:radial-gradient(ellipse at 50% 50%,#451a03,#0f172a)">
+  <div class="tag" style="color:#fde68a">Lesson 3</div>
+  <div class="big" style="color:#fde68a">How Often Do You Floss?</div>
+  <div class="sub">Dental Vocabulary · Too &amp; Enough · Want / Would Like + Object + Infinitive</div>
+</div>
+
+<!-- ══ 21: L3 TOO & ENOUGH ══ -->
+<div class="slide" id="s21">
+  <div class="sh">Too and Enough</div>
+  <div class="acc" style="background:#f59e0b"></div>
+  <div style="width:100%;max-width:640px">
+    <div class="two">
+      <div class="box" style="border-color:rgba(244,63,94,.4)">
+        <h3 style="color:#fda4af">TOO = more than needed ❌</h3>
+        <ul>
+          <li>too + adjective</li>
+          <li><em style="color:#fde68a">The candy is too sweet.</em></li>
+          <li><em style="color:#fde68a">My teeth are too sensitive.</em></li>
+          <li><em style="color:#fde68a">The wait is too long.</em></li>
+        </ul>
+      </div>
+      <div class="box" style="border-color:rgba(34,197,94,.4)">
+        <h3 style="color:#86efac">ENOUGH = sufficient ✔</h3>
+        <ul>
+          <li>adjective + enough</li>
+          <li><em style="color:#fde68a">My teeth are clean enough.</em></li>
+          <li><em style="color:#fde68a">He is old enough to floss.</em></li>
+          <li><em style="color:#fde68a">We do not sleep enough.</em></li>
+        </ul>
+      </div>
+    </div>
+    <div class="formula f-amber" style="margin-top:12px">too + adjective &nbsp;|&nbsp; adjective + enough &nbsp;|&nbsp; enough + noun</div>
+    <div class="tip" style="margin-top:10px">💡 <b>Position:</b> TOO before adjective. ENOUGH after adjective or before noun.<br>"too sweet" ✔ &nbsp; "clean enough" ✔ &nbsp; "enough time" ✔</div>
+  </div>
+</div>
+
+<!-- ══ 22: L3 QUIZ ══ -->
+<div class="slide" id="s22">
+  <div class="sh">Too or Enough?</div>
+  <div class="acc" style="background:#f59e0b"></div>
+  <p style="font-size:12px;color:#94a3b8;margin-bottom:12px">Click to reveal.</p>
+  <div class="qwrap">
+    <div class="qi">1. The soup is __________ hot. I can't eat it. → <button class="rb" onclick="rev(this,'too')">reveal</button></div>
+    <div class="qi">2. My teeth are clean __________. No filling needed. → <button class="rb" onclick="rev(this,'enough')">reveal</button></div>
+    <div class="qi">3. He is not healthy __________. He needs to exercise. → <button class="rb" onclick="rev(this,'enough')">reveal</button></div>
+    <div class="qi">4. The candy is __________ sweet for my teeth. → <button class="rb" onclick="rev(this,'too')">reveal</button></div>
+    <div class="qi">5. We do not sleep __________. Only 5 hours a night. → <button class="rb" onclick="rev(this,'enough')">reveal</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+     L4: THERAPY
+══════════════════════ -->
+
+<!-- ══ 23: L4 HEADER ══ -->
+<div class="slide" id="s23" style="background:radial-gradient(ellipse at 50% 50%,#2e1065,#0f172a)">
+  <div class="tag" style="color:#ddd6fe">Lesson 4</div>
+  <div class="big" style="color:#ddd6fe">A Therapist's Advice</div>
+  <div class="sub">Mental Health · Past Continuous · When Clauses · Dream Writing</div>
+</div>
+
+<!-- ══ 24: L4 MENTAL HEALTH VOCAB ══ -->
+<div class="slide" id="s24">
+  <div class="sh">Mental Health Vocabulary</div>
+  <div class="acc" style="background:#8b5cf6"></div>
+  <div class="vgrid">
+    <div class="vc"><span class="em">😰</span><div class="wd">anxiety</div><div class="df">excessive worry or fear</div></div>
+    <div class="vc"><span class="em">😔</span><div class="wd">depression</div><div class="df">persistent low mood</div></div>
+    <div class="vc"><span class="em">🧘</span><div class="wd">mindfulness</div><div class="df">staying present &amp; aware</div></div>
+    <div class="vc"><span class="em">🛌</span><div class="wd">insomnia</div><div class="df">difficulty sleeping</div></div>
+    <div class="vc"><span class="em">💭</span><div class="wd">therapy</div><div class="df">professional mental support</div></div>
+    <div class="vc"><span class="em">🔋</span><div class="wd">burnout</div><div class="df">exhaustion from overwork</div></div>
+    <div class="vc"><span class="em">🌀</span><div class="wd">overwhelmed</div><div class="df">too much to cope with</div></div>
+    <div class="vc"><span class="em">🌱</span><div class="wd">coping strategy</div><div class="df">a way to manage stress</div></div>
+  </div>
+</div>
+
+<!-- ══ 25: L4 PAST CONTINUOUS ══ -->
+<div class="slide" id="s25">
+  <div class="sh">Past Continuous + When Clauses</div>
+  <div class="acc" style="background:#8b5cf6"></div>
+  <div style="width:100%;max-width:640px">
+    <div class="formula f-purple">Subject + was / were + verb-ing</div>
+    <div class="formula f-purple" style="margin-top:8px">was/were + -ing &nbsp; WHEN &nbsp; simple past</div>
+    <div class="exbox" style="margin-top:10px">
+      <div class="ex">I <b>was reading</b> when the phone <b>rang</b>.</div>
+      <div class="ex">She <b>was sleeping</b> when I <b>arrived</b>.</div>
+      <div class="ex">I <b>was dreaming</b> while she <b>was sleeping</b>.</div>
+    </div>
+    <div class="two" style="margin-top:12px">
+      <div class="box" style="border-color:rgba(139,92,246,.4)">
+        <h3 style="color:#ddd6fe">WHEN — interruption</h3>
+        <ul>
+          <li>Long action + WHEN + short action</li>
+          <li><em style="color:#fde68a">"I was walking WHEN it rained."</em></li>
+        </ul>
+      </div>
+      <div class="box" style="border-color:rgba(139,92,246,.4)">
+        <h3 style="color:#ddd6fe">WHILE — simultaneous</h3>
+        <ul>
+          <li>Both actions at the same time</li>
+          <li><em style="color:#fde68a">"She was cooking WHILE I was studying."</em></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">💡 <b>Movie trick:</b> Past continuous = slow camera background shot. Simple past = the sudden event.</div>
+  </div>
+</div>
+
+<!-- ══ 26: L4 QUIZ ══ -->
+<div class="slide" id="s26">
+  <div class="sh">Past Continuous — Fill the Gap</div>
+  <div class="acc" style="background:#8b5cf6"></div>
+  <p style="font-size:12px;color:#94a3b8;margin-bottom:12px">Click to reveal.</p>
+  <div class="qwrap">
+    <div class="qi">1. She _____ (study) when her mum _____ (call). → <button class="rb" onclick="rev(this,'was studying / called')">reveal</button></div>
+    <div class="qi">2. I _____ (feel) very anxious during the whole session. → <button class="rb" onclick="rev(this,'was feeling')">reveal</button></div>
+    <div class="qi">3. _____ he _____ (sleep) when the alarm _____ (go) off? → <button class="rb" onclick="rev(this,'Was he sleeping / went')">reveal</button></div>
+    <div class="qi">4. The therapist _____ (take) notes while I _____ (talk). → <button class="rb" onclick="rev(this,'was taking / was talking')">reveal</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+     L5: PHARMACY
+══════════════════════ -->
+
+<!-- ══ 27: L5 HEADER ══ -->
+<div class="slide" id="s27" style="background:radial-gradient(ellipse at 50% 50%,#4c0519,#0f172a)">
+  <div class="tag" style="color:#fda4af">Lesson 5</div>
+  <div class="big" style="color:#fda4af">Are There Any Side Effects?</div>
+  <div class="sub">Pharmacy Vocabulary · Modals of Obligation</div>
+</div>
+
+<!-- ══ 28: L5 MODALS ══ -->
+<div class="slide" id="s28">
+  <div class="sh">Modals of Obligation</div>
+  <div class="acc" style="background:#f43f5e"></div>
+  <div class="mgrid">
+    <div class="mc" style="background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.3)">
+      <div class="mw" style="color:#fda4af">must</div><div class="mm" style="color:#fda4af">Strong obligation</div>
+      <div class="me">"You must take this twice a day."</div>
+    </div>
+    <div class="mc" style="background:rgba(13,148,136,.12);border:1px solid rgba(13,148,136,.3)">
+      <div class="mw" style="color:#5eead4">should</div><div class="mm" style="color:#5eead4">Advice</div>
+      <div class="me">"You should rest and drink water."</div>
+    </div>
+    <div class="mc" style="background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3)">
+      <div class="mw" style="color:#fde68a">have to</div><div class="mm" style="color:#fde68a">External rule</div>
+      <div class="me">"You have to show your prescription."</div>
+    </div>
+    <div class="mc" style="background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.3)">
+      <div class="mw" style="color:#fda4af">mustn't</div><div class="mm" style="color:#fda4af">FORBIDDEN</div>
+      <div class="me">"You mustn't drink alcohol with this."</div>
+    </div>
+    <div class="mc" style="background:rgba(100,116,139,.15);border:1px solid rgba(100,116,139,.3)">
+      <div class="mw" style="color:#cbd5e1">don't have to</div><div class="mm">Not necessary</div>
+      <div class="me">"You don't have to refrigerate it."</div>
+    </div>
+    <div class="mc" style="background:rgba(100,116,139,.15);border:1px solid rgba(100,116,139,.3)">
+      <div class="mw" style="color:#cbd5e1">needn't</div><div class="mm">Not necessary (formal)</div>
+      <div class="me">"You needn't come back next week."</div>
+    </div>
+  </div>
+  <div class="tip" style="max-width:720px;margin-top:12px">⚠ <b>Critical difference:</b> MUSTN'T = FORBIDDEN (do NOT do it) &nbsp;|&nbsp; DON'T HAVE TO = optional (your choice). These are OPPOSITES!</div>
+</div>
+
+<!-- ══ 29: L5 QUIZ ══ -->
+<div class="slide" id="s29">
+  <div class="sh">Choose the Correct Modal</div>
+  <div class="acc" style="background:#f43f5e"></div>
+  <p style="font-size:12px;color:#94a3b8;margin-bottom:12px">Click to reveal.</p>
+  <div class="qwrap">
+    <div class="qi">1. _____ take this with water — it's on the label. → <button class="rb" onclick="rev(this,'You must / have to')">reveal</button></div>
+    <div class="qi">2. You _____ mix this with other medication — danger! → <button class="rb" onclick="rev(this,'mustn\'t')">reveal</button></div>
+    <div class="qi">3. You _____ come back — only if you feel worse. → <button class="rb" onclick="rev(this,'don\'t have to')">reveal</button></div>
+    <div class="qi">4. You _____ rest more — the doctor's advice is clear. → <button class="rb" onclick="rev(this,'should')">reveal</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+     GAMES SECTION
+══════════════════════ -->
+
+<!-- ══ 30: GAMES HEADER ══ -->
+<div class="slide" id="s30" style="background:radial-gradient(ellipse at 50% 50%,#1e1b4b,#0f172a)">
+  <div class="tag" style="color:#a5b4fc">All Lessons</div>
+  <div class="big" style="color:#a5b4fc">🎮 Classroom Games</div>
+  <div class="sub">6 card games + 4 non-digital games — all lessons covered</div>
+</div>
+
+<!-- ══ 31: GAME 1 — FREEZE TIME ══ -->
+<div class="slide" id="s31">
+  <div class="sh">🏃 Freeze Time Fitness</div>
+  <div class="acc" style="background:#22c55e"></div>
+  <div class="gcard" style="border-color:rgba(34,197,94,.3)">
+    <div class="gmeta">
+      <span class="pill">👥 Whole class</span><span class="pill">⏱ 10 min</span><span class="pill">📚 Future Continuous</span>
+    </div>
+    <h3 style="color:#86efac">How to Play</h3>
+    <ol>
+      <li>Teacher calls a future time: <em>"At 7 AM tomorrow!"</em></li>
+      <li>Students freeze and act out an exercise (running, lifting, swimming).</li>
+      <li>A second student must describe the frozen action using Future Continuous:<br><em style="color:#fde68a">"At 7 AM, he will be jogging!"</em></li>
+      <li>Correct sentence = 1 point. Rotate describers each round.</li>
+      <li>Variation: Teacher can also call <em>"It is important that..."</em> for It/That clause practice.</li>
+    </ol>
+  </div>
+  <div class="tip" style="max-width:680px">💡 Practises: Future Continuous speaking · Listening · Confidence · Movement</div>
+</div>
+
+<!-- ══ 32: GAME 2 — FITNESS CARD GAME ══ -->
+<div class="slide" id="s32">
+  <div class="sh">🃏 Future Fitness Challenge</div>
+  <div class="acc" style="background:#22c55e"></div>
+  <div class="gcard" style="border-color:rgba(34,197,94,.3)">
+    <div class="gmeta">
+      <span class="pill">👥 3–6 players</span><span class="pill">⏱ 15 min</span><span class="pill">📚 Future Continuous + It/That</span>
+    </div>
+    <h3 style="color:#86efac">Setup &amp; Play</h3>
+    <ol>
+      <li>Prepare 3 card sets: <b>Subject cards</b> (she/he/they/I), <b>Time cards</b> (tomorrow at 6PM / next Sunday), <b>Action cards</b> (lift weights / run / swim / do yoga).</li>
+      <li>Each student picks 1 card from each pile.</li>
+      <li>They must say a correct Future Continuous sentence:<br><em style="color:#fde68a">"She will be lifting weights tomorrow at 6 PM."</em></li>
+      <li>Correct sentence = 1 point. Good pronunciation = bonus point.</li>
+      <li>Bonus round: Student also gives advice using It/That clause:<br><em style="color:#fde68a">"It is important that she stretches first."</em></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ══ 33: GAME 3 — DOCTOR EMERGENCY ══ -->
+<div class="slide" id="s33">
+  <div class="sh">🚨 Doctor Emergency — Intensifiers</div>
+  <div class="acc" style="background:#f97316"></div>
+  <div class="gcard" style="border-color:rgba(249,115,22,.3)">
+    <div class="gmeta">
+      <span class="pill">👥 2–5 players</span><span class="pill">⏱ 15 min</span><span class="pill">📚 Intensifiers + Body Parts</span>
+    </div>
+    <h3 style="color:#fed7aa">Setup &amp; Play</h3>
+    <ol>
+      <li>Prepare 3 card sets: <b>Body part cards</b> (leg/arm/back/neck), <b>Intensifier cards</b> (very/really/extremely/a little), <b>Adjective cards</b> (painful/sore/tired/swollen).</li>
+      <li>Student picks one from each pile and makes a sentence:<br><em style="color:#fde68a">"My leg is extremely painful."</em></li>
+      <li>Other students are the "doctors." They must ask a follow-up question using PP:<br><em style="color:#fde68a">"Have you ever broken your leg before?"</em></li>
+      <li>Correct question = 1 point.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ══ 34: GAME 4 — SICK PATIENT MYSTERY ══ -->
+<div class="slide" id="s34">
+  <div class="sh">🔍 Sick Patient Mystery</div>
+  <div class="acc" style="background:#0ea5e9"></div>
+  <div class="gcard" style="border-color:rgba(14,165,233,.3)">
+    <div class="gmeta">
+      <span class="pill">👥 Whole class</span><span class="pill">⏱ 15 min</span><span class="pill">📚 PP vs. Simple Past</span>
+    </div>
+    <h3 style="color:#bae6fd">How to Play</h3>
+    <ol>
+      <li>One student secretly chooses an illness card (flu, food poisoning, broken arm, toothache).</li>
+      <li>Other students are "doctors." They ask diagnostic questions using PP and SP:<br><em style="color:#fde68a">"Have you had a fever?"</em> / <em style="color:#fde68a">"Did you cough yesterday?"</em> / <em style="color:#fde68a">"Have you taken medicine?"</em></li>
+      <li>The patient answers truthfully using correct tense.</li>
+      <li>First correct guess wins the round and becomes the next patient.</li>
+      <li>Bonus: Patient must use intensifiers when describing: <em>"I have been extremely tired."</em></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ══ 35: GAME 5 — HAVE YOU EVER? ══ -->
+<div class="slide" id="s35">
+  <div class="sh">🙋 Have You Ever? — Health Edition</div>
+  <div class="acc" style="background:#0d9488"></div>
+  <div class="gcard" style="border-color:rgba(13,148,136,.3)">
+    <div class="gmeta">
+      <span class="pill">👥 Whole class circle</span><span class="pill">⏱ 10–15 min</span><span class="pill">📚 Present Perfect · All lessons</span>
+    </div>
+    <h3 style="color:#5eead4">How to Play</h3>
+    <ol>
+      <li>Students sit in a circle. Each has 5 tokens (coins/clips).</li>
+      <li>Player 1 says: <em>"I have never broken a bone."</em></li>
+      <li>Everyone who HAS broken a bone puts one token in the centre.</li>
+      <li>Players try to say things others HAVE done — to collect their tokens.</li>
+      <li><b>Follow-up rule:</b> When someone puts in a token, one student asks a Simple Past follow-up: <em>"When did it happen? What did the doctor say?"</em></li>
+    </ol>
+  </div>
+  <div class="tip" style="max-width:680px">💡 Prompt cards: "I have never taken antibiotics" · "I have never had a filling" · "I have never felt overwhelmed at school"</div>
+</div>
+
+<!-- ══ 36: GAME 6 — FITNESS SURVIVOR ══ -->
+<div class="slide" id="s36">
+  <div class="sh">🏆 Fitness Survivor — Station Game</div>
+  <div class="acc" style="background:#8b5cf6"></div>
+  <div style="width:100%;max-width:720px">
+    <p style="font-size:13px;color:#94a3b8;margin-bottom:12px;text-align:center">Teams rotate stations and earn points. 5–7 minutes per station.</p>
+    <div class="stations">
+      <div class="station" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)">
+        <div class="snum" style="color:#86efac">1</div>
+        <div class="sttl">Future Continuous</div>
+        <div class="sdsc">Make 3 sentences about your fitness plans this week</div>
+      </div>
+      <div class="station" style="background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.25)">
+        <div class="snum" style="color:#fed7aa">2</div>
+        <div class="sttl">Fitness Advice</div>
+        <div class="sdsc">Give 3 pieces of advice using "It is important that..."</div>
+      </div>
+      <div class="station" style="background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.25)">
+        <div class="snum" style="color:#bae6fd">3</div>
+        <div class="sttl">Doctor Roleplay</div>
+        <div class="sdsc">Book a doctor's appointment using PP correctly</div>
+      </div>
+      <div class="station" style="background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25)">
+        <div class="snum" style="color:#fde68a">4</div>
+        <div class="sttl">Body Vocab Race</div>
+        <div class="sdsc">Name 8 body parts + use an intensifier with each</div>
+      </div>
+      <div class="station" style="background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25)">
+        <div class="snum" style="color:#ddd6fe">5</div>
+        <div class="sttl">Grammar Correction</div>
+        <div class="sdsc">Fix 5 error sentences on the correction card</div>
+      </div>
+      <div class="station" style="background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.25)">
+        <div class="snum" style="color:#fda4af">6</div>
+        <div class="sttl">Pharmacy Challenge</div>
+        <div class="sdsc">Give pharmacist instructions using 4 different modals</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════
+     EXAM TIPS
+══════════════════════ -->
+
+<!-- ══ 37: EXAM HEADER ══ -->
+<div class="slide" id="s37" style="background:radial-gradient(ellipse at 50% 50%,#1e293b,#0f172a)">
+  <div class="tag" style="color:#fde68a">Exam Preparation</div>
+  <div class="big" style="color:#fde68a">📝 Everything You Need</div>
+  <div class="sub">All grammar formulas · Memory tricks · Common mistakes · Quick review</div>
+</div>
+
+<!-- ══ 38: EXAM GRAMMAR REFERENCE ══ -->
+<div class="slide" id="s38">
+  <div class="sh">Grammar Quick Reference</div>
+  <div class="acc" style="background:#fbbf24"></div>
+  <div style="width:100%;max-width:720px;display:flex;flex-direction:column;gap:8px">
+    <div style="display:grid;grid-template-columns:1fr 2fr 1.5fr;gap:0;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;font-size:12px">
+      <div style="padding:8px 12px;font-weight:700;color:#94a3b8;font-size:10px;letter-spacing:1px;text-transform:uppercase;background:rgba(255,255,255,.04)">Grammar</div>
+      <div style="padding:8px 12px;font-weight:700;color:#94a3b8;font-size:10px;letter-spacing:1px;text-transform:uppercase;background:rgba(255,255,255,.04)">Formula</div>
+      <div style="padding:8px 12px;font-weight:700;color:#94a3b8;font-size:10px;letter-spacing:1px;text-transform:uppercase;background:rgba(255,255,255,.04)">Memory Key</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 2fr 1.5fr;gap:1px;background:rgba(255,255,255,.05);border-radius:10px;overflow:hidden;font-size:12px">
+      <div style="padding:8px 12px;background:#0f172a;color:#86efac;font-weight:700">Future Continuous</div>
+      <div style="padding:8px 12px;background:#0f172a;font-family:Courier New;color:#cbd5e1">will + be + verb-ing</div>
+      <div style="padding:8px 12px;background:#0f172a;color:#94a3b8;font-style:italic">Specific future time</div>
+
+      <div style="padding:8px 12px;background:#0f172a;color:#fed7aa;font-weight:700">It/That clauses</div>
+      <div style="padding:8px 12px;background:#0f172a;font-family:Courier New;color:#cbd5e1">It is + adj + that + subj + verb</div>
+      <div style="padding:8px 12px;background:#0f172a;color:#94a3b8;font-style:italic">Adjective = important/healthy/necessary</div>
+
+      <div style="padding:8px 12px;background:#0f172a;color:#5eead4;font-weight:700">Present Perfect</div>
+      <div style="padding:8px 12px;background:#0f172a;font-family:Courier New;color:#cbd5e1">have/has + past participle</div>
+      <div style="padding:8px 12px;background:#0f172a;color:#94a3b8;font-style:italic">No specific time given</div>
+
+      <div style="padding:8px 12px;background:#0f172a;color:#bae6fd;font-weight:700">PP vs. SP</div>
+      <div style="padding:8px 12px;background:#0f172a;font-family:Courier New;color:#cbd5e1">PP: ever/since · SP: yesterday/ago</div>
+      <div style="padding:8px 12px;background:#0f172a;color:#94a3b8;font-style:italic">"Can I say WHEN?" → SP. No? → PP</div>
+
+      <div style="padding:8px 12px;background:#0f172a;color:#fde68a;font-weight:700">Too / Enough</div>
+      <div style="padding:8px 12px;background:#0f172a;font-family:Courier New;color:#cbd5e1">too + adj | adj + enough</div>
+      <div style="padding:8px 12px;background:#0f172a;color:#94a3b8;font-style:italic">TOO before · ENOUGH after adjective</div>
+
+      <div style="padding:8px 12px;background:#0f172a;color:#ddd6fe;font-weight:700">Past Continuous</div>
+      <div style="padding:8px 12px;background:#0f172a;font-family:Courier New;color:#cbd5e1">was/were + verb-ing</div>
+      <div style="padding:8px 12px;background:#0f172a;color:#94a3b8;font-style:italic">Background action in the past</div>
+
+      <div style="padding:8px 12px;background:#0f172a;color:#ddd6fe;font-weight:700">When clause</div>
+      <div style="padding:8px 12px;background:#0f172a;font-family:Courier New;color:#cbd5e1">was/were -ing + WHEN + past</div>
+      <div style="padding:8px 12px;background:#0f172a;color:#94a3b8;font-style:italic">Long action WHEN short event</div>
+
+      <div style="padding:8px 12px;background:#0f172a;color:#fda4af;font-weight:700">Modals</div>
+      <div style="padding:8px 12px;background:#0f172a;font-family:Courier New;color:#cbd5e1">must/should/have to/mustn't/don't have to</div>
+      <div style="padding:8px 12px;background:#0f172a;color:#94a3b8;font-style:italic">Mustn't=forbidden ≠ don't have to=optional</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 39: FINAL REVIEW TEST ══ -->
+<div class="slide" id="s39">
+  <div class="sh">Final Review — Multiple Choice</div>
+  <div class="acc" style="background:#fbbf24"></div>
+  <p style="font-size:12px;color:#94a3b8;margin-bottom:12px">Click to reveal each answer.</p>
+  <div class="qwrap">
+    <div class="qi">1. She _____ running tomorrow. A) will be &nbsp; B) have &nbsp; C) is → <button class="rb" onclick="rev(this,'A — will be')">reveal</button></div>
+    <div class="qi">2. I _____ visited a dentist. A) have &nbsp; B) will &nbsp; C) did → <button class="rb" onclick="rev(this,'A — have')">reveal</button></div>
+    <div class="qi">3. The soup is _____ hot. A) enough &nbsp; B) too &nbsp; C) very enough → <button class="rb" onclick="rev(this,'B — too')">reveal</button></div>
+    <div class="qi">4. My back is _____ painful. A) extremely &nbsp; B) enough &nbsp; C) too enough → <button class="rb" onclick="rev(this,'A — extremely')">reveal</button></div>
+    <div class="qi">5. They _____ sick yesterday. A) were &nbsp; B) have &nbsp; C) will be → <button class="rb" onclick="rev(this,'A — were (Simple Past)')">reveal</button></div>
+    <div class="qi">6. It is important _____ you exercise daily. A) that &nbsp; B) which &nbsp; C) what → <button class="rb" onclick="rev(this,'A — that')">reveal</button></div>
+  </div>
+</div>
+
+</div><!-- end stage -->
+
+<div id="nav">
+  <button class="nbtn" id="pb" onclick="go(cur-1)">← Back</button>
+  <div id="dots"></div>
+  <button class="nbtn go" id="nb" onclick="go(cur+1)">Next →</button>
+</div>
+
+<script>
+var N   = 40;
+var cur = 0;
+var lStarts = [0, 2, 7, 11, 16, 20, 23, 27, 30, 37];
+
+/* build dots */
+var dEl = document.getElementById('dots');
+for (var i = 0; i < N; i++) {
+  var d = document.createElement('button');
+  d.className = 'dot';
+  d.onclick = (function(n){ return function(){ go(n); }; })(i);
+  dEl.appendChild(d);
+}
+
+function go(n) {
+  if (n < 0 || n >= N) return;
+  var old = document.getElementById('s' + cur);
+  if (old) old.classList.remove('on');
+  cur = n;
+  var nxt = document.getElementById('s' + cur);
+  if (nxt) nxt.classList.add('on');
+  upd();
+}
+
+function goL(idx) {
+  go(lStarts[idx] || 0);
+}
+
+function rev(btn, ans) {
+  btn.textContent = ans;
+  btn.classList.add('done');
+  btn.onclick = null;
+}
+
+function upd() {
+  document.getElementById('ctr').textContent = (cur+1) + ' / ' + N;
+  document.getElementById('pbar').style.width = (((cur+1)/N)*100) + '%';
+  document.getElementById('pb').disabled = cur === 0;
+  document.getElementById('nb').disabled = cur === N-1;
+  var dots = document.querySelectorAll('.dot');
+  for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('on', i === cur);
+  var al = 0;
+  for (var j = 0; j < lStarts.length; j++) { if (cur >= lStarts[j]) al = j; }
+  var tabs = document.querySelectorAll('.tab');
+  for (var k = 0; k < tabs.length; k++) tabs[k].classList.toggle('on', k === al);
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key==='ArrowRight'||e.key==='ArrowDown') go(cur+1);
+  if (e.key==='ArrowLeft' ||e.key==='ArrowUp')   go(cur-1);
+});
+
+upd();
+</script>
+<!-- I Learn English Here nav --><a href="../lessons.html" style="position:fixed;left:12px;bottom:12px;z-index:2147483000;background:#1f7a6c;color:#fff;font:700 13px/1 system-ui,sans-serif;padding:9px 13px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)" aria-label="Back to I Learn English Here lessons">← I Learn English Here</a>
+</body>
+</html>

@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Revision Battle — Classroom Game | I Learn English Here</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a2e;
+  --purple: #6c3fc5;
+  --violet: #8b5cf6;
+  --pink: #ec4899;
+  --gold: #f59e0b;
+  --green: #10b981;
+  --red: #ef4444;
+  --surface: #ffffff;
+  --muted: #f1f0f7;
+  --border: #e5e3f0;
+  --text-muted: #7c7a92;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--ink);
+  min-height: 100vh;
+  color: var(--ink);
+}
+
+/* ─── BACKGROUND ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 10%, rgba(108,63,197,.35) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 90%, rgba(236,72,153,.25) 0%, transparent 60%),
+    var(--ink);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.app { position: relative; z-index:1; max-width:1300px; margin:0 auto; padding:20px; }
+
+/* ─── HEADER ─── */
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  background: rgba(255,255,255,.07);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 20px;
+  padding: 20px 28px;
+  margin-bottom: 20px;
+}
+
+.header-title h1 {
+  font-size: 1.9em;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+.header-title p { color: rgba(255,255,255,.55); font-size:.9em; margin-top:2px; }
+
+.pill-box {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 14px;
+  padding: 14px 22px;
+  text-align: center;
+  color: #fff;
+  min-width: 130px;
+}
+.pill-label { font-size:.72em; opacity:.7; text-transform:uppercase; letter-spacing:1px; }
+.pill-value {
+  font-family: 'Space Mono', monospace;
+  font-size: 2.1em;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-top: 4px;
+}
+.pill-value.score-val { color: var(--gold); }
+.pill-value.timer-val { color: var(--violet); }
+#timer.urgent { color: var(--red) !important; animation: pulse .6s infinite alternate; }
+@keyframes pulse { from { opacity:1; } to { opacity:.4; } }
+
+/* ─── CARD BASE ─── */
+.card {
+  background: var(--surface);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.12);
+}
+
+/* ─── TEAM SETUP ─── */
+.setup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 80px auto;
+  gap: 12px;
+  align-items: end;
+}
+.setup-grid label { display:block; font-size:.8em; font-weight:700; color:var(--text-muted); margin-bottom:4px; text-transform:uppercase; letter-spacing:.5px; }
+.setup-grid input {
+  width:100%;
+  padding: 12px 14px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-size:.95em;
+  transition: border .2s;
+}
+.setup-grid input:focus { outline:none; border-color: var(--violet); }
+.btn-register {
+  padding: 12px 22px;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  color:#fff;
+  border:none;
+  border-radius: 10px;
+  font-family:'Nunito',sans-serif;
+  font-weight:800;
+  font-size:.95em;
+  cursor:pointer;
+  white-space:nowrap;
+  transition: transform .15s, box-shadow .15s;
+}
+.btn-register:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(108,63,197,.35); }
+.btn-register:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+.team-info {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+.team-chip {
+  background: linear-gradient(135deg, var(--purple), var(--violet));
+  color:#fff;
+  padding:8px 18px;
+  border-radius:30px;
+  font-size:.88em;
+  font-weight:700;
+}
+
+/* ─── PROGRESS ─── */
+.progress-wrap { margin-bottom:18px; }
+.progress-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.progress-row span { font-size:.85em; font-weight:700; color:rgba(255,255,255,.6); }
+.progress-track {
+  background: rgba(255,255,255,.1);
+  border-radius:999px;
+  height:14px;
+  overflow:hidden;
+}
+.progress-fill {
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+  height:100%;
+  border-radius:999px;
+  transition: width .5s cubic-bezier(.4,0,.2,1);
+  display:flex; align-items:center; justify-content:flex-end; padding-right:8px;
+}
+.progress-fill span { font-size:.65em; color:#fff; font-weight:800; }
+
+/* ─── ACTIVITY GRID ─── */
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.act-card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 22px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all .25s;
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+  position:relative;
+  overflow:hidden;
+}
+.act-card::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background: linear-gradient(135deg, var(--purple) 0%, var(--pink) 100%);
+  opacity:0;
+  transition: opacity .25s;
+  z-index:0;
+}
+.act-card:hover { transform:translateY(-5px); box-shadow:0 16px 40px rgba(108,63,197,.25); border-color: var(--violet); }
+.act-card > * { position:relative; z-index:1; }
+
+.act-card.locked { opacity:.5; cursor:not-allowed; }
+.act-card.locked:hover { transform:none; box-shadow:none; }
+
+.act-card.done { border-color: var(--green); }
+.act-card.done .act-icon { filter:none; }
+.done-badge {
+  position:absolute;
+  top:14px; right:14px;
+  background: var(--green);
+  color:#fff;
+  font-size:.72em;
+  font-weight:800;
+  padding:3px 10px;
+  border-radius:999px;
+  z-index:2;
+}
+
+.act-icon { font-size:2.2em; margin-bottom:10px; display:block; }
+.act-title { font-size:1.05em; font-weight:800; color:var(--ink); margin-bottom:6px; }
+.act-desc { font-size:.82em; color:var(--text-muted); margin-bottom:14px; line-height:1.4; }
+.act-meta {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:12px;
+  border-top:2px solid var(--muted);
+}
+.meta-tag {
+  font-size:.78em;
+  font-weight:800;
+  padding:5px 10px;
+  border-radius:8px;
+}
+.tag-time { background:#ede9fe; color:var(--purple); }
+.tag-pts { background:#fce7f3; color:var(--pink); }
+.btn-open {
+  background: linear-gradient(135deg, var(--purple), var(--violet));
+  color:#fff;
+  border:none;
+  padding:8px 18px;
+  border-radius:8px;
+  font-family:'Nunito',sans-serif;
+  font-weight:800;
+  font-size:.82em;
+  cursor:pointer;
+  transition:all .15s;
+}
+.btn-open:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(108,63,197,.35); }
+
+/* ─── MODAL ─── */
+.overlay {
+  display:none;
+  position:fixed; inset:0;
+  background: rgba(10,8,24,.8);
+  backdrop-filter: blur(8px);
+  z-index:500;
+  align-items:flex-start;
+  justify-content:center;
+  padding:20px;
+  overflow-y:auto;
+}
+.overlay.show { display:flex; }
+
+.modal {
+  background:#fff;
+  border-radius:22px;
+  width:100%;
+  max-width:780px;
+  margin:auto;
+  box-shadow:0 40px 100px rgba(0,0,0,.4);
+  overflow:hidden;
+  animation: slideUp .3s cubic-bezier(.4,0,.2,1);
+}
+@keyframes slideUp { from { transform:translateY(40px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+
+.modal-head {
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  padding: 22px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:#fff;
+}
+.modal-head h2 { font-size:1.4em; font-weight:900; margin:0; }
+.btn-close {
+  background:rgba(255,255,255,.2);
+  border:none;
+  color:#fff;
+  width:34px; height:34px;
+  border-radius:50%;
+  font-size:1.1em;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition: background .15s;
+}
+.btn-close:hover { background:rgba(255,255,255,.35); }
+
+.modal-body { padding:28px; }
+
+/* ─── FORM ELEMENTS INSIDE MODAL ─── */
+.instruction-box {
+  background: linear-gradient(135deg,#ede9fe,#fce7f3);
+  border-left: 4px solid var(--purple);
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-weight:700;
+  font-size:.92em;
+  margin-bottom:18px;
+  color:var(--ink);
+}
+
+.team-tip {
+  background: #f0fdf4;
+  border: 2px dashed var(--green);
+  padding:12px 16px;
+  border-radius:10px;
+  font-size:.85em;
+  margin-bottom:18px;
+  color:#065f46;
+  font-weight:600;
+}
+
+.task-section {
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom:16px;
+}
+.task-section h4 {
+  font-size:.9em;
+  font-weight:800;
+  color:var(--purple);
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  margin-bottom:14px;
+  padding-bottom:8px;
+  border-bottom:2px solid var(--muted);
+}
+
+label.field-label {
+  display:block;
+  font-size:.82em;
+  font-weight:700;
+  color:var(--text-muted);
+  margin-bottom:4px;
+  margin-top:10px;
+}
+
+input.field, select.field, textarea.field {
+  width:100%;
+  padding:10px 13px;
+  border:2px solid var(--border);
+  border-radius:9px;
+  font-family:'Nunito',sans-serif;
+  font-size:.93em;
+  transition:border .2s;
+  background:#fff;
+}
+input.field:focus, select.field:focus, textarea.field:focus {
+  outline:none;
+  border-color:var(--violet);
+}
+input.field.error, select.field.error, textarea.field.error {
+  border-color: var(--red) !important;
+  background:#fff5f5;
+}
+textarea.field { min-height:90px; resize:vertical; }
+
+.inline-row {
+  display:grid;
+  grid-template-columns:1fr 70px;
+  gap:10px;
+  align-items:center;
+  margin-bottom:8px;
+}
+.inline-row span { font-size:.9em; font-weight:600; }
+.inline-row input { margin:0; }
+
+.vocab-table { width:100%; border-collapse:collapse; margin-top:8px; }
+.vocab-table td { padding:6px 8px; border-bottom:1px solid var(--muted); font-size:.9em; }
+.vocab-table td:last-child { width:80px; }
+.vocab-table input { width:60px; padding:6px; text-align:center; }
+
+.scoring-box {
+  background: linear-gradient(135deg,#1a1a2e,#2d1b6e);
+  color:#fff;
+  padding:12px 16px;
+  border-radius:10px;
+  font-size:.82em;
+  font-weight:700;
+  margin-top:14px;
+}
+.scoring-box span { color:var(--gold); }
+
+.validation-msg {
+  background:#fef2f2;
+  border:2px solid var(--red);
+  color:var(--red);
+  padding:10px 14px;
+  border-radius:9px;
+  font-size:.85em;
+  font-weight:700;
+  margin-top:12px;
+  display:none;
+}
+.validation-msg.show { display:block; }
+
+.btn-submit {
+  width:100%;
+  padding:16px;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  font-family:'Nunito',sans-serif;
+  font-size:1.05em;
+  font-weight:900;
+  cursor:pointer;
+  margin-top:20px;
+  letter-spacing:.3px;
+  transition:all .2s;
+  box-shadow:0 4px 20px rgba(108,63,197,.3);
+}
+.btn-submit:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(108,63,197,.4); }
+
+/* ─── ACTION BAR ─── */
+.action-bar {
+  display:flex;
+  gap:12px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+.btn-action {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:13px 22px;
+  border:none;
+  border-radius:12px;
+  font-family:'Nunito',sans-serif;
+  font-weight:800;
+  font-size:.92em;
+  cursor:pointer;
+  transition:all .2s;
+}
+.btn-telegram {
+  background: #2aabee;
+  color:#fff;
+  box-shadow:0 4px 14px rgba(42,171,238,.3);
+}
+.btn-telegram:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(42,171,238,.4); }
+.btn-telegram:disabled { opacity:.4; cursor:not-allowed; transform:none; }
+.btn-save {
+  background: var(--surface);
+  color:var(--ink);
+  border:2px solid var(--border);
+}
+.btn-save:hover { border-color:var(--violet); transform:translateY(-2px); }
+.btn-save:disabled { opacity:.4; cursor:not-allowed; transform:none; }
+
+/* ─── CELEBRATION ─── */
+.cel-overlay {
+  display:none;
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:900;
+  align-items:center;
+  justify-content:center;
+}
+.cel-overlay.show { display:flex; }
+.cel-box {
+  background:#fff;
+  padding:50px 60px;
+  border-radius:24px;
+  text-align:center;
+  box-shadow:0 40px 120px rgba(0,0,0,.4);
+  animation:bounceIn .5s cubic-bezier(.4,0,.2,1);
+}
+@keyframes bounceIn { 0%{transform:scale(.5);opacity:0} 70%{transform:scale(1.05)} 100%{transform:scale(1);opacity:1} }
+.cel-icon { font-size:4em; }
+.cel-title { font-size:2em; font-weight:900; color:var(--purple); margin:12px 0 6px; }
+.cel-sub { color:var(--text-muted); font-size:.95em; }
+.cel-pts { font-size:2.5em; font-weight:900; color:var(--pink); margin-top:10px; }
+
+.confetti-piece {
+  position:fixed;
+  font-size:1.6em;
+  pointer-events:none;
+  animation:fall 2.5s ease-in forwards;
+}
+@keyframes fall { 0%{opacity:1;transform:translateY(-20px) rotate(0deg)} 100%{opacity:0;transform:translateY(110vh) rotate(720deg)} }
+
+/* ─── SECTION HEADER ─── */
+.section-header {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:16px;
+}
+.section-header h2 {
+  color:#fff;
+  font-size:1.2em;
+  font-weight:800;
+}
+.section-header .badge {
+  background:rgba(255,255,255,.12);
+  color:rgba(255,255,255,.7);
+  padding:4px 12px;
+  border-radius:999px;
+  font-size:.75em;
+  font-weight:700;
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:700px){
+  .header { grid-template-columns:1fr 1fr; }
+  .header-title { grid-column:1/-1; }
+  .setup-grid { grid-template-columns:1fr; }
+  .activities-grid { grid-template-columns:1fr; }
+  .action-bar { flex-direction:column; }
+  .btn-action { justify-content:center; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-title">
+      <h1>🏆 Team Revision Battle</h1>
+      <p>Complete every field to earn points · Save & share to Telegram</p>
+    </div>
+    <div class="pill-box">
+      <div class="pill-label">⏱ Time Left</div>
+      <div class="pill-value timer-val" id="timer">90:00</div>
+    </div>
+    <div class="pill-box">
+      <div class="pill-label">🎯 Score</div>
+      <div class="pill-value score-val" id="scoreDisplay">0</div>
+    </div>
+  </div>
+
+  <!-- TEAM SETUP -->
+  <div class="card">
+    <div class="setup-grid">
+      <div>
+        <label>Team Name</label>
+        <input class="field" type="text" id="teamName" placeholder="e.g. Dragon Warriors">
+      </div>
+      <div>
+        <label>Member Names (comma-separated)</label>
+        <input class="field" type="text" id="memberNames" placeholder="e.g. Srey, Dara, Mony">
+      </div>
+      <div>
+        <label>Count</label>
+        <input class="field" type="number" id="memberCount" min="2" max="6" value="3">
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <button class="btn-register" id="registerBtn" onclick="registerTeam()">🚀 Register</button>
+      </div>
+    </div>
+    <div class="team-info" id="teamInfo"></div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-row">
+      <span>Challenge Progress</span>
+      <span id="progressLabel">0 / 9 completed</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:0%"><span id="progressText"></span></div>
+    </div>
+  </div>
+
+  <!-- ACTION BAR -->
+  <div class="action-bar">
+    <button class="btn-action btn-telegram" id="telegramBtn" disabled onclick="shareToTelegram()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.117 14.28l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.831.279z"/></svg>
+      Share to Telegram
+    </button>
+    <button class="btn-action btn-save" id="saveBtn" disabled onclick="saveAnswers()">
+      💾 Save My Answers
+    </button>
+  </div>
+
+  <!-- ACTIVITIES -->
+  <div class="section-header">
+    <h2>📋 Activities</h2>
+    <span class="badge">Register your team to begin</span>
+  </div>
+  <div class="activities-grid" id="activitiesGrid"></div>
+
+</div>
+
+<!-- MODAL OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="modal" id="modal">
+    <div class="modal-head">
+      <h2 id="modalTitle"></h2>
+      <button class="btn-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- CELEBRATION -->
+<div class="cel-overlay" id="celOverlay">
+  <div class="cel-box">
+    <div class="cel-icon" id="celIcon">🎉</div>
+    <div class="cel-title" id="celTitle">Activity Complete!</div>
+    <div class="cel-sub" id="celSub">Keep going!</div>
+    <div class="cel-pts" id="celPts">+0 pts</div>
+  </div>
+</div>
+
+<script>
+// ─── STATE ────────────────────────────────────────────────────────
+let team = null;
+let score = 0;
+let done = {};       // id → saved answer object
+let timerSec = 90 * 60;
+let timerInterval = null;
+
+// ─── ACTIVITIES ────────────────────────────────────────────────────
+const ACTS = [
+  {
+    id: 1, icon:'📚', title:'Vocabulary Race',
+    desc:'Match academic vocabulary · write cooking definitions',
+    time:15, pts:35,
+    build: buildVocab
+  },
+  {
+    id: 2, icon:'🎤', title:'Team Speaking Challenge',
+    desc:'Discuss answers · one speaker presents to the class',
+    time:10, pts:30,
+    build: buildSpeaking
+  },
+  {
+    id: 3, icon:'🔍', title:'Countable Detective',
+    desc:'C or U? · fill in the correct quantifier',
+    time:15, pts:40,
+    build: buildCountable
+  },
+  {
+    id: 4, icon:'🎯', title:'Future Plans Interview',
+    desc:'Interview each other · write full sentence answers',
+    time:10, pts:25,
+    build: buildInterview
+  },
+  {
+    id: 5, icon:'💊', title:'Advice Doctor',
+    desc:'Role-play doctor · give two pieces of advice each',
+    time:10, pts:30,
+    build: buildAdvice
+  },
+  {
+    id: 6, icon:'⚖️', title:'Have To / Don\'t Have To',
+    desc:'Choose · debate the reason · swap roles',
+    time:10, pts:25,
+    build: buildObligation
+  },
+  {
+    id: 7, icon:'⏰', title:'Time Expression Challenge',
+    desc:'Fill in: since, for, ago, until, from...to',
+    time:10, pts:35,
+    build: buildTime
+  },
+  {
+    id: 8, icon:'🎨', title:'-ED / -ING Adjectives',
+    desc:'Act it out · choose the right form · explain the rule',
+    time:5, pts:20,
+    build: buildAdjective
+  },
+  {
+    id: 9, icon:'❓', title:'Team Quiz Creator',
+    desc:'Write 5 questions · exchange with another team',
+    time:5, pts:40,
+    build: buildQuiz
+  }
+];
+
+// ─── TIMER ─────────────────────────────────────────────────────────
+function startTimer() {
+  const el = document.getElementById('timer');
+  timerInterval = setInterval(() => {
+    timerSec--;
+    const m = Math.floor(timerSec / 60);
+    const s = timerSec % 60;
+    el.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    if (timerSec <= 300) el.classList.add('urgent');
+    if (timerSec <= 0) {
+      clearInterval(timerInterval);
+      alert('⏰ Time is up! Final Score: ' + score + ' points\n\nDon\'t forget to save and share your answers!');
+    }
+  }, 1000);
+}
+
+// ─── REGISTER ──────────────────────────────────────────────────────
+function registerTeam() {
+  const name = document.getElementById('teamName').value.trim();
+  const members = document.getElementById('memberNames').value.trim();
+  const count = parseInt(document.getElementById('memberCount').value) || 3;
+  if (!name) return flash('Enter a team name!');
+  if (!members) return flash('Enter member names!');
+  const list = members.split(',').map(m => m.trim()).filter(Boolean);
+  if (list.length < 2) return flash('Add at least 2 member names, separated by commas.');
+
+  team = { name, members: list, count };
+
+  document.getElementById('teamInfo').innerHTML = `
+    <div class="team-chip">🎮 ${name}</div>
+    <div class="team-chip">👥 ${list.join(' · ')}</div>
+    <div class="team-chip">📅 ${new Date().toLocaleDateString('en-GB')}</div>
+  `;
+  ['teamName','memberNames','memberCount'].forEach(id => document.getElementById(id).disabled = true);
+  document.getElementById('registerBtn').disabled = true;
+  document.querySelector('.section-header .badge').textContent = 'Open any activity to begin';
+
+  renderGrid();
+  startTimer();
+  document.getElementById('saveBtn').disabled = false;
+}
+
+// ─── RENDER GRID ───────────────────────────────────────────────────
+function renderGrid() {
+  const grid = document.getElementById('activitiesGrid');
+  if (!team) { grid.innerHTML = '<p style="color:#fff;opacity:.5;grid-column:1/-1;text-align:center;padding:40px">Register your team first to see activities.</p>'; return; }
+
+  grid.innerHTML = ACTS.map(a => {
+    const isDone = !!done[a.id];
+    return `
+    <div class="act-card ${isDone ? 'done' : ''}">
+      ${isDone ? '<div class="done-badge">✓ Done</div>' : ''}
+      <span class="act-icon">${a.icon}</span>
+      <div class="act-title">${a.title}</div>
+      <div class="act-desc">${a.desc}</div>
+      <div class="act-meta">
+        <span class="meta-tag tag-time">⏱ ${a.time}m</span>
+        <span class="meta-tag tag-pts">🏆 ${a.pts} pts</span>
+        <button class="btn-open" onclick="openAct(${a.id})">${isDone ? '📝 Edit' : 'Open'}</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── OPEN / CLOSE MODAL ────────────────────────────────────────────
+function openAct(id) {
+  if (!team) return flash('Register your team first!');
+  const act = ACTS.find(a => a.id === id);
+  document.getElementById('modalTitle').textContent = act.icon + '  ' + act.title;
+  document.getElementById('modalBody').innerHTML = act.build(id, done[id]);
+  document.getElementById('overlay').classList.add('show');
+}
+function closeModal() { document.getElementById('overlay').classList.remove('show'); }
+document.getElementById('overlay').addEventListener('click', e => { if (e.target === document.getElementById('overlay')) closeModal(); });
+
+// ─── VALIDATION HELPER ─────────────────────────────────────────────
+function getVal(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+function allFilled(ids) { return ids.every(id => { const el = document.getElementById(id); if(!el) return false; const v = el.value.trim(); if(!v){ el.classList.add('error'); } else { el.classList.remove('error'); } return !!v; }); }
+
+function showValidationError(msg) {
+  const box = document.getElementById('validationMsg');
+  if (box) { box.textContent = '⚠️ ' + msg; box.classList.add('show'); }
+}
+
+// ─── SUBMIT ────────────────────────────────────────────────────────
+function submitAct(id, collectFn) {
+  const result = collectFn();
+  if (!result) return; // validation failed inside collectFn
+  done[id] = result;
+  const act = ACTS.find(a => a.id === id);
+  score += act.pts;
+  document.getElementById('scoreDisplay').textContent = score;
+  updateProgress();
+  renderGrid();
+  closeModal();
+  celebrate(act.pts, act.title);
+  checkEnableShare();
+}
+
+// ─── PROGRESS ──────────────────────────────────────────────────────
+function updateProgress() {
+  const n = Object.keys(done).length;
+  const pct = (n / ACTS.length) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = n > 0 ? n + '/' + ACTS.length : '';
+  document.getElementById('progressLabel').textContent = n + ' / ' + ACTS.length + ' completed';
+}
+
+function checkEnableShare() {
+  const n = Object.keys(done).length;
+  if (n >= 1) document.getElementById('telegramBtn').disabled = false;
+}
+
+// ─── CELEBRATE ─────────────────────────────────────────────────────
+function celebrate(pts, title) {
+  document.getElementById('celIcon').textContent = ['🎉','⭐','🏆','✨','🎊','🔥'][Math.floor(Math.random()*6)];
+  document.getElementById('celTitle').textContent = 'Activity Complete!';
+  document.getElementById('celSub').textContent = title;
+  document.getElementById('celPts').textContent = '+' + pts + ' pts';
+  document.getElementById('celOverlay').classList.add('show');
+  for (let i = 0; i < 28; i++) spawnConfetti();
+  setTimeout(() => document.getElementById('celOverlay').classList.remove('show'), 2200);
+}
+
+function spawnConfetti() {
+  const el = document.createElement('div');
+  el.className = 'confetti-piece';
+  el.textContent = ['🎉','⭐','✨','💜','🌸','🔥','🎊'][Math.floor(Math.random()*7)];
+  el.style.left = Math.random() * 100 + 'vw';
+  el.style.top = '-40px';
+  el.style.animationDelay = Math.random() * 1 + 's';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+// ─── SAVE ──────────────────────────────────────────────────────────
+function saveAnswers() {
+  if (!team) return flash('Register your team first!');
+  const blob = new Blob([buildFullText()], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = (team.name.replace(/\s+/g,'_') || 'team') + '_Revision_Answers.txt';
+  a.click();
+}
+
+// ─── SHARE TO TELEGRAM ─────────────────────────────────────────────
+function shareToTelegram() {
+  if (!team) return flash('Register your team first!');
+  const text = buildFullText();
+  const encoded = encodeURIComponent(text);
+  // Open Telegram share URL
+  const url = 'https://t.me/share/url?url=https%3A%2F%2Filearnenglishhere.academy%2Flessons%2Fteam-revision-battle.html&text=' + encoded;
+  window.open(url, '_blank');
+}
+
+function buildFullText() {
+  const line = '─────────────────────────────────────';
+  let out = `🏆 TEAM REVISION BATTLE — TEAM ANSWERS\n${line}\n`;
+  out += `Team:    ${team.name}\n`;
+  out += `Members: ${team.members.join(', ')}\n`;
+  out += `Score:   ${score} pts\n`;
+  out += `Date:    ${new Date().toLocaleString('en-GB')}\n${line}\n\n`;
+
+  ACTS.forEach(act => {
+    const ans = done[act.id];
+    out += `${act.icon} ${act.title.toUpperCase()}  [${act.pts} pts]\n`;
+    if (!ans) {
+      out += '  (not submitted)\n';
+    } else {
+      Object.entries(ans).forEach(([k, v]) => {
+        out += `  ${k}: ${v}\n`;
+      });
+    }
+    out += '\n';
+  });
+
+  out += `${line}\n🎯 Total Score: ${score} / ${ACTS.reduce((s,a)=>s+a.pts,0)} pts\n`;
+  return out;
+}
+
+// ─── FLASH ─────────────────────────────────────────────────────────
+function flash(msg) { alert(msg); }
+
+// ─── ACTIVITY BUILDERS ─────────────────────────────────────────────
+
+function validationBox() {
+  return `<div class="validation-msg" id="validationMsg"></div>`;
+}
+
+// 1. VOCABULARY
+function buildVocab(id, saved) {
+  const defs = [
+    {word:'Graduate', opts:['A','B','C','D','E','F']},
+    {word:'Scholarship', opts:['A','B','C','D','E','F']},
+    {word:'Major', opts:['A','B','C','D','E','F']},
+    {word:'Seminar', opts:['A','B','C','D','E','F']},
+    {word:'Lecture', opts:['A','B','C','D','E','F']},
+    {word:'Degree', opts:['A','B','C','D','E','F']},
+  ];
+  const sv = saved || {};
+  return `
+    <div class="instruction-box">🤝 Team Task: Discuss each answer. Everyone must agree before you write it down!</div>
+    <div class="team-tip">💬 Take turns saying which definition matches each word. Discuss if you disagree.</div>
+
+    <div class="task-section">
+      <h4>📖 Part A — Match Vocabulary to Definition (A–F)</h4>
+      <p style="font-size:.85em;color:var(--text-muted);margin-bottom:12px;">
+        <strong>A</strong> = Leave university successfully &nbsp;|&nbsp;
+        <strong>B</strong> = Financial support for studies &nbsp;|&nbsp;
+        <strong>C</strong> = Main subject of study<br>
+        <strong>D</strong> = Qualification from university &nbsp;|&nbsp;
+        <strong>E</strong> = Educational talk by a teacher &nbsp;|&nbsp;
+        <strong>F</strong> = Small discussion class
+      </p>
+      ${defs.map((d,i) => `
+        <div class="inline-row">
+          <span>${i+1}. <strong>${d.word}</strong></span>
+          <select class="field" id="v1_${i+1}">
+            <option value="">–</option>
+            ${['A','B','C','D','E','F'].map(l=>`<option value="${l}" ${sv['vocab_match_'+(i+1)]===l?'selected':''}>${l}</option>`).join('')}
+          </select>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="task-section">
+      <h4>🍳 Part B — Cooking Vocabulary: Write a definition + example sentence</h4>
+      <p style="font-size:.85em;color:var(--text-muted);margin-bottom:12px;">Words: <strong>Peel · Slice · Boil · Roast · Beat · Fry</strong></p>
+      ${['Peel','Slice','Boil','Roast','Beat','Fry'].map((w,i) => `
+        <label class="field-label">${w}</label>
+        <input class="field" type="text" id="v2_${i+1}" placeholder='Definition + example sentence for "${w}"' value="${sv['cooking_'+w]||''}">
+      `).join('')}
+    </div>
+
+    <div class="scoring-box">🏆 Scoring: Match answers <span>25 pts</span> · Cooking definitions <span>10 pts</span> = <span>35 pts total</span></div>
+    ${validationBox()}
+    <button class="btn-submit" onclick="submitAct(${id}, collectVocab)">✓ Submit Activity 1</button>`;
+}
+
+function collectVocab() {
+  const matchIds = [1,2,3,4,5,6].map(i=>'v1_'+i);
+  const cookIds  = [1,2,3,4,5,6].map(i=>'v2_'+i);
+  const all = [...matchIds, ...cookIds];
+  if (!allFilled(all)) { showValidationError('Complete ALL fields before submitting. Missing fields are highlighted in red.'); return null; }
+  const words = ['Peel','Slice','Boil','Roast','Beat','Fry'];
+  const defs   = ['Graduate','Scholarship','Major','Seminar','Lecture','Degree'];
+  const obj = {};
+  matchIds.forEach((id,i) => obj['vocab_match_'+(i+1)+'_'+defs[i]] = getVal(id));
+  cookIds.forEach((id,i)  => obj['cooking_'+words[i]] = getVal(id));
+  return obj;
+}
+
+// 2. SPEAKING
+function buildSpeaking(id, saved) {
+  const qs = [
+    'What are you going to do next weekend?',
+    'What major would you like to study at university?',
+    'What food can you cook? Describe how.',
+    'Have you ever thought about dropping out of school? Why or why not?'
+  ];
+  const sv = saved || {};
+  return `
+    <div class="instruction-box">🎯 One speaker is chosen by the team. Discuss the answer together — then ONE person presents it aloud.</div>
+    <div class="team-tip">💬 Process: (1) Everyone thinks of an answer (2) Discuss (3) Choose the best response (4) ONE person speaks it (5) Others write it here.</div>
+
+    <div class="task-section">
+      <h4>🗣️ Team Answers — write what your chosen speaker will say</h4>
+      ${qs.map((q,i) => `
+        <label class="field-label">Q${i+1}: ${q}</label>
+        <textarea class="field" id="sp_${i+1}" placeholder="Write the team's full sentence answer...">${sv['q'+(i+1)]||''}</textarea>
+      `).join('')}
+      <label class="field-label">Chosen Speaker's Name</label>
+      <input class="field" type="text" id="sp_speaker" placeholder="Who spoke for the team?" value="${sv['speaker']||''}">
+    </div>
+
+    <div class="scoring-box">🏆 Scoring: Grammar accuracy <span>10 pts</span> · Complete sentences <span>10 pts</span> · Team presentation <span>10 pts</span> = <span>30 pts total</span></div>
+    ${validationBox()}
+    <button class="btn-submit" onclick="submitAct(${id}, collectSpeaking)">✓ Submit Activity 2</button>`;
+}
+
+function collectSpeaking() {
+  const ids = ['sp_1','sp_2','sp_3','sp_4','sp_speaker'];
+  if (!allFilled(ids)) { showValidationError('Write an answer for every question and enter the speaker\'s name.'); return null; }
+  const qs = ['What are you going to do next weekend?','Major to study?','What food can you cook?','Thoughts on dropping out?'];
+  const obj = { speaker: getVal('sp_speaker') };
+  [1,2,3,4].forEach(i => obj['q'+i+'_'+qs[i-1].slice(0,20)] = getVal('sp_'+i));
+  return obj;
+}
+
+// 3. COUNTABLE
+function buildCountable(id, saved) {
+  const words = ['Information','Apples','Furniture','Rice','Cars','Money','Eggs','Traffic','Books','Water'];
+  const sentences = [
+    "There isn't _______ milk in the fridge.",
+    "I have _______ friends at university.",
+    "We need _______ information to decide.",
+    "She bought _______ books yesterday.",
+    "There are _______ students in the classroom."
+  ];
+  const sv = saved || {};
+  return `
+    <div class="instruction-box">🕵️ Partner 1 guesses Countable (C) or Uncountable (U), Partner 2 checks the rule — then swap!</div>
+    <div class="team-tip">💬 Discuss if you disagree. What makes a noun uncountable? What's the rule?</div>
+
+    <div class="task-section">
+      <h4>Part A — Countable (C) or Uncountable (U)?</h4>
+      ${words.map((w,i) => `
+        <div class="inline-row">
+          <span>${i+1}. <strong>${w}</strong></span>
+          <select class="field" id="cu_${i+1}">
+            <option value="">–</option>
+            <option value="C" ${sv['cu_'+(i+1)]?.startsWith('C')?'selected':''}>C</option>
+            <option value="U" ${sv['cu_'+(i+1)]?.startsWith('U')?'selected':''}>U</option>
+          </select>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="task-section">
+      <h4>Part B — Fill in the blank: <em>much / many / a little / a few / a lot of</em></h4>
+      ${sentences.map((s,i) => `
+        <label class="field-label">${i+1}. ${s}</label>
+        <input class="field" type="text" id="qt_${i+1}" placeholder="much / many / a little / a few / a lot of" value="${sv['qt_'+(i+1)]||''}">
+      `).join('')}
+    </div>
+
+    <div class="scoring-box">🏆 Scoring: C/U accuracy <span>20 pts</span> · Quantifier accuracy <span>20 pts</span> = <span>40 pts total</span></div>
+    ${validationBox()}
+    <button class="btn-submit" onclick="submitAct(${id}, collectCountable)">✓ Submit Activity 3</button>`;
+}
+
+function collectCountable() {
+  const cuIds = [1,2,3,4,5,6,7,8,9,10].map(i=>'cu_'+i);
+  const qtIds = [1,2,3,4,5].map(i=>'qt_'+i);
+  if (!allFilled([...cuIds,...qtIds])) { showValidationError('Answer every question in both parts before submitting.'); return null; }
+  const words=['Information','Apples','Furniture','Rice','Cars','Money','Eggs','Traffic','Books','Water'];
+  const obj = {};
+  cuIds.forEach((id,i) => obj['C_or_U_'+words[i]] = getVal(id));
+  qtIds.forEach((id,i) => obj['quantifier_'+(i+1)] = getVal(id));
+  return obj;
+}
+
+// 4. INTERVIEW
+function buildInterview(id, saved) {
+  const qs = [
+    'What are you going to do after school today?',
+    'What are you going to do this weekend?',
+    'What are you going to study in the future?',
+    'Where are you going to travel next?'
+  ];
+  const sv = saved || {};
+  return `
+    <div class="instruction-box">👂 Interview Time: Partner A interviews Partner B and writes answers — then swap roles!</div>
+    <div class="team-tip">💬 Ask the question naturally. Listen to the answer. Write it in full sentences. Then change roles.</div>
+
+    <div class="task-section">
+      <h4>🎙️ Partner A's Answers (Partner B asks)</h4>
+      ${qs.map((q,i) => `
+        <label class="field-label">Q${i+1}: ${q}</label>
+        <textarea class="field" id="ia_${i+1}" placeholder="Write Partner A's full sentence answer...">${sv['A_q'+(i+1)]||''}</textarea>
+      `).join('')}
+    </div>
+    <div class="task-section">
+      <h4>🎙️ Partner B's Answers (Partner A asks)</h4>
+      ${qs.map((q,i) => `
+        <label class="field-label">Q${i+1}: ${q}</label>
+        <textarea class="field" id="ib_${i+1}" placeholder="Write Partner B's full sentence answer...">${sv['B_q'+(i+1)]||''}</textarea>
+      `).join('')}
+    </div>
+
+    <div class="scoring-box">🏆 Scoring: Grammar <span>8 pts</span> · Full sentences <span>8 pts</span> · Authentic content <span>9 pts</span> = <span>25 pts total</span></div>
+    ${validationBox()}
+    <button class="btn-submit" onclick="submitAct(${id}, collectInterview)">✓ Submit Activity 4</button>`;
+}
+
+function collectInterview() {
+  const ids = [...[1,2,3,4].map(i=>'ia_'+i), ...[1,2,3,4].map(i=>'ib_'+i)];
+  if (!allFilled(ids)) { showValidationError('Fill in answers for BOTH partners for every question.'); return null; }
+  const qs=['After school today','This weekend','Study in future','Travel next'];
+  const obj = {};
+  [1,2,3,4].forEach(i => { obj['A_q'+i+'_'+qs[i-1]] = getVal('ia_'+i); obj['B_q'+i+'_'+qs[i-1]] = getVal('ib_'+i); });
+  return obj;
+}
+
+// 5. ADVICE
+function buildAdvice(id, saved) {
+  const problems = [
+    "I'm stressed about my exams.",
+    "I don't understand English grammar.",
+    "I have too much homework.",
+    "I never exercise.",
+    "I spend too much time on my phone."
+  ];
+  const sv = saved || {};
+  return `
+    <div class="instruction-box">👨‍⚕️ Doctor Role-Play! Partner A gives advice for 3 problems, Partner B gives advice for the other 2. Use "You should..." and discuss.</div>
+    <div class="team-tip">💬 Speak aloud first, then write it down. Be specific — not just "study more"!</div>
+
+    <div class="task-section">
+      <h4>🏥 Give TWO pieces of advice for each problem</h4>
+      ${problems.map((p,i) => `
+        <label class="field-label">${i+1}. "${p}"</label>
+        <textarea class="field" id="ad_${i+1}" placeholder="Advice 1: You should...\nAdvice 2: You should..." style="min-height:70px">${sv['advice_'+(i+1)]||''}</textarea>
+      `).join('')}
+    </div>
+
+    <div class="scoring-box">🏆 Scoring: Practical advice <span>15 pts</span> · Grammar & clarity <span>10 pts</span> · Creativity <span>5 pts</span> = <span>30 pts total</span></div>
+    ${validationBox()}
+    <button class="btn-submit" onclick="submitAct(${id}, collectAdvice)">✓ Submit Activity 5</button>`;
+}
+
+function collectAdvice() {
+  const ids = [1,2,3,4,5].map(i=>'ad_'+i);
+  if (!allFilled(ids)) { showValidationError('Give advice for every problem before submitting.'); return null; }
+  const probs=["Stressed about exams","Don't understand grammar","Too much homework","Never exercises","Too much phone"];
+  const obj = {};
+  ids.forEach((id,i) => obj['advice_'+probs[i]] = getVal(id));
+  return obj;
+}
+
+// 6. OBLIGATION
+function buildObligation(id, saved) {
+  const sentences = [
+    "Students ___ wear a school uniform.",
+    "You ___ bring a passport when travelling internationally.",
+    "We ___ come to school on Sunday.",
+    "Drivers ___ stop at red lights.",
+    "People ___ buy food if they have enough at home."
+  ];
+  const sv = saved || {};
+  return `
+    <div class="instruction-box">✋ Partner A chooses the answer, Partner B explains WHY. Then swap! Discuss if you disagree.</div>
+    <div class="team-tip">💬 "Have to" = it is necessary. "Don't have to" = it is not necessary (but it's OK if you do).</div>
+
+    <div class="task-section">
+      <h4>Choose: <em>have to</em> or <em>don't have to</em> — then explain your reasoning</h4>
+      ${sentences.map((s,i) => `
+        <div style="margin-bottom:14px;">
+          <label class="field-label">${i+1}. ${s}</label>
+          <select class="field" id="ob_c${i+1}" style="margin-bottom:6px;">
+            <option value="">Select...</option>
+            <option value="have to" ${sv['ob_choice_'+(i+1)]==='have to'?'selected':''}>have to</option>
+            <option value="don't have to" ${sv['ob_choice_'+(i+1)]==="don't have to"?'selected':''}>don't have to</option>
+          </select>
+          <textarea class="field" id="ob_r${i+1}" placeholder="Why? Explain to your partner..." style="min-height:60px">${sv['ob_reason_'+(i+1)]||''}</textarea>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="scoring-box">🏆 Scoring: Correct answers <span>15 pts</span> · Reasoning quality <span>10 pts</span> = <span>25 pts total</span></div>
+    ${validationBox()}
+    <button class="btn-submit" onclick="submitAct(${id}, collectObligation)">✓ Submit Activity 6</button>`;
+}
+
+function collectObligation() {
+  const cIds = [1,2,3,4,5].map(i=>'ob_c'+i);
+  const rIds = [1,2,3,4,5].map(i=>'ob_r'+i);
+  if (!allFilled([...cIds,...rIds])) { showValidationError('Select an answer AND write a reason for every sentence.'); return null; }
+  const sents=["School uniform","Passport travel","Sunday school","Red lights","Buy food"];
+  const obj = {};
+  [1,2,3,4,5].forEach(i => { obj['choice_'+sents[i-1]] = getVal('ob_c'+i); obj['reason_'+sents[i-1]] = getVal('ob_r'+i); });
+  return obj;
+}
+
+// 7. TIME
+function buildTime(id, saved) {
+  const sentences = [
+    { text: "I have studied English _______ five years.", hint:"since / for / ago / until / from...to" },
+    { text: "She has lived here _______ 2021.", hint:"since / for / ago / until / from...to" },
+    { text: "We waited _______ midnight.", hint:"since / for / ago / until / from...to" },
+    { text: "He graduated three years _______.", hint:"since / for / ago / until / from...to" },
+    { text: "Classes run _______ 8:00 a.m. _______ 12:00 p.m.", hint:"from...to" }
+  ];
+  const sv = saved || {};
+  return `
+    <div class="instruction-box">⏳ Time Puzzle: One reads, the other fills in. Race to find the pattern! Swap roles each sentence.</div>
+    <div class="team-tip">💬 Read the sentence together. One fills the blank, the other checks if it makes sense. Why does that word fit?</div>
+
+    <div class="task-section">
+      <h4>Complete with: <em>since · for · ago · until · from...to</em></h4>
+      ${sentences.map((s,i) => `
+        <label class="field-label">${i+1}. ${s.text}</label>
+        <input class="field" type="text" id="te_${i+1}" placeholder="${s.hint}" value="${sv['te_'+(i+1)]||''}">
+      `).join('')}
+    </div>
+
+    <div class="task-section">
+      <h4>Explain the Rules (as a team)</h4>
+      <label class="field-label">When do we use "since" vs "for"? Give an example of each.</label>
+      <textarea class="field" id="te_rule" placeholder="Since = ...\nFor = ...\nExample: ..." style="min-height:80px">${sv['rule_since_for']||''}</textarea>
+    </div>
+
+    <div class="scoring-box">🏆 Scoring: Accuracy <span>25 pts</span> · Rule explanation <span>10 pts</span> = <span>35 pts total</span></div>
+    ${validationBox()}
+    <button class="btn-submit" onclick="submitAct(${id}, collectTime)">✓ Submit Activity 7</button>`;
+}
+
+function collectTime() {
+  const ids = ['te_1','te_2','te_3','te_4','te_5','te_rule'];
+  if (!allFilled(ids)) { showValidationError('Complete all blanks AND the rule explanation.'); return null; }
+  const sents=["...English_5yrs","...here_2021","...waited_midnight","...graduated","...classes_run","rule_since_for"];
+  const obj = {};
+  ids.forEach((id,i) => obj[sents[i]] = getVal(id));
+  return obj;
+}
+
+// 8. ADJECTIVES
+function buildAdjective(id, saved) {
+  const sentences = [
+    { text:"The lecture was ___.", opts:['boring','bored'] },
+    { text:"I felt ___ when I won.", opts:['exciting','excited'] },
+    { text:"The movie was ___.", opts:['interesting','interested'] },
+    { text:"They were ___ by the result.", opts:['surprising','surprised'] },
+    { text:"The long hike was ___.", opts:['tiring','tired'] }
+  ];
+  const sv = saved || {};
+  return `
+    <div class="instruction-box">🎭 Act It Out! One person acts BORED, the other acts BORING. Then choose the right word and explain why.</div>
+    <div class="team-tip">💬 -ED = how a person FEELS &nbsp;|&nbsp; -ING = what something IS LIKE. Act out the emotion, then decide.</div>
+
+    <div class="task-section">
+      <h4>Choose the correct form</h4>
+      ${sentences.map((s,i) => `
+        <div class="inline-row" style="grid-template-columns:1fr 160px;">
+          <span>${i+1}. ${s.text}</span>
+          <select class="field" id="adj_${i+1}">
+            <option value="">Choose</option>
+            ${s.opts.map(o=>`<option value="${o}" ${sv['adj_'+(i+1)]===o?'selected':''}>${o}</option>`).join('')}
+          </select>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="task-section">
+      <h4>Explain the rule in your own words</h4>
+      <label class="field-label">What is the difference between -ED and -ING adjectives?</label>
+      <textarea class="field" id="adj_rule" placeholder="-ED adjectives are used when...\n-ING adjectives are used when...\nExample: The class was boring. I was bored." style="min-height:90px">${sv['rule']||''}</textarea>
+    </div>
+
+    <div class="scoring-box">🏆 Scoring: Correct answers <span>12 pts</span> · Rule explanation <span>8 pts</span> = <span>20 pts total</span></div>
+    ${validationBox()}
+    <button class="btn-submit" onclick="submitAct(${id}, collectAdjective)">✓ Submit Activity 8</button>`;
+}
+
+function collectAdjective() {
+  const ids = ['adj_1','adj_2','adj_3','adj_4','adj_5','adj_rule'];
+  if (!allFilled(ids)) { showValidationError('Choose an answer for every sentence AND write the rule.'); return null; }
+  const labels=['lecture','felt_won','movie','they_result','hike','rule'];
+  const obj = {};
+  ids.forEach((id,i) => obj[labels[i]] = getVal(id));
+  return obj;
+}
+
+// 9. QUIZ
+function buildQuiz(id, saved) {
+  const sv = saved || {};
+  return `
+    <div class="instruction-box">🧠 Quiz Masters! Create 5 questions together, then exchange papers with another team. Grade their answers!</div>
+    <div class="team-tip">💬 Harder questions = more impressive. Include the correct answer so you can check the other team's work.</div>
+
+    <div class="task-section">
+      <h4>📝 Your Team's Questions (include the correct answer for each)</h4>
+      ${[
+        {type:'Vocabulary',id:'qz_q1'},{type:'Vocabulary',id:'qz_q2'},
+        {type:'Grammar',id:'qz_q3'},{type:'Grammar',id:'qz_q4'},
+        {type:'Speaking / Discussion',id:'qz_q5'}
+      ].map((q,i) => `
+        <label class="field-label">Q${i+1} — ${q.type}</label>
+        <textarea class="field" id="${q.id}" placeholder="Question: ...\nAnswer: ..." style="min-height:65px">${sv[q.id]||''}</textarea>
+      `).join('')}
+    </div>
+
+    <div class="task-section">
+      <h4>✏️ Answers from the Other Team</h4>
+      <label class="field-label">Other team's name</label>
+      <input class="field" type="text" id="qz_other" placeholder="Other team's name" value="${sv['other_team']||''}">
+      <label class="field-label">Their answers (copy or summarise here)</label>
+      <textarea class="field" id="qz_ans" placeholder="Write or paste the other team's answers here..." style="min-height:100px">${sv['other_answers']||''}</textarea>
+      <label class="field-label">How many did they get right? (out of 5)</label>
+      <input class="field" type="text" id="qz_score" placeholder="e.g. 4 / 5" value="${sv['other_score']||''}">
+    </div>
+
+    <div class="scoring-box">🏆 Scoring: Question quality <span>15 pts</span> · Difficulty level <span>10 pts</span> · Grading other team <span>15 pts</span> = <span>40 pts total</span></div>
+    ${validationBox()}
+    <button class="btn-submit" onclick="submitAct(${id}, collectQuiz)">✓ Submit Activity 9</button>`;
+}
+
+function collectQuiz() {
+  const ids = ['qz_q1','qz_q2','qz_q3','qz_q4','qz_q5','qz_other','qz_ans','qz_score'];
+  if (!allFilled(ids)) { showValidationError('Complete your 5 questions AND fill in the other team\'s answers.'); return null; }
+  const obj = {};
+  ids.forEach(id => obj[id] = getVal(id));
+  return obj;
+}
+
+// ─── INIT ──────────────────────────────────────────────────────────
+renderGrid();
+</script>
+<!-- I Learn English Here nav --><a href="../lessons.html" style="position:fixed;left:12px;bottom:12px;z-index:2147483000;background:#1f7a6c;color:#fff;font:700 13px/1 system-ui,sans-serif;padding:9px 13px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)" aria-label="Back to I Learn English Here lessons">← I Learn English Here</a>
+</body>
+</html>

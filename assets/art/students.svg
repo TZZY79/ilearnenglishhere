@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-labelledby="t">
+<title id="t">Two students studying at their desks with ideas lighting up</title>
+<style>
+  .pencil{transform-box:fill-box;transform-origin:10% 90%;animation:scribble .5s ease-in-out infinite alternate}
+  .p2{animation-duration:.62s}
+  @keyframes scribble{from{transform:rotate(-8deg) translateX(-2px)}to{transform:rotate(6deg) translateX(3px)}}
+  .bulb{animation:glow 2.4s ease-in-out infinite}
+  @keyframes glow{0%,40%{opacity:.25}55%,85%{opacity:1}100%{opacity:.25}}
+  .rays{transform-box:fill-box;transform-origin:center;animation:ray 2.4s ease-in-out infinite}
+  @keyframes ray{0%,45%{transform:scale(.4);opacity:0}60%,85%{transform:scale(1);opacity:1}100%{transform:scale(.4);opacity:0}}
+  .float{animation:up 4s linear infinite;opacity:0}
+  .f2{animation-delay:1.3s}.f3{animation-delay:2.6s}
+  @keyframes up{0%{transform:translateY(0);opacity:0}15%{opacity:1}80%{opacity:1}100%{transform:translateY(-70px);opacity:0}}
+  .head{transform-box:fill-box;transform-origin:50% 100%;animation:tilt 2.8s ease-in-out infinite alternate}
+  @keyframes tilt{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important}.bulb,.rays,.float{opacity:1}}
+</style>
+<rect width="400" height="300" rx="24" fill="#fdf3e3"/>
+<!-- floating letters -->
+<text class="float" x="70" y="120" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#1f7a6c">a</text>
+<text class="float f2" x="190" y="110" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#e0a548">?</text>
+<text class="float f3" x="320" y="120" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#1f7a6c">b</text>
+<!-- student 1 -->
+<g>
+  <rect x="62" y="170" width="56" height="60" rx="22" fill="#e0a548"/>
+  <g class="head">
+    <circle cx="90" cy="148" r="24" fill="#8d5a3b"/>
+    <path d="M66 146c0-16 10-26 24-26s24 10 24 26c-4-8-12-12-24-12s-20 4-24 12z" fill="#1c1410"/>
+    <circle cx="82" cy="152" r="2.6" fill="#132a2e"/><circle cx="98" cy="152" r="2.6" fill="#132a2e"/>
+    <path d="M84 161q6 5 12 0" stroke="#132a2e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+  <!-- bulb -->
+  <g class="rays" stroke="#e0a548" stroke-width="3" stroke-linecap="round">
+    <path d="M90 70v-8M68 80l-6-6M112 80l6-6M60 100h-8M120 100h8"/>
+  </g>
+  <circle cx="90" cy="98" r="15" fill="#fff" stroke="#e0a548" stroke-width="3"/>
+  <circle class="bulb" cx="90" cy="98" r="12" fill="#ffd66b"/>
+  <rect x="84" y="112" width="12" height="7" rx="2" fill="#7d938f"/>
+</g>
+<!-- student 2 -->
+<g>
+  <rect x="272" y="170" width="56" height="60" rx="22" fill="#1f7a6c"/>
+  <g class="head" style="animation-delay:-1.4s">
+    <circle cx="300" cy="148" r="24" fill="#f1c7a1"/>
+    <path d="M274 150c-2-20 10-30 26-30s28 10 26 30c-2-10-8-16-26-16s-24 6-26 16z" fill="#6b3b1e"/>
+    <path d="M274 150c-4 14-2 26 4 30M326 150c4 14 2 26-4 30" stroke="#6b3b1e" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <circle cx="292" cy="152" r="2.6" fill="#132a2e"/><circle cx="308" cy="152" r="2.6" fill="#132a2e"/>
+    <path d="M294 161q6 5 12 0" stroke="#132a2e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+</g>
+<!-- desks -->
+<rect x="30" y="222" width="340" height="14" rx="6" fill="#8a5a2b"/>
+<rect x="50" y="236" width="12" height="50" fill="#6d4520"/><rect x="338" y="236" width="12" height="50" fill="#6d4520"/>
+<!-- notebooks -->
+<rect x="96" y="208" width="60" height="14" rx="3" fill="#fff" stroke="#dbe8e5" stroke-width="2"/>
+<rect x="244" y="208" width="60" height="14" rx="3" fill="#fff" stroke="#dbe8e5" stroke-width="2"/>
+<!-- pencils -->
+<g class="pencil"><rect x="128" y="184" width="6" height="26" rx="2" fill="#e0a548" transform="rotate(30 131 197)"/></g>
+<g class="pencil p2"><rect x="266" y="184" width="6" height="26" rx="2" fill="#e0a548" transform="rotate(-30 269 197)"/></g>
+<!-- books stack -->
+<rect x="176" y="196" width="48" height="10" rx="2" fill="#1f7a6c"/>
+<rect x="180" y="186" width="42" height="10" rx="2" fill="#e0a548"/>
+<rect x="174" y="206" width="52" height="16" rx="2" fill="#132a2e"/>
+</svg>

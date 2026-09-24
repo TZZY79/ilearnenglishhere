@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-labelledby="t">
+<title id="t">A learner walking a winding path past three flags to a trophy</title>
+<style>
+  .flag{transform-box:fill-box;transform-origin:0 50%;animation:flutter .9s ease-in-out infinite alternate}
+  @keyframes flutter{from{transform:skewY(-6deg) scaleX(.92)}to{transform:skewY(6deg) scaleX(1.05)}}
+  .trophy{transform-box:fill-box;transform-origin:50% 100%;animation:bounce 1.6s ease-in-out infinite}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .cloud{animation:drift 14s linear infinite}
+  @keyframes drift{from{transform:translateX(-80px)}to{transform:translateX(420px)}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<rect width="400" height="300" rx="24" fill="#e6f3fb"/>
+<g class="cloud" fill="#fff"><circle cx="40" cy="50" r="16"/><circle cx="60" cy="44" r="20"/><circle cx="82" cy="52" r="14"/></g>
+<rect y="200" width="400" height="100" rx="0" fill="#cfe9c9"/>
+<path d="M0 214 Q200 186 400 214 V300 H0z" fill="#b7dcb0"/>
+<path id="road" d="M30 270 C110 270 90 205 170 205 S250 250 300 190 S330 110 355 95" fill="none" stroke="#e8d7b4" stroke-width="22" stroke-linecap="round"/>
+<path d="M30 270 C110 270 90 205 170 205 S250 250 300 190 S330 110 355 95" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="10 12" stroke-linecap="round"/>
+<!-- flags -->
+<g><rect x="96" y="210" width="4" height="46" fill="#132a2e"/><path class="flag" d="M100 212h30l-8 9 8 9h-30z" fill="#1f7a6c"/><text x="112" y="225" font-size="11" font-weight="700" fill="#fff" font-family="sans-serif">1</text></g>
+<g><rect x="196" y="176" width="4" height="46" fill="#132a2e"/><path class="flag" d="M200 178h30l-8 9 8 9h-30z" fill="#e0a548"/><text x="212" y="191" font-size="11" font-weight="700" fill="#fff" font-family="sans-serif">2</text></g>
+<g><rect x="286" y="140" width="4" height="46" fill="#132a2e"/><path class="flag" d="M290 142h30l-8 9 8 9h-30z" fill="#1f7a6c"/><text x="302" y="155" font-size="11" font-weight="700" fill="#fff" font-family="sans-serif">3</text></g>
+<!-- trophy -->
+<g class="trophy">
+  <path d="M340 40h36v14c0 14-8 22-18 22s-18-8-18-22z" fill="#e0a548"/>
+  <path d="M340 46h-8c0 10 4 14 10 14M376 46h8c0 10-4 14-10 14" stroke="#e0a548" stroke-width="4" fill="none"/>
+  <rect x="354" y="76" width="8" height="8" fill="#c98a2e"/><rect x="346" y="84" width="24" height="7" rx="2" fill="#132a2e"/>
+</g>
+<!-- walker -->
+<g>
+  <g>
+    <circle cx="0" cy="-22" r="9" fill="#a8704a"/>
+    <path d="M-9 -24c0-8 4-12 9-12s9 4 9 12c-2-3-5-5-9-5s-7 2-9 5z" fill="#20160f"/>
+    <rect x="-8" y="-13" width="16" height="20" rx="7" fill="#e0a548"/>
+    <rect x="4" y="-12" width="9" height="15" rx="3" fill="#1f7a6c"/>
+    <rect x="-6" y="5" width="5" height="10" rx="2" fill="#132a2e"/><rect x="1" y="5" width="5" height="10" rx="2" fill="#132a2e"/>
+  </g>
+  <animateMotion dur="7s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.85;1" calcMode="linear">
+    <mpath href="#road"/>
+  </animateMotion>
+</g>
+</svg>
