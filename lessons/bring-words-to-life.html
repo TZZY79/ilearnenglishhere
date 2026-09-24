@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bring Words to Life — Reading with Meaning &amp; Emotion | I Learn English Here</title>
+<meta name="description" content="Free 90-minute group lesson for beginner to pre-intermediate English learners: read aloud with emotion, use punctuation to pause, detect emotions, perform reading theatre and explain what you read.">
+<link rel="canonical" href="https://ilearnenglishhere.academy/lessons/bring-words-to-life.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2a1b3d;--plum:#5b2a86;--rose:#e0567a;--sun:#f4a623;--mint:#1f9e7a;--sky:#3a86ff;--paper:#fbf7f2;--line:#eadfd3;--soft:#6a5a78}
+*{box-sizing:border-box}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+h1,h2,h3,h4,.btn{font-family:Fredoka,Nunito,sans-serif}
+.site{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 16px;background:var(--plum);color:#fff;font-size:.85rem}
+.site a{color:#fff;text-decoration:none;font-weight:700}
+.hero{background:linear-gradient(135deg,#5b2a86,#e0567a);color:#fff;padding:2.4rem 16px 2rem;text-align:center}
+.hero .k{text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:800;opacity:.9}
+.hero h1{font-size:clamp(2.2rem,6vw,3.6rem);margin:.3rem 0}
+.hero p{max-width:640px;margin:0 auto 1rem;font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.chips span{background:rgba(255,255,255,.18);border-radius:999px;padding:.35rem .9rem;font-weight:700;font-size:.9rem}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+.group{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:16px;padding:.8rem 1rem;margin:1.2rem 0}
+.group label{font-weight:800}
+.group input{flex:1;min-width:180px;border:2px solid var(--line);border-radius:10px;padding:.5rem .7rem;font-family:Nunito;font-size:1rem}
+/* timer */
+.timer{position:sticky;top:0;z-index:20;background:#fff;border:1px solid var(--line);border-radius:16px;padding:.8rem 1rem;margin-bottom:1.2rem;box-shadow:0 8px 20px rgba(42,27,61,.06)}
+.trow{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.trow .lbl{font-weight:800;color:var(--soft)}
+.clock{font-family:Fredoka;font-size:2rem;font-weight:700;color:var(--plum);min-width:5.2ch}
+.btn{border:0;border-radius:12px;padding:.55rem 1.1rem;font-size:1rem;cursor:pointer;background:var(--plum);color:#fff}
+.btn.ghost{background:#f1e9f7;color:var(--plum)}
+.btn.rose{background:var(--rose)}
+.status{margin-left:auto;font-weight:800;color:var(--rose)}
+.stages{display:flex;gap:4px;margin-top:.6rem}
+.stages div{height:10px;border-radius:99px;background:#efe6f5;position:relative;overflow:hidden}
+.stages div i{position:absolute;inset:0;width:0;background:linear-gradient(90deg,var(--sun),var(--rose))}
+.stages div.done i{width:100%}
+/* sections */
+.sec{background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(1.1rem,3.5vw,2rem);margin-bottom:1.4rem;box-shadow:0 10px 26px rgba(42,27,61,.05)}
+.shead{display:flex;align-items:center;gap:.9rem;margin-bottom:.4rem}
+.shead .ic{font-size:2.2rem}
+.shead .k{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--rose)}
+.shead h2{margin:0;font-size:clamp(1.4rem,3.6vw,2rem)}
+.shead .min{margin-left:auto;background:#fff4e0;color:#9a5b00;font-weight:800;padding:.3rem .8rem;border-radius:999px;white-space:nowrap}
+hr.div{border:0;border-top:2px dashed var(--line);margin:.8rem 0 1rem}
+.task{display:flex;gap:.8rem;background:#f6f0fb;border-radius:14px;padding:.9rem 1rem;margin-bottom:1rem}
+.task .ic{font-size:1.5rem}
+.task b{display:block;font-family:Fredoka;font-weight:600;color:var(--plum)}
+.quote{position:relative;background:#fff8ef;border-left:6px solid var(--sun);border-radius:14px;padding:1rem 1.2rem 1rem 2.6rem;font-size:1.25rem;font-weight:700;margin:1rem 0}
+.quote::before{content:"\201C";position:absolute;left:.7rem;top:.1rem;font-size:2.6rem;color:var(--sun);font-family:Georgia}
+.goals{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.6rem}
+.goals div{background:#f1fbf7;border-radius:12px;padding:.7rem .9rem;font-weight:700}
+.goals div::before{content:"✓ ";color:var(--mint);font-weight:900}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:1rem 0}
+.vc{border:2px solid var(--line);border-radius:16px;padding:1rem;text-align:center}
+.vc .n{font-family:Fredoka;font-weight:600;color:var(--rose)}
+.vc .e{font-size:2rem}
+.light{border-radius:16px;padding:1rem;color:#fff}
+.light .dot{width:28px;height:28px;border-radius:50%;background:#fff;margin-bottom:.4rem;opacity:.9}
+.light h4{margin:0 0 .3rem}
+.light p{margin:0;white-space:pre-line;font-weight:700}
+.red{background:#d64545}.amber{background:#e59a12}.green{background:#2e9e5b}
+.steps{counter-reset:s;margin:1rem 0}
+.steps div{counter-increment:s;display:flex;gap:.7rem;align-items:flex-start;margin:.5rem 0;font-weight:600}
+.steps div::before{content:counter(s);flex:none;width:30px;height:30px;border-radius:50%;background:var(--plum);color:#fff;font-family:Fredoka;display:flex;align-items:center;justify-content:center}
+.box{border:2px solid var(--line);border-radius:16px;padding:1rem 1.1rem;margin:1rem 0}
+.box h3{margin:0 0 .5rem;font-size:1.15rem}
+.box .sub{color:var(--soft);margin:.1rem 0 .7rem}
+.wrongright p{margin:.3rem 0;font-weight:700}
+.claps{list-style:none;padding:0;margin:0}
+.claps li{display:flex;align-items:center;gap:.7rem;padding:.55rem 0;border-top:1px dashed var(--line);flex-wrap:wrap}
+.claps li span.t{flex:1;min-width:200px;font-weight:700;font-size:1.05rem}
+.clap{border:0;background:#fff1f5;color:var(--rose);border-radius:999px;padding:.4rem .9rem;font-weight:800;cursor:pointer;font-family:Nunito}
+.cnt{min-width:2ch;font-family:Fredoka;font-size:1.3rem;color:var(--plum);text-align:center}
+.pill{display:inline-block;font-size:.72rem;font-weight:800;padding:.15rem .55rem;border-radius:999px;background:#eaf2ff;color:var(--sky);margin-right:.3rem;text-transform:uppercase}
+textarea,input.w{width:100%;border:2px solid var(--line);border-radius:12px;padding:.6rem .8rem;font-family:Nunito;font-size:1rem;background:#fffdfb}
+textarea{min-height:70px;resize:vertical}
+.q{margin:.8rem 0}
+.q p{margin:0 0 .35rem;font-weight:800}
+.ccq{border:1px solid var(--line);border-radius:12px;padding:.7rem .9rem;margin:.6rem 0}
+.ccq p{margin:0 0 .5rem;font-weight:800}
+.yn{display:flex;gap:.5rem;flex-wrap:wrap}
+.yn button,.emo button,.seg button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:.45rem 1rem;font-family:Nunito;font-weight:800;font-size:.95rem;cursor:pointer}
+.yn button.ok{border-color:var(--mint);background:#e8f8f1}.yn button.no{border-color:#d64545;background:#fdecec}
+.fb{margin-top:.4rem;font-weight:700;font-size:.95rem}
+.emo{display:flex;gap:.5rem;flex-wrap:wrap}
+.emo button{font-size:1rem}
+.emo button .e{font-size:1.4rem;display:block}
+.emo.big button{padding:.6rem 1.1rem;border-radius:16px;text-align:center}
+.emo button.on,.seg button.on{border-color:var(--rose);background:#fff1f5}
+.log{margin-top:.8rem;display:grid;gap:.3rem}
+.log div{background:#faf6ff;border-radius:10px;padding:.4rem .7rem;font-weight:700}
+.dlg{display:none}.dlg.on{display:block}
+.line{display:flex;gap:.7rem;align-items:flex-start;margin:.55rem 0}
+.av{flex:none;width:38px;height:38px;border-radius:50%;color:#fff;font-family:Fredoka;font-weight:700;display:flex;align-items:center;justify-content:center}
+.bub{background:#f7f2fb;border-radius:4px 16px 16px 16px;padding:.5rem .9rem}
+.bub b{display:block;font-size:.8rem;color:var(--soft)}
+.bub span{font-size:1.1rem;font-weight:700}
+.chosen{margin-top:.6rem;font-weight:800;color:var(--plum)}
+.watch{border-top:1px dashed var(--line);padding-top:.8rem;margin-top:.8rem}
+.watch h4{margin:0 0 .4rem}
+.sentences{display:grid;gap:.8rem}
+.gs{border:2px solid var(--line);border-radius:14px;padding:.8rem 1rem}
+.gs .top{display:flex;justify-content:space-between;gap:.6rem;align-items:flex-start;margin-bottom:.5rem}
+.gs .top span{font-weight:800;font-size:1.1rem}
+.gs .top em{font-style:normal;background:var(--plum);color:#fff;border-radius:999px;padding:.15rem .7rem;font-weight:800;font-size:.8rem;white-space:nowrap}
+.vote{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;padding:.5rem 0;border-top:1px dashed var(--line)}
+.vote span.l{flex:1;min-width:220px;font-weight:700}
+.vote button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:.35rem .8rem;font-weight:800;cursor:pointer;font-family:Nunito}
+.vote b{min-width:2ch;text-align:center;font-family:Fredoka}
+.circle{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.6rem;margin:1rem 0}
+.pl{border:2px solid var(--line);border-radius:16px;padding:.7rem;text-align:center;cursor:pointer;background:#fff;font-family:Nunito}
+.pl .e{font-size:1.8rem}
+.pl .nm{font-weight:800}
+.pl .st{font-size:.85rem;color:var(--soft);font-weight:700}
+.pl.now{border-color:var(--sun);background:#fff8ec}
+.pl.done{border-color:var(--mint);background:#effaf5}
+.hw{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:1rem 0}
+.hw button{border:2px solid var(--line);background:#fff;border-radius:16px;padding:1rem;text-align:center;cursor:pointer;font-family:Nunito}
+.hw button .e{font-size:2rem}
+.hw button h4{margin:.3rem 0}
+.hw button p{margin:0;color:var(--soft);font-weight:600}
+.hw button.on{border-color:var(--rose);background:#fff1f5}
+.send{text-align:center}
+.send .row{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:.8rem}
+.closing{background:linear-gradient(135deg,#2a1b3d,#5b2a86);color:#fff;text-align:center;border-radius:22px;padding:2rem 1rem;margin-bottom:1.4rem}
+.closing p{margin:.3rem 0;font-family:Fredoka;font-size:clamp(1.2rem,3.4vw,1.7rem)}
+.closing p:nth-child(2n){color:#ffc2d4}
+footer{text-align:center;color:#8f809c;font-size:.85rem;padding:0 16px 2.5rem}
+footer a{color:var(--plum);font-weight:700}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="site"><a href="../lessons.html">← All lessons</a><span>Free lesson · Reading</span></div>
+
+<header class="hero">
+  <div class="k">English Language · 90-Minute Group Lesson</div>
+  <h1>Bring Words to Life</h1>
+  <p>Reading with Meaning and Emotion — feel what you read, understand what you hear, and teach each other.</p>
+  <div class="chips"><span>📚 Beginner – Pre-Intermediate</span><span>⏱ 90 Minutes</span><span>🎭 Reading · Emotion · Comprehension</span><span>👥 Group Work</span></div>
+</header>
+
+<div class="wrap">
+  <div class="group"><label for="gname">✏️ Your Group Name:</label><input id="gname" class="w" placeholder="e.g. The Storytellers"></div>
+
+  <div class="timer" aria-label="Lesson timer">
+    <div class="trow"><span class="lbl">Lesson Timer</span><span class="clock" id="clock">90:00</span>
+      <button class="btn" id="tStart">Start</button><button class="btn ghost" id="tReset" aria-label="Reset timer">↺</button>
+      <span class="status" id="tStatus">Ready to begin</span></div>
+    <div class="stages" id="stages"></div>
+  </div>
+
+  <!-- goals -->
+  <section class="sec">
+    <div class="shead"><span class="ic">🎯</span><h2>What You Will Do Today</h2></div>
+    <div class="goals"><div>Read aloud with real emotion</div><div>Understand how punctuation changes meaning</div><div>Pause correctly at full stops and commas</div><div>Listen for emotion in your classmates' voices</div><div>Explain what you've read in your own words</div><div>Teach and support each other in your group</div></div>
+  </section>
+
+  <!-- warm up -->
+  <section class="sec" id="s0">
+    <div class="shead"><span class="ic">🌅</span><div><div class="k">Warm-Up</div><h2>Three Voices, One Sentence</h2></div><span class="min">10 mins</span></div>
+    <hr class="div">
+    <div class="task"><span class="ic">👥</span><div><b>Your Group Task</b>One person in your group reads the sentence below three times — each time in a different voice. Everyone else listens closely and decides what is changing.</div></div>
+    <div class="quote">I love English.</div>
+    <div class="box"><h3>Read it three ways — take turns!</h3><p class="sub">The reader says the same sentence three times in three completely different voices. After all three, the group discusses: what changed?</p>
+      <div class="cards3">
+        <div class="vc"><div class="e">🤖</div><div class="n">Voice 1</div><p><b>Robot</b> — flat, no feeling, like a machine reading.</p></div>
+        <div class="vc"><div class="e">😊</div><div class="n">Voice 2</div><p><b>Happy</b> — warm, gentle, a smile in the sound.</p></div>
+        <div class="vc"><div class="e">🤩</div><div class="n">Voice 3</div><p><b>Excited</b> — energy, speed, pure enthusiasm!</p></div>
+      </div></div>
+    <div class="steps"><div>One person reads — the group listens silently.</div><div>After all three voices, discuss: what changed between each reading?</div><div>Now swap — another person in the group tries all three voices.</div></div>
+    <div class="box"><h3>🙋 Check Your Understanding</h3>
+      <div class="ccq" data-ok="0"><p>Did the reader say the same words each time?</p><div class="yn"><button>Yes</button><button>No</button></div><div class="fb"></div></div>
+      <div class="ccq" data-ok="1"><p>Did all three versions sound the same?</p><div class="yn"><button>Yes</button><button>No</button></div><div class="fb"></div></div>
+      <div class="ccq" data-ok="1"><p>Which version is easiest to listen to?</p><div class="yn"><button>Robot</button><button>Happy or Excited</button></div><div class="fb"></div></div>
+    </div>
+    <div class="task" style="background:#fff4e0"><span class="ic">💡</span><div><b>Key Idea</b>Good readers don't only read words — good readers communicate feelings.</div></div>
+  </section>
+
+  <!-- activity 1 -->
+  <section class="sec" id="s1">
+    <div class="shead"><span class="ic">🚦</span><div><div class="k">Activity 1</div><h2>Punctuation is Traffic Lights</h2></div><span class="min">15 mins</span></div>
+    <hr class="div">
+    <div class="task"><span class="ic">👥</span><div><b>Your Group Task</b>First, read the example sentences as a group — one wrong, one right. Then take turns reading the practice sentences aloud. The group claps every time someone pauses correctly!</div></div>
+    <div class="cards3">
+      <div class="light red"><div class="dot"></div><h4>Full Stop (.)</h4><p>STOP.
+Take a breath.
+A new idea begins.</p></div>
+      <div class="light amber"><div class="dot"></div><h4>Comma (,)</h4><p>Small pause.
+The sentence isn't finished.
+Keep going.</p></div>
+      <div class="light green"><div class="dot"></div><h4>No punctuation</h4><p>Keep reading.
+Flow forward.
+Don't stop.</p></div>
+    </div>
+    <div class="box wrongright"><h3>Hear the difference — read both aloud as a group</h3>
+      <p>🚫 Wrong (no pause): "I woke up early I went to school" — rushed, hard to follow.</p>
+      <p>✅ Correct (with pause): "I woke up early. &nbsp;&nbsp;&nbsp;I went to school." — clear, natural, easy to understand.</p></div>
+    <div class="box"><h3>👩‍🎓 Read Aloud — Group Practice</h3><p class="sub"><span class="pill">Group</span>Take turns reading each sentence. The group claps when you pause correctly!</p>
+      <ul class="claps">
+        <li><span class="t">I was tired, but I finished my homework.</span><button class="clap">👏 Clap!</button><span class="cnt">0</span></li>
+        <li><span class="t">The dog barked loudly. Everyone looked outside.</span><button class="clap">👏 Clap!</button><span class="cnt">0</span></li>
+        <li><span class="t">After school, we played football.</span><button class="clap">👏 Clap!</button><span class="cnt">0</span></li>
+        <li><span class="t">She smiled, picked up her bag, and walked out.</span><button class="clap">👏 Clap!</button><span class="cnt">0</span></li>
+        <li><span class="t">It was cold. The children stayed inside.</span><button class="clap">👏 Clap!</button><span class="cnt">0</span></li>
+      </ul></div>
+    <div class="box"><h3>✍️ Group Discussion — Write Your Answer</h3>
+      <div class="q"><p>Why is it important to pause when you read aloud? Write your group's idea:</p><textarea data-a="Activity 1 — Why pause?"></textarea></div></div>
+  </section>
+
+  <!-- activity 2 -->
+  <section class="sec" id="s2">
+    <div class="shead"><span class="ic">🔍</span><div><div class="k">Activity 2</div><h2>Emotion Detective</h2></div><span class="min">15 mins</span></div>
+    <hr class="div">
+    <div class="task"><span class="ic">👥</span><div><b>Your Group Task</b>One person reads the paragraph below four times — each time using a different emotion. After each reading, the rest of the group guesses which emotion was used.</div></div>
+    <div class="quote">Sarah opened the letter slowly. Her hands shook. She could not believe what she saw. She had won the competition.</div>
+    <div class="steps"><div>The reader secretly chooses one emotion from the list below and reads the paragraph using that emotion.</div><div>The rest of the group listens and taps the emotion they think they heard.</div><div>The reader reveals their emotion. Was the group right? Discuss!</div><div>Swap reader. Try all four emotions — one per reading.</div></div>
+    <div class="box"><h3>🕵️ Which emotion did your reader use?</h3><p class="sub">Select which reading you are guessing, then tap the emotion you heard.</p>
+      <p style="font-weight:800;margin:.2rem 0 .4rem">Which reading? (tap to select)</p>
+      <div class="seg" id="readSel"><button class="on" data-r="1">Reading 1</button><button data-r="2">Reading 2</button><button data-r="3">Reading 3</button><button data-r="4">Reading 4</button></div>
+      <div class="emo big" id="detect" style="margin-top:.8rem"><button data-e="😄 Happy"><span class="e">😄</span>Happy</button><button data-e="😢 Sad"><span class="e">😢</span>Sad</button><button data-e="😠 Angry"><span class="e">😠</span>Angry</button><button data-e="🤩 Excited"><span class="e">🤩</span>Excited</button></div>
+      <div class="log" id="detectLog"></div></div>
+    <div class="box"><h3>✍️ Group Discussion</h3>
+      <div class="q"><p>How did the reader's voice help you understand the feeling?</p><textarea data-a="Activity 2 — How did the voice help?"></textarea></div>
+      <div class="q"><p>Could the same story feel happy AND sad? How?</p><textarea data-a="Activity 2 — Happy AND sad?"></textarea></div></div>
+  </section>
+
+  <!-- activity 3 -->
+  <section class="sec" id="s3">
+    <div class="shead"><span class="ic">🎭</span><div><div class="k">Activity 3</div><h2>Reading Theatre</h2></div><span class="min">20 mins</span></div>
+    <hr class="div">
+    <div class="task"><span class="ic">🎭</span><div><b>Your Group Task</b>Choose your dialogue below. Each person plays a character. Rehearse together, pick your emotion, then perform it for the other groups!</div></div>
+    <div class="steps"><div>Choose your group's dialogue using the tabs below.</div><div>Assign a character to each person in the group.</div><div>Choose an emotion together — how should your dialogue sound?</div><div>Practise reading with that emotion. Then perform for the class!</div></div>
+    <div class="seg" id="dlgTabs"><button class="on" data-d="0">Dialogue 1</button><button data-d="1">Dialogue 2</button><button data-d="2">Dialogue 3</button></div>
+    <div class="box">
+      <div class="dlg on" id="d0"></div><div class="dlg" id="d1"></div><div class="dlg" id="d2"></div>
+    </div>
+    <div class="box"><h3>🎨 Choose Your Group's Emotion</h3><p class="sub">Discuss with your group — which emotion fits your dialogue best? Then select it.</p>
+      <div class="emo" id="groupEmo"></div><div class="chosen" id="groupEmoOut"></div></div>
+    <div class="box"><h3>👀 While You Watch Other Groups Perform</h3><p class="sub"><span class="pill">Individual</span>Complete this for each group you watch.</p>
+      <div id="watch"></div></div>
+  </section>
+
+  <!-- activity 4 -->
+  <section class="sec" id="s4">
+    <div class="shead"><span class="ic">📖</span><div><div class="k">Activity 4</div><h2>Read · Think · Explain</h2></div><span class="min">15 mins</span></div>
+    <hr class="div">
+    <div class="task"><span class="ic">📖</span><div><b>Your Group Task</b>Read the story together. Answer the questions as a group. Then close the screen — can you retell the story to each other from memory?</div></div>
+    <div class="quote">Jack was late for school. He ran down the street as fast as he could. When he arrived, the teacher smiled and said, "You are just in time." Jack felt relieved.</div>
+    <div class="box"><h3>📝 Answer the Questions — discuss first, then write</h3>
+      <div class="q"><p>1. Who is the story about?</p><textarea data-a="Activity 4 — Q1"></textarea></div>
+      <div class="q"><p>2. Why was Jack running?</p><textarea data-a="Activity 4 — Q2"></textarea></div>
+      <div class="q"><p>3. How did Jack feel at the end? Why?</p><textarea data-a="Activity 4 — Q3"></textarea></div>
+      <div class="q"><p>4. What does "relieved" mean? Can you think of a time you felt relieved?</p><textarea data-a="Activity 4 — Q4"></textarea></div></div>
+    <div class="box"><h3>🔄 Memory Retell Challenge</h3><p class="sub"><span class="pill">Pairs inside your group</span>Close the screen. Partner A retells the story in their own words. Partner B listens and adds anything missed. Then swap. Write what you said below.</p>
+      <div class="q"><p>Partner A — key points you said:</p><textarea data-a="Retell — Partner A"></textarea></div>
+      <div class="q"><p>Partner B — what did you add?</p><textarea data-a="Retell — Partner B"></textarea></div></div>
+  </section>
+
+  <!-- activity 5 -->
+  <section class="sec" id="s5">
+    <div class="shead"><span class="ic">🏆</span><div><div class="k">Activity 5</div><h2>You Are the Teacher</h2></div><span class="min">10 mins</span></div>
+    <hr class="div">
+    <div class="task"><span class="ic">🏆</span><div><b>Your Group Task</b>Your group gets one sentence below. Discuss how it should sound. Then one person from your group stands up and teaches the whole class — explaining the emotion and reading it aloud.</div></div>
+    <div class="steps"><div>Read your group's sentence together quietly.</div><div>Discuss as a group: what emotion does it have? How should it sound? Why?</div><div>Write your group's ideas in the box below.</div><div>Choose one person to stand up and teach the class your sentence.</div></div>
+    <div class="box"><h3>Your Group's Sentence</h3><div class="sentences" id="gsent"></div></div>
+    <div class="box"><h3>🗳️ Class Vote — After Each Group Teaches</h3><p class="sub">After each group performs, vote as a class.</p><div id="votes"></div></div>
+  </section>
+
+  <!-- final -->
+  <section class="sec" id="s6">
+    <div class="shead"><span class="ic">🎲</span><div><div class="k">Final Activity</div><h2>Pass the Emotion</h2></div><span class="min">5 mins</span></div>
+    <hr class="div">
+    <div class="task"><span class="ic">🎲</span><div><b>Stand in a Circle!</b>The first person reads the sentence below with emotion. The next person copies it — and adds even MORE expression. Keep going around the circle until everyone has read it!</div></div>
+    <div class="quote" id="passSentence">I can't believe we are going on holiday tomorrow.</div>
+    <div class="box"><h3>🎮 Tap a Player When They Finish Reading</h3><p class="sub">Track who has gone. Tap to mark a player as done and move to the next.</p>
+      <div class="circle" id="circle"></div>
+      <div class="row" style="display:flex;gap:.6rem;flex-wrap:wrap"><button class="btn ghost" id="resetCircle">↺ Reset Circle</button><button class="btn rose" id="newSentence">🎲 New Sentence</button></div></div>
+  </section>
+
+  <!-- reflection -->
+  <section class="sec">
+    <div class="shead"><span class="ic">💬</span><div><div class="k">Reflection</div><h2>What Did We Learn?</h2></div></div>
+    <hr class="div">
+    <div class="box"><h3>🙋 Check Your Understanding</h3>
+      <div class="ccq" data-ok="1"><p>Does a full stop mean "stop reading forever"?</p><div class="yn"><button>Yes</button><button>No</button></div><div class="fb"></div></div>
+      <div class="ccq" data-ok="0"><p>Why do we pause when we read aloud?</p><div class="yn"><button>To help listeners understand</button><button>Because we are tired</button></div><div class="fb"></div></div>
+      <div class="ccq" data-ok="0"><p>Can you understand a story better when you feel it?</p><div class="yn"><button>Yes</button><button>No</button></div><div class="fb"></div></div>
+      <div class="ccq" data-ok="0"><p>Why do emotions matter when reading?</p><div class="yn"><button>They help communicate meaning</button><button>They don't matter</button></div><div class="fb"></div></div></div>
+    <div class="box"><h3>✍️ My Reflection — write your own thoughts</h3>
+      <div class="q"><p>One thing I learned today:</p><textarea data-a="Reflection — I learned"></textarea></div>
+      <div class="q"><p>Something I want to practise more:</p><textarea data-a="Reflection — Practise more"></textarea></div>
+      <div class="q"><p>A moment I enjoyed in the lesson:</p><textarea data-a="Reflection — Enjoyed"></textarea></div>
+      <div class="q"><p>I will teach a friend that punctuation means…</p><textarea data-a="Reflection — Punctuation means"></textarea></div></div>
+  </section>
+
+  <!-- homework -->
+  <section class="sec">
+    <div class="shead"><span class="ic">🏠</span><div><div class="k">Homework</div><h2>Choose Your Performance</h2></div></div>
+    <hr class="div">
+    <p style="font-weight:700">Choose one option below. Practise reading it with emotion at home. Next lesson, you will perform it for the class.</p>
+    <div class="hw" id="hw">
+      <button data-h="News Article"><div class="e">📰</div><h4>News Article</h4><p>Pick any short news story. Find the emotion inside it.</p></button>
+      <button data-h="Book Paragraph"><div class="e">📖</div><h4>Book Paragraph</h4><p>Choose a paragraph from any book you like.</p></button>
+      <button data-h="Song Lyrics"><div class="e">🎵</div><h4>Song Lyrics</h4><p>Read your favourite song as a poem — feel the words.</p></button>
+    </div>
+    <div class="q"><p>📌 My choice — What will I practise?</p><textarea id="hwText" data-a="Homework — My choice"></textarea></div>
+  </section>
+
+  <!-- send -->
+  <section class="sec send">
+    <h2 style="margin:.2rem 0">📤 Send Your Answers to the Class Group</h2>
+    <p>When you've finished, tap a button below. It collects everything you wrote so you can send it to your teacher or class group.</p>
+    <div class="row"><button class="btn" id="sendTg">✈️ Send Answers via Telegram</button><button class="btn ghost" id="copyAns">📋 Copy my answers</button></div>
+    <p class="fb" id="sendFb"></p>
+  </section>
+
+  <div class="closing"><p>Reading is not saying words.</p><p>Reading is understanding words.</p><p>Great readers feel the story.</p><p>Great readers help others feel it too.</p></div>
+</div>
+
+<footer>Free lesson from <a href="../index.html">I Learn English Here</a> · <a href="../start-here.html">Find your level</a> · <a href="https://www.udemy.com/course/learn-english-like-a-local-uk-culture-accents-real-life/" target="_blank" rel="noopener">Full course</a><br>&copy; 2026 I Learn English Here — an Online Business Awareness project</footer>
+
+<script>
+(function(){
+  function $(s){return document.querySelector(s)} function $$(s){return document.querySelectorAll(s)}
+  // ===== timer =====
+  var ST=[["Warm-Up",10],["Activity 1 · Punctuation",15],["Activity 2 · Emotion Detective",15],["Activity 3 · Reading Theatre",20],["Activity 4 · Read · Think · Explain",15],["Activity 5 · You Are the Teacher",10],["Final · Pass the Emotion",5]];
+  var TOTAL=90*60,left=TOTAL,run=null;
+  $('#stages').innerHTML=ST.map(function(s){return '<div style="flex:'+s[1]+'" title="'+s[0]+' ('+s[1]+' min)"><i></i></div>'}).join('');
+  function fmt(t){var m=Math.floor(t/60),s=t%60;return (m<10?'0':'')+m+':'+(s<10?'0':'')+s}
+  function paint(){$('#clock').textContent=fmt(left);var used=TOTAL-left,acc=0,cur=-1;
+    $$('#stages div').forEach(function(d,k){var len=ST[k][1]*60,i=d.querySelector('i');
+      if(used>=acc+len){d.className='done';i.style.width='100%'}else if(used>acc){d.className='';i.style.width=((used-acc)/len*100)+'%';cur=k}else{d.className='';i.style.width='0'}
+      acc+=len});
+    if(left===0){$('#tStatus').textContent='⏰ Time is up — well done!'}else if(used===0){$('#tStatus').textContent='Ready to begin'}else{$('#tStatus').textContent=(run?'Now: ':'Paused: ')+(cur>=0?ST[cur][0]:ST[0][0])}}
+  $('#tStart').onclick=function(){if(run){clearInterval(run);run=null;this.textContent='Start';paint();return}
+    if(left===0)left=TOTAL;this.textContent='Pause';run=setInterval(function(){left=Math.max(0,left-1);paint();if(left===0){clearInterval(run);run=null;$('#tStart').textContent='Start'}},1000);paint()};
+  $('#tReset').onclick=function(){clearInterval(run);run=null;left=TOTAL;$('#tStart').textContent='Start';paint()};
+  paint();
+  // ===== CCQs =====
+  var FB={ok:'✅ Correct!',no:'💡 Think again — listen to how the reader changes their voice.'};
+  $$('.ccq').forEach(function(q){var btns=q.querySelectorAll('button');btns.forEach(function(b,k){b.onclick=function(){
+    btns.forEach(function(x){x.classList.remove('ok','no')});var good=k===+q.dataset.ok;b.classList.add(good?'ok':'no');
+    q.querySelector('.fb').textContent=good?FB.ok:'💡 Not quite — try the other answer and think about why.'}})});
+  // ===== claps =====
+  $$('.claps li').forEach(function(li){li.querySelector('.clap').onclick=function(){var c=li.querySelector('.cnt');c.textContent=+c.textContent+1}});
+  // ===== emotion detective =====
+  var reading=1,guesses={};
+  $('#readSel').onclick=function(e){var b=e.target.closest('button');if(!b)return;reading=+b.dataset.r;$$('#readSel button').forEach(function(x){x.classList.toggle('on',x===b)})};
+  $('#detect').onclick=function(e){var b=e.target.closest('button');if(!b)return;guesses[reading]=b.dataset.e;
+    $$('#detect button').forEach(function(x){x.classList.toggle('on',x===b)});
+    $('#detectLog').innerHTML=[1,2,3,4].filter(function(r){return guesses[r]}).map(function(r){return '<div>Reading '+r+': '+guesses[r]+'</div>'}).join('')};
+  // ===== dialogues =====
+  var D=[[["T","Tom","We won!","#3a86ff"],["L","Lucy","Really?","#e0567a"],["T","Tom","Yes! We are champions!","#3a86ff"],["L","Lucy","That's amazing! I can't believe it!","#e0567a"],["T","Tom","We worked so hard. This is the best day ever.","#3a86ff"]],
+         [["M","Maria","Have you seen my bag? I can't find it anywhere.","#1f9e7a"],["J","James","Was it the blue one?","#f4a623"],["M","Maria","Yes! My phone is inside. And my keys.","#1f9e7a"],["J","James","Oh no. Did you leave it on the bus?","#f4a623"],["M","Maria","I don't know. I really hope not.","#1f9e7a"]],
+         [["A","Anna","It's my birthday tomorrow and nobody remembered.","#e0567a"],["B","Ben","Are you sure? What about your family?","#3a86ff"],["A","Anna","Even my mum didn't say anything.","#e0567a"],["C","Chris","Surprise! Happy birthday! We planned this all week!","#1f9e7a"],["A","Anna","I— I don't know what to say. Thank you so much!","#e0567a"]]];
+  D.forEach(function(d,k){$('#d'+k).innerHTML=d.map(function(l){return '<div class="line"><span class="av" style="background:'+l[3]+'">'+l[0]+'</span><div class="bub"><b>'+l[1]+'</b><span>'+l[2]+'</span></div></div>'}).join('')});
+  var dlg=0;$('#dlgTabs').onclick=function(e){var b=e.target.closest('button');if(!b)return;dlg=+b.dataset.d;$$('#dlgTabs button').forEach(function(x){x.classList.toggle('on',x===b)});$$('.dlg').forEach(function(x,k){x.classList.toggle('on',k===dlg)})};
+  var EM=["😄 Happy","😢 Sad","😠 Angry","😱 Shocked","🤩 Excited","😰 Worried"];
+  function emoBtns(){return EM.map(function(e){return '<button data-e="'+e+'">'+e+'</button>'}).join('')}
+  var groupEmo='';$('#groupEmo').innerHTML=emoBtns();
+  $('#groupEmo').onclick=function(e){var b=e.target.closest('button');if(!b)return;groupEmo=b.dataset.e;$$('#groupEmo button').forEach(function(x){x.classList.toggle('on',x===b)});$('#groupEmoOut').textContent='Our emotion: '+groupEmo+' — Dialogue '+(dlg+1)};
+  $('#watch').innerHTML=[1,2,3].map(function(g){return '<div class="watch"><h4>📣 After Group '+g+' performs:</h4><p style="font-weight:800;margin:.2rem 0 .4rem">What emotion did you hear?</p><div class="emo" data-g="'+g+'">'+emoBtns()+'</div><p style="font-weight:800;margin:.7rem 0 .4rem">Who showed emotion best? Why?</p><textarea data-a="Watched Group '+g+' — best & why"></textarea></div>'}).join('');
+  var heard={};$('#watch').onclick=function(e){var b=e.target.closest('.emo button');if(!b)return;var box=b.parentNode;heard[box.dataset.g]=b.dataset.e;box.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)})};
+  // ===== activity 5 =====
+  var GS=["The little girl looked at the puppy and smiled.","He stood at the door and didn't know what to say.","She opened the box slowly and gasped.","It was the last goal of the match. The crowd went silent."];
+  $('#gsent').innerHTML=GS.map(function(s,k){return '<div class="gs"><div class="top"><span>'+s+'</span><em>Group '+(k+1)+'</em></div><textarea placeholder="Our ideas: emotion, how it should sound, why…" data-a="Activity 5 — Group '+(k+1)+' ideas"></textarea></div>'}).join('');
+  $('#votes').innerHTML=GS.map(function(_,k){return '<div class="vote"><span class="l">Group '+(k+1)+' — Did their explanation make sense?</span><button data-v="y">👍 Yes</button><b>0</b><button data-v="n">🤔 Not quite</button><b>0</b></div>'}).join('');
+  $('#votes').onclick=function(e){var b=e.target.closest('button');if(!b)return;var c=b.nextElementSibling;c.textContent=+c.textContent+1};
+  // ===== pass the emotion =====
+  var P=[["🧑","Player 1"],["👩","Player 2"],["👦","Player 3"],["🧒","Player 4"],["👧","Player 5"],["🧑‍🦱","Player 6"],["👩‍🦰","Player 7"],["🧔","Player 8"]],done=0;
+  function drawCircle(){$('#circle').innerHTML=P.map(function(p,k){var cls=k<done?'done':k===done?'now':'';var st=k<done?'✅ Done':k===done?'Reading now…':'Waiting';return '<button class="pl '+cls+'" data-k="'+k+'"><div class="e">'+p[0]+'</div><div class="nm">'+p[1]+'</div><div class="st">'+st+'</div></button>'}).join('')+(done>=P.length?'<p style="grid-column:1/-1;font-weight:800;color:var(--mint)">🎉 Everyone has read it — amazing expression!</p>':'')}
+  $('#circle').onclick=function(e){var b=e.target.closest('.pl');if(!b)return;if(+b.dataset.k===done){done++;drawCircle()}};
+  $('#resetCircle').onclick=function(){done=0;drawCircle()};
+  var PS=["I can't believe we are going on holiday tomorrow.","Oh no! I left my homework at home!","We did it! We finally finished the project!","Please don't tell anyone my secret.","Wait… did you hear that noise?","This is the best cake I have ever eaten!"],psI=0;
+  $('#newSentence').onclick=function(){psI=(psI+1)%PS.length;$('#passSentence').textContent=PS[psI];done=0;drawCircle()};
+  drawCircle();
+  // ===== homework =====
+  var hwChoice='';$('#hw').onclick=function(e){var b=e.target.closest('button');if(!b)return;hwChoice=b.dataset.h;$$('#hw button').forEach(function(x){x.classList.toggle('on',x===b)})};
+  // ===== collect & send =====
+  function collect(){var out=['📚 Bring Words to Life — Answers','Group: '+($('#gname').value.trim()||'(no name)'),''];
+    var ed=Object.keys(guesses).sort().map(function(r){return 'Reading '+r+': '+guesses[r]});if(ed.length)out.push('Emotion Detective — '+ed.join(', '));
+    if(groupEmo)out.push('Reading Theatre — Dialogue '+(dlg+1)+', emotion: '+groupEmo);
+    Object.keys(heard).sort().forEach(function(g){out.push('Heard from Group '+g+': '+heard[g])});
+    if(hwChoice)out.push('Homework choice: '+hwChoice);
+    $$('textarea[data-a]').forEach(function(t){var v=t.value.trim();if(v)out.push(t.dataset.a+': '+v)});
+    return out.join('\n')}
+  $('#sendTg').onclick=function(){var txt=collect();window.open('https://t.me/share/url?url='+encodeURIComponent('https://ilearnenglishhere.academy/lessons/bring-words-to-life.html')+'&text='+encodeURIComponent(txt),'_blank','noopener');$('#sendFb').textContent='Telegram is opening — choose your class group and press Send.'};
+  $('#copyAns').onclick=function(){var txt=collect();var done=function(){$('#sendFb').textContent='✅ Copied! Paste it into any chat or email.'};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback)}else fallback();
+    function fallback(){var ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){$('#sendFb').textContent='Could not copy — please select and copy your answers manually.'}ta.remove()}};
+})();
+</script>
+</body>
+</html>

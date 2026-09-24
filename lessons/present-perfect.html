@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Present Perfect &amp; Its Time Expressions | I Learn English Here</title>
+<meta name="description" content="Free interactive English lesson: the present perfect with already, yet, ever, never, just, for and since. 14 self-explaining slides with votes, quizzes, fill-the-gap and a speaking mingle.">
+<link rel="canonical" href="https://ilearnenglishhere.academy/lessons/present-perfect.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#172033;--navy:#1e2a4a;--sky:#3b82f6;--sun:#f59e0b;--teal:#1f7a6c;--red:#dc4c4c;--green:#22a06b;--paper:#f4f7fb;--line:#dde4ef;--soft:#4b5670}
+*{box-sizing:border-box}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;padding-bottom:88px}
+h1,h2,h3,.btn,.tag{font-family:Fredoka,Nunito,sans-serif}
+.site{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 16px;background:var(--navy);color:#fff;font-size:.85rem}
+.site a{color:#fff;text-decoration:none;font-weight:700}
+/* Past -> Now timeline bar */
+.timeline{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);padding:.6rem 16px}
+.tl-row{display:flex;align-items:center;gap:.7rem;max-width:980px;margin:0 auto}
+.tl-row b{font-family:Fredoka;font-size:.85rem;color:var(--soft)}
+.track{flex:1;height:10px;border-radius:99px;background:#e7ecf5;position:relative}
+.fill{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--sun));transition:width .4s}
+.dot{position:absolute;top:50%;width:20px;height:20px;border-radius:50%;background:#fff;border:4px solid var(--sun);transform:translate(-50%,-50%);transition:left .4s}
+.tl-meta{display:flex;justify-content:space-between;max-width:980px;margin:.35rem auto 0;font-size:.8rem;font-weight:800;color:var(--soft)}
+main{max-width:980px;margin:1.2rem auto;padding:0 16px}
+.slide{display:none;background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(1.2rem,4vw,2.4rem);min-height:64vh;box-shadow:0 16px 36px rgba(23,32,51,.07);animation:in .35s ease}
+.slide.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.tag{display:inline-block;background:#eef4ff;color:#1d4ed8;font-weight:600;font-size:.85rem;padding:.3rem .8rem;border-radius:999px}
+h2{font-size:clamp(1.6rem,4.4vw,2.5rem);line-height:1.15;margin:.5rem 0 .6rem}
+.lead{font-size:1.1rem;color:var(--soft)}
+.hero h1{font-size:clamp(2.1rem,6vw,3.4rem);line-height:1.08;margin:.6rem 0}
+.hero h1 span{color:var(--sky)}
+.pills{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.pills span{background:#fff7e6;color:#9a5b00;font-weight:800;padding:.4rem .9rem;border-radius:999px}
+.think{background:#eef4ff;border-radius:16px;padding:1rem 1.2rem;font-weight:700}
+.byline{margin-top:1.2rem;color:#8a93a8;font-size:.85rem;font-weight:700}
+.note{display:flex;gap:.8rem;align-items:flex-start;background:#fff7e6;border-radius:16px;padding:.9rem 1.1rem;margin-top:1.2rem}
+.note .ic{font-size:1.5rem;line-height:1}
+.note b{display:block;font-family:Fredoka;font-weight:600}
+.opts{display:grid;gap:.6rem;margin:1rem 0}
+.vote{display:flex;gap:.8rem;align-items:center;text-align:left;border:2px solid var(--line);background:#fff;border-radius:14px;padding:.8rem 1rem;font-size:1.02rem;font-family:Nunito;cursor:pointer}
+.vote .l{width:34px;height:34px;flex:none;border-radius:50%;background:#eef4ff;color:#1d4ed8;font-weight:800;display:flex;align-items:center;justify-content:center}
+.vote.ok{border-color:var(--green);background:#e8f8f0}.vote.no{border-color:var(--red);background:#fdeeee}
+.fb{display:none;border-radius:14px;padding:.8rem 1rem;font-weight:700;margin-top:.6rem}
+.fb.show{display:block}.fb.good{background:#e8f8f0;color:#135c3d}.fb.bad{background:#fdeeee;color:#8b2525}
+.tl-visual{display:flex;align-items:center;gap:.6rem;margin:1.2rem 0;flex-wrap:wrap}
+.tl-visual .end{background:var(--navy);color:#fff;border-radius:12px;padding:.5rem .9rem;font-weight:800;font-family:Fredoka}
+.tl-visual .mid{flex:1;min-width:180px;text-align:center;border-top:4px dashed var(--sun);padding-top:.5rem;font-weight:700;color:var(--soft);white-space:pre-line;position:relative}
+.tl-visual .mid::before{content:"★";position:absolute;top:-17px;left:50%;transform:translateX(-50%);color:var(--sun);font-size:1.4rem}
+.formula{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;justify-content:center;margin:1rem 0}
+.formula span{background:var(--navy);color:#fff;border-radius:12px;padding:.6rem 1rem;font-weight:800;font-family:Fredoka}
+.formula span.hl{background:var(--sun);color:#3b2600}
+.formula em{font-style:normal;color:var(--soft);font-weight:700}
+.ex2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.8rem}
+.ex{background:#f4f7fb;border-radius:14px;padding:.8rem 1rem;font-size:1.1rem;font-weight:800}
+.ex small{display:block;font-size:.8rem;color:var(--soft);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem;margin:1rem 0}
+.card{border:2px solid var(--line);background:#fff;border-radius:14px;padding:.8rem;cursor:pointer;text-align:center;font-family:Nunito;font-size:1rem;transition:transform .15s}
+.card:hover{transform:translateY(-2px)}
+.card .w{font-family:Fredoka;font-size:1.3rem;font-weight:600}
+.card .r{display:none;margin-top:.35rem;font-weight:700;color:var(--soft);font-size:.95rem}
+.card.open .r{display:block;animation:in .25s}
+.card.open{border-color:var(--sky);background:#f5f9ff}
+.badge{display:inline-block;font-size:.7rem;font-weight:800;padding:.1rem .5rem;border-radius:99px;margin-top:.3rem}
+.badge.reg{background:#e8f8f0;color:#135c3d}.badge.irr{background:#fdeeee;color:#8b2525}
+.pron{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+.pron button,.seg button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:.5rem 1.1rem;font-family:Fredoka;font-size:1.05rem;cursor:pointer}
+.pron button.on,.seg button.on{background:var(--sky);border-color:var(--sky);color:#fff}
+.out{min-height:3.2rem;background:#f4f7fb;border-radius:14px;padding:.9rem 1.1rem;font-size:1.2rem;font-weight:800}
+.out .hl{color:#b45309;background:#fff1d6;border-radius:6px;padding:0 .25rem}
+.seg{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.qa{border:2px solid var(--line);border-radius:14px;margin:.5rem 0;overflow:hidden}
+.qa button{width:100%;text-align:left;border:0;background:#fff;padding:.8rem 1rem;font-family:Nunito;font-weight:800;font-size:1.02rem;cursor:pointer}
+.qa .a{display:none;padding:.2rem 1rem .9rem;color:#135c3d;font-weight:700}
+.qa.open{border-color:var(--green)}.qa.open .a{display:block;animation:in .25s}
+.mis{border:2px solid var(--line);border-radius:14px;padding:.8rem 1rem;margin:.5rem 0}
+.mis p{margin:0 0 .5rem;font-weight:800;font-size:1.05rem}
+.mis button{border:0;background:#7c3aed;color:#fff;border-radius:999px;padding:.35rem .9rem;font-family:Fredoka;cursor:pointer}
+.mis .a{display:none;margin-top:.5rem;background:#f5f0ff;border-radius:10px;padding:.5rem .8rem;font-weight:700}
+.mis.open .a{display:block}
+.gap{padding:.6rem 0;border-bottom:1px dashed var(--line);font-size:1.05rem;font-weight:700}
+.gap select{font-family:Nunito;font-size:1rem;font-weight:800;border:2px solid var(--line);border-radius:8px;padding:.2rem .4rem;margin:0 .2rem}
+.gap select.ok{border-color:var(--green);background:#e8f8f0}.gap select.no{border-color:var(--red);background:#fdeeee}
+.gap .why{display:block;font-size:.85rem;color:var(--soft);font-weight:700;margin-top:.2rem}
+.mingle{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.7rem;margin:1rem 0}
+.mingle div{border:2px solid var(--line);border-radius:14px;padding:.7rem .9rem;font-weight:800}
+.mingle input{width:100%;margin-top:.4rem;border:2px dashed var(--line);border-radius:8px;padding:.4rem .6rem;font-family:Nunito;font-size:.95rem}
+table{width:100%;border-collapse:collapse;font-size:.95rem;margin-top:.8rem}
+th,td{border:1px solid var(--line);padding:.5rem .6rem;text-align:left}
+th{background:var(--navy);color:#fff;font-family:Fredoka;font-weight:600}
+.tw{overflow-x:auto}
+.exit{border:2px solid var(--line);border-radius:14px;padding:.8rem 1rem;margin:.6rem 0}
+.exit p{margin:0 0 .4rem;font-weight:800}
+.exit textarea{width:100%;min-height:56px;border:2px solid var(--line);border-radius:10px;padding:.5rem;font-family:Nunito;font-size:1rem}
+.exit button{margin-top:.4rem;border:0;background:none;color:#7c3aed;font-weight:800;cursor:pointer;padding:0;font-family:Nunito}
+.exit .a{display:none;background:#f5f0ff;border-radius:10px;padding:.5rem .8rem;margin-top:.4rem;font-weight:700}
+.exit.open .a{display:block}
+.btn{border:0;background:var(--sky);color:#fff;border-radius:12px;padding:.75rem 1.4rem;font-size:1.05rem;cursor:pointer}
+.btn.sun{background:var(--sun);color:#3b2600}
+.btn:disabled{opacity:.35;cursor:default}
+.navbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:.6rem 16px;display:flex;justify-content:center;gap:1rem;align-items:center}
+.navbar .n{font-weight:800;color:var(--soft);min-width:70px;text-align:center}
+.askbtn{position:fixed;right:16px;bottom:84px;z-index:31;border:0;background:#7c3aed;color:#fff;border-radius:999px;padding:.7rem 1.1rem;font-family:Fredoka;font-size:1rem;box-shadow:0 8px 20px rgba(124,58,237,.35);cursor:pointer}
+.modal{position:fixed;inset:0;z-index:40;background:rgba(23,32,51,.55);display:none;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}
+.modal .box{background:#fff;border-radius:20px;max-width:640px;width:100%;max-height:85vh;overflow:auto;padding:1.4rem;position:relative}
+.modal .x{position:absolute;right:.8rem;top:.6rem;border:0;background:none;font-size:1.8rem;cursor:pointer;color:var(--soft)}
+.modal h3{margin:.2rem 0 .3rem;font-size:1.4rem}
+.site-foot{text-align:center;color:#8a93a8;font-size:.85rem;padding:1rem 16px}
+.site-foot a{color:var(--sky);font-weight:700}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="site"><a href="../lessons.html">← All lessons</a><span>Free lesson · Grammar</span></div>
+
+<div class="timeline" aria-hidden="true">
+  <div class="tl-row"><b>Past</b><div class="track"><div class="fill" id="fill"></div><div class="dot" id="dot"></div></div><b>Now</b></div>
+  <div class="tl-meta"><span id="slideTitle">Title</span><span id="slideNum">Slide 1 / 14</span></div>
+</div>
+
+<main>
+<!-- 1 -->
+<section class="slide hero" data-title="Title">
+  <span class="tag">🚀 English Grammar</span>
+  <h1>Present Perfect<br><span>&amp; Its Time Expressions</span></h1>
+  <p class="lead">Have you ever done something amazing? Today we find out how to talk about it. This page explains every rule itself — if you get stuck, just keep reading or tap <b>❓ Ask a question</b> in the corner.</p>
+  <div class="pills"><span>Form it</span><span>Understand it</span><span>Use it</span></div>
+  <div class="think">Before we start: think of one amazing thing that has ever happened to you. Keep it in your head — you'll use it later.</div>
+  <p style="margin-top:1.2rem"><button class="btn sun" data-next>Let's start →</button></p>
+  <div class="byline">Present Perfect · I Learn English Here</div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="Warm up">
+  <span class="tag">🔥 Activate — Warm Up</span>
+  <h2>What does this sentence really mean?</h2>
+  <p class="lead"><b>"I have never eaten a hamburger."</b> — someone just said this.</p>
+  <div class="opts" id="vote">
+    <button class="vote" data-ok="0"><span class="l">A</span>They don't want to eat one in the future.</button>
+    <button class="vote" data-ok="1"><span class="l">B</span>They haven't eaten one yet in their life.</button>
+    <button class="vote" data-ok="0"><span class="l">C</span>They ate one yesterday and forgot.</button>
+  </div>
+  <div class="fb" id="voteFb"></div>
+  <div class="note"><span class="ic">💡</span><div><b>Why this matters:</b>Present perfect talks about your whole life up to right now — never a single finished moment like "yesterday." That's the whole idea of this lesson.</div></div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="What is it?">
+  <span class="tag">📚 Acquire</span>
+  <h2>What is the Present Perfect?</h2>
+  <p class="lead">It's for an experience that happened at some point in your life — and it's still relevant now. We don't say exactly when.</p>
+  <div class="tl-visual"><span class="end">PAST</span><span class="mid">something happened
+(we don't know when)</span><span class="end" style="background:var(--sun);color:#3b2600">NOW / TODAY</span></div>
+  <div class="formula"><span>Subject</span><em>+</em><span class="hl">have / has</span><em>+</em><span>Past Participle</span></div>
+  <div class="ex2">
+    <div class="ex">She has eaten sushi.<small>he / she / it → HAS</small></div>
+    <div class="ex">We have visited Paris.<small>I / you / we / they → HAVE</small></div>
+  </div>
+  <div class="note"><span class="ic">❓</span><div><b>"Why not just use past simple?"</b>Past simple ("I ate a hamburger") needs a finished, specific time — real or implied. Present perfect ("I have eaten a hamburger") has no specific time — it's about your life experience up to now. Remember our vote: "I have never eaten a hamburger" ← that's this exact idea!</div></div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Have vs Has">
+  <span class="tag">⚡ Quick Rule</span>
+  <h2>Have vs Has</h2>
+  <p class="lead">Tap a pronoun to see which verb it needs.</p>
+  <div class="pron" id="pron"></div>
+  <div class="out" id="pronOut">← Tap a pronoun above to see the rule in action.</div>
+  <div class="note"><span class="ic">🧠</span><div><b>How to remember it:</b>Only he / she / it (one person or thing) use HAS. Everyone else — I, you, we, they, or any plural — uses HAVE. Same rule as present simple's -s ending, just backwards in feel!</div></div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="Past participle">
+  <span class="tag">🔧 Past Participle</span>
+  <h2>Regular &amp; Irregular Verbs</h2>
+  <p class="lead">Tap each card to reveal its past participle. Green tag = regular (+ed, easy). Red tag = irregular (must memorise).</p>
+  <div class="grid" id="pp"></div>
+  <div class="note"><span class="ic">❓</span><div><b>"Isn't past participle the same as past simple?"</b>For regular verbs, yes — both are "played," "visited." For irregular verbs, often no: go → went (past simple) but go → gone (past participle). Present perfect always uses the past participle column, never past simple.</div></div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="Time expressions">
+  <span class="tag">⏰ The Magic Words</span>
+  <h2>Time Expressions</h2>
+  <p class="lead">These words tell us WHEN or HOW OFTEN, and they travel together with present perfect. Tap a card for an example.</p>
+  <div class="grid" id="te"></div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="Already vs Yet">
+  <span class="tag">🔍 Zoom In</span>
+  <h2>Already vs Yet</h2>
+  <p class="lead">Pick a sentence type below and watch where the word goes.</p>
+  <div class="seg" id="ay"><button data-k="pos" class="on">Positive</button><button data-k="neg">Negative</button><button data-k="q">Question</button></div>
+  <div class="out" id="ayOut"></div>
+  <div class="note"><span class="ic">📍</span><div><b>Position rule:</b>Already sits in the middle (before the main verb) and only appears in positive sentences. Yet sits at the end of the sentence and only appears in negatives and questions.</div></div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="Ever vs Never">
+  <span class="tag">🌍 Life Experiences</span>
+  <h2>Ever vs Never</h2>
+  <p class="lead">Tap a question to see its matching answer.</p>
+  <div id="en"></div>
+  <div class="note"><span class="ic">❗</span><div><b>The one rule that trips people up:</b>Ever = "at any time in your life" — used only in questions. Never = "at no time in your life" — it looks positive (no "not"/"don't") but it already means negative, so don't add another "not"!</div></div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="Just, For & Since">
+  <span class="tag">🕐 Just · For · Since</span>
+  <h2>Just, For &amp; Since</h2>
+  <p class="lead">Tap each example to see what kind of time word it uses, and why.</p>
+  <div id="jfs"></div>
+  <div class="note"><span class="ic">⏳</span><div><b>"What's the actual difference between FOR and SINCE?"</b>For + a length of time (3 years, 6 months, ages). Since + a starting point (2020, Monday, I arrived). Quick test: if you can count it, use FOR. If it's a point on the calendar or clock, use SINCE.</div></div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="Spot the mistake">
+  <span class="tag">✏️ Apply</span>
+  <h2>Spot the Mistake!</h2>
+  <p class="lead">Each sentence has one mistake. Try to find it yourself first — then tap "Reveal" to check.</p>
+  <div id="mis"></div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="Fill the gap">
+  <span class="tag">📝 Apply</span>
+  <h2>Fill in the Gap</h2>
+  <p class="lead">Word bank: <b>already · yet · ever · never · just · for · since</b>. Choose the right word for each sentence, then check your answers.</p>
+  <div id="gaps"></div>
+  <p style="margin-top:1rem"><button class="btn" id="checkGaps">Check my answers</button></p>
+  <div class="fb" id="gapFb"></div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-title="Speaking">
+  <span class="tag">🗣️ Speaking — Have you ever...?</span>
+  <h2>Mingle! Ask Your Classmates</h2>
+  <p class="lead">Stand up. Ask classmates each question below using "Have you ever...?" Write their name if they say yes.</p>
+  <div class="mingle">
+    <div>🦗 Have you ever eaten insects?<input aria-label="Name" placeholder="Name…"></div>
+    <div>✈️ Have you ever been to another country?<input aria-label="Name" placeholder="Name…"></div>
+    <div>⭐ Have you ever met a famous person?<input aria-label="Name" placeholder="Name…"></div>
+    <div>🍳 Have you ever cooked a full meal?<input aria-label="Name" placeholder="Name…"></div>
+    <div>🏆 Have you ever won a competition?<input aria-label="Name" placeholder="Name…"></div>
+    <div>🌙 Have you ever stayed up all night?<input aria-label="Name" placeholder="Name…"></div>
+  </div>
+  <div class="note"><span class="ic">🗨️</span><div><b>How to answer:</b>Say "Yes, I have." or "No, I haven't." — never just "yes" or "no" alone. If yes, your partner writes their name in the box.</div></div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-title="Quick reference">
+  <span class="tag">📋 Quick Reference</span>
+  <h2>Everything on One Slide</h2>
+  <div class="formula"><span>Subject</span><em>+</em><span class="hl">have/has</span><em>+</em><span>Past Participle</span><em>( + Time Expression )</em></div>
+  <div class="tw"><table>
+    <tr><th>Word</th><th>Sentence type</th><th>Position</th><th>Example</th></tr>
+    <tr><td><b>already</b></td><td>✔ Positive</td><td>Before main verb</td><td>I've already eaten.</td></tr>
+    <tr><td><b>yet</b></td><td>✘ Neg / ❓ Q</td><td>End of sentence</td><td>I haven't eaten yet.</td></tr>
+    <tr><td><b>ever</b></td><td>❓ Questions</td><td>Between have &amp; PP</td><td>Have you ever tried this?</td></tr>
+    <tr><td><b>never</b></td><td>✔ Positive</td><td>Between have &amp; PP</td><td>I've never eaten sushi.</td></tr>
+    <tr><td><b>just</b></td><td>✔ Positive</td><td>Between have &amp; PP</td><td>She's just arrived.</td></tr>
+    <tr><td><b>for</b></td><td>✔ / ✘ / ❓</td><td>Before duration</td><td>I've lived here for 2 years.</td></tr>
+    <tr><td><b>since</b></td><td>✔ / ✘ / ❓</td><td>Before start point</td><td>I've lived here since 2020.</td></tr>
+  </table></div>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-title="Well done!">
+  <span class="tag">🏆 Excellent Work!</span>
+  <h2>You have already learned the Present Perfect! 🎉</h2>
+  <p class="lead">Exit ticket — write your own answer for each. Stuck? Tap "Show a sample" for an idea.</p>
+  <div id="exit"></div>
+  <div class="byline">Present Perfect · I Learn English Here</div>
+  <p style="margin-top:1rem"><a class="btn sun" style="text-decoration:none;display:inline-block" href="../index.html#lessons">More free lessons →</a></p>
+</section>
+</main>
+
+<p class="site-foot">Free lesson from <a href="../index.html">I Learn English Here</a> · <a href="../start-here.html">Find your level</a> · <a href="https://www.udemy.com/course/learn-english-like-a-local-uk-culture-accents-real-life/" target="_blank" rel="noopener">Full course</a> · &copy; 2026 — an Online Business Awareness project</p>
+
+<div class="navbar"><button class="btn" id="prev">← Prev</button><span class="n" id="n">1 / 14</span><button class="btn" id="next">Next →</button></div>
+
+<button class="askbtn" id="ask">❓ Ask a question</button>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt">
+  <div class="box"><button class="x" id="closeModal" aria-label="Close">×</button>
+    <h3 id="mt">Questions students always ask</h3>
+    <p style="color:var(--soft);margin-top:0">Tap a question to see the answer — this list covers the common mix-ups.</p>
+    <div id="faq"></div></div>
+</div>
+
+<script>
+(function(){
+  function $(s){return document.querySelector(s)}
+  function qaList(el,items){el.innerHTML=items.map(function(x){return '<div class="qa"><button>'+x[0]+'</button><div class="a">'+x[1]+'</div></div>'}).join('');
+    el.addEventListener('click',function(e){var b=e.target.closest('.qa');if(b&&e.target.tagName==='BUTTON')b.classList.toggle('open')});}
+  // slides + timeline
+  var slides=document.querySelectorAll('.slide'),i=0,N=slides.length;
+  function go(k){i=Math.max(0,Math.min(N-1,k));slides.forEach(function(s,n){s.classList.toggle('on',n===i)});
+    var pct=N>1?i/(N-1)*100:0;$('#fill').style.width=pct+'%';$('#dot').style.left=pct+'%';
+    $('#slideTitle').textContent=slides[i].dataset.title;$('#slideNum').textContent='Slide '+(i+1)+' / '+N;$('#n').textContent=(i+1)+' / '+N;
+    $('#prev').disabled=i===0;$('#next').disabled=i===N-1;window.scrollTo(0,0);}
+  $('#prev').onclick=function(){go(i-1)};$('#next').onclick=function(){go(i+1)};
+  document.querySelectorAll('[data-next]').forEach(function(b){b.onclick=function(){go(i+1)}});
+  document.addEventListener('keydown',function(e){if($('#modal').classList.contains('open')){if(e.key==='Escape')closeM();return;}
+    if(/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))return;
+    if(e.key==='ArrowRight')go(i+1);if(e.key==='ArrowLeft')go(i-1)});
+  var sx=null;$('main').addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+  $('main').addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>60)go(i+(dx<0?1:-1));sx=null});
+  // 2 vote
+  var voted=false;$('#vote').addEventListener('click',function(e){var b=e.target.closest('.vote');if(!b||voted)return;voted=true;
+    document.querySelectorAll('#vote .vote').forEach(function(v){if(v.dataset.ok==='1')v.classList.add('ok')});
+    var fb=$('#voteFb');if(b.dataset.ok==='1'){fb.className='fb show good';fb.textContent='✅ Yes! B — up to now, at no time in their life have they eaten one. It says nothing about the future, and nothing about yesterday.';}
+    else{b.classList.add('no');fb.className='fb show bad';fb.textContent='Not quite — the answer is B. "Have never eaten" = at no time in my life, up to right now. It isn\'t about the future (A) or one finished moment like yesterday (C).';}});
+  // 4 pronouns
+  var P=[["I","have","I have visited Angkor Wat."],["you","have","You have finished your homework."],["he","has","He has played football today."],["she","has","She has eaten sushi."],["it","has","It has rained all morning."],["we","have","We have seen that film."],["they","have","They have gone home."]];
+  $('#pron').innerHTML=P.map(function(p,k){return '<button data-k="'+k+'">'+p[0]+'</button>'}).join('');
+  $('#pron').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var p=P[b.dataset.k];
+    $('#pron').querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
+    $('#pronOut').innerHTML=p[2].replace(' '+p[1]+' ',' <span class="hl">'+p[1]+'</span> ')+'<div style="font-size:.9rem;color:var(--soft);margin-top:.3rem">'+p[0]+' → <b>'+p[1].toUpperCase()+'</b></div>';});
+  // 5 participles
+  var V=[["play","played",1],["visit","visited",1],["watch","watched",1],["finish","finished",1],["eat","eaten",0],["go","gone",0],["see","seen",0],["do","done",0],["write","written",0],["be","been",0],["take","taken",0],["meet","met",0]];
+  $('#pp').innerHTML=V.map(function(v){return '<button class="card"><div class="w">'+v[0]+'</div><div class="r">→ '+v[1]+'<br><span class="badge '+(v[2]?'reg">regular':'irr">irregular')+'</span></div></button>'}).join('');
+  $('#pp').addEventListener('click',function(e){var c=e.target.closest('.card');if(c)c.classList.toggle('open')});
+  // 6 time expressions
+  var T=[["already","I have already finished my homework."],["yet","Have you eaten yet?"],["ever","Have you ever been to Siem Reap?"],["never","I have never seen snow."],["just","She has just arrived."],["for","We have lived here for three years."],["since","He has studied English since 2020."]];
+  $('#te').innerHTML=T.map(function(t){return '<button class="card"><div class="w">'+t[0]+'</div><div class="r">'+t[1]+'</div></button>'}).join('');
+  $('#te').addEventListener('click',function(e){var c=e.target.closest('.card');if(c)c.classList.toggle('open')});
+  // 7 already / yet
+  var AY={pos:'I have <span class="hl">already</span> finished my homework.<div style="font-size:.9rem;color:var(--soft);margin-top:.3rem">Positive → ALREADY, before the main verb.</div>',
+          neg:'I haven\'t finished my homework <span class="hl">yet</span>.<div style="font-size:.9rem;color:var(--soft);margin-top:.3rem">Negative → YET, at the end.</div>',
+          q:'Have you finished your homework <span class="hl">yet</span>?<div style="font-size:.9rem;color:var(--soft);margin-top:.3rem">Question → YET, at the end.</div>'};
+  function ay(k){$('#ayOut').innerHTML=AY[k];$('#ay').querySelectorAll('button').forEach(function(b){b.classList.toggle('on',b.dataset.k===k)})}
+  $('#ay').addEventListener('click',function(e){var b=e.target.closest('button');if(b)ay(b.dataset.k)});ay('pos');
+  // 8 ever / never
+  qaList($('#en'),[["Have you ever eaten insects?","No, I have never eaten insects. 🦗"],["Have you ever been to Kep?","Yes, I have. I've been there twice! 🏖️"],["Has she ever ridden a horse?","No, she has never ridden a horse. 🐴"],["Have they ever seen a real elephant?","Yes, they have. They saw one in Mondulkiri! 🐘"]]);
+  // 9 just / for / since
+  qaList($('#jfs'),[["I have just finished my lunch.","JUST → a very short time ago. It sits between have and the past participle."],["We have lived in Phnom Penh for five years.","FOR → a length of time (five years). You can count it."],["She has worked here since 2021.","SINCE → a starting point (2021). It's a point on the calendar."],["They have known each other for ages.","FOR → a length of time (ages = a very long time)."],["I have been awake since 6 o'clock.","SINCE → a starting point on the clock (6 o'clock)."],["The film has just started!","JUST → it happened a moment ago."]]);
+  // 10 spot the mistake
+  var M=[["I have went to Siem Reap.","✅ I have <b>gone</b> to Siem Reap. — use the past participle (gone), not past simple (went)."],["She have eaten breakfast.","✅ She <b>has</b> eaten breakfast. — she → HAS."],["I have seen that film yesterday.","✅ I <b>saw</b> that film yesterday. — a finished time (yesterday) needs past simple."],["Have you never been to Kampot?","✅ Have you <b>ever</b> been to Kampot? — use EVER in questions."],["I have lived here since three years.","✅ I have lived here <b>for</b> three years. — three years is a length of time → FOR."]];
+  $('#mis').innerHTML=M.map(function(m){return '<div class="mis"><p>❌ '+m[0]+'</p><button>Reveal</button><div class="a">'+m[1]+'</div></div>'}).join('');
+  $('#mis').addEventListener('click',function(e){if(e.target.tagName==='BUTTON'){var m=e.target.parentNode;m.classList.toggle('open');e.target.textContent=m.classList.contains('open')?'Hide':'Reveal'}});
+  // 11 fill the gap
+  var W=["already","yet","ever","never","just","for","since"];
+  var G=[["Have you ","","","eaten amok?","ever","Question about your whole life → EVER."],["I haven't finished my project ","","",".","yet","Negative, end of sentence → YET."],["She has ","","","called me — the phone is still warm!","just","A moment ago → JUST."],["We have lived here ","",""," 2019.","since","2019 is a starting point → SINCE."],["He has ","","","seen snow. He wants to go to Japan!","never","At no time in his life → NEVER."],["They have ","","","done their homework, so they can play now.","already","Positive, before the main verb, sooner than expected → ALREADY."],["I have known my best friend ","",""," ten years.","for","Ten years is a length of time → FOR."]];
+  var opts='<option value="">— choose —</option>'+W.map(function(w){return '<option>'+w+'</option>'}).join('');
+  $('#gaps').innerHTML=G.map(function(g,k){return '<div class="gap">'+(k+1)+'. '+g[0]+'<select data-a="'+g[4]+'" aria-label="Gap '+(k+1)+'">'+opts+'</select>'+g[3]+'<span class="why" hidden>'+g[5]+'</span></div>'}).join('');
+  $('#checkGaps').onclick=function(){var s=0;document.querySelectorAll('#gaps select').forEach(function(sel){var ok=sel.value===sel.dataset.a;if(ok)s++;sel.className=ok?'ok':'no';
+    var w=sel.parentNode.querySelector('.why');w.hidden=false;w.textContent=(ok?'✅ ':'💡 Answer: '+sel.dataset.a.toUpperCase()+' — ')+w.textContent.replace(/^(✅ |💡 Answer: \w+ — )/,'');});
+    var fb=$('#gapFb');fb.className='fb show '+(s===G.length?'good':'bad');fb.textContent='You got '+s+' / '+G.length+(s===G.length?' — perfect! 🏆':' — read the tips under each sentence, then try again.');};
+  // 14 exit ticket
+  var E=[["1. Write one thing you have already done today.","I have already eaten breakfast and walked to school."],["2. Write one thing you have never done (but want to do!).","I have never been to Japan, but I want to go one day."],["3. Now use the amazing thing from slide 1: Have you ever…? Write the question and your answer.","Have you ever won a prize? Yes, I have! I have won a drawing competition."]];
+  $('#exit').innerHTML=E.map(function(x){return '<div class="exit"><p>'+x[0]+'</p><textarea aria-label="Your answer"></textarea><button>Show a sample</button><div class="a">💡 '+x[1]+'</div></div>'}).join('');
+  $('#exit').addEventListener('click',function(e){if(e.target.tagName==='BUTTON'){var x=e.target.parentNode;x.classList.toggle('open');e.target.textContent=x.classList.contains('open')?'Hide sample':'Show a sample'}});
+  // FAQ modal
+  qaList($('#faq'),[["What is a past participle?","It's the third form of a verb: go – went – <b>gone</b>, eat – ate – <b>eaten</b>. Regular verbs just add -ed: play → played."],["When do I use past simple instead?","When you say (or mean) a finished time: yesterday, last week, in 2019. \"I saw it yesterday\" ✅ — \"I have seen it yesterday\" ❌."],["Can I say \"I have been to\" and \"I have gone to\"?","Yes, but they're different! <b>Been to</b> = you went and came back. <b>Gone to</b> = you went and you are still there."],["Why is it \"she HAS\" but \"I HAVE\"?","Only he / she / it (one person or thing) use HAS. Everyone else uses HAVE."],["Can I use \"never\" with \"not\"?","No! \"Never\" already means not ever. ❌ I haven't never… ✅ I have never…"],["Where does \"yet\" go?","At the end of negative sentences and questions: I haven't eaten yet. / Have you eaten yet?"],["What does I've / she's mean?","Short forms: I've = I have, she's = she has, haven't = have not, hasn't = has not."],["FOR or SINCE — how do I choose?","Can you count it (3 days, 2 years)? → FOR. Is it a starting point (Monday, 2020, 8 o'clock)? → SINCE."]]);
+  function openM(){$('#modal').classList.add('open');$('#closeModal').focus()} function closeM(){$('#modal').classList.remove('open');$('#ask').focus()}
+  $('#ask').onclick=openM;$('#closeModal').onclick=closeM;$('#modal').addEventListener('click',function(e){if(e.target.id==='modal')closeM()});
+  go(0);
+})();
+</script>
+</body>
+</html>
