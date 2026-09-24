@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚡ DEBATE BATTLE — Reality Shows vs Documentaries</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0a0a0a;
+  --paper: #FFFDE7;
+  --red: #C62828;
+  --red-light: #FFEBEE;
+  --blue: #0D47A1;
+  --blue-light: #E3F2FD;
+  --green: #1B5E20;
+  --green-light: #E8F5E9;
+  --yellow: #FFC107;
+  --yellow-light: #FFFDE7;
+  --purple: #6A1B9A;
+  --orange: #E65100;
+  --shadow: 6px 6px 0 var(--ink);
+  --border: 3px solid var(--ink);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;overflow-x:hidden;}
+
+/* HALFTONE MANGA BACKGROUND */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:radial-gradient(circle,rgba(0,0,0,0.055) 1.2px,transparent 1.2px);
+  background-size:18px 18px;pointer-events:none;z-index:0;
+}
+
+/* TOP NAV */
+.top-nav{
+  position:fixed;top:0;left:0;right:0;
+  background:var(--ink);border-bottom:4px solid var(--yellow);
+  display:flex;align-items:center;padding:0 16px;z-index:100;
+  height:52px;gap:10px;
+}
+.nav-logo{
+  font-family:'Bangers',cursive;color:var(--yellow);
+  font-size:20px;letter-spacing:3px;white-space:nowrap;
+  text-shadow:2px 2px 0 var(--red);
+}
+.nav-spacer{flex:1;}
+.nav-btn{
+  font-family:'Bangers',cursive;font-size:15px;letter-spacing:1px;
+  background:transparent;color:#aaa;border:2px solid #444;
+  border-radius:3px;padding:5px 14px;cursor:pointer;transition:all .15s;
+}
+.nav-btn:hover,.nav-btn.active{background:var(--yellow);color:var(--ink);border-color:var(--yellow);}
+
+/* MAIN */
+.main{margin-top:52px;position:relative;z-index:1;}
+.view{display:none;}
+.view.active{display:block;}
+
+/* ======================== SLIDES ======================== */
+.slide-container{min-height:calc(100vh - 52px);display:flex;flex-direction:column;}
+.slide-area{flex:1;padding:20px;display:flex;flex-direction:column;gap:14px;}
+
+/* Badge */
+.slide-badge{
+  display:inline-block;font-family:'Bangers',cursive;
+  font-size:13px;letter-spacing:3px;padding:3px 14px;
+  border:2px solid var(--ink);border-radius:2px;
+}
+.badge-activate{background:var(--green);color:#fff;}
+.badge-acquire{background:var(--blue);color:#fff;}
+.badge-apply{background:var(--red);color:#fff;}
+.badge-reflect{background:var(--purple);color:#fff;}
+
+/* SLIDE PANEL — manga style */
+.slide-panel{
+  background:#fff;border:4px solid var(--ink);border-radius:3px;
+  box-shadow:8px 8px 0 var(--ink);padding:24px;
+  position:relative;overflow:hidden;
+  animation:slideIn .25s ease;
+}
+
+/* Speed lines inside panel */
+.slide-panel::before{
+  content:'';position:absolute;top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:repeating-conic-gradient(
+    from 0deg,rgba(0,0,0,0.018) 0deg 1.2deg,transparent 1.2deg 7deg
+  );
+  pointer-events:none;
+}
+
+@keyframes slideIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+.slide-title{
+  font-family:'Bangers',cursive;
+  font-size:clamp(26px,4.5vw,52px);
+  line-height:1.05;letter-spacing:2px;
+  text-shadow:3px 3px 0 var(--yellow);
+}
+.slide-subtitle{
+  font-family:'Bangers',cursive;
+  font-size:clamp(15px,2.5vw,26px);
+  color:var(--red);letter-spacing:1px;
+  margin-bottom:12px;
+}
+.slide-divider{border:2px solid var(--ink);margin-bottom:14px;}
+
+/* Content grid */
+.cgrid{display:grid;gap:14px;}
+.c2{grid-template-columns:1fr 1fr;}
+.c3{grid-template-columns:1fr 1fr 1fr;}
+
+/* Content boxes */
+.cbox{
+  background:var(--paper);border:3px solid var(--ink);
+  border-radius:3px;padding:14px;box-shadow:4px 4px 0 var(--ink);
+}
+.cbox.red{background:var(--red-light);border-color:var(--red);box-shadow:4px 4px 0 var(--red);}
+.cbox.blue{background:var(--blue-light);border-color:var(--blue);box-shadow:4px 4px 0 var(--blue);}
+.cbox.yellow{background:#FFFDE7;border-color:#F9A825;box-shadow:4px 4px 0 #F9A825;}
+.cbox.green{background:var(--green-light);border-color:var(--green);box-shadow:4px 4px 0 var(--green);}
+.cbox.purple{background:#F3E5F5;border-color:var(--purple);box-shadow:4px 4px 0 var(--purple);}
+.cbox.center{text-align:center;}
+.boxtitle{font-family:'Bangers',cursive;font-size:17px;letter-spacing:1px;margin-bottom:6px;}
+
+/* Speech bubble */
+.bubble{
+  background:#fff;border:3px solid var(--ink);
+  border-radius:14px;padding:12px 16px;position:relative;
+  margin-bottom:20px;box-shadow:3px 3px 0 var(--ink);
+}
+.bubble::after{
+  content:'';position:absolute;bottom:-19px;left:22px;
+  border:10px solid transparent;border-top:19px solid var(--ink);
+}
+.bubble::before{
+  content:'';position:absolute;bottom:-13px;left:25px;
+  border:8px solid transparent;border-top:14px solid #fff;z-index:1;
+}
+
+/* Grammar highlight */
+.gh{background:var(--yellow);border:1.5px solid var(--ink);border-radius:3px;padding:1px 7px;font-weight:900;}
+
+/* Question list */
+.qlist{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.qlist li{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:9px 13px;background:#fff;
+  border:2px solid var(--ink);border-radius:3px;
+  box-shadow:3px 3px 0 var(--ink);font-size:14px;font-weight:700;
+}
+.qnum{font-family:'Bangers',cursive;font-size:20px;color:var(--red);min-width:26px;}
+
+/* Model answer box */
+.model{
+  background:var(--green-light);border:2.5px solid var(--green);
+  border-radius:3px;padding:10px 14px;box-shadow:3px 3px 0 var(--green);
+}
+.model-lbl{font-family:'Bangers',cursive;font-size:12px;color:var(--green);letter-spacing:1px;margin-bottom:3px;}
+.model p{font-size:14px;font-weight:700;}
+.model em{color:var(--red);font-style:italic;}
+
+/* Statement card */
+.stcard{
+  padding:11px 15px;border:3px solid var(--ink);border-radius:3px;
+  box-shadow:3px 3px 0 var(--ink);font-weight:700;font-size:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.snum{font-family:'Bangers',cursive;font-size:22px;min-width:30px;}
+
+/* Steps table */
+.steptab{width:100%;border-collapse:separate;border-spacing:0 5px;}
+.steptab td{padding:7px 11px;border:2px solid var(--ink);font-size:13px;}
+.steptab td:first-child{
+  font-family:'Bangers',cursive;font-size:17px;
+  background:var(--ink);color:var(--yellow);
+  text-align:center;width:40px;
+}
+.steptab td:nth-child(2){font-weight:900;background:var(--yellow);width:68px;text-align:center;font-size:12px;}
+.steptab td:nth-child(3){background:#fff;}
+
+/* Genre pill */
+.gpill{
+  display:inline-block;padding:3px 11px;border:2px solid var(--ink);
+  border-radius:18px;font-size:12px;font-weight:700;margin:3px;
+}
+
+/* Vote button */
+.votebtn{
+  font-family:'Bangers',cursive;font-size:15px;letter-spacing:2px;
+  background:var(--red);color:#fff;border:3px solid var(--ink);
+  border-radius:3px;padding:7px 18px;cursor:pointer;
+  box-shadow:4px 4px 0 var(--ink);transition:all .1s;
+}
+.votebtn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);}
+.votebtn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink);}
+.votebtn.sm{font-size:12px;padding:5px 12px;}
+
+/* SLIDE CONTROLS */
+.slide-controls{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  padding:12px 16px;background:var(--ink);border-top:4px solid var(--yellow);
+  flex-wrap:wrap;
+}
+.ctrl-btn{
+  font-family:'Bangers',cursive;font-size:17px;letter-spacing:2px;
+  background:var(--yellow);color:var(--ink);border:3px solid var(--yellow);
+  border-radius:3px;padding:7px 22px;cursor:pointer;transition:all .1s;
+}
+.ctrl-btn:hover{opacity:.85;}
+.ctrl-btn:disabled{opacity:.3;cursor:not-allowed;}
+.slide-ctr{font-family:'Bangers',cursive;font-size:19px;color:#fff;letter-spacing:2px;min-width:90px;text-align:center;}
+.note-toggle{font-family:'Bangers',cursive;font-size:13px;background:#F9A825;color:var(--ink);border:2px solid var(--ink);border-radius:3px;padding:5px 12px;cursor:pointer;}
+
+/* Teacher note */
+.tnote{background:#FFF9C4;border:2px dashed #F9A825;border-radius:3px;padding:12px 15px;margin-top:10px;}
+.tnote-title{font-family:'Bangers',cursive;font-size:13px;color:#E65100;letter-spacing:1px;margin-bottom:4px;}
+.tnote p{font-size:13px;line-height:1.55;}
+
+/* ======================== VOTING MODAL ======================== */
+.modal-ov{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.72);z-index:200;
+  align-items:center;justify-content:center;
+}
+.modal-ov.open{display:flex;}
+.vmodal{
+  background:#fff;border:5px solid var(--ink);border-radius:6px;
+  box-shadow:14px 14px 0 var(--ink);padding:26px;
+  max-width:480px;width:92%;max-height:85vh;overflow-y:auto;
+}
+.modal-title{font-family:'Bangers',cursive;font-size:26px;letter-spacing:2px;color:var(--red);margin-bottom:8px;}
+.modal-q{font-size:15px;font-weight:700;margin-bottom:14px;padding:10px;background:var(--paper);border:2px solid var(--ink);border-radius:3px;}
+.vopt{display:flex;align-items:center;gap:10px;padding:9px;margin-bottom:7px;border:2px solid var(--ink);border-radius:3px;}
+.vopt label{font-weight:700;min-width:160px;font-size:14px;}
+.vinput{width:66px;padding:6px;font-size:18px;font-weight:900;text-align:center;border:2px solid var(--ink);border-radius:3px;font-family:'Nunito',sans-serif;}
+.vtotal{font-family:'Bangers',cursive;font-size:18px;text-align:center;padding:8px;margin:10px 0;border:2px dashed var(--ink);border-radius:3px;}
+.vtotal.over{color:var(--red);border-color:var(--red);}
+.vtotal.ok{color:var(--green);border-color:var(--green);}
+.modal-acts{display:flex;gap:10px;justify-content:flex-end;margin-top:14px;}
+.mbtn-cancel{font-family:'Bangers',cursive;font-size:15px;background:#eee;color:var(--ink);border:2px solid var(--ink);border-radius:3px;padding:7px 18px;cursor:pointer;}
+.mbtn-ok{font-family:'Bangers',cursive;font-size:15px;background:var(--green);color:#fff;border:2px solid var(--ink);border-radius:3px;padding:7px 18px;cursor:pointer;}
+
+/* ======================== SCOREBOARD ======================== */
+.sbview{padding:18px;}
+.sbheader{text-align:center;margin-bottom:18px;}
+.sbheader h1{
+  font-family:'Bangers',cursive;font-size:clamp(36px,6vw,58px);
+  letter-spacing:4px;
+  text-shadow:4px 4px 0 var(--yellow),8px 8px 0 var(--red);
+}
+.sbheader p{font-weight:700;color:#444;margin-top:4px;}
+
+.teams-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;margin-bottom:20px;}
+
+.team-card{background:#fff;border:4px solid var(--ink);border-radius:3px;box-shadow:6px 6px 0 var(--ink);overflow:hidden;}
+.team-hdr{padding:10px 13px;display:flex;align-items:center;justify-content:space-between;}
+.tname-in{
+  font-family:'Bangers',cursive;font-size:19px;letter-spacing:1px;
+  background:transparent;border:none;outline:none;color:#fff;
+  width:136px;text-shadow:1px 1px 0 rgba(0,0,0,.3);
+}
+.ttotal{font-family:'Bangers',cursive;font-size:34px;color:#fff;text-shadow:2px 2px 0 rgba(0,0,0,.25);}
+.team-body{padding:10px;}
+
+.scat{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:7px;padding:6px 9px;
+  background:var(--paper);border:2px solid var(--ink);border-radius:3px;
+}
+.catname{font-size:12px;font-weight:700;}
+.catsub{font-size:10px;color:#888;}
+.catctrl{display:flex;align-items:center;gap:7px;}
+.catscore{font-family:'Bangers',cursive;font-size:22px;min-width:26px;text-align:center;}
+.sbtn{
+  width:28px;height:28px;border:2px solid var(--ink);border-radius:3px;
+  background:#fff;font-size:15px;font-weight:900;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.sbtn.plus{background:var(--green);color:#fff;}
+.sbtn.minus{background:var(--red);color:#fff;}
+.sbtn:hover{opacity:.8;}
+
+/* leaderboard ranking */
+.ranking-table{width:100%;border-collapse:separate;border-spacing:0 5px;margin-bottom:16px;}
+.ranking-table td{padding:9px 13px;border:2px solid var(--ink);font-size:14px;font-weight:700;background:#fff;}
+.ranking-table td:first-child{
+  font-family:'Bangers',cursive;font-size:22px;background:var(--ink);color:var(--yellow);
+  text-align:center;width:42px;
+}
+.ranking-table tr:nth-child(1) td:first-child{background:var(--yellow);color:var(--ink);}
+.ranking-table tr:nth-child(2) td:first-child{background:#aaa;color:#fff;}
+.ranking-table tr:nth-child(3) td:first-child{background:#cd7f32;color:#fff;}
+
+.chart-section{background:#fff;border:4px solid var(--ink);border-radius:3px;box-shadow:6px 6px 0 var(--ink);padding:18px;margin-bottom:16px;}
+.chart-section h2{font-family:'Bangers',cursive;font-size:22px;letter-spacing:2px;margin-bottom:12px;}
+
+/* ======================== RESULTS ======================== */
+.resview{padding:18px;}
+.resheader{text-align:center;margin-bottom:22px;}
+.resheader h1{font-family:'Bangers',cursive;font-size:clamp(30px,5vw,50px);letter-spacing:4px;text-shadow:4px 4px 0 var(--blue);}
+.resheader p{font-weight:700;color:#444;margin-top:4px;}
+.polls-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.poll-card{background:#fff;border:4px solid var(--ink);border-radius:3px;box-shadow:6px 6px 0 var(--ink);padding:14px;}
+.poll-card h3{font-family:'Bangers',cursive;font-size:14px;letter-spacing:1px;margin-bottom:4px;color:var(--red);}
+.poll-card .pq{font-size:13px;font-weight:700;margin-bottom:10px;padding:6px;background:var(--paper);border-radius:3px;border:1.5px solid #ddd;}
+.vcnt{text-align:center;font-size:11px;color:#666;margin-top:6px;}
+
+/* ======================== RESPONSIVE ======================== */
+@media(max-width:640px){
+  .c2,.c3{grid-template-columns:1fr;}
+  .teams-grid{grid-template-columns:1fr;}
+  .slide-panel{padding:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <div class="nav-logo">⚡ DEBATE BATTLE!</div>
+  <div class="nav-spacer"></div>
+  <button class="nav-btn active" onclick="showView('slides',this)">📖 SLIDES</button>
+  <button class="nav-btn" onclick="showView('scoreboard',this)">🏆 SCOREBOARD</button>
+  <button class="nav-btn" onclick="showView('results',this)">📊 RESULTS</button>
+</nav>
+
+<main class="main">
+
+  <!-- ===== SLIDES ===== -->
+  <div id="view-slides" class="view active">
+    <div class="slide-container">
+      <div class="slide-area" id="slide-area"></div>
+      <div class="slide-controls">
+        <button class="ctrl-btn" id="prev-btn" onclick="prevSlide()">◀ PREV</button>
+        <div class="slide-ctr" id="slide-ctr">1 / 19</div>
+        <button class="ctrl-btn" id="next-btn" onclick="nextSlide()">NEXT ▶</button>
+        <button class="note-toggle" onclick="toggleNote()">📝 TEACHER NOTE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCOREBOARD ===== -->
+  <div id="view-scoreboard" class="view">
+    <div class="sbview">
+      <div class="sbheader">
+        <h1>🏆 SCOREBOARD 🏆</h1>
+        <p>Blueprint 4 — Lesson 4: TV Choices | GEP Class Debate</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;align-items:center;">
+        <button onclick="resetScores()" style="font-family:'Bangers',cursive;font-size:14px;background:var(--red);color:#fff;border:2px solid var(--ink);border-radius:3px;padding:6px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);">🔄 RESET ALL SCORES</button>
+        <span style="font-size:13px;font-weight:700;color:#666;">Click team name to edit | Use +/− to award points</span>
+      </div>
+      <div class="teams-grid" id="teams-grid"></div>
+      <div class="chart-section">
+        <h2>🥇 RANKING</h2>
+        <table class="ranking-table" id="ranking-table"></table>
+      </div>
+      <div class="chart-section">
+        <h2>📊 TEAM SCORES — BAR CHART</h2>
+        <canvas id="scoreboard-chart" height="80"></canvas>
+      </div>
+      <div class="chart-section">
+        <h2>🏅 SCORE BREAKDOWN BY CATEGORY</h2>
+        <canvas id="breakdown-chart" height="100"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RESULTS ===== -->
+  <div id="view-results" class="view">
+    <div class="resview">
+      <div class="resheader">
+        <h1>📊 POLL ANALYSIS</h1>
+        <p>Class of 35 Students — Discussion & Debate Results</p>
+      </div>
+      <div class="polls-grid" id="polls-grid"></div>
+      <div class="chart-section" style="margin-top:18px;">
+        <h2>🎯 OVERALL: Reality Shows vs Documentaries</h2>
+        <p style="font-size:13px;color:#555;margin-bottom:10px;">Total votes across all comparative polls</p>
+        <canvas id="overall-chart" height="80"></canvas>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- VOTING MODAL -->
+<div class="modal-ov" id="vote-modal">
+  <div class="vmodal">
+    <div class="modal-title">🗳️ CLASS VOTE!</div>
+    <div class="modal-q" id="modal-q-text"></div>
+    <div id="modal-options"></div>
+    <div class="vtotal ok" id="vtotal-display">Total: 0 / 35 votes</div>
+    <div class="modal-acts">
+      <button class="mbtn-cancel" onclick="closeVoteModal()">✕ CANCEL</button>
+      <button class="mbtn-ok" onclick="confirmVote()">✅ RECORD VOTES</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// TEAM DATA
+// ============================================================
+const TEAM_COLORS = ['#C62828','#0D47A1','#1B5E20','#6A1B9A','#E65100','#00695C','#827717','#37474F'];
+
+const teams = Array.from({length:8},(_,i)=>({
+  name:`Team ${i+1}`, color:TEAM_COLORS[i],
+  grammar:0, opinion:0, reason:0, respect:0, teamwork:0
+}));
+
+// ============================================================
+// POLL DATA
+// ============================================================
+const polls = {
+  p1:{label:'WARM-UP VOTE',question:'Would you rather watch a reality show or a documentary?',options:['📺 Reality Show','🎬 Documentary'],votes:[0,0]},
+  p2:{label:'GROUP TASK 1 — Student Vote',question:'Which is better for students?',options:['📺 Reality Show','🎬 Documentary','⚖️ Both equally'],votes:[0,0,0]},
+  p3:{label:'GENRE VOTE',question:'Are reality shows real or scripted?',options:['✅ Mostly Real','🎭 Mostly Scripted','🤷 Somewhere between'],votes:[0,0,0]},
+  p4:{label:'ENJOYMENT VOTE',question:'Which is more enjoyable to watch?',options:['📺 Reality Show','🎬 Documentary'],votes:[0,0]},
+  p5a:{label:'QUICK FIRE — Funnier?',question:'Which is funnier?',options:['📺 Reality Show','🎬 Documentary'],votes:[0,0]},
+  p5b:{label:'QUICK FIRE — More Dramatic?',question:'Which is more dramatic?',options:['📺 Reality Show','🎬 Documentary'],votes:[0,0]},
+  p5c:{label:'QUICK FIRE — More Educational?',question:'Which is more educational?',options:['📺 Reality Show','🎬 Documentary'],votes:[0,0]},
+  p5d:{label:'QUICK FIRE — More Exaggerated?',question:'Which is more exaggerated?',options:['📺 Reality Show','🎬 Documentary'],votes:[0,0]},
+  p6:{label:'AGREE / DISAGREE VOTE',question:'Reality shows are fake.',options:['✅ Agree','❌ Disagree','🤷 Not sure'],votes:[0,0,0]},
+  p7:{label:'FINAL REFLECTION',question:'Did your opinion change today?',options:['✅ Yes!','❌ No','🔄 Partly'],votes:[0,0,0]}
+};
+
+// ============================================================
+// SLIDES DATA
+// ============================================================
+const slides = [
+
+  // ===== ACTIVATE 1: TITLE =====
+  {type:'activate',title:'DEBATE BATTLE!',subtitle:'Reality Shows vs Documentaries',
+   note:'Welcome class! Today is our debate day based on Blueprint 4 Lesson 4: TV Choices. Remind students we will use "would rather" and "would you rather...?" throughout. Get energy high — this is about real English communication! Set the 3 modes: teacher hosts on this screen, scoreboard tracks points, poll results show class opinions.',
+   content:()=>`
+    <div class="cgrid c2">
+      <div class="cbox blue">
+        <div class="boxtitle">📘 Blueprint 4 — Lesson 4: TV Choices</div>
+        <p style="margin:6px 0;font-size:13px;font-weight:700;">📖 Vocabulary: TV genres &amp; watching TV</p>
+        <p style="font-size:13px;font-weight:700;">📐 Grammar: <span class="gh">would rather</span></p>
+        <p style="font-size:13px;font-weight:700;margin-top:5px;">💬 Speaking: <span class="gh">Would you rather...?</span></p>
+      </div>
+      <div class="cbox red">
+        <div class="boxtitle">⚔️ TODAY'S MISSION</div>
+        <ul style="list-style:none;font-size:13px;">
+          <li style="margin-bottom:5px;">💬 Compare, analyse &amp; defend opinions</li>
+          <li style="margin-bottom:5px;">🏆 Earn points for your team</li>
+          <li style="margin-bottom:5px;">🗳️ Vote on key debate questions</li>
+          <li>⚡ Use target grammar to score!</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cbox yellow" style="margin-top:8px;">
+      <div class="boxtitle">🏅 HOW TO EARN POINTS</div>
+      <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;">
+        <span style="padding:4px 10px;background:#fff;border:2px solid var(--blue);border-radius:3px;font-size:12px;font-weight:700;">⚡ Grammar Power — 1pt</span>
+        <span style="padding:4px 10px;background:#fff;border:2px solid var(--red);border-radius:3px;font-size:12px;font-weight:700;">💬 Clear Opinion — 1pt</span>
+        <span style="padding:4px 10px;background:#fff;border:2px solid var(--green);border-radius:3px;font-size:12px;font-weight:700;">🧠 Good Reason — 1pt</span>
+        <span style="padding:4px 10px;background:#fff;border:2px solid var(--purple);border-radius:3px;font-size:12px;font-weight:700;">🤝 Respect — 1pt</span>
+        <span style="padding:4px 10px;background:#fff;border:2px solid var(--orange);border-radius:3px;font-size:12px;font-weight:700;">👥 Teamwork Bonus — 2pts</span>
+      </div>
+    </div>
+    <div class="cbox green center" style="margin-top:8px;">
+      <p style="font-weight:900;font-size:15px;">🏫 GEP Class | 35 Students | Up to 8 Teams | Blueprint 4</p>
+    </div>`
+  },
+
+  // ===== ACTIVATE 2: WARM-UP =====
+  {type:'activate',title:'WARM-UP!',subtitle:'What do you watch?',
+   note:'Start with a quick show of hands — no wrong answers! Ask "Would you rather watch a reality show or a documentary right now?" Encourage students to give a reason immediately. Praise any use of the target grammar. Then run the class vote below.',
+   content:()=>`
+    <div class="bubble">
+      <p style="font-size:15px;font-weight:900;">Teacher Roberts asks: <em>"<span class="gh">Would you rather</span> watch a reality show or a documentary? Why?"</em></p>
+    </div>
+    <div style="margin-top:8px;"></div>
+    <ul class="qlist">
+      <li><span class="qnum">1</span><span>What do you watch the <strong>most</strong> and why?</span></li>
+      <li><span class="qnum">2</span><span>Which gives you <strong>more real information</strong>?</span></li>
+      <li><span class="qnum">3</span><span>Which type helps you <strong>learn new things</strong>?</span></li>
+      <li><span class="qnum">4</span><span>What is your <strong>favourite</strong> TV genre?</span></li>
+    </ul>
+    <div style="margin-top:12px;text-align:center;">
+      <button class="votebtn" onclick="openVote('p1')">🗳️ CLASS VOTE — Reality Show or Documentary?</button>
+    </div>`
+  },
+
+  // ===== ACTIVATE 3: TV GENRES =====
+  {type:'activate',title:'TV GENRES!',subtitle:'Vocabulary Review',
+   note:'Quick vocab check — point to each genre. Ask students: "Can you give an example of this genre?" Award +1 grammar point immediately if anyone uses "I would rather watch... because..." or "I prefer... because..." This is activation, not testing!',
+   content:()=>`
+    <div class="cgrid c2">
+      <div>
+        <div class="boxtitle" style="margin-bottom:8px;">📺 Types of TV Show</div>
+        <div style="margin-bottom:12px;">
+          <span class="gpill" style="background:var(--red-light);border-color:var(--red);">Reality Show</span>
+          <span class="gpill" style="background:var(--blue-light);border-color:var(--blue);">Documentary</span>
+          <span class="gpill" style="background:#E8F5E9;border-color:var(--green);">News</span>
+          <span class="gpill" style="background:#FFF3E0;border-color:var(--orange);">Sitcom</span>
+          <span class="gpill" style="background:#F3E5F5;border-color:var(--purple);">Soap Opera</span>
+          <span class="gpill" style="background:#E0F7FA;border-color:#00695C;">Nature Show</span>
+        </div>
+        <div class="cbox" style="font-size:13px;">
+          <strong>💬 Use this language:</strong><br/>
+          <em>"I <span class="gh">would rather</span> watch [genre] because..."</em><br/>
+          <em>"I prefer [genre] to [genre] because..."</em>
+        </div>
+      </div>
+      <div>
+        <div class="boxtitle" style="margin-bottom:8px;">❓ Discuss These</div>
+        <ul class="qlist">
+          <li><span class="qnum">Q</span><span>Which gives <strong>more real</strong> information?</span></li>
+          <li><span class="qnum">Q</span><span>Which is more <strong>entertaining</strong>?</span></li>
+          <li><span class="qnum">Q</span><span>Which is more <strong>boring</strong>?</span></li>
+        </ul>
+        <div style="margin-top:10px;text-align:center;">
+          <button class="votebtn sm" onclick="openVote('p3')">🗳️ VOTE: Real or Scripted?</button>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // ===== ACQUIRE 1: DEFINE GENRES =====
+  {type:'acquire',title:'DEFINE THE GENRES!',subtitle:'What are they exactly?',
+   note:'Give clear definitions before the debate begins. Elicit student examples of each genre. Ask: "Can you name a reality show you have watched?" This bridges vocabulary with their real experience.',
+   content:()=>`
+    <div class="cgrid c2">
+      <div class="cbox red">
+        <div class="boxtitle">📺 REALITY SHOW</div>
+        <ul style="font-size:13px;padding-left:15px;margin-top:6px;line-height:1.8;">
+          <li>Unscripted (or <em>mostly</em> unscripted) entertainment</li>
+          <li>Drama, competition, real people</li>
+          <li>Designed to be exciting or emotional</li>
+          <li><strong>Examples:</strong> Survivor, Big Brother, MasterChef</li>
+        </ul>
+      </div>
+      <div class="cbox blue">
+        <div class="boxtitle">🎬 DOCUMENTARY</div>
+        <ul style="font-size:13px;padding-left:15px;margin-top:6px;line-height:1.8;">
+          <li>Factual, educational, real-world stories</li>
+          <li>Based on research and evidence</li>
+          <li>Journalist or expert-led</li>
+          <li><strong>Examples:</strong> Planet Earth, March of the Penguins</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cbox yellow" style="margin-top:10px;">
+      <div class="boxtitle">❓ KEY DEBATE QUESTION</div>
+      <p style="font-size:16px;font-weight:900;text-align:center;margin-top:4px;">"Which one is more <em>real</em>? Why?"</p>
+      <div class="model" style="margin-top:8px;">
+        <div class="model-lbl">MODEL ANSWER ★</div>
+        <p><em>"I would rather say documentaries are more real because they are based on facts."</em></p>
+      </div>
+    </div>`
+  },
+
+  // ===== ACQUIRE 2: GRAMMAR POWER =====
+  {type:'acquire',title:'GRAMMAR POWER!',subtitle:'Would rather / Would you rather...?',
+   note:'Drill the structure! Go around the class: "Would you rather watch the news or a soap opera tonight?" Insist on full sentences. If a student says "The news" correct gently: "Please use the full structure — I would rather watch the news because..." Award +1 grammar point every time it\'s correct!',
+   content:()=>`
+    <div class="cgrid c2">
+      <div>
+        <div class="cbox blue">
+          <div class="boxtitle">📐 STRUCTURE</div>
+          <div style="margin-top:8px;font-size:13px;">
+            <p style="margin-bottom:4px;"><strong>✅ Positive statement:</strong></p>
+            <div style="padding:8px;background:#fff;border:2px solid var(--ink);border-radius:3px;font-weight:900;font-size:14px;">Subject + <span class="gh">would rather</span> + base verb</div>
+            <p style="margin:8px 0 4px;"><strong>✅ Question form:</strong></p>
+            <div style="padding:8px;background:#fff;border:2px solid var(--ink);border-radius:3px;font-weight:900;font-size:14px;"><span class="gh">Would you rather</span> + V + or + V?</div>
+            <p style="margin:8px 0 4px;"><strong>✅ Short form:</strong></p>
+            <div style="padding:8px;background:#fff;border:2px solid var(--ink);border-radius:3px;font-size:13px;"><em>would rather</em> = <strong>I'd rather</strong></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="boxtitle" style="margin-bottom:8px;">✅ MODEL ANSWERS</div>
+        <div class="model" style="margin-bottom:8px;">
+          <div class="model-lbl">MODEL ★</div>
+          <p><em>"I'd rather watch a documentary because it gives real information."</em></p>
+        </div>
+        <div class="model" style="margin-bottom:8px;">
+          <div class="model-lbl">MODEL ★</div>
+          <p><em>"I would rather watch a reality show because it's more entertaining."</em></p>
+        </div>
+        <div class="model">
+          <div class="model-lbl">QUESTION MODEL ★</div>
+          <p><em>"Would you rather watch the news or a sitcom tonight?"</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="cbox red" style="margin-top:8px;font-size:13px;">
+      <strong>❌ Don't say:</strong> "I rather watch..." &nbsp;|&nbsp; <strong>❌ Don't say:</strong> "I would rather to watch..."<br/>
+      <strong>✅ Say:</strong> "I would rather watch..." / "I'd rather watch..."
+    </div>`
+  },
+
+  // ===== ACQUIRE 3: DEBATE RULES =====
+  {type:'acquire',title:'HOW TO DEBATE!',subtitle:'The 5-Step Battle Plan',
+   note:'Keep this quick — 3 minutes max. Students should already know these rules from the student leaflet. Just confirm roles. Assign Captains now if not done. Remind them: every time they use "would rather" correctly, their team gets a point.',
+   content:()=>`
+    <div class="cgrid c2">
+      <div>
+        <div class="boxtitle" style="margin-bottom:8px;">⏱️ THE 5 STEPS</div>
+        <table class="steptab">
+          <tbody>
+            <tr><td>1</td><td>2 min</td><td>Brainstorm — Use target grammar!</td></tr>
+            <tr><td>2</td><td>1 min</td><td>Captain opens: <em>"Our team believes..."</em></td></tr>
+            <tr><td>3</td><td>4–5 min</td><td>Everyone speaks — 1 opinion + 1 reason</td></tr>
+            <tr><td>4</td><td>30 sec</td><td>Captain closes: <em>"In conclusion..."</em></td></tr>
+            <tr><td>5</td><td>10 sec</td><td>Class Vote! 🗳️</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="boxtitle" style="margin-bottom:8px;">🎭 TEAM ROLES</div>
+        <div class="cbox" style="margin-bottom:8px;padding:9px;"><strong>👑 Captain</strong> — Opens + closes the debate</div>
+        <div class="cbox" style="margin-bottom:8px;padding:9px;"><strong>💬 Speakers</strong> — 1 opinion + 1 reason each</div>
+        <div class="cbox" style="padding:9px;"><strong>📝 Note Taker</strong> — Records 3–5 key ideas</div>
+        <div class="cbox yellow" style="margin-top:8px;padding:8px;font-size:12px;">
+          🔄 Roles rotate — everyone will lead eventually!
+        </div>
+      </div>
+    </div>`
+  },
+
+  // ===== APPLY 1: GROUP TASK 1 =====
+  {type:'apply',title:'GROUP TASK 1!',subtitle:'Discuss in your groups',
+   note:'Give groups 3–4 minutes to discuss. Walk around and listen. Award IMMEDIATE grammar points when "would rather" is used correctly — don\'t wait. Encourage captains to take written notes. Quieter students should be gently brought in: "What about you? Would you rather...?"',
+   content:()=>`
+    <div class="bubble">
+      <p style="font-weight:900;font-size:14px;">Discuss with your group! Use: <span class="gh">I'd rather... because... / I think... is better because...</span></p>
+    </div>
+    <div style="margin-top:8px;"></div>
+    <ul class="qlist">
+      <li><span class="qnum">1</span><span>Which is <strong>better for students</strong>?</span></li>
+      <li><span class="qnum">2</span><span>Which is better for <strong>teenagers or families</strong>?</span></li>
+      <li><span class="qnum">3</span><span>Which one has a more <strong>positive influence</strong>?</span></li>
+      <li><span class="qnum">4</span><span>Which is more <strong>entertaining</strong> and why?</span></li>
+    </ul>
+    <div style="margin-top:12px;text-align:center;">
+      <button class="votebtn" onclick="openVote('p2')">🗳️ CLASS VOTE — Which is better for students?</button>
+    </div>`
+  },
+
+  // ===== APPLY 2: HOST QUESTIONS =====
+  {type:'apply',title:'HOST QUESTIONS!',subtitle:'Ask each group — earn points!',
+   note:'Direct questions at specific groups. Target students who haven\'t spoken yet. After each answer, ask a follow-up: "Can you give an example?" or "Does your team agree?" Award points immediately — be generous but honest. Let students see the scoreboard update in real time.',
+   content:()=>`
+    <ul class="qlist">
+      <li><span class="qnum">1</span><span>Do reality shows <strong>affect people's behaviour</strong> or expectations?</span></li>
+      <li><span class="qnum">2</span><span>Which is <strong>more enjoyable</strong>? Why?</span></li>
+      <li><span class="qnum">3</span><span>Which one is more <strong>creative</strong> or more <strong>difficult</strong> to make?</span></li>
+      <li><span class="qnum">4</span><span>Which type helps you <strong>learn new things</strong>?</span></li>
+      <li><span class="qnum">5</span><span>Which would you <strong>recommend to a friend</strong> and why?</span></li>
+    </ul>
+    <div style="margin-top:10px;text-align:center;">
+      <button class="votebtn" onclick="openVote('p4')">🗳️ VOTE — Which is more enjoyable?</button>
+    </div>
+    <div class="model" style="margin-top:10px;">
+      <div class="model-lbl">GRAMMAR BOOST ★</div>
+      <p><em>"I would rather recommend documentaries because they teach us real facts about the world."</em></p>
+    </div>`
+  },
+
+  // ===== APPLY 3: GROUP TASK 2 =====
+  {type:'apply',title:'GROUP TASK 2!',subtitle:'Choose a statement and DEBATE IT!',
+   note:'Each group picks ONE statement card and must defend it — even if they personally disagree! The other groups can challenge them after. Captains must open with: "We believe that..." Students should prepare for 2 minutes before speaking. Award Teamwork Bonus to groups who help quieter members speak.',
+   content:()=>`
+    <div style="display:flex;flex-direction:column;gap:9px;">
+      <div class="stcard" style="background:var(--red-light);">
+        <span class="snum" style="color:var(--red);">A</span>
+        <span>"Reality shows are <strong>better</strong> than documentaries."</span>
+      </div>
+      <div class="stcard" style="background:var(--blue-light);">
+        <span class="snum" style="color:var(--blue);">B</span>
+        <span>"Documentaries are <strong>more educational</strong> than reality shows."</span>
+      </div>
+      <div class="stcard" style="background:#FFF9C4;">
+        <span class="snum" style="color:var(--orange);">C</span>
+        <span>"Reality shows are <strong>scripted</strong> — they are not real at all."</span>
+      </div>
+      <div class="stcard" style="background:var(--green-light);">
+        <span class="snum" style="color:var(--green);">D</span>
+        <span>"Documentaries are <strong>boring</strong> compared to reality shows."</span>
+      </div>
+    </div>
+    <div class="cbox yellow" style="margin-top:10px;font-size:13px;text-align:center;">
+      <strong>💬 Captain opens:</strong> <em>"Our team believes that [statement] because..."</em>
+    </div>`
+  },
+
+  // ===== APPLY 4: EVIDENCE & SUPPORT =====
+  {type:'apply',title:'EVIDENCE & SUPPORT!',subtitle:'Each group must provide all three:',
+   note:'This is a crucial skill-building slide. If a student gives only a vague opinion, ask: "Can you give a specific example?" If they give an example without a reason, prompt: "Why does that example support your point?" If they have both, challenge: "What would the other side say?"',
+   content:()=>`
+    <div class="cgrid c3">
+      <div class="cbox red">
+        <div style="text-align:center;font-size:28px;margin-bottom:4px;">1️⃣</div>
+        <div class="boxtitle">EXAMPLE</div>
+        <p style="font-size:12px;margin-top:5px;">Name a specific show, episode, or moment.</p>
+        <div class="model" style="margin-top:8px;">
+          <div class="model-lbl">MODEL ★</div>
+          <p style="font-size:12px;"><em>"For example, in [show]..."</em></p>
+        </div>
+      </div>
+      <div class="cbox blue">
+        <div style="text-align:center;font-size:28px;margin-bottom:4px;">2️⃣</div>
+        <div class="boxtitle">REASON</div>
+        <p style="font-size:12px;margin-top:5px;">Explain WHY your example supports your argument.</p>
+        <div class="model" style="margin-top:8px;">
+          <div class="model-lbl">MODEL ★</div>
+          <p style="font-size:12px;"><em>"This shows that... because..."</em></p>
+        </div>
+      </div>
+      <div class="cbox green">
+        <div style="text-align:center;font-size:28px;margin-bottom:4px;">3️⃣</div>
+        <div class="boxtitle">COUNTERARGUMENT</div>
+        <p style="font-size:12px;margin-top:5px;">Respond to the other side fairly.</p>
+        <div class="model" style="margin-top:8px;">
+          <div class="model-lbl">MODEL ★</div>
+          <p style="font-size:12px;"><em>"I understand your point, but..."</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="cbox yellow" style="margin-top:10px;font-size:13px;text-align:center;">
+      <strong>⚡ GRAMMAR BONUS:</strong> Use <span class="gh">would rather</span> in your argument = +1 point automatically!
+    </div>`
+  },
+
+  // ===== APPLY 5: HOST FOLLOW-UP =====
+  {type:'apply',title:'HOST FOLLOW-UP!',subtitle:'Push deeper — keep the debate going!',
+   note:'Use these to probe for deeper, more structured answers. If a student gives a one-word answer, follow up immediately: "Can you say that as a full sentence?" or "Why do you think so?" These questions generate the best grammar opportunities. Use the scoreboard live.',
+   content:()=>`
+    <ul class="qlist">
+      <li><span class="qnum">1</span><span>Can you give an <strong>example</strong> to support your idea?</span></li>
+      <li><span class="qnum">2</span><span>Why should we <strong>believe</strong> your argument?</span></li>
+      <li><span class="qnum">3</span><span>Do you <strong>agree or disagree</strong> with another group's point?</span></li>
+      <li><span class="qnum">4</span><span>How does your choice <strong>benefit society</strong>?</span></li>
+      <li><span class="qnum">5</span><span>Which option helps people <strong>learn more</strong>?</span></li>
+      <li><span class="qnum">6</span><span>Which has a stronger <strong>emotional impact</strong>?</span></li>
+      <li><span class="qnum">7</span><span>Which one is more <strong>realistic</strong> and why?</span></li>
+    </ul>`
+  },
+
+  // ===== APPLY 6: CRITICAL THINKING =====
+  {type:'apply',title:'CRITICAL THINKING!',subtitle:'Big questions — think carefully!',
+   note:'Higher-order thinking. Give 1 minute of group discussion before taking answers. Encourage use of conditional: "If reality shows didn\'t exist, I think..." or "I would rather live in a world with documentaries because..." These stretch students beyond B1.',
+   content:()=>`
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="cbox red" style="padding:16px;">
+        <p style="font-size:15px;font-weight:900;">🌍 What would happen if people <strong>stopped watching documentaries</strong>?</p>
+      </div>
+      <div class="cbox blue" style="padding:16px;">
+        <p style="font-size:15px;font-weight:900;">💥 What would happen if <strong>reality shows didn't exist</strong>?</p>
+      </div>
+      <div class="cbox green" style="padding:16px;">
+        <p style="font-size:15px;font-weight:900;">🔮 Which type will be <strong>more popular in the future</strong> and why?</p>
+      </div>
+    </div>
+    <div class="model" style="margin-top:10px;">
+      <div class="model-lbl">GRAMMAR BOOST ★</div>
+      <p><em>"I <span class="gh">would rather</span> live in a world with documentaries because they help us understand the world."</em></p>
+    </div>`
+  },
+
+  // ===== APPLY 7: QUICK FIRE =====
+  {type:'apply',title:'QUICK FIRE ROUND! ⚡',subtitle:'Answer fast — full sentences only!',
+   note:'High energy! Point to a random group and ask. First team to give a complete, grammatically correct answer wins the point. If they only say one word: "Nice try! Full sentence please — I would rather say..." Keep it fun and fast-paced. Run all 4 votes at the end.',
+   content:()=>`
+    <div class="cgrid c2">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="cbox" style="background:var(--red-light);border-color:var(--red);padding:12px;text-align:center;">
+          <p style="font-size:15px;font-weight:900;">😂 Which is <strong>FUNNIER</strong>?</p>
+          <button class="votebtn sm" style="margin-top:8px;" onclick="openVote('p5a')">🗳️ VOTE</button>
+        </div>
+        <div class="cbox" style="background:var(--blue-light);border-color:var(--blue);padding:12px;text-align:center;">
+          <p style="font-size:15px;font-weight:900;">🎭 Which is more <strong>DRAMATIC</strong>?</p>
+          <button class="votebtn sm" style="margin-top:8px;" onclick="openVote('p5b')">🗳️ VOTE</button>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="cbox" style="background:var(--green-light);border-color:var(--green);padding:12px;text-align:center;">
+          <p style="font-size:15px;font-weight:900;">📚 Which is more <strong>EDUCATIONAL</strong>?</p>
+          <button class="votebtn sm" style="margin-top:8px;" onclick="openVote('p5c')">🗳️ VOTE</button>
+        </div>
+        <div class="cbox" style="background:#FFF9C4;border-color:#F9A825;padding:12px;text-align:center;">
+          <p style="font-size:15px;font-weight:900;">🎪 Which is more <strong>EXAGGERATED</strong>?</p>
+          <button class="votebtn sm" style="margin-top:8px;" onclick="openVote('p5d')">🗳️ VOTE</button>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // ===== APPLY 8: AGREE OR DISAGREE =====
+  {type:'apply',title:'AGREE OR DISAGREE?',subtitle:'Stand up / raise your hand!',
+   note:'Physical activity! Read each statement clearly and slowly. After the class shows their position, ask 2-3 students to justify: "Why do you agree?" Insist on the grammar: "Can you use would rather or I prefer in your answer?" Award respect points for listening quietly while others speak.',
+   content:()=>`
+    <div class="bubble" style="margin-bottom:20px;">
+      <p style="font-weight:900;font-size:14px;">🙋 Stand = AGREE &nbsp;|&nbsp; 🪑 Stay seated = DISAGREE &nbsp;|&nbsp; ✋ Hand up = NOT SURE</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div class="stcard"><span class="snum">A</span><span>Reality shows <strong>teach life skills</strong>.</span></div>
+      <div class="stcard"><span class="snum">B</span><span>Documentaries are <strong>for older people</strong>.</span></div>
+      <div class="stcard"><span class="snum">C</span><span>Reality shows are <strong>fake</strong>.</span></div>
+      <div class="stcard"><span class="snum">D</span><span>Documentaries are more <strong>trustworthy</strong>.</span></div>
+    </div>
+    <div style="margin-top:12px;text-align:center;">
+      <button class="votebtn" onclick="openVote('p6')">🗳️ VOTE — Are reality shows fake?</button>
+    </div>`
+  },
+
+  // ===== APPLY 9: GROUP TASK 3 =====
+  {type:'apply',title:'GROUP TASK 3!',subtitle:'1-Minute Statement — Prepare NOW!',
+   note:'Give exactly 2 minutes preparation. Each group must plan all three elements before speaking. Walk around and help weaker groups structure their ideas. Remind captains they must open with a clear statement of position. Remind everyone: 1 minute maximum when presenting.',
+   content:()=>`
+    <div class="cgrid c3">
+      <div class="cbox red">
+        <div style="text-align:center;font-size:28px;">1️⃣</div>
+        <div class="boxtitle">POSITION</div>
+        <p style="font-size:12px;margin-top:5px;">State clearly: which do you prefer?</p>
+        <div class="model" style="margin-top:8px;">
+          <div class="model-lbl">MODEL ★</div>
+          <p style="font-size:12px;"><em>"Our team believes we <span class="gh">would rather</span> watch..."</em></p>
+        </div>
+      </div>
+      <div class="cbox blue">
+        <div style="text-align:center;font-size:28px;">2️⃣</div>
+        <div class="boxtitle">STRONGEST ARGUMENT</div>
+        <p style="font-size:12px;margin-top:5px;">Give your best reason with evidence.</p>
+        <div class="model" style="margin-top:8px;">
+          <div class="model-lbl">MODEL ★</div>
+          <p style="font-size:12px;"><em>"The most important reason is..."</em></p>
+        </div>
+      </div>
+      <div class="cbox green">
+        <div style="text-align:center;font-size:28px;">3️⃣</div>
+        <div class="boxtitle">REAL EXAMPLE</div>
+        <p style="font-size:12px;margin-top:5px;">Name a specific show or moment.</p>
+        <div class="model" style="margin-top:8px;">
+          <div class="model-lbl">MODEL ★</div>
+          <p style="font-size:12px;"><em>"For example, in [show]..."</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="cbox yellow" style="margin-top:10px;text-align:center;">
+      <strong>⏱️ PREP: 2 minutes → PRESENTATION: 1 minute per group</strong>
+    </div>`
+  },
+
+  // ===== APPLY 10: FINAL DEBATE =====
+  {type:'apply',title:'FINAL DEBATE! 🏆',subtitle:'Groups present — Teacher controls time',
+   note:'Call groups one by one. After each presentation, other groups may ask ONE question. Be strict on time — use a stopwatch. Score points as they speak. After all groups: class votes on which had the strongest argument. This is the climax of the lesson — keep energy high!',
+   content:()=>`
+    <div class="cgrid c2">
+      <div>
+        <div class="boxtitle" style="margin-bottom:8px;">🎯 PRESENTATION ORDER</div>
+        ${Array.from({length:8},(_,i)=>`
+          <div style="padding:7px 12px;margin-bottom:5px;border:2px solid var(--ink);border-radius:3px;display:flex;align-items:center;gap:10px;background:#fff;">
+            <span style="font-family:'Bangers',cursive;font-size:18px;color:var(--red);">${i+1}</span>
+            <span id="final-team-${i}" style="font-weight:700;">Team ${i+1}</span>
+            <span style="margin-left:auto;font-size:12px;color:#666;">1 minute</span>
+          </div>
+        `).join('')}
+      </div>
+      <div>
+        <div class="boxtitle" style="margin-bottom:8px;">📏 TEACHER RULES</div>
+        <ul class="qlist">
+          <li><span class="qnum">✓</span><span>Each group gets <strong>1 minute</strong> exactly</span></li>
+          <li><span class="qnum">✓</span><span>Other groups can ask <strong>1 question</strong></span></li>
+          <li><span class="qnum">✓</span><span>Award grammar points <strong>immediately</strong></span></li>
+          <li><span class="qnum">✓</span><span>Keep it <strong>fair and respectful</strong></span></li>
+        </ul>
+        <div class="cbox yellow" style="margin-top:8px;font-size:13px;">
+          <strong>⚡ BONUS:</strong> +1 point each correct use of <span class="gh">would rather</span> during final debate!
+        </div>
+      </div>
+    </div>`
+  },
+
+  // ===== REFLECT 1: REFLECTION =====
+  {type:'reflect',title:'REFLECTION TIME!',subtitle:'What did we learn today?',
+   note:'Give 1 minute of quiet personal reflection, then open to the class. If a student\'s opinion DID change, ask them to explain using: "I used to think... but now I would rather say... because I learned that..." Award extra points for thoughtful, grammar-rich reflection answers.',
+   content:()=>`
+    <ul class="qlist" style="margin-bottom:12px;">
+      <li><span class="qnum">1</span><span>Did your <strong>opinion change</strong> today? Why or why not?</span></li>
+      <li><span class="qnum">2</span><span>What <strong>new ideas</strong> did you learn from the debate?</span></li>
+      <li><span class="qnum">3</span><span>Which group had the <strong>strongest argument</strong> and why?</span></li>
+      <li><span class="qnum">4</span><span>Which grammar did you use <strong>most</strong> today?</span></li>
+    </ul>
+    <div class="model">
+      <div class="model-lbl">MODEL REFLECTION ★</div>
+      <p><em>"I used to think... but now I <span class="gh">would rather</span> say... because today I learned that..."</em></p>
+    </div>
+    <div style="margin-top:12px;text-align:center;">
+      <button class="votebtn" onclick="openVote('p7')">🗳️ VOTE — Did your opinion change?</button>
+    </div>`
+  },
+
+  // ===== REFLECT 2: CLOSING =====
+  {type:'reflect',title:'GREAT WORK! ⭐',subtitle:'Lesson Complete — Blueprint 4 Lesson 4',
+   note:'Thank all groups warmly. Summarise the best arguments from both sides. Highlight the 2-3 best uses of "would rather" you heard today. Point students to the scoreboard. Tell them to check the poll results to see what the class really thinks! Excellent lesson, Teacher Roberts!',
+   content:()=>`
+    <div class="cgrid c2">
+      <div class="cbox red">
+        <div class="boxtitle">📺 REALITY SHOWS — KEY POINTS</div>
+        <ul style="font-size:13px;padding-left:14px;margin-top:6px;line-height:1.8;">
+          <li>More entertaining &amp; dramatic</li>
+          <li>Shows real human emotions</li>
+          <li>Can be scripted or exaggerated</li>
+          <li>May affect audience expectations</li>
+        </ul>
+      </div>
+      <div class="cbox blue">
+        <div class="boxtitle">🎬 DOCUMENTARIES — KEY POINTS</div>
+        <ul style="font-size:13px;padding-left:14px;margin-top:6px;line-height:1.8;">
+          <li>More educational &amp; trustworthy</li>
+          <li>Based on facts &amp; real research</li>
+          <li>Can be more detailed &amp; informative</li>
+          <li>Positive influence on society</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cbox yellow" style="margin-top:10px;text-align:center;">
+      <div class="boxtitle" style="font-size:20px;">🏆 Great debaters use evidence, reason, AND grammar! 🏆</div>
+      <p style="margin-top:6px;font-size:14px;font-weight:700;">Check the 🏆 SCOREBOARD and 📊 RESULTS tabs above!</p>
+    </div>
+    <div class="cbox green" style="margin-top:8px;text-align:center;padding:14px;">
+      <p style="font-weight:900;font-size:16px;">Blueprint 4 — Lesson 4: TV Choices ✅ COMPLETE</p>
+      <p style="font-size:13px;margin-top:5px;">Well done, everyone! Teacher Roberts is proud of your English today! 🌟</p>
+    </div>`
+  }
+];
+
+// ============================================================
+// SLIDESHOW
+// ============================================================
+let currentSlide = 0;
+let noteVisible = false;
+
+function renderSlide() {
+  const s = slides[currentSlide];
+  const typeLabel = {activate:'ACTIVATE',acquire:'ACQUIRE',apply:'APPLY',reflect:'REFLECT'};
+  document.getElementById('slide-ctr').textContent = `${currentSlide+1} / ${slides.length}`;
+  document.getElementById('prev-btn').disabled = currentSlide === 0;
+  document.getElementById('next-btn').disabled = currentSlide === slides.length - 1;
+
+  const noteHtml = s.note ? `
+    <div class="tnote" id="teacher-note" style="${noteVisible?'':'display:none'}">
+      <div class="tnote-title">📝 TEACHER ROBERTS' NOTE</div>
+      <p>${s.note}</p>
+    </div>` : '';
+
+  document.getElementById('slide-area').innerHTML = `
+    <div>
+      <span class="slide-badge badge-${s.type}">${typeLabel[s.type]} — SLIDE ${currentSlide+1} OF ${slides.length}</span>
+    </div>
+    <div class="slide-panel">
+      <h1 class="slide-title">${s.title}</h1>
+      <p class="slide-subtitle">${s.subtitle}</p>
+      <hr class="slide-divider">
+      ${s.content()}
+    </div>
+    ${noteHtml}
+  `;
+}
+
+function nextSlide(){if(currentSlide<slides.length-1){currentSlide++;renderSlide();}}
+function prevSlide(){if(currentSlide>0){currentSlide--;renderSlide();}}
+function toggleNote(){
+  noteVisible=!noteVisible;
+  const el=document.getElementById('teacher-note');
+  if(el) el.style.display=noteVisible?'block':'none';
+}
+
+// ============================================================
+// VOTING
+// ============================================================
+let currentPollKey = null;
+
+function openVote(key) {
+  currentPollKey = key;
+  const p = polls[key];
+  document.getElementById('modal-q-text').textContent = p.question;
+  document.getElementById('modal-options').innerHTML = p.options.map((opt,i)=>`
+    <div class="vopt">
+      <label>${opt}</label>
+      <input type="number" class="vinput" id="vi-${i}" min="0" max="35" value="${p.votes[i]}" oninput="updateVTotal()">
+    </div>
+  `).join('');
+  updateVTotal();
+  document.getElementById('vote-modal').classList.add('open');
+}
+
+function updateVTotal() {
+  const p = polls[currentPollKey];
+  let t = 0;
+  p.options.forEach((_,i)=>{
+    const v = parseInt(document.getElementById(`vi-${i}`)?.value||0);
+    t += isNaN(v)?0:v;
+  });
+  const el = document.getElementById('vtotal-display');
+  el.textContent = `Total: ${t} / 35 votes`;
+  el.className = `vtotal ${t>35?'over':'ok'}`;
+}
+
+function confirmVote() {
+  const p = polls[currentPollKey];
+  let t = 0;
+  p.options.forEach((_,i)=>{
+    const v = parseInt(document.getElementById(`vi-${i}`)?.value||0);
+    p.votes[i] = isNaN(v)?0:Math.max(0,v);
+    t += p.votes[i];
+  });
+  if(t>35){alert('⚠️ Total votes cannot exceed 35! Please adjust the numbers.');return;}
+  closeVoteModal();
+  if(document.getElementById('view-results').classList.contains('active')) renderPollResults();
+}
+
+function closeVoteModal(){
+  document.getElementById('vote-modal').classList.remove('open');
+  currentPollKey = null;
+}
+
+// ============================================================
+// SCOREBOARD
+// ============================================================
+let scoreChart = null, breakChart = null;
+let sbInited = false;
+
+function getTotal(i){const t=teams[i];return t.grammar+t.opinion+t.reason+t.respect+t.teamwork;}
+
+function renderTeams() {
+  document.getElementById('teams-grid').innerHTML = teams.map((t,i)=>`
+    <div class="team-card">
+      <div class="team-hdr" style="background:${t.color};">
+        <input class="tname-in" value="${t.name}" oninput="teams[${i}].name=this.value;updateRanking();updateScoreCharts();" title="Click to edit team name">
+        <div class="ttotal" id="tt-${i}">${getTotal(i)}</div>
+      </div>
+      <div class="team-body">
+        ${renderCat(i,'grammar','⚡ Grammar Power','1pt max per use')}
+        ${renderCat(i,'opinion','💬 Clear Opinion','1pt per answer')}
+        ${renderCat(i,'reason','🧠 Good Reason','1pt per answer')}
+        ${renderCat(i,'respect','🤝 Respect','1pt per round')}
+        ${renderCat(i,'teamwork','👥 Teamwork Bonus','2pts max')}
+      </div>
+    </div>
+  `).join('');
+  updateRanking();
+}
+
+function renderCat(ti,cat,label,sub) {
+  return `<div class="scat">
+    <div><div class="catname">${label}</div><div class="catsub">${sub}</div></div>
+    <div class="catctrl">
+      <button class="sbtn minus" onclick="adj(${ti},'${cat}',-1)">−</button>
+      <div class="catscore" id="cs-${ti}-${cat}">${teams[ti][cat]}</div>
+      <button class="sbtn plus" onclick="adj(${ti},'${cat}',1)">+</button>
+    </div>
+  </div>`;
+}
+
+function adj(ti,cat,d) {
+  teams[ti][cat] = Math.max(0, teams[ti][cat]+d);
+  document.getElementById(`cs-${ti}-${cat}`).textContent = teams[ti][cat];
+  document.getElementById(`tt-${ti}`).textContent = getTotal(ti);
+  updateRanking();
+  updateScoreCharts();
+}
+
+function updateRanking() {
+  const sorted = teams.map((t,i)=>({name:t.name,color:t.color,pts:getTotal(i)}))
+    .sort((a,b)=>b.pts-a.pts);
+  const medals = ['🥇','🥈','🥉','4','5','6','7','8'];
+  document.getElementById('ranking-table').innerHTML = sorted.map((t,i)=>`
+    <tr>
+      <td>${medals[i]}</td>
+      <td style="background:${t.color};color:#fff;">${t.name}</td>
+      <td style="font-family:'Bangers',cursive;font-size:22px;text-align:right;">${t.pts} pts</td>
+    </tr>
+  `).join('');
+}
+
+function resetScores() {
+  if(!confirm('Reset ALL team scores to zero?')) return;
+  teams.forEach(t=>{t.grammar=0;t.opinion=0;t.reason=0;t.respect=0;t.teamwork=0;});
+  renderTeams();
+  if(sbInited) updateScoreCharts();
+}
+
+function initScoreCharts() {
+  const labels = teams.map(t=>t.name);
+  const colors = teams.map(t=>t.color);
+  const ctx1 = document.getElementById('scoreboard-chart').getContext('2d');
+  scoreChart = new Chart(ctx1,{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[{label:'Total Points',data:teams.map((_,i)=>getTotal(i)),
+        backgroundColor:colors,borderColor:'#0a0a0a',borderWidth:2}]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y} pts`}}
+      },
+      scales:{y:{beginAtZero:true,ticks:{stepSize:1},title:{display:true,text:'Points'}}}
+    }
+  });
+
+  const ctx2 = document.getElementById('breakdown-chart').getContext('2d');
+  breakChart = new Chart(ctx2,{
+    type:'bar',
+    data:{
+      labels,
+      datasets:[
+        {label:'⚡ Grammar',data:teams.map(t=>t.grammar),backgroundColor:'#0D47A1'},
+        {label:'💬 Opinion',data:teams.map(t=>t.opinion),backgroundColor:'#C62828'},
+        {label:'🧠 Reason',data:teams.map(t=>t.reason),backgroundColor:'#1B5E20'},
+        {label:'🤝 Respect',data:teams.map(t=>t.respect),backgroundColor:'#6A1B9A'},
+        {label:'👥 Teamwork',data:teams.map(t=>t.teamwork),backgroundColor:'#E65100'},
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{position:'bottom'}},
+      scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true,ticks:{stepSize:1}}}
+    }
+  });
+  sbInited = true;
+}
+
+function updateScoreCharts() {
+  if(!sbInited) return;
+  const labels = teams.map(t=>t.name);
+  scoreChart.data.labels = labels;
+  scoreChart.data.datasets[0].data = teams.map((_,i)=>getTotal(i));
+  scoreChart.update();
+  breakChart.data.labels = labels;
+  breakChart.data.datasets[0].data = teams.map(t=>t.grammar);
+  breakChart.data.datasets[1].data = teams.map(t=>t.opinion);
+  breakChart.data.datasets[2].data = teams.map(t=>t.reason);
+  breakChart.data.datasets[3].data = teams.map(t=>t.respect);
+  breakChart.data.datasets[4].data = teams.map(t=>t.teamwork);
+  breakChart.update();
+}
+
+// ============================================================
+// POLL RESULTS
+// ============================================================
+const pollChartInst = {};
+let overallChart = null;
+
+function renderPollResults() {
+  const keys = Object.keys(polls);
+  document.getElementById('polls-grid').innerHTML = keys.map(k=>`
+    <div class="poll-card">
+      <h3>${polls[k].label}</h3>
+      <div class="pq">${polls[k].question}</div>
+      <canvas id="pc-${k}" height="160"></canvas>
+      <div class="vcnt">Votes recorded: ${polls[k].votes.reduce((a,b)=>a+b,0)} / 35</div>
+    </div>
+  `).join('');
+
+  const chartColors = ['#C62828','#0D47A1','#1B5E20','#6A1B9A','#E65100'];
+  keys.forEach(k=>{
+    const p = polls[k];
+    const ctx = document.getElementById(`pc-${k}`).getContext('2d');
+    if(pollChartInst[k]) {
+      pollChartInst[k].data.datasets[0].data = p.votes;
+      pollChartInst[k].update();
+    } else {
+      pollChartInst[k] = new Chart(ctx,{
+        type:'doughnut',
+        data:{
+          labels:p.options,
+          datasets:[{data:p.votes,backgroundColor:chartColors.slice(0,p.options.length),borderColor:'#0a0a0a',borderWidth:2}]
+        },
+        options:{
+          responsive:true,
+          plugins:{legend:{position:'bottom',labels:{font:{size:11}}},
+            tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${ctx.parsed} votes`}}
+          }
+        }
+      });
+    }
+  });
+
+  renderOverallChart();
+}
+
+function renderOverallChart() {
+  const rKeys = ['p1','p2','p4','p5a','p5b','p5c','p5d'];
+  let r=0, d=0;
+  rKeys.forEach(k=>{if(polls[k]){r+=polls[k].votes[0]||0;d+=polls[k].votes[1]||0;}});
+  
+  const ctx = document.getElementById('overall-chart').getContext('2d');
+  if(overallChart){
+    overallChart.data.datasets[0].data=[r,d];
+    overallChart.update();
+  } else {
+    overallChart = new Chart(ctx,{
+      type:'bar',
+      data:{
+        labels:['📺 Reality Shows','🎬 Documentaries'],
+        datasets:[{
+          label:'Total Votes',data:[r,d],
+          backgroundColor:['#C62828','#0D47A1'],
+          borderColor:'#0a0a0a',borderWidth:3
+        }]
+      },
+      options:{
+        responsive:true,
+        plugins:{legend:{display:false},
+          tooltip:{callbacks:{label:ctx=>`${ctx.parsed.y} total votes`}}
+        },
+        scales:{y:{beginAtZero:true,title:{display:true,text:'Total Votes Across All Polls'}}}
+      }
+    });
+  }
+}
+
+// ============================================================
+// VIEW SWITCHING
+// ============================================================
+function showView(name, btn) {
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(`view-${name}`).classList.add('active');
+  if(btn) btn.classList.add('active');
+  if(name==='scoreboard' && !sbInited) setTimeout(initScoreCharts,100);
+  if(name==='results') renderPollResults();
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderSlide();
+renderTeams();
+</script>
+</body>
+</html>

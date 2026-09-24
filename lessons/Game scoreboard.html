@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advice & Suggestions — Classroom Games</title>
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #FF6B35;
+    --teal: #00C9A7;
+    --purple: #845EC2;
+    --yellow: #FFD600;
+    --red: #FF4560;
+    --blue: #008FFB;
+    --green: #00E396;
+    --bg: #0f0c29;
+    --card: #1a1740;
+    --card2: #231e56;
+    --text: #f0eeff;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: radial-gradient(ellipse at 20% 20%, #1a0a3d 0%, #0f0c29 50%, #001a2e 100%);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  .boogaloo { font-family: 'Boogaloo', cursive; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes float     { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  @keyframes pop       { 0%{transform:scale(.7);opacity:0} 60%{transform:scale(1.1)} 100%{transform:scale(1);opacity:1} }
+  @keyframes slideIn   { from{transform:translateX(-24px);opacity:0} to{transform:translateX(0);opacity:1} }
+  @keyframes pulse     { 0%,100%{box-shadow:0 0 0 0 rgba(255,214,0,.5)} 50%{box-shadow:0 0 0 18px rgba(255,214,0,0)} }
+  @keyframes barGrow   { from{width:0} to{width:var(--w)} }
+  @keyframes confFall  { 0%{transform:translateY(-10px) rotate(0deg);opacity:1} 100%{transform:translateY(100vh) rotate(720deg);opacity:0} }
+  @keyframes bounce    { 0%,100%{transform:translateY(0)} 40%{transform:translateY(-14px)} 70%{transform:translateY(-6px)} }
+  @keyframes cardFlip  { 0%{transform:rotateY(90deg);opacity:0} 100%{transform:rotateY(0deg);opacity:1} }
+  @keyframes shake     { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-6px)} 40%,80%{transform:translateX(6px)} }
+  @keyframes glow      { 0%,100%{text-shadow:0 0 8px var(--yellow)} 50%{text-shadow:0 0 24px var(--yellow),0 0 48px var(--orange)} }
+  @keyframes starPop   { 0%{transform:scale(0) rotate(0deg);opacity:0} 60%{transform:scale(1.3) rotate(20deg)} 100%{transform:scale(1) rotate(0deg);opacity:1} }
+
+  /* ── NAV ── */
+  #topbar {
+    background: rgba(255,255,255,.04);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    padding: 14px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  #topbar h1 {
+    font-family: 'Boogaloo', cursive;
+    font-size: 20px;
+    text-align: center;
+    background: linear-gradient(90deg,var(--orange),var(--yellow),var(--teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  #nav {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    padding: 6px 13px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all .2s;
+    background: rgba(255,255,255,.1);
+    color: #ccc;
+  }
+  .nav-btn.active {
+    background: var(--yellow);
+    color: #1a1740;
+  }
+
+  /* ── SCREENS ── */
+  .screen { display: none; max-width: 620px; margin: 0 auto; padding: 20px 16px 40px; }
+  .screen.active { display: block; }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg, var(--orange), var(--yellow));
+    color: #1a1740;
+    font-family: 'Boogaloo', cursive;
+    font-size: 22px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: transform .15s;
+  }
+  .btn-primary:hover { transform: scale(1.02); }
+  .btn-secondary {
+    width: 100%;
+    padding: 13px;
+    border-radius: 12px;
+    border: 2px solid var(--teal);
+    background: transparent;
+    color: var(--teal);
+    font-family: 'Boogaloo', cursive;
+    font-size: 17px;
+    cursor: pointer;
+    transition: all .2s;
+    margin-top: 10px;
+  }
+  .btn-secondary:hover { background: rgba(0,201,167,.12); }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 12px;
+    border: 2px solid rgba(255,255,255,.08);
+  }
+  .section-title {
+    font-family: 'Boogaloo', cursive;
+    font-size: 24px;
+    color: var(--yellow);
+    margin-bottom: 4px;
+  }
+  .section-sub {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  /* ── HOME GRID ── */
+  .game-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .game-mini {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 14px 12px;
+    cursor: pointer;
+    border: 2px solid rgba(255,255,255,.08);
+    transition: all .2s;
+  }
+  .game-mini:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.2); }
+  .game-mini .emoji { font-size: 28px; margin-bottom: 4px; }
+  .game-mini .name  { font-family: 'Boogaloo', cursive; font-size: 15px; }
+  .game-mini .meta  { font-size: 11px; color: #888; margin-top: 2px; }
+  .floating { animation: float 2.5s ease-in-out infinite; }
+
+  /* ── GAME ACCORDION ── */
+  .game-accordion {
+    background: var(--card);
+    border: 2px solid rgba(255,255,255,.08);
+    border-radius: 18px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .game-accordion.open { border-color: var(--accent); box-shadow: 0 0 22px var(--glow); }
+  .game-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .game-header .gh-emoji { font-size: 32px; }
+  .game-header .gh-info  { flex: 1; }
+  .game-header .gh-title { font-family: 'Boogaloo', cursive; font-size: 20px; }
+  .game-header .gh-sub   { font-size: 13px; color: #aaa; margin-top: 2px; }
+  .game-header .gh-meta  { text-align: right; }
+  .game-header .gh-dur   { background: rgba(255,255,255,.08); border-radius: 6px; padding: 2px 8px; font-size: 12px; font-weight: 700; }
+  .game-header .gh-arr   { font-size: 18px; transition: transform .3s; margin-top: 6px; display: block; }
+  .game-accordion.open .gh-arr { transform: rotate(180deg); }
+  .game-body { display: none; padding: 0 18px 18px; }
+  .game-accordion.open .game-body { display: block; animation: pop .25s ease; }
+  .game-divider { height: 2px; background: var(--accent-fade); border-radius: 2px; margin-bottom: 14px; opacity: .4; }
+  .rule-row { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
+  .rule-num {
+    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Boogaloo', cursive; font-size: 13px;
+    margin-top: 2px;
+  }
+  .rule-text { font-size: 14px; color: #ddd; line-height: 1.55; }
+  .tip-box {
+    border-radius: 10px; padding: 10px 14px; margin-top: 12px; font-size: 13px;
+    background: rgba(255,255,255,.06); border-left: 3px solid var(--accent);
+  }
+  .tip-label { font-weight: 700; color: var(--accent); }
+  .example-box {
+    background: rgba(255,255,255,.04); border-radius: 10px;
+    padding: 10px 14px; margin-top: 8px; font-size: 13px; color: #ccc;
+    border-left: 3px solid rgba(255,255,255,.15);
+  }
+
+  /* ── TEAM SETUP ── */
+  .count-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+  .count-btn {
+    flex: 1; min-width: 44px; padding: 10px 0; border-radius: 10px;
+    border: 2px solid rgba(255,255,255,.12); background: transparent;
+    color: #fff; font-family: 'Boogaloo', cursive; font-size: 22px;
+    cursor: pointer; transition: all .2s;
+  }
+  .count-btn.selected { background: var(--yellow); color: #1a1740; border-color: var(--yellow); }
+  .team-input-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .team-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .team-input {
+    flex: 1; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+    border-radius: 8px; padding: 8px 12px; color: #fff;
+    font-family: 'Nunito', sans-serif; font-size: 15px; outline: none;
+    transition: border-color .2s;
+  }
+  .team-input:focus { border-color: var(--yellow); }
+
+  /* ── SCOREBOARD ── */
+  .score-row {
+    background: var(--card); border: 2px solid rgba(255,255,255,.08);
+    border-radius: 16px; margin-bottom: 12px; padding: 14px 16px;
+    transition: all .35s; animation: slideIn .3s ease;
+  }
+  .score-row.leader { animation: pulse 1.8s infinite; }
+  .score-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .score-rank { font-size: 22px; min-width: 32px; text-align: center; }
+  .score-name {
+    flex: 1; border-radius: 8px; padding: 3px 12px;
+    font-family: 'Boogaloo', cursive; font-size: 18px;
+  }
+  .score-pts {
+    font-family: 'Boogaloo', cursive; font-size: 30px;
+    color: var(--yellow); min-width: 44px; text-align: center;
+  }
+  .score-btns { display: flex; gap: 6px; }
+  .btn-minus {
+    width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--red);
+    background: rgba(255,69,96,.15); color: var(--red); font-size: 18px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background .2s;
+  }
+  .btn-minus:hover { background: rgba(255,69,96,.3); }
+  .btn-plus {
+    width: 36px; height: 36px; border-radius: 8px; border: none;
+    font-family: 'Boogaloo', cursive; font-size: 22px; cursor: pointer;
+    transition: transform .1s;
+  }
+  .btn-plus:active { transform: scale(.88); }
+  .score-bar-bg { background: rgba(255,255,255,.12); border-radius: 6px; height: 10px; overflow: hidden; }
+  .score-bar    { height: 100%; border-radius: 6px; transition: width .5s cubic-bezier(.4,2,.6,1); }
+
+  /* ── CONFETTI ── */
+  .confetti-piece {
+    position: fixed; pointer-events: none; z-index: 9999;
+    animation: confFall linear forwards;
+  }
+
+  /* ── LESSON TIMELINE ── */
+  .timeline-row {
+    display: flex; gap: 12px; margin-bottom: 12px;
+    animation: slideIn .35s ease both;
+  }
+  .timeline-time {
+    min-width: 92px; background: var(--card2); border-radius: 10px;
+    padding: 8px 10px; text-align: center; border: 1px solid rgba(255,255,255,.1);
+    font-family: 'Boogaloo', cursive; font-size: 13px; color: var(--yellow);
+    line-height: 1.3;
+  }
+  .timeline-info {
+    background: var(--card); border-radius: 12px; flex: 1;
+    padding: 10px 14px; border: 1px solid rgba(255,255,255,.07);
+  }
+  .timeline-game { font-family: 'Boogaloo', cursive; font-size: 16px; }
+  .timeline-note { font-size: 13px; color: #999; margin-top: 2px; }
+
+  /* ── RELAY CARD SYSTEM ── */
+  #relay-screen .relay-wrapper {
+    text-align: center;
+    padding: 10px 0;
+  }
+  .relay-progress {
+    font-size: 13px; color: #888; margin-bottom: 16px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .relay-card-stage {
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .relay-card {
+    background: var(--card2);
+    border: 3px solid var(--teal);
+    border-radius: 22px;
+    padding: 32px 28px;
+    max-width: 460px;
+    width: 100%;
+    box-shadow: 0 0 32px rgba(0,201,167,.3);
+    animation: cardFlip .4s ease;
+  }
+  .relay-card.hidden-card {
+    background: linear-gradient(135deg,#1a1740,#0f0c29);
+    border-color: rgba(255,255,255,.15);
+    box-shadow: none;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .relay-card.hidden-card:hover {
+    border-color: var(--teal);
+    box-shadow: 0 0 18px rgba(0,201,167,.2);
+    transform: scale(1.01);
+  }
+  .relay-situation {
+    font-family: 'Boogaloo', cursive;
+    font-size: 26px;
+    color: #fff;
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+  .relay-card-num {
+    font-size: 13px; color: var(--teal); font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .relay-hint {
+    font-size: 13px; color: #aaa; border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 10px; margin-top: 10px;
+  }
+  .relay-lock-icon { font-size: 56px; margin-bottom: 12px; display: block; }
+  .relay-lock-text { font-family: 'Boogaloo', cursive; font-size: 20px; color: #888; }
+  .relay-lock-sub  { font-size: 13px; color: #666; margin-top: 6px; }
+  .relay-btn-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .relay-btn {
+    padding: 12px 22px; border-radius: 12px; border: none; cursor: pointer;
+    font-family: 'Boogaloo', cursive; font-size: 17px; transition: all .2s;
+  }
+  .relay-btn.primary  { background: linear-gradient(135deg,var(--teal),var(--blue)); color: #fff; }
+  .relay-btn.primary:hover  { transform: scale(1.04); }
+  .relay-btn.danger   { background: rgba(255,69,96,.2); color: var(--red); border: 1px solid var(--red); }
+  .relay-btn.neutral  { background: rgba(255,255,255,.1); color: #ccc; border: 1px solid rgba(255,255,255,.15); }
+  .relay-btn:disabled { opacity: .35; cursor: not-allowed; transform: none; }
+
+  .relay-done {
+    text-align: center; padding: 30px;
+    animation: pop .4s ease;
+  }
+  .relay-done .big { font-size: 64px; margin-bottom: 10px; }
+  .relay-done h2 { font-family: 'Boogaloo', cursive; font-size: 30px; color: var(--yellow); margin-bottom: 6px; }
+  .relay-done p  { color: #aaa; font-size: 15px; }
+
+  /* card manager checkboxes */
+  .card-manager { margin-top: 18px; }
+  .card-manager-title { font-size: 13px; color: #888; font-weight: 700; margin-bottom: 10px; letter-spacing:.5px; text-transform:uppercase; }
+  .card-check-row {
+    display: flex; align-items: center; gap: 8px; padding: 7px 10px;
+    border-radius: 8px; margin-bottom: 4px; cursor: pointer;
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06);
+    transition: background .15s;
+  }
+  .card-check-row:hover { background: rgba(255,255,255,.09); }
+  .card-check-row input { accent-color: var(--teal); width: 16px; height: 16px; cursor: pointer; }
+  .card-check-row span  { font-size: 13px; color: #ccc; line-height: 1.4; }
+  .card-check-row.unchecked span { color: #555; text-decoration: line-through; }
+
+  /* ── GRAMMAR FOCUS ── */
+  .grammar-box {
+    background: linear-gradient(135deg, rgba(255,107,53,.12), rgba(255,214,0,.08));
+    border: 2px solid rgba(255,107,53,.3);
+    border-radius: 16px; padding: 16px 18px; margin-top: 14px;
+  }
+  .grammar-box-title { font-family: 'Boogaloo', cursive; color: var(--orange); font-size: 17px; margin-bottom: 8px; }
+  .grammar-line { font-size: 13px; color: #ccc; line-height: 2; }
+
+  /* ── RESET BTN ── */
+  #reset-scores-btn {
+    padding: 8px 18px; background: rgba(255,69,96,.2); border: 1px solid var(--red);
+    color: var(--red); border-radius: 10px; cursor: pointer;
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px;
+    transition: background .2s;
+  }
+  #reset-scores-btn:hover { background: rgba(255,69,96,.35); }
+
+  /* ── WINNER BANNER ── */
+  #winner-banner {
+    display: none;
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(135deg, #1a0a3d, #0f0c29);
+    border-top: 3px solid var(--yellow);
+    padding: 18px 20px;
+    text-align: center;
+    z-index: 300;
+    animation: pop .4s ease;
+  }
+  #winner-banner h3 { font-family: 'Boogaloo', cursive; font-size: 24px; color: var(--yellow); animation: glow 1.5s infinite; }
+  #winner-banner p  { font-size: 14px; color: #ccc; margin-top: 4px; }
+  #winner-banner .close-banner {
+    position: absolute; top: 10px; right: 14px;
+    background: none; border: none; color: #888; font-size: 22px; cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <h1>🎓 ADVICE &amp; SUGGESTIONS — CLASS GAMES</h1>
+  <div id="nav">
+    <button class="nav-btn active" data-screen="home">🏠 Home</button>
+    <button class="nav-btn" data-screen="games-screen">🎮 Games</button>
+    <button class="nav-btn" data-screen="relay-screen">🏃 Relay Cards</button>
+    <button class="nav-btn" data-screen="plan-screen">📅 Lesson</button>
+    <button class="nav-btn" id="nav-scores" data-screen="score-screen">🏆 Scores</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ HOME ═══════════════════════════════════ -->
+<div id="home" class="screen active">
+  <div style="text-align:center;padding-top:16px">
+    <div style="font-size:60px" class="floating">🎓</div>
+    <div class="boogaloo" style="font-size:32px;margin-top:6px;background:linear-gradient(135deg,#FF6B35,#FFD600);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">5 EPIC CLASSROOM GAMES</div>
+    <p style="color:#aaa;margin:10px 0 24px;line-height:1.6;font-size:14px">Grammar: <strong style="color:var(--yellow)">Advice &amp; Suggestions</strong><br>12–40 students &nbsp;·&nbsp; 1h 20min &nbsp;·&nbsp; High energy</p>
+    <div class="game-grid">
+      <div class="game-mini" style="border-color:rgba(255,107,53,.4)" onclick="goTo('games-screen')">
+        <div class="emoji">🎯</div>
+        <div class="name" style="color:var(--orange)">Hot Seat Advice</div>
+        <div class="meta">15 min · 🔥🔥🔥</div>
+      </div>
+      <div class="game-mini" style="border-color:rgba(0,201,167,.4)" onclick="goTo('relay-screen')">
+        <div class="emoji">🏃</div>
+        <div class="name" style="color:var(--teal)">Run &amp; Write Relay</div>
+        <div class="meta">20 min · 🔥🔥🔥🔥</div>
+      </div>
+      <div class="game-mini" style="border-color:rgba(132,94,194,.4)" onclick="goTo('games-screen')">
+        <div class="emoji">🎭</div>
+        <div class="name" style="color:var(--purple)">Drama Duel</div>
+        <div class="meta">20 min · 🔥🔥🔥🔥🔥</div>
+      </div>
+      <div class="game-mini" style="border-color:rgba(255,214,0,.4)" onclick="goTo('games-screen')">
+        <div class="emoji">🎲</div>
+        <div class="name" style="color:var(--yellow)">Suggestion Roulette</div>
+        <div class="meta">15 min · 🔥🔥🔥</div>
+      </div>
+      <div class="game-mini" style="border-color:rgba(0,143,251,.4)" onclick="goTo('games-screen')">
+        <div class="emoji">🗣️</div>
+        <div class="name" style="color:var(--blue)">Subjunctive Showdown</div>
+        <div class="meta">20 min · 🔥🔥🔥🔥</div>
+      </div>
+      <div class="game-mini" style="border-color:rgba(255,214,0,.4)" onclick="goTo('plan-screen')">
+        <div class="emoji">📅</div>
+        <div class="name" style="color:var(--yellow)">Lesson Plan</div>
+        <div class="meta">Full 1h 20min timeline</div>
+      </div>
+    </div>
+    <button class="btn-primary" id="home-start-btn" onclick="goTo('setup-screen')" style="animation:pulse 2s infinite">⚡ Set Up Teams &amp; Start!</button>
+    <button class="btn-secondary" id="home-score-btn" onclick="goTo('score-screen')" style="display:none">🏆 Go to Scoreboard</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ SETUP ════════════════════════════════════ -->
+<div id="setup-screen" class="screen">
+  <div class="section-title">⚡ SET UP YOUR TEAMS</div>
+  <p class="section-sub">Works for 12–40 students. Divide the class, then name your teams!</p>
+
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:13px;font-weight:700;color:#ccc;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">Number of Teams</div>
+    <div class="count-row" id="count-row">
+      <button class="count-btn" data-n="2">2</button>
+      <button class="count-btn selected" data-n="3">3</button>
+      <button class="count-btn" data-n="4">4</button>
+      <button class="count-btn" data-n="5">5</button>
+      <button class="count-btn" data-n="6">6</button>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px">
+    <div style="font-size:13px;font-weight:700;color:#ccc;margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px">Team Names</div>
+    <div id="team-inputs"></div>
+  </div>
+
+  <button class="btn-primary" onclick="startGame()" style="animation:pulse 2s infinite">🎮 LET'S PLAY!</button>
+</div>
+
+<!-- ═══════════════════════════════ SCOREBOARD ═══════════════════════════════ -->
+<div id="score-screen" class="screen">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+    <div class="boogaloo" style="font-size:26px;color:var(--yellow)">🏆 Scoreboard</div>
+    <button id="reset-scores-btn" onclick="resetScores()">Reset Scores</button>
+  </div>
+  <div id="scoreboard"></div>
+  <button class="btn-secondary" onclick="goTo('games-screen')">🎮 View Game Rules</button>
+</div>
+
+<!-- ═══════════════════════════════ GAMES ════════════════════════════════════ -->
+<div id="games-screen" class="screen">
+  <div class="section-title">🎮 THE 5 GAMES</div>
+  <p class="section-sub">Tap any game to expand the full rules &amp; teacher tips.</p>
+
+  <!-- GAME 1 -->
+  <div class="game-accordion" id="ga1" style="--accent:var(--orange);--accent-fade:var(--orange);--glow:rgba(255,107,53,.4)">
+    <div class="game-header" onclick="toggleGame('ga1')">
+      <span class="gh-emoji">🎯</span>
+      <div class="gh-info">
+        <div class="gh-title" style="color:var(--orange)">Hot Seat Advice</div>
+        <div class="gh-sub">One student, one hot seat, endless suggestions!</div>
+      </div>
+      <div class="gh-meta">
+        <span class="gh-dur" style="color:var(--orange)">15 min</span>
+        <span class="gh-arr" style="color:var(--orange)">▾</span>
+      </div>
+    </div>
+    <div class="game-body">
+      <div class="game-divider" style="background:var(--orange)"></div>
+      <div class="boogaloo" style="font-size:15px;margin-bottom:8px">📋 HOW TO PLAY</div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--orange);color:#fff">1</span><span class="rule-text">One student sits with their back to the board — this is the Hot Seat!</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--orange);color:#fff">2</span><span class="rule-text">Teacher writes a situation on the board (e.g. "My friend never sleeps enough").</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--orange);color:#fff">3</span><span class="rule-text">Teams race to give advice using a correct modal: Should / Must / Ought to / Had better / Could.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--orange);color:#fff">4</span><span class="rule-text">First team to shout a perfect sentence wins a point. Hot Seat student judges if it makes sense!</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--orange);color:#fff">5</span><span class="rule-text">Rotate the Hot Seat every 2 rounds.</span></div>
+      <div class="tip-box" style="--accent:var(--orange)"><span class="tip-label">💡 TEACHER TIP: </span>Use dramatic music and a countdown timer. Let the Hot Seat student earn a bonus point if their own team wins!</div>
+      <div class="example-box">EXAMPLE: Board says "My friend eats junk food every day." → Team shouts: "You had better change your diet — you'll get sick!" ✅</div>
+    </div>
+  </div>
+
+  <!-- GAME 2 -->
+  <div class="game-accordion" id="ga2" style="--accent:var(--teal);--accent-fade:var(--teal);--glow:rgba(0,201,167,.4)">
+    <div class="game-header" onclick="toggleGame('ga2')">
+      <span class="gh-emoji">🏃</span>
+      <div class="gh-info">
+        <div class="gh-title" style="color:var(--teal)">Run &amp; Write Relay</div>
+        <div class="gh-sub">Fastest team with perfect grammar wins!</div>
+      </div>
+      <div class="gh-meta">
+        <span class="gh-dur" style="color:var(--teal)">20 min</span>
+        <span class="gh-arr" style="color:var(--teal)">▾</span>
+      </div>
+    </div>
+    <div class="game-body">
+      <div class="game-divider" style="background:var(--teal)"></div>
+      <div class="boogaloo" style="font-size:15px;margin-bottom:8px">📋 HOW TO PLAY</div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--teal);color:#fff">1</span><span class="rule-text">Teams line up at the back. Whiteboard is at the front.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--teal);color:#fff">2</span><span class="rule-text">Teacher reveals a situation card (use the Relay Cards tab — only you see what's coming next!).</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--teal);color:#fff">3</span><span class="rule-text">First player from each team sprints to the board and writes a suggestion or advice sentence.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--teal);color:#fff">4</span><span class="rule-text">Teacher marks it: ✅ correct = 1 point. ❌ wrong = player must erase and fix before returning.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--teal);color:#fff">5</span><span class="rule-text">Next player runs when their teammate returns. First team with 5 correct wins the round!</span></div>
+      <div class="tip-box" style="--accent:var(--teal)"><span class="tip-label">💡 TEACHER TIP: </span>Use the Relay Cards tab on YOUR phone/screen — it reveals one card at a time so students can't read ahead. Award bonus points for creativity!</div>
+      <div class="example-box">EXAMPLE: Situation: "You never exercise." → Written: "Why don't we go for a run every morning?" ✅</div>
+    </div>
+  </div>
+
+  <!-- GAME 3 -->
+  <div class="game-accordion" id="ga3" style="--accent:var(--purple);--accent-fade:var(--purple);--glow:rgba(132,94,194,.4)">
+    <div class="game-header" onclick="toggleGame('ga3')">
+      <span class="gh-emoji">🎭</span>
+      <div class="gh-info">
+        <div class="gh-title" style="color:var(--purple)">Advice Drama Duel</div>
+        <div class="gh-sub">Act it, say it, win it!</div>
+      </div>
+      <div class="gh-meta">
+        <span class="gh-dur" style="color:var(--purple)">20 min</span>
+        <span class="gh-arr" style="color:var(--purple)">▾</span>
+      </div>
+    </div>
+    <div class="game-body">
+      <div class="game-divider" style="background:var(--purple)"></div>
+      <div class="boogaloo" style="font-size:15px;margin-bottom:8px">📋 HOW TO PLAY</div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--purple);color:#fff">1</span><span class="rule-text">Two teams face off. Each secretly receives a problem scenario card from the teacher.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--purple);color:#fff">2</span><span class="rule-text">Team A silently acts out their problem (charades-style) for 30 seconds.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--purple);color:#fff">3</span><span class="rule-text">Team B must identify the problem AND give advice using correct grammar.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--purple);color:#fff">4</span><span class="rule-text">Teacher + class vote: correct grammar? Logical advice? Up to 2 points per round.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--purple);color:#fff">5</span><span class="rule-text">Teams swap. Best of 5 rounds wins!</span></div>
+      <div class="tip-box" style="--accent:var(--purple)"><span class="tip-label">💡 TEACHER TIP: </span>Great scenario ideas: student falling asleep, someone terrified of dogs, a reckless driver, a shopaholic. Get dramatic — ham it up!</div>
+      <div class="example-box">EXAMPLE: Team acts out: falling asleep at desk → "You should get more sleep!" or "How about going to bed earlier?" ✅</div>
+    </div>
+  </div>
+
+  <!-- GAME 4 -->
+  <div class="game-accordion" id="ga4" style="--accent:var(--yellow);--accent-fade:var(--yellow);--glow:rgba(255,214,0,.4)">
+    <div class="game-header" onclick="toggleGame('ga4')">
+      <span class="gh-emoji">🎲</span>
+      <div class="gh-info">
+        <div class="gh-title" style="color:var(--yellow)">Suggestion Roulette</div>
+        <div class="gh-sub">Spin the wheel. No excuses, only perfect English!</div>
+      </div>
+      <div class="gh-meta">
+        <span class="gh-dur" style="color:var(--yellow)">15 min</span>
+        <span class="gh-arr" style="color:var(--yellow)">▾</span>
+      </div>
+    </div>
+    <div class="game-body">
+      <div class="game-divider" style="background:var(--yellow)"></div>
+      <div class="boogaloo" style="font-size:15px;margin-bottom:8px">📋 HOW TO PLAY</div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--yellow);color:#1a1740">1</span><span class="rule-text">Teacher picks: a STRUCTURE + a SITUATION (e.g. "Let's" + "It's getting dark").</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--yellow);color:#1a1740">2</span><span class="rule-text">Structures: Let's / You Should / We'd Better / Why Don't We / How About + gerund.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--yellow);color:#1a1740">3</span><span class="rule-text">Each team has 20 seconds to build a sentence using THAT structure for THAT situation.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--yellow);color:#1a1740">4</span><span class="rule-text">Teams write on mini-whiteboards or shout out loud. Points for speed AND accuracy.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--yellow);color:#1a1740">5</span><span class="rule-text">Double points if team adds a reason clause!</span></div>
+      <div class="tip-box" style="--accent:var(--yellow)"><span class="tip-label">💡 TEACHER TIP: </span>Use an online spinner projected on screen! "We'd better leave now OR WE'LL BE LATE" earns the double-point bonus.</div>
+      <div class="example-box">EXAMPLE: Spin → "We'd Better" + "It's getting dark outside." → "We'd better leave now or we'll be late!" ✅</div>
+    </div>
+  </div>
+
+  <!-- GAME 5 -->
+  <div class="game-accordion" id="ga5" style="--accent:var(--blue);--accent-fade:var(--blue);--glow:rgba(0,143,251,.4)">
+    <div class="game-header" onclick="toggleGame('ga5')">
+      <span class="gh-emoji">🗣️</span>
+      <div class="gh-info">
+        <div class="gh-title" style="color:var(--blue)">Subjunctive Showdown</div>
+        <div class="gh-sub">That clause? That's worth big points!</div>
+      </div>
+      <div class="gh-meta">
+        <span class="gh-dur" style="color:var(--blue)">20 min</span>
+        <span class="gh-arr" style="color:var(--blue)">▾</span>
+      </div>
+    </div>
+    <div class="game-body">
+      <div class="game-divider" style="background:var(--blue)"></div>
+      <div class="boogaloo" style="font-size:15px;margin-bottom:8px">📋 HOW TO PLAY</div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--blue);color:#fff">1</span><span class="rule-text">Each team elects a Spokesperson for each round.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--blue);color:#fff">2</span><span class="rule-text">Teacher gives a scenario: "Your friend wants to get healthy."</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--blue);color:#fff">3</span><span class="rule-text">Spokesperson advises using: Suggest / Recommend / Insist + THAT + base verb (subjunctive).</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--blue);color:#fff">4</span><span class="rule-text">Correct structure = 1 pt. Correct subjunctive form (no -s, no "to") = bonus 1 pt.</span></div>
+      <div class="rule-row"><span class="rule-num" style="background:var(--blue);color:#fff">5</span><span class="rule-text">Other teams can STEAL if the spokesperson makes an error — buzz in first!</span></div>
+      <div class="tip-box" style="--accent:var(--blue)"><span class="tip-label">💡 TEACHER TIP: </span>Write on board: ✅ "I suggest she exercise daily" ❌ "I suggest she exercises". The steal mechanic is the secret ingredient for drama!</div>
+      <div class="example-box">EXAMPLE: "I recommend that he drink more water and that he get more sleep." = 2 bonus points! 🎉</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ RELAY CARD SYSTEM ═════════════════════════════════ -->
+<div id="relay-screen" class="screen">
+  <div class="section-title">🏃 Run &amp; Write — Relay Cards</div>
+  <p class="section-sub" style="margin-bottom:6px">Teacher-only view. Cards are hidden from students until you reveal each one.</p>
+
+  <!-- CARD MANAGER (collapsed by default) -->
+  <div class="card" style="margin-bottom:16px">
+    <div onclick="toggleCardManager()" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center">
+      <span style="font-weight:700;font-size:14px;color:var(--teal)">⚙️ Choose Your Cards</span>
+      <span id="cm-arrow" style="color:var(--teal);font-size:16px;transition:transform .3s">▾</span>
+    </div>
+    <div id="card-manager" style="display:none;margin-top:14px">
+      <div class="card-manager-title">Tick/untick to include or remove situations from the deck</div>
+      <div id="card-checks"></div>
+      <button onclick="applyCardSelection()" style="margin-top:12px;padding:10px 18px;border-radius:10px;border:none;background:var(--teal);color:#fff;font-family:'Boogaloo',cursive;font-size:16px;cursor:pointer;width:100%">✅ Apply &amp; Reset Deck</button>
+    </div>
+  </div>
+
+  <!-- RELAY PLAY AREA -->
+  <div class="relay-wrapper">
+    <div class="relay-progress" id="relay-progress">Card 0 of 0</div>
+
+    <div class="relay-card-stage" id="relay-stage">
+      <!-- Filled by JS -->
+    </div>
+
+    <div class="relay-btn-row" id="relay-btn-row">
+      <button class="relay-btn primary" id="relay-reveal-btn" onclick="relayReveal()">🔓 Reveal Card</button>
+      <button class="relay-btn primary" id="relay-next-btn"   onclick="relayNext()" style="display:none">➡️ Next Card</button>
+      <button class="relay-btn neutral" onclick="relayReset()">🔄 Restart Deck</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ LESSON PLAN ══════════════════════════════ -->
+<div id="plan-screen" class="screen">
+  <div class="section-title">📅 LESSON TIMELINE</div>
+  <p class="section-sub">Designed for 1h 20min. Extend any game the class loves!</p>
+
+  <div class="timeline-row" style="animation-delay:.0s"><div class="timeline-time">0:00–0:15</div><div class="timeline-info"><div class="timeline-game">🎯 Hot Seat Advice</div><div class="timeline-note">Warm-up. Get everyone moving and laughing.</div></div></div>
+  <div class="timeline-row" style="animation-delay:.06s"><div class="timeline-time">0:15–0:35</div><div class="timeline-info"><div class="timeline-game">🏃 Run &amp; Write Relay</div><div class="timeline-note">Peak energy. Physical + grammar combined.</div></div></div>
+  <div class="timeline-row" style="animation-delay:.12s"><div class="timeline-time">0:35–0:55</div><div class="timeline-info"><div class="timeline-game">🎭 Drama Duel</div><div class="timeline-note">Creative + communicative. Great for laughs.</div></div></div>
+  <div class="timeline-row" style="animation-delay:.18s"><div class="timeline-time">0:55–1:05</div><div class="timeline-info"><div class="timeline-game">⏸️ Break + Score Check</div><div class="timeline-note">Celebrate leaders. Hype a comeback!</div></div></div>
+  <div class="timeline-row" style="animation-delay:.24s"><div class="timeline-time">1:05–1:20</div><div class="timeline-info"><div class="timeline-game">🎲 Suggestion Roulette</div><div class="timeline-note">Fast-paced. Keeps focus sharp.</div></div></div>
+  <div class="timeline-row" style="animation-delay:.30s"><div class="timeline-time">1:20–1:50</div><div class="timeline-info"><div class="timeline-game">🗣️ Subjunctive Showdown</div><div class="timeline-note">Hardest grammar, biggest points. Grand finale!</div></div></div>
+  <div class="timeline-row" style="animation-delay:.36s"><div class="timeline-time">1:50–2:00</div><div class="timeline-info"><div class="timeline-game">🏆 Grand Finale + Celebration</div><div class="timeline-note">Announce winner, confetti, class chant!</div></div></div>
+
+  <div class="grammar-box">
+    <div class="grammar-box-title">🎯 Grammar Focus Per Game</div>
+    <div class="grammar-line">
+      🔵 <strong style="color:#fff">Let's / Should / Must / Could / Had Better / Ought To</strong> — Games 1, 2, 4<br>
+      🟢 <strong style="color:#fff">Why Don't We / How About + gerund</strong> — Games 2, 4<br>
+      🟣 <strong style="color:#fff">Suggest / Recommend / Insist + that + subjunctive</strong> — Game 5<br>
+      🟠 <strong style="color:#fff">All structures in real context</strong> — Game 3 (Drama Duel)
+    </div>
+  </div>
+</div>
+
+<!-- WINNER BANNER -->
+<div id="winner-banner">
+  <button class="close-banner" onclick="document.getElementById('winner-banner').style.display='none'">✕</button>
+  <h3 id="winner-text">🏆 WINNER!</h3>
+  <p id="winner-sub"></p>
+</div>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+const TEAM_COLORS = [
+  {bg:"#FF6B35",text:"#fff",glow:"rgba(255,107,53,.5)"},
+  {bg:"#00C9A7",text:"#fff",glow:"rgba(0,201,167,.5)"},
+  {bg:"#845EC2",text:"#fff",glow:"rgba(132,94,194,.5)"},
+  {bg:"#FFD600",text:"#1a1740",glow:"rgba(255,214,0,.5)"},
+  {bg:"#FF4560",text:"#fff",glow:"rgba(255,69,96,.5)"},
+  {bg:"#008FFB",text:"#fff",glow:"rgba(0,143,251,.5)"},
+];
+const DEFAULT_NAMES = ["Blazers 🔥","Waves 🌊","Thunder ⚡","Stars ⭐","Diamonds 💎","Rockets 🚀"];
+
+// All 20 relay situations
+const ALL_SITUATIONS = [
+  {id:0, text:"Your friend never drinks water — only soda every day."},
+  {id:1, text:"Your classmate hasn't slept properly in two days."},
+  {id:2, text:"Your friend spends 6 hours a day on their phone."},
+  {id:3, text:"Your colleague is always late to meetings."},
+  {id:4, text:"Your friend wants to lose weight but hates exercise."},
+  {id:5, text:"Your younger sister is failing all her exams."},
+  {id:6, text:"Your friend is always stressed and anxious."},
+  {id:7, text:"Your coworker never takes a lunch break."},
+  {id:8, text:"Your friend spends all their money the day they get paid."},
+  {id:9, text:"Your classmate talks during the teacher's explanation."},
+  {id:10,text:"Your friend gets sick every time the weather changes."},
+  {id:11,text:"Your neighbor plays loud music until midnight every night."},
+  {id:12,text:"Your friend wants to learn English but never practises."},
+  {id:13,text:"Your colleague is rude to everyone in the office."},
+  {id:14,text:"Your friend eats fast food every single day."},
+  {id:15,text:"Your classmate copies homework instead of doing it themselves."},
+  {id:16,text:"Your friend is too shy to speak in class."},
+  {id:17,text:"Your roommate never cleans the apartment."},
+  {id:18,text:"Your friend is always forgetting important things."},
+  {id:19,text:"Your classmate wants to make more friends but always sits alone."},
+];
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let teams = [];
+let scores = [];
+let teamCount = 3;
+let maxScore = 1;
+
+// Relay state
+let activeSituations = [...ALL_SITUATIONS]; // subset based on checkboxes
+let relayDeck = [];
+let relayIndex = -1;
+let relayRevealed = false;
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────────────
+function goTo(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  const nb = document.querySelector(`.nav-btn[data-screen="${screenId}"]`);
+  if (nb) nb.classList.add('active');
+}
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => goTo(btn.dataset.screen));
+});
+
+// ─── TEAM SETUP ──────────────────────────────────────────────────────────────
+document.querySelectorAll('.count-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.count-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    teamCount = parseInt(btn.dataset.n);
+    renderTeamInputs();
+  });
+});
+
+function renderTeamInputs() {
+  const el = document.getElementById('team-inputs');
+  el.innerHTML = '';
+  for (let i = 0; i < teamCount; i++) {
+    const c = TEAM_COLORS[i];
+    const val = (teams[i] !== undefined) ? teams[i] : DEFAULT_NAMES[i];
+    el.innerHTML += `
+      <div class="team-input-row">
+        <span class="team-dot" style="background:${c.bg}"></span>
+        <input class="team-input" id="ti${i}" value="${val}" placeholder="Team ${i+1} name">
+      </div>`;
+  }
+}
+renderTeamInputs();
+
+function startGame() {
+  teams = [];
+  scores = [];
+  for (let i = 0; i < teamCount; i++) {
+    teams.push(document.getElementById('ti'+i).value.trim() || DEFAULT_NAMES[i]);
+    scores.push(0);
+  }
+  maxScore = 1;
+  renderScoreboard();
+  document.getElementById('home-start-btn').style.display = 'none';
+  document.getElementById('home-score-btn').style.display = 'block';
+  goTo('score-screen');
+}
+
+// ─── SCOREBOARD ──────────────────────────────────────────────────────────────
+function renderScoreboard() {
+  const el = document.getElementById('scoreboard');
+  if (!teams.length) { el.innerHTML = '<p style="color:#888;text-align:center;padding:30px">No teams yet — set up teams first!</p>'; return; }
+
+  maxScore = Math.max(...scores, 1);
+  const sorted = teams.map((t,i) => ({name:t, score:scores[i], idx:i}))
+                       .sort((a,b) => b.score - a.score);
+
+  el.innerHTML = sorted.map((t, rank) => {
+    const c = TEAM_COLORS[t.idx % TEAM_COLORS.length];
+    const pct = (t.score / maxScore) * 100;
+    const medal = rank===0&&t.score>0?'🥇':rank===1&&t.score>0?'🥈':rank===2&&t.score>0?'🥉':`${rank+1}.`;
+    const isLeader = rank===0 && t.score>0;
+    return `
+      <div class="score-row ${isLeader?'leader':''}" style="${isLeader?`border-color:${c.bg};box-shadow:0 0 22px ${c.glow};background:${c.bg}18`:''}" >
+        <div class="score-top">
+          <span class="score-rank">${medal}</span>
+          <span class="score-name" style="background:${c.bg};color:${c.text}">${t.name}</span>
+          <span class="score-pts">${t.score}</span>
+          <div class="score-btns">
+            <button class="btn-minus" onclick="adjustScore(${t.idx},-1)">−</button>
+            <button class="btn-plus" style="background:${c.bg};color:${c.text};${isLeader?'animation:bounce .7s infinite':''}" onclick="adjustScore(${t.idx},1)">+</button>
+          </div>
+        </div>
+        <div class="score-bar-bg">
+          <div class="score-bar" style="width:${pct}%;background:linear-gradient(90deg,${c.bg},${c.glow})"></div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function adjustScore(idx, delta) {
+  scores[idx] = Math.max(0, scores[idx] + delta);
+  if (delta > 0) spawnConfetti();
+  renderScoreboard();
+  checkWinner();
+}
+
+function resetScores() {
+  scores = teams.map(() => 0);
+  document.getElementById('winner-banner').style.display = 'none';
+  renderScoreboard();
+}
+
+function checkWinner() {
+  const max = Math.max(...scores);
+  if (max >= 10) {
+    const wi = scores.indexOf(max);
+    const c = TEAM_COLORS[wi % TEAM_COLORS.length];
+    document.getElementById('winner-text').innerHTML = `🏆 ${teams[wi]} WINS!`;
+    document.getElementById('winner-sub').textContent = `${max} points — Champions of the class!`;
+    document.getElementById('winner-banner').style.display = 'block';
+    spawnConfetti(); spawnConfetti();
+  }
+}
+
+// ─── CONFETTI ─────────────────────────────────────────────────────────────────
+const CONF_COLORS = ["#FF6B35","#FFD600","#00C9A7","#845EC2","#FF4560","#008FFB","#00E396","#fff"];
+function spawnConfetti() {
+  for (let i = 0; i < 55; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.cssText = `
+      left:${Math.random()*100}%;
+      top:-${Math.random()*20}px;
+      width:${8+Math.random()*10}px;
+      height:${8+Math.random()*10}px;
+      border-radius:${Math.random()>.5?'50%':'2px'};
+      background:${CONF_COLORS[Math.floor(Math.random()*CONF_COLORS.length)]};
+      animation-duration:${1.5+Math.random()*2}s;
+      animation-delay:${Math.random()*1}s;
+    `;
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+}
+
+// ─── GAME ACCORDION ───────────────────────────────────────────────────────────
+function toggleGame(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+// ─── RELAY CARD SYSTEM ────────────────────────────────────────────────────────
+function buildCardChecks() {
+  const el = document.getElementById('card-checks');
+  el.innerHTML = ALL_SITUATIONS.map((s,i) => `
+    <label class="card-check-row" id="ccr${i}">
+      <input type="checkbox" id="cc${i}" checked onchange="updateCheckRow(${i})">
+      <span>${i+1}. ${s.text}</span>
+    </label>`).join('');
+}
+
+function updateCheckRow(i) {
+  const checked = document.getElementById('cc'+i).checked;
+  document.getElementById('ccr'+i).classList.toggle('unchecked', !checked);
+}
+
+function applyCardSelection() {
+  activeSituations = ALL_SITUATIONS.filter((_,i) => document.getElementById('cc'+i).checked);
+  relayReset();
+  toggleCardManager(true);
+}
+
+function toggleCardManager(forceClose) {
+  const el = document.getElementById('card-manager');
+  const arr = document.getElementById('cm-arrow');
+  const isOpen = el.style.display === 'block';
+  if (forceClose || isOpen) {
+    el.style.display = 'none';
+    arr.style.transform = 'rotate(0deg)';
+  } else {
+    el.style.display = 'block';
+    arr.style.transform = 'rotate(180deg)';
+  }
+}
+
+function relayReset() {
+  // Shuffle active situations
+  relayDeck = [...activeSituations].sort(() => Math.random() - .5);
+  relayIndex = -1;
+  relayRevealed = false;
+  updateRelayProgress();
+  showLockedCard();
+  document.getElementById('relay-reveal-btn').style.display = 'inline-block';
+  document.getElementById('relay-next-btn').style.display = 'none';
+}
+
+function relayReveal() {
+  if (relayIndex < 0) relayIndex = 0;
+  relayRevealed = true;
+  showRevealedCard();
+  document.getElementById('relay-reveal-btn').style.display = 'none';
+  document.getElementById('relay-next-btn').style.display = 'inline-block';
+  document.getElementById('relay-next-btn').disabled = relayIndex >= relayDeck.length - 1;
+}
+
+function relayNext() {
+  relayIndex++;
+  relayRevealed = false;
+  if (relayIndex >= relayDeck.length) {
+    showDoneState();
+    return;
+  }
+  updateRelayProgress();
+  showLockedCard();
+  document.getElementById('relay-reveal-btn').style.display = 'inline-block';
+  document.getElementById('relay-next-btn').style.display = 'none';
+}
+
+function updateRelayProgress() {
+  const total = relayDeck.length;
+  const current = relayIndex < 0 ? 0 : relayIndex + 1;
+  document.getElementById('relay-progress').textContent = `Card ${current} of ${total}`;
+}
+
+function showLockedCard() {
+  const stage = document.getElementById('relay-stage');
+  const next = relayIndex < 0 ? 0 : relayIndex;
+  stage.innerHTML = `
+    <div class="relay-card hidden-card" onclick="relayReveal()">
+      <span class="relay-lock-icon">🔒</span>
+      <div class="relay-lock-text">Card Hidden</div>
+      <div class="relay-lock-sub">Tap "Reveal Card" or tap here when ready</div>
+    </div>`;
+}
+
+function showRevealedCard() {
+  const situation = relayDeck[relayIndex];
+  const stage = document.getElementById('relay-stage');
+  const num = relayIndex + 1;
+  stage.innerHTML = `
+    <div class="relay-card">
+      <div class="relay-card-num">Situation ${num} of ${relayDeck.length}</div>
+      <div class="relay-situation">${situation.text}</div>
+      <div class="relay-hint">Students must write a correct advice or suggestion sentence on the board!</div>
+    </div>`;
+}
+
+function showDoneState() {
+  const stage = document.getElementById('relay-stage');
+  stage.innerHTML = `
+    <div class="relay-done">
+      <div class="big">🎉</div>
+      <h2>All Cards Done!</h2>
+      <p>Tap "Restart Deck" to play again with a new shuffled order.</p>
+    </div>`;
+  document.getElementById('relay-reveal-btn').style.display = 'none';
+  document.getElementById('relay-next-btn').style.display = 'none';
+  document.getElementById('relay-progress').textContent = `All ${relayDeck.length} cards completed!`;
+  spawnConfetti();
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+buildCardChecks();
+relayReset();
+renderScoreboard();
+</script>
+</body>
+</html>

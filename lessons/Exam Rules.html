@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Midterm Exam Rules — Students</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060910;
+    --gold: #f5c518;
+    --red: #e63030;
+    --red2: #ff4444;
+    --green: #00c896;
+    --white: #f0f4ff;
+    --dim: rgba(240,244,255,0.65);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body {
+    width:100%; height:100%;
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Barlow',sans-serif;
+    overflow:hidden;
+    user-select:none;
+  }
+  body::after {
+    content:''; position:fixed; inset:0;
+    background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.07) 2px,rgba(0,0,0,0.07) 4px);
+    pointer-events:none; z-index:9999;
+  }
+
+  /* TOP BAR */
+  #topbar {
+    position:fixed; top:0; left:0; right:0; height:50px;
+    background:var(--red);
+    display:flex; align-items:center;
+    overflow:hidden; z-index:300;
+    box-shadow:0 2px 20px rgba(230,48,48,0.5);
+    animation:topBlink 2s step-end infinite;
+  }
+  @keyframes topBlink {
+    0%,45%  { background:#c0392b; }
+    50%,95% { background:#e63030; }
+    100%    { background:#c0392b; }
+  }
+  #topbar::before,#topbar::after {
+    content:''; position:absolute; top:0; bottom:0; width:60px; z-index:2;
+  }
+  #topbar::before { left:0;  background:linear-gradient(90deg,#e63030,transparent); }
+  #topbar::after  { right:0; background:linear-gradient(-90deg,#e63030,transparent); }
+  #topbar-inner {
+    display:inline-block; white-space:nowrap;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.35rem; letter-spacing:5px; color:#fff;
+    animation:marquee 20s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform:translateX(100vw); }
+    to   { transform:translateX(-100%); }
+  }
+
+  /* PROGRESS BAR */
+  #progress-bar {
+    position:fixed; top:50px; left:0; height:3px;
+    background:var(--gold); z-index:301;
+    box-shadow:0 0 8px rgba(245,197,24,0.7);
+    transition:width 0.4s ease;
+  }
+
+  /* TIMER WIDGET */
+  #timer-widget {
+    position:fixed; top:60px; right:14px; z-index:300;
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+  }
+  #timer-wrap { position:relative; width:52px; height:52px; }
+  #timer-svg  { width:52px; height:52px; transform:rotate(-90deg); }
+  #timer-track { fill:none; stroke:rgba(255,255,255,0.08); stroke-width:4; }
+  #timer-fill  { fill:none; stroke:var(--gold); stroke-width:4; stroke-linecap:round;
+                 stroke-dasharray:113.1; stroke-dashoffset:0; transition:stroke 0.3s; }
+  #timer-num {
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%) rotate(90deg);
+    font-family:'Bebas Neue',sans-serif; font-size:1.15rem; color:var(--gold);
+  }
+  #slide-counter {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:0.7rem; letter-spacing:2px;
+    color:rgba(255,255,255,0.3); text-align:center;
+  }
+
+  /* STAGE */
+  #stage { position:fixed; inset:50px 0 38px 0; overflow:hidden; }
+
+  .slide {
+    position:absolute; inset:0;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding:30px 70px;
+    text-align:center;
+    opacity:0; pointer-events:none;
+  }
+  .slide.enter { animation:slideIn 0.55s cubic-bezier(.22,1,.36,1) forwards; }
+  .slide.exit  { animation:slideOut 0.45s ease-in forwards; }
+  @keyframes slideIn  { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes slideOut { from{opacity:1;transform:translateY(0)} to{opacity:0;transform:translateY(-30px)} }
+
+  .slide.intro { background:radial-gradient(ellipse at 50% 60%,#0d1b2e 0%,#060910 100%); }
+  .slide.warn  { background:radial-gradient(ellipse at 50% 40%,#1c0505 0%,#060910 100%); }
+  .slide.rule  { background:radial-gradient(ellipse at 50% 40%,#06101f 0%,#060910 100%); }
+  .slide.audio { background:radial-gradient(ellipse at 50% 40%,#051415 0%,#060910 100%); }
+  .slide.cheat { background:radial-gradient(ellipse at 50% 40%,#180606 0%,#060910 100%); }
+  .slide.luck  { background:radial-gradient(ellipse at 50% 60%,#091508 0%,#060910 100%); }
+
+  /* elements */
+  .slide-tag {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:0.72rem; font-weight:700;
+    letter-spacing:5px; text-transform:uppercase;
+    color:var(--gold); opacity:0.75; margin-bottom:12px;
+  }
+  .slide-icon { font-size:clamp(3.2rem,8vw,5.8rem); margin-bottom:14px; display:inline-block; }
+  .slide-title {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(2.8rem,8vw,5.5rem);
+    letter-spacing:3px; line-height:1.05; margin-bottom:12px;
+  }
+  .t-gold  { color:var(--gold); }
+  .t-red   { color:var(--red2); }
+  .t-green { color:var(--green); }
+  .t-white { color:var(--white); }
+
+  .divider { width:70px; height:3px; border-radius:2px; margin:10px auto 18px; }
+  .d-gold  { background:var(--gold); }
+  .d-red   { background:var(--red2); }
+  .d-green { background:var(--green); }
+
+  .slide-body {
+    font-size:clamp(1.05rem,2.6vw,1.4rem);
+    line-height:1.75; color:var(--dim); max-width:680px;
+  }
+  .slide-body strong { color:var(--white); font-weight:600; }
+  .hg  { color:var(--gold);  font-weight:700; }
+  .hr  { color:var(--red2);  font-weight:700; }
+  .hgr { color:var(--green); font-weight:700; }
+
+  .ghost-n {
+    position:absolute; right:4%; bottom:8%;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(6rem,20vw,14rem);
+    color:rgba(255,255,255,0.03);
+    pointer-events:none; line-height:1; user-select:none;
+  }
+  .ca { position:absolute; width:36px; height:36px; border-style:solid; opacity:0.4; }
+  .ca.tl { top:12px;    left:12px;  border-width:3px 0 0 3px; }
+  .ca.tr { top:12px;    right:12px; border-width:3px 3px 0 0; }
+  .ca.bl { bottom:12px; left:12px;  border-width:0 0 3px 3px; }
+  .ca.br { bottom:12px; right:12px; border-width:0 3px 3px 0; }
+
+  /* animations */
+  .pulse { animation:pulse 1.2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+  .shake { animation:shake 0.5s ease-in-out infinite; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-7px)} 75%{transform:translateX(7px)} }
+  .flash { animation:flash 1s step-end infinite; }
+  @keyframes flash { 0%,49%{opacity:1} 50%,100%{opacity:0.08} }
+  .glow-g { animation:glowG 1.5s ease-in-out infinite alternate; }
+  @keyframes glowG {
+    from { text-shadow:0 0 12px rgba(245,197,24,0.5); }
+    to   { text-shadow:0 0 28px rgba(245,197,24,1),0 0 60px rgba(245,197,24,0.4); }
+  }
+  .glow-r { animation:glowR 0.9s ease-in-out infinite alternate; }
+  @keyframes glowR {
+    from { text-shadow:0 0 10px rgba(255,68,68,0.4); }
+    to   { text-shadow:0 0 28px rgba(255,68,68,1),0 0 55px rgba(255,68,68,0.45); }
+  }
+  .glow-gr { animation:glowGr 1.5s ease-in-out infinite alternate; }
+  @keyframes glowGr {
+    from { text-shadow:0 0 10px rgba(0,200,150,0.4); }
+    to   { text-shadow:0 0 26px rgba(0,200,150,1),0 0 50px rgba(0,200,150,0.4); }
+  }
+
+  /* cheating boxes */
+  .cheat-grid { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:8px; }
+  .cb { border-radius:12px; padding:18px 26px; min-width:150px; text-align:center; }
+  .cb1 { background:rgba(0,200,150,0.1);   border:2px solid rgba(0,200,150,0.35); }
+  .cb2 { background:rgba(245,197,24,0.09);  border:2px solid rgba(245,197,24,0.45);
+         animation:boxP2 1.5s ease-in-out infinite; }
+  .cb3 { background:rgba(255,68,68,0.1);    border:2px solid rgba(255,68,68,0.55);
+         animation:boxP3 0.8s ease-in-out infinite; }
+  @keyframes boxP2 { 0%,100%{box-shadow:none} 50%{box-shadow:0 0 20px rgba(245,197,24,0.3)} }
+  @keyframes boxP3 { 0%,100%{box-shadow:none} 50%{box-shadow:0 0 24px rgba(255,68,68,0.5)} }
+  .cb-n { font-family:'Bebas Neue',sans-serif; font-size:3rem; line-height:1; }
+  .cb1 .cb-n { color:var(--green); }
+  .cb2 .cb-n { color:var(--gold);  }
+  .cb3 .cb-n { color:var(--red2);  }
+  .cb-lbl { font-family:'Barlow Condensed',sans-serif; font-size:0.9rem; font-weight:700; letter-spacing:1px; margin-top:6px; line-height:1.35; }
+  .cb1 .cb-lbl { color:var(--green); }
+  .cb2 .cb-lbl { color:var(--gold);  }
+  .cb3 .cb-lbl { color:var(--red2);  }
+
+  /* dots */
+  #dots {
+    position:fixed; bottom:46px; left:50%; transform:translateX(-50%);
+    display:flex; gap:7px; z-index:300;
+  }
+  .dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.18); transition:all 0.3s; }
+  .dot.on { background:var(--gold); transform:scale(1.5); }
+
+  /* bottom ticker */
+  #ticker-bar {
+    position:fixed; bottom:0; left:0; right:0; height:38px;
+    background:rgba(0,0,0,0.5);
+    border-top:1px solid rgba(255,255,255,0.07);
+    display:flex; align-items:center; overflow:hidden; z-index:300;
+  }
+  #ticker-inner {
+    display:inline-block; white-space:nowrap;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:0.82rem; font-weight:600; letter-spacing:2px;
+    color:rgba(255,255,255,0.38);
+    animation:tickerBot 32s linear infinite;
+  }
+  @keyframes tickerBot { from{transform:translateX(100vw)} to{transform:translateX(-100%)} }
+
+  /* particles */
+  #particles { position:fixed; inset:50px 0 38px 0; pointer-events:none; z-index:1; overflow:hidden; }
+  .par { position:absolute; border-radius:50%; background:white; animation:parDrift var(--pd) ease-in-out infinite alternate; opacity:0.06; }
+  @keyframes parDrift { from{transform:translate(0,0)} to{transform:translate(var(--px),var(--py))} }
+
+  @media(max-width:540px){
+    .slide { padding:20px 24px; }
+    .cheat-grid { gap:10px; }
+    .cb { min-width:100px; padding:12px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <div id="topbar-inner">
+    ⚠️&nbsp; MIDTERM EXAM IN PROGRESS &nbsp;·&nbsp; ALL RULES STRICTLY ENFORCED &nbsp;·&nbsp; CHEATING WILL BE PENALISED IMMEDIATELY &nbsp;·&nbsp; READ EVERY RULE CAREFULLY BEFORE YOU BEGIN &nbsp;·&nbsp; GOOD LUCK &nbsp;&nbsp;&nbsp;&nbsp;
+    ⚠️&nbsp; MIDTERM EXAM IN PROGRESS &nbsp;·&nbsp; ALL RULES STRICTLY ENFORCED &nbsp;·&nbsp; CHEATING WILL BE PENALISED IMMEDIATELY &nbsp;·&nbsp; READ EVERY RULE CAREFULLY BEFORE YOU BEGIN &nbsp;·&nbsp; GOOD LUCK &nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar" style="width:0%"></div>
+
+<!-- TIMER WIDGET -->
+<div id="timer-widget">
+  <div id="timer-wrap">
+    <svg id="timer-svg" viewBox="0 0 44 44">
+      <circle id="timer-track" cx="22" cy="22" r="18"/>
+      <circle id="timer-fill"  cx="22" cy="22" r="18"/>
+    </svg>
+    <div id="timer-num">10</div>
+  </div>
+  <div id="slide-counter">1 / 9</div>
+</div>
+
+<!-- PARTICLES -->
+<div id="particles"></div>
+
+<!-- ══════════════════════════════
+     SLIDES — STUDENTS ONLY
+══════════════════════════════ -->
+<div id="stage">
+
+  <!-- 0: INTRO -->
+  <div class="slide intro">
+    <div class="ca tl" style="border-color:var(--gold)"></div>
+    <div class="ca tr" style="border-color:var(--gold)"></div>
+    <div class="ca bl" style="border-color:var(--gold)"></div>
+    <div class="ca br" style="border-color:var(--gold)"></div>
+    <div class="slide-tag">English Department · Midterm Exam</div>
+    <div class="slide-icon pulse">📝</div>
+    <div class="slide-title t-gold glow-g">EXAM RULES</div>
+    <div class="slide-title t-white" style="font-size:clamp(1.4rem,3.5vw,2.5rem);letter-spacing:7px;margin-top:-10px;">FOR STUDENTS</div>
+    <div class="divider d-gold"></div>
+    <div class="slide-body">
+      <span class="hr" style="font-size:1.05em;">⚠ Read every rule carefully before you start.</span><br>
+      All rules are strictly enforced without exception.
+    </div>
+  </div>
+
+  <!-- 1: READ CAREFULLY -->
+  <div class="slide warn">
+    <div class="slide-icon shake" style="font-size:5.5rem;">👁️</div>
+    <div class="slide-title t-red flash glow-r">READ CAREFULLY</div>
+    <div class="divider d-red"></div>
+    <div class="slide-body">
+      Do <strong>NOT</strong> start answering right away.<br>
+      <span class="hg">Read ALL instructions first.</span><br><br>
+      Rushing without reading costs you marks.<br>
+      <span class="hr">Take your time. Read everything.</span>
+    </div>
+  </div>
+
+  <!-- 2: BAGS AT FRONT -->
+  <div class="slide rule">
+    <div class="ghost-n">01</div>
+    <div class="slide-tag">Student Rule · 01</div>
+    <div class="slide-icon">👜</div>
+    <div class="slide-title t-gold">BAGS AT THE FRONT</div>
+    <div class="divider d-gold"></div>
+    <div class="slide-body">
+      Place all bags at the <span class="hg">front of the classroom</span><br>before the exam begins.<br><br>
+      On your desk: <strong>pen and test paper only.</strong><br>
+      Nothing else on or under your desk.
+    </div>
+  </div>
+
+  <!-- 3: NO CHEATING -->
+  <div class="slide warn">
+    <div class="slide-icon shake" style="font-size:5.5rem;">🚫</div>
+    <div class="slide-title t-red flash glow-r">NO CHEATING</div>
+    <div class="divider d-red"></div>
+    <div class="slide-body">
+      <span class="hr">No looking at others' papers.</span><br>
+      <strong>No talking.</strong> No borrowing materials.<br><br>
+      This is taken <span class="hg" style="font-size:1.2em;">VERY SERIOUSLY</span><br>and enforced <strong>immediately.</strong>
+    </div>
+  </div>
+
+  <!-- 4: PHONES SILENT -->
+  <div class="slide rule">
+    <div class="ghost-n">02</div>
+    <div class="slide-tag">Student Rule · 02</div>
+    <div class="slide-icon pulse">🔕</div>
+    <div class="slide-title t-gold">PHONES ON SILENT</div>
+    <div class="divider d-gold"></div>
+    <div class="slide-body">
+      Switch your phone to <span class="hg">silent mode</span> now.<br><br>
+      Going to the toilet? Leave your phone<br>on your <strong>chair</strong> before you leave.<br><br>
+      <strong>Raise your hand</strong> if you have a question.
+    </div>
+  </div>
+
+  <!-- 5: LISTENING SECTION -->
+  <div class="slide audio">
+    <div class="ca tl" style="border-color:var(--green)"></div>
+    <div class="ca tr" style="border-color:var(--green)"></div>
+    <div class="ca bl" style="border-color:var(--green)"></div>
+    <div class="ca br" style="border-color:var(--green)"></div>
+    <div class="slide-icon pulse" style="font-size:5.5rem;">🎧</div>
+    <div class="slide-title t-green glow-gr" style="font-size:clamp(2.2rem,6vw,4.5rem);">LISTENING SECTION</div>
+    <div class="divider d-green"></div>
+    <div class="slide-body" style="font-size:clamp(1rem,2.6vw,1.45rem);">
+      The audio will be played <span class="hg" style="font-size:1.25em;">1 HOUR</span> into the exam.<br><br>
+      Finished your written work early?<br>
+      <strong>Sit quietly and wait in silence.</strong><br><br>
+      <span class="hgr">Points will be deducted</span> for any disruption<br>before or during the audio.
+    </div>
+  </div>
+
+  <!-- 6: WAIT IN SILENCE -->
+  <div class="slide audio">
+    <div class="slide-icon pulse" style="font-size:5.5rem;">🤫</div>
+    <div class="slide-title t-green glow-gr" style="font-size:clamp(2.2rem,6vw,4.5rem);">WAIT IN SILENCE</div>
+    <div class="divider d-green"></div>
+    <div class="slide-body" style="font-size:clamp(1rem,2.6vw,1.45rem);">
+      If you finish early — <strong>do not make noise.</strong><br>
+      Do not disturb others who are still working.<br><br>
+      <span class="hr flash">Disruptions = immediate point deductions.</span><br>
+      <span class="hr flash">No warnings will be given.</span>
+    </div>
+  </div>
+
+  <!-- 7: CHEATING POLICY -->
+  <div class="slide cheat">
+    <div class="slide-tag">⚠ Zero Tolerance · Cheating Policy</div>
+    <div class="slide-icon shake" style="font-size:3.8rem;">‼️</div>
+    <div class="slide-title t-red glow-r" style="font-size:clamp(2.2rem,6vw,4rem);">CHEATING POLICY</div>
+    <div class="divider d-red"></div>
+    <div class="cheat-grid">
+      <div class="cb cb1">
+        <div class="cb-n">1<span style="font-size:1.3rem">st</span></div>
+        <div class="cb-lbl">OFFICIAL<br>WARNING</div>
+      </div>
+      <div class="cb cb2">
+        <div class="cb-n">2<span style="font-size:1.3rem">nd</span></div>
+        <div class="cb-lbl">DEDUCT<br>20% SCORE</div>
+      </div>
+      <div class="cb cb3">
+        <div class="cb-n">3<span style="font-size:1.3rem">rd</span></div>
+        <div class="cb-lbl">EXAM STOPPED<br>→ ACADEMIC OFFICE</div>
+      </div>
+    </div>
+    <div class="slide-body" style="margin-top:16px;font-size:0.95rem;">
+      <span class="hr flash">Enforced immediately and without debate.</span>
+    </div>
+  </div>
+
+  <!-- 8: GOOD LUCK -->
+  <div class="slide luck">
+    <div class="ca tl" style="border-color:var(--green)"></div>
+    <div class="ca tr" style="border-color:var(--green)"></div>
+    <div class="ca bl" style="border-color:var(--green)"></div>
+    <div class="ca br" style="border-color:var(--green)"></div>
+    <div class="slide-icon pulse" style="font-size:5.5rem;">⭐</div>
+    <div class="slide-title t-gold glow-g" style="font-size:clamp(3.5rem,10vw,7rem);">GOOD LUCK!</div>
+    <div class="divider d-green"></div>
+    <div class="slide-body" style="font-size:clamp(1rem,2.5vw,1.4rem);">
+      You have prepared for this.<br>
+      <span class="hg">Stay calm, read carefully, do your best.</span><br><br>
+      <span style="opacity:0.55;font-size:0.9rem;">— English Department</span>
+    </div>
+  </div>
+
+</div><!-- /stage -->
+
+<!-- DOTS -->
+<div id="dots"></div>
+
+<!-- BOTTOM TICKER -->
+<div id="ticker-bar">
+  <div id="ticker-inner">
+    &nbsp;&nbsp;&nbsp; 👜 BAGS AT THE FRONT &nbsp;·&nbsp; 🚫 NO CHEATING — NO LOOKING AT OTHERS &nbsp;·&nbsp; 🔕 PHONES ON SILENT &nbsp;·&nbsp; 🤫 FINISH EARLY? WAIT IN SILENCE &nbsp;·&nbsp; 🎧 AUDIO PLAYS 1 HOUR IN &nbsp;·&nbsp; ✋ RAISE YOUR HAND FOR QUESTIONS &nbsp;·&nbsp; ‼️ 1st WARNING · 2nd −20% · 3rd EXAM STOPPED &nbsp;·&nbsp; 👜 BAGS AT THE FRONT &nbsp;·&nbsp; 🚫 NO CHEATING &nbsp;·&nbsp; 🔕 PHONES ON SILENT &nbsp;·&nbsp; 🤫 WAIT IN SILENCE &nbsp;·&nbsp; 🎧 AUDIO PLAYS 1 HOUR IN &nbsp;·&nbsp;
+  </div>
+</div>
+
+<script>
+  const SLIDE_DURATION = 10000;
+  const TICK           = 50;
+  const CIRC           = 2 * Math.PI * 18; // ≈ 113.1
+
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total  = slides.length;
+  let current  = 0;
+  let elapsed  = 0;
+
+  // particles
+  const pEl = document.getElementById('particles');
+  for (let i = 0; i < 55; i++) {
+    const p = document.createElement('div');
+    p.className = 'par';
+    const sz = Math.random()*3+1;
+    p.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;`
+      + `--pd:${(Math.random()*7+4).toFixed(1)}s;--px:${(Math.random()*70-35).toFixed(0)}px;--py:${(Math.random()*70-35).toFixed(0)}px;`
+      + `animation-delay:${(Math.random()*8).toFixed(1)}s;`;
+    pEl.appendChild(p);
+  }
+
+  // dots
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0?' on':'');
+    dotsEl.appendChild(d);
+  });
+
+  // timer refs
+  const fillEl = document.getElementById('timer-fill');
+  const numEl  = document.getElementById('timer-num');
+  fillEl.style.strokeDasharray  = CIRC;
+  fillEl.style.strokeDashoffset = 0;
+
+  function updateTimer() {
+    const frac = elapsed / SLIDE_DURATION;
+    const rem  = Math.ceil((SLIDE_DURATION - elapsed) / 1000);
+    fillEl.style.strokeDashoffset = frac * CIRC;
+    numEl.textContent = rem;
+    fillEl.style.stroke = frac < 0.5 ? 'var(--gold)' : frac < 0.8 ? '#f0a000' : 'var(--red2)';
+  }
+
+  function updateUI() {
+    const pct = ((current + 1) / total) * 100;
+    document.getElementById('progress-bar').style.width = pct + '%';
+    document.getElementById('slide-counter').textContent = (current+1) + ' / ' + total;
+    document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('on', i===current));
+  }
+
+  function goTo(next) {
+    const cur = slides[current];
+    cur.classList.remove('enter');
+    cur.classList.add('exit');
+    setTimeout(() => { cur.classList.remove('exit'); cur.style.opacity = 0; }, 450);
+
+    current = (next + total) % total;
+    const nxt = slides[current];
+    nxt.style.opacity = 0;
+    nxt.classList.remove('exit');
+    nxt.classList.add('enter');
+
+    elapsed = 0;
+    updateUI();
+    updateTimer();
+  }
+
+  // main loop — fully automatic, no interaction needed
+  setInterval(() => {
+    elapsed += TICK;
+    updateTimer();
+    if (elapsed >= SLIDE_DURATION) goTo(current + 1);
+  }, TICK);
+
+  // init
+  slides[0].classList.add('enter');
+  slides[0].style.opacity = 1;
+  updateUI();
+  updateTimer();
+</script>
+</body>
+</html>
