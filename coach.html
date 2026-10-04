@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Coach — Your Personal English Lesson | I Learn English Here</title>
+<meta name="description" content="A free study coach that finds the English mistakes you keep making and builds a lesson just for you: formula, memory trick, history and practice.">
+<link rel="canonical" href="https://ilearnenglishhere.academy/coach.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Study Coach — Your Personal English Lesson | I Learn English Here">
+<meta property="og:description" content="A free study coach that finds the English mistakes you keep making and builds a lesson just for you: formula, memory trick, history and practice.">
+<meta property="og:url" content="https://ilearnenglishhere.academy/coach.html">
+<meta name="author" content="Online Business Awareness">
+<meta name="theme-color" content="#1f7a6c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f7a6c'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='20' fill='white'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+
+</head>
+<body>
+
+<header class="site">
+  <a class="brand" href="index.html" aria-label="I Learn English Here — home">
+    <span class="logo"><span class="mark">E</span> I Learn English Here</span>
+    <span class="by">by <img src="assets/oba-logo.svg" alt="Online Business Awareness"></span>
+  </a>
+  <nav class="main" aria-label="Main">
+    <a href="start-here.html">Start Here</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="coach.html" aria-current="page">Coach</a>
+    <a href="speak.html">Speak</a>
+    <a href="english-story.html">Story</a>
+    <a href="faq.html">FAQ</a>
+    <a class="nav-cta" href="https://www.udemy.com/course/learn-english-like-a-local-uk-culture-accents-real-life/?referralCode=3CB23BDB35F22F4058F0" target="_blank" rel="noopener">Full Course</a>
+  </nav>
+</header>
+
+<main>
+<style>
+.co{max-width:860px;margin:0 auto;padding:5vh 16px}
+.co h1{font-size:clamp(1.7rem,4.5vw,2.5rem)}
+.co-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:18px 0}
+.co-stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}
+.co-stat b{display:block;font-size:1.6rem;color:var(--accent)}
+.co-stat span{font-size:.85rem;color:var(--muted)}
+.co-box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin:16px 0}
+.co-box h2{font-size:1.2rem;margin:0 0 10px}
+.co-age button,.co-pace button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;margin:4px 4px 0 0;cursor:pointer;font-size:.95rem}
+.co-age button.on,.co-pace button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.co-topic{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.co-topic:last-child{border:0}
+.co-topic .nm{flex:1;font-weight:600}
+.co-bar{width:110px;height:10px;border-radius:9px;background:#e9efee;overflow:hidden}
+.co-bar i{display:block;height:100%;background:linear-gradient(90deg,#d0493a,#e0a548,#2f9e6a)}
+.co-topic button{border:0;background:#e8f4f1;color:var(--accent);border-radius:999px;padding:6px 11px;font-weight:700;cursor:pointer}
+.co-big{font-size:1.1rem;padding:1em 1.8em}
+/* trip */
+#trip{display:none}
+.tp-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.tp-prog{flex:1;min-width:160px;height:12px;border-radius:9px;background:#e3ecea;overflow:hidden}
+.tp-prog i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.tp-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 10px 30px rgba(19,42,46,.07);animation:tp .25s ease-out}
+@keyframes tp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.tp-kicker{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--accent2);font-weight:800}
+.tp-card h2{margin:.2rem 0 .6rem;font-size:1.45rem}
+.tp-card p{font-size:1.06rem;line-height:1.65}
+.tp-formula{background:#132a2e;color:#f4efe2;border-radius:16px;padding:12px 16px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.tp-formula div{padding:6px 0;border-bottom:1px dashed rgba(255,255,255,.18)}
+.tp-formula div:last-child{border:0}
+.tp-formula b{color:#ffd68a}
+.tp-reveal{display:block;width:100%;text-align:left;margin:7px 0;padding:11px 14px;border:2px dashed #cfdcd8;border-radius:12px;background:#f8fbfa;cursor:pointer;font-size:1.02rem}
+.tp-reveal.shown{border-style:solid;border-color:var(--accent);background:#eef8f5}
+.tp-alt{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.tp-alt button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 11px;font-size:.88rem;cursor:pointer}
+.tp-nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}
+.tp-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px;margin:12px 0}
+.tp-opts button{border:2px solid #d6e5e1;background:#fff;border-radius:14px;padding:13px;font-size:1.05rem;cursor:pointer}
+.tp-opts button.ok{border-color:#2f9e6a;background:#e3f6ec}
+.tp-opts button.no{border-color:#d0493a;background:#fde8e5}
+.tp-type{display:flex;gap:8px;margin:12px 0}
+.tp-type input{flex:1;min-width:0;font-size:1.1rem;padding:12px;border:2px solid #d6e5e1;border-radius:12px}
+.tp-q{font-size:1.25rem;font-weight:600}
+.tp-gap{display:inline-block;min-width:70px;border-bottom:3px solid var(--accent2)}
+.tp-fb{border-radius:14px;padding:12px 14px;margin-top:10px}
+.tp-fb.ok{background:#e3f6ec}.tp-fb.no{background:#fde8e5}
+.tp-dots{display:flex;gap:6px;margin:6px 0}
+.tp-dots i{width:16px;height:16px;border-radius:50%;background:#e3ecea}
+.tp-dots i.on{background:#2f9e6a}
+.tp-bw{background:linear-gradient(135deg,#fff7e8,#e7f3ef);border:2px solid #e2c89a}
+.tp-bw .say{font-size:1.5rem;font-weight:800}
+.tp-build button{display:block;width:100%;text-align:left;margin:6px 0;padding:10px 12px;border:2px solid #d6e5e1;border-radius:12px;background:#fff;cursor:pointer;font-size:1rem}
+.tp-build button.on{border-color:var(--accent);background:#eef8f5}
+.tp-msg{background:#132a2e;color:#fff;border-radius:16px;padding:14px;font-size:1.05rem;min-height:56px}
+@media (prefers-color-scheme:dark){.tp-card,.co-box,.co-stat{color:#132a2e}}
+</style>
+
+<div class="co" id="dash">
+  <div class="eyebrow">Your free Study Coach</div>
+  <h1>A lesson that is <span>made for you.</span></h1>
+  <p style="color:var(--soft);font-size:1.08rem;max-width:640px">The Coach notices the mistakes you keep making in our lessons and quizzes, then takes you on a short trip: the <b>formula</b>, the <b>understanding</b>, an <b>easy way to remember</b>, a bit of <b>history</b> — and practice until it clicks. Everything stays on your device. No sign-up.</p>
+
+  <div class="co-row" id="stats"></div>
+
+  <div class="co-box">
+    <h2>1 · Who is learning?</h2>
+    <p style="margin:.2rem 0 .4rem;color:var(--muted)">We explain things differently for different ages. (We only save the group, never your age or name.)</p>
+    <div class="co-age" id="age"></div>
+  </div>
+
+  <div class="co-box">
+    <h2>2 · Your speed</h2>
+    <p style="margin:.2rem 0 .4rem;color:var(--muted)">The Coach changes speed by itself as you answer — but you are always in control.</p>
+    <div class="co-pace" id="pace"></div>
+  </div>
+
+  <div class="co-box">
+    <h2>3 · What needs work</h2>
+    <div id="weak"></div>
+    <p style="text-align:center;margin:16px 0 4px"><button class="btn btn-primary co-big" id="go">🧭 Start my trip</button></p>
+  </div>
+
+  <div class="co-box">
+    <h2>Or choose any topic</h2>
+    <div id="all"></div>
+  </div>
+</div>
+
+<div class="co" id="trip" aria-live="polite">
+  <div class="tp-head">
+    <button class="btn btn-secondary" id="quit" style="padding:.5em 1em">← Coach</button>
+    <div class="tp-prog"><i id="prog"></i></div>
+    <span class="co-pace" id="pace2"></span>
+  </div>
+  <div id="stage"></div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var I = window.ILEH, P = I.profile, $ = function (s) { return document.querySelector(s); };
+  var KB, plan = [], step = 0, steps = [];
+  var AGES = [["kid","🧒 Kid (6–11)"],["teen","🧑 Teen (12–17)"],["adult","🧔 Adult (18+)"]];
+  function paceName() { return P.pace >= 1.3 ? "fast" : P.pace <= 0.85 ? "slow" : "normal"; }
+  function setPace(v) { P.pace = v; I.save(); renderPace(); }
+  function renderPace() {
+    var n = paceName(), opts = [[0.7,"🐢","Slow & steady","slow"],[1,"🚶","Normal","normal"],[1.4,"🐇","Fast","fast"]];
+    function mk(short) { return opts.map(function (o) { return '<button data-p="'+o[0]+'" class="'+(o[3]===n?"on":"")+'" title="'+o[2]+'">'+o[1]+(short?"":" "+o[2])+'</button>'; }).join(""); }
+    $("#pace").innerHTML = mk(false); $("#pace2").innerHTML = mk(true);
+    document.querySelectorAll("[data-p]").forEach(function (b) { b.onclick = function () { setPace(parseFloat(b.dataset.p)); }; });
+  }
+  function renderAge() {
+    $("#age").innerHTML = AGES.map(function (a) { return '<button data-a="'+a[0]+'" class="'+(P.age===a[0]?"on":"")+'">'+a[1]+'</button>'; }).join("");
+    $("#age").onclick = function (e) { var b = e.target.closest("[data-a]"); if (b) { P.age = b.dataset.a; I.save(); renderAge(); } };
+  }
+  function bar(m) { return '<span class="co-bar" title="'+(m==null?"not tried yet":m+"%")+'"><i style="width:'+(m==null?0:m)+'%"></i></span>'; }
+  function renderDash() {
+    var tops = Object.keys(KB.topics), tried = tops.filter(function (k) { return I.mastery(k) != null; });
+    var right = 0, total = 0; tried.forEach(function (k) { var t = P.topics[k]; right += t.c; total += t.c + t.w; });
+    var fav = I.topStyle(), favName = {formula:"formulas 📐",trick:"memory tricks 💡",history:"stories & history 📜",examples:"examples 👀",simple:"simple explanations 🐢",listen:"listening 🎧",try:"trying it 🛠️"}[fav] || "— (try the 🤷 button!)";
+    $("#stats").innerHTML = '<div class="co-stat"><b>'+(P.streak||1)+' 🔥</b><span>day streak</span></div><div class="co-stat"><b>'+tried.length+'/'+tops.length+'</b><span>topics practised</span></div><div class="co-stat"><b>'+(total?Math.round(100*right/total)+"%":"–")+'</b><span>answers correct</span></div><div class="co-stat"><b style="font-size:1rem">'+favName+'</b><span>how you like to learn</span></div>';
+    var w = I.weak(3);
+    $("#weak").innerHTML = w.length ? w.map(function (x) { var t = KB.topics[x.id]; return '<div class="co-topic"><span>'+t.icon+'</span><span class="nm">'+t.title+'<br><small style="font-weight:400;color:var(--muted)">'+x.t.w+' mistakes · '+x.t.idk+' × "I don\'t know"</small></span>'+bar(x.m)+'</div>'; }).join("")
+      : '<p style="color:var(--muted)">No mistakes recorded yet. Press <b>Start my trip</b> for a quick 8-question check — the Coach will find your weak spots.</p>';
+    $("#all").innerHTML = tops.map(function (k) { var t = KB.topics[k]; return '<div class="co-topic"><span>'+t.icon+'</span><span class="nm">'+t.title+' <small style="color:var(--muted);font-weight:400">· '+t.level+'</small></span>'+bar(I.mastery(k))+'<button data-t="'+k+'">Go</button></div>'; }).join("");
+    $("#all").onclick = function (e) { var b = e.target.closest("[data-t]"); if (b) startTrip([b.dataset.t]); };
+  }
+
+  /* ---------- trip ---------- */
+  function startTrip(ids) {
+    $("#dash").style.display = "none"; $("#trip").style.display = "block"; window.scrollTo(0, 0);
+    steps = [];
+    if (!ids || !ids.length) { steps.push({k:"diag"}); }
+    else ids.forEach(function (id, i) { addTopic(id); if (i < ids.length - 1) steps.push({k:"bw"}); });
+    step = 0; show();
+  }
+  function addTopic(id) {
+    var n = paceName();
+    steps.push({k:"hook",id:id},{k:"understand",id:id},{k:"formula",id:id},{k:"trick",id:id});
+    if (n !== "fast" || I.topStyle() === "history") steps.push({k:"history",id:id});
+    steps.push({k:"examples",id:id},{k:"practice",id:id},{k:"bw"},{k:"done",id:id});
+  }
+  function finishSteps() { steps.push({k:"share"}); }
+  function nav(back) { return '<div class="tp-nav">'+(back!==false&&step>0?'<button class="btn btn-secondary" data-nav="-1">← Back</button>':'<span></span>')+'<button class="btn btn-primary" data-nav="1">Next →</button></div>'; }
+  function alt(id) { return '<div class="tp-alt"><span style="font-size:.85rem;color:var(--muted);align-self:center">Explain it another way:</span><button data-alt="kid">🐢 Simpler</button><button data-alt="adult">🎓 More detail</button><button data-alt="trick">💡 Memory trick</button><button data-alt="history">📜 Story</button><button data-alt="listen">🎧 Read it to me</button></div><div id="altout"></div>'; }
+  function show() {
+    var s = steps[step]; if (!s) { if (!steps.some(function(x){return x.k==="share";})) { finishSteps(); return show(); } return end(); }
+    $("#prog").style.width = Math.round(100 * step / steps.length) + "%";
+    var t = s.id ? KB.topics[s.id] : null, age = P.age || "teen", p1 = I.person(KB), p2 = I.person(KB), html = "";
+    if (s.k === "hook") html = '<div class="tp-kicker">'+t.icon+' New trip · '+t.level+'</div><h2>'+t.title+'</h2><p>'+t.hook+'</p><p>Meet <b>'+p1[0]+'</b> from <b>'+p1[1]+', '+p1[2]+'</b>. '+p1[0]+' is learning this too. Let\'s go together!</p>'+nav();
+    if (s.k === "understand") html = '<div class="tp-kicker">Step 1 · Understand it</div><h2>What is it really?</h2><p>'+t.explain[age]+'</p>'+alt(s.id)+nav();
+    if (s.k === "formula") html = '<div class="tp-kicker">Step 2 · The formula</div><h2>The pattern</h2>'+(paceName()==="slow"?'<p>Tap each line to reveal it, one at a time.</p>'+t.formula.map(function(f){return '<button class="tp-reveal" data-r="'+I.esc(f)+'">👆 Tap to reveal</button>';}).join(""):'<div class="tp-formula">'+t.formula.map(function(f){return "<div>"+f+"</div>";}).join("")+'</div>')+alt(s.id)+nav();
+    if (s.k === "trick") html = '<div class="tp-kicker">Step 3 · Easy way to remember</div><h2>🧠 Memory trick</h2><p style="font-size:1.2rem">'+t.trick+'</p>'+nav();
+    if (s.k === "history") html = '<div class="tp-kicker">Step 4 · A bit of history</div><h2>📜 The story behind it</h2><p>'+t.history+'</p>'+nav();
+    if (s.k === "examples") html = '<div class="tp-kicker">Step 5 · Examples</div><h2>See it in real life</h2><p>Tap to reveal and hear each example.</p>'+t.examples.map(function(x){var f=I.fill(x,p1,p2);return '<button class="tp-reveal" data-r="'+I.esc(f)+'" data-say="1">👆 Tap to reveal</button>';}).join("")+nav();
+    if (s.k === "share") return end();
+    if (s.k === "practice") return practice(s.id);
+    if (s.k === "diag") return diag();
+    if (s.k === "bw") { var bw = KB.britishWay[Math.floor(Math.random()*KB.britishWay.length)]; html = '<div class="tp-card tp-bw" style="box-shadow:none;border:0;padding:0"><div class="tp-kicker">🇬🇧 Break time · The British Way</div><h2>What Brits really mean</h2><p class="say">"'+bw.say+'" <button class="btn btn-secondary" data-say2="'+I.esc(bw.say)+'" style="padding:.3em .7em">🔊</button></p><p>👉 <b>Meaning:</b> '+bw.mean+'</p><p>💬 <b>You can reply:</b> "'+bw.reply+'"</p><p>💡 '+bw.tip+'</p><p style="font-size:.9rem;color:var(--muted)">Textbooks rarely teach this — but it is how English is really lived. Learn much more in <a href="english-story.html#british-way">The British Way</a>.</p></div>'+nav(); }
+    if (s.k === "done") html = '<div class="tp-kicker">✅ Topic complete</div><h2>Brilliant work!</h2><p>You have practised <b>'+t.title+'</b>. Your Coach will check it again in a few days so it stays in your memory.</p>'+nav(false);
+    render(html, s);
+  }
+  function render(html, s) {
+    $("#stage").innerHTML = '<div class="tp-card">'+html+'</div>'; window.scrollTo({top:0,behavior:"smooth"});
+    var st = $("#stage");
+    st.querySelectorAll("[data-nav]").forEach(function (b) { b.onclick = function () { step = Math.max(0, step + parseInt(b.dataset.nav)); show(); }; });
+    st.querySelectorAll(".tp-reveal").forEach(function (b) { b.onclick = function () { b.innerHTML = b.dataset.r; b.classList.add("shown"); if (b.dataset.say) I.speak(b.textContent, 0.9); }; });
+    st.querySelectorAll("[data-say2]").forEach(function (b) { b.onclick = function () { I.speak(b.dataset.say2, 0.9); }; });
+    st.querySelectorAll("[data-alt]").forEach(function (b) { b.onclick = function () {
+      var t = KB.topics[s.id], a = b.dataset.alt, o = $("#altout"); I.likeStyle(a === "kid" ? "simple" : a === "adult" ? "formula" : a);
+      if (a === "kid" || a === "adult") o.innerHTML = '<p class="tp-fb ok">'+t.explain[a]+'</p>';
+      if (a === "trick") o.innerHTML = '<p class="tp-fb ok">🧠 '+t.trick+'</p>';
+      if (a === "history") o.innerHTML = '<p class="tp-fb ok">📜 '+t.history+'</p>';
+      if (a === "listen") { o.innerHTML = '<p class="tp-fb ok">🔊 Listening… use the bar at the bottom to slow down or stop.</p>'; I.speak(t.explain[P.age||"teen"], 0.9); }
+    }; });
+  }
+  function norm(s) { return String(s).toLowerCase().replace(/[’‘]/g,"'").replace(/[.!?,]+$/,"").replace(/\s+/g," ").trim(); }
+  function practice(id) {
+    var t = KB.topics[id], need = paceName()==="fast"?2:paceName()==="slow"?4:3, run = 0, fails = 0, pool = I.shuffle(t.items), qi = 0;
+    function next() {
+      var it = pool[qi++ % pool.length], p1 = I.person(KB), p2 = I.person(KB), mode = paceName();
+      var q = I.fill(it.q, p1, p2).replace("___", '<span class="tp-gap">&nbsp;</span>');
+      var dots = '<div class="tp-dots">'+Array.apply(null,{length:need}).map(function(_,i){return '<i class="'+(i<run?"on":"")+'"></i>';}).join("")+'</div>';
+      var head = '<div class="tp-kicker">Step 6 · Practice — get '+need+' right in a row</div>'+dots+'<p class="tp-q">'+q+'</p>';
+      var body;
+      if (mode === "fast" && it.a !== "—" && it.a.length < 22) body = '<div class="tp-type"><input id="ans" autocomplete="off" autocapitalize="off" placeholder="Type your answer"><button class="btn btn-primary" id="chk">Check</button></div><p style="font-size:.85rem;color:var(--muted)">Fast mode: typing makes your brain work harder. <a href="#" id="easier">Show options instead</a></p>';
+      else { var opts = I.shuffle([it.a].concat(I.shuffle(it.o).slice(0, mode==="slow"||fails>1 ? 1 : 3))); body = '<div class="tp-opts">'+opts.map(function(o){return '<button data-o="'+I.esc(o)+'">'+I.esc(o)+'</button>';}).join("")+'</div>'; }
+      $("#stage").innerHTML = '<div class="tp-card">'+head+body+'<div id="fb"></div></div>';
+      function judge(val, btn) {
+        var ok = norm(val) === norm(it.a) || (it.alt||[]).some(function(x){return norm(x)===norm(val);});
+        I.log(id, ok);
+        document.querySelectorAll("[data-o]").forEach(function(b){ b.disabled = true; if (b.dataset.o === it.a) b.classList.add("ok"); });
+        if (btn && !ok) btn.classList.add("no");
+        var fb = $("#fb");
+        if (ok) { run++; fails = 0; fb.innerHTML = '<div class="tp-fb ok">✅ <b>Correct!</b> '+it.why+'</div>';
+          if (run >= need) { fb.innerHTML += '<div class="tp-nav"><span></span><button class="btn btn-primary" id="nx">You did it! Next →</button></div>'; $("#nx").onclick = function(){ step++; show(); }; P.pace = Math.min(1.8, P.pace + 0.05); I.save(); }
+          else setTimeout(next, 1300);
+        } else { run = 0; fails++;
+          fb.innerHTML = '<div class="tp-fb no">❌ <b>Not yet</b> — the answer is <b>'+I.esc(it.a)+'</b>. '+it.why+'<div class="tp-formula" style="margin-top:8px;font-size:.9rem">'+t.formula.slice(0,2).map(function(f){return "<div>"+f+"</div>";}).join("")+'</div></div>' +
+            (fails >= 3 ? '<p><b>Let\'s look at it another way.</b> '+t.explain.kid+'</p><p>🧠 '+t.trick+'</p>' : '') +
+            '<div class="tp-nav"><span></span><button class="btn btn-primary" id="nx">Try a similar one →</button></div>';
+          $("#nx").onclick = next;
+        }
+      }
+      document.querySelectorAll("[data-o]").forEach(function(b){ b.onclick = function(){ judge(b.dataset.o, b); }; });
+      var chk = $("#chk"); if (chk) { var inp = $("#ans"); inp.focus(); chk.onclick = function(){ judge(inp.value); chk.disabled = true; inp.disabled = true; }; inp.onkeydown = function(e){ if (e.key === "Enter") chk.click(); }; $("#easier").onclick = function(e){ e.preventDefault(); P.pace = 1.2; I.save(); qi--; next(); }; }
+    }
+    next();
+  }
+  function diag() {
+    var ids = I.shuffle(Object.keys(KB.topics)).slice(0, 8), i = 0, wrong = [];
+    function q() {
+      if (i >= ids.length) { var pick = wrong.length ? wrong.slice(0, 2) : [ids[0]]; steps = []; pick.forEach(function(id,j){ addTopic(id); }); step = 0;
+        $("#stage").innerHTML = '<div class="tp-card"><div class="tp-kicker">Check complete</div><h2>'+(wrong.length?"Found it! 🎯":"Wow — 8 out of 8! 🌟")+'</h2><p>'+(wrong.length?"Your trip today: <b>"+pick.map(function(x){return KB.topics[x].title;}).join("</b> and <b>")+"</b>.":"Let's make it harder — here is a topic to sharpen anyway.")+'</p><div class="tp-nav"><span></span><button class="btn btn-primary" id="nx">Start →</button></div></div>'; $("#nx").onclick = show; return; }
+      var id = ids[i], t = KB.topics[id], it = t.items[Math.floor(Math.random()*t.items.length)], p1 = I.person(KB), p2 = I.person(KB);
+      var opts = I.shuffle([it.a].concat(it.o.slice(0,3)));
+      $("#prog").style.width = Math.round(100*i/ids.length) + "%";
+      $("#stage").innerHTML = '<div class="tp-card"><div class="tp-kicker">Quick check '+(i+1)+' / 8 · '+t.icon+' '+t.title+'</div><p class="tp-q">'+I.fill(it.q,p1,p2).replace("___",'<span class="tp-gap">&nbsp;</span>')+'</p><div class="tp-opts">'+opts.map(function(o){return '<button data-o="'+I.esc(o)+'">'+I.esc(o)+'</button>';}).join("")+'</div><p><button class="btn btn-secondary" id="dk">🤷 I don\'t know</button></p></div>';
+      document.querySelectorAll("[data-o]").forEach(function(b){ b.onclick = function(){ var ok = b.dataset.o === it.a; I.log(id, ok); if (!ok) wrong.push(id); i++; q(); }; });
+      $("#dk").onclick = function(){ I.idk(id); wrong.push(id); i++; q(); };
+    }
+    q();
+  }
+  function end() {
+    // real-life English task that also spreads the word: build a message using the present perfect & 'should'
+    var parts = [["I've been learning English on a free website called I Learn English Here.","I've found a free English website — I Learn English Here."],["I've improved my grammar a lot.","I've learned so many new words.","I've finally understood the present perfect!","My speaking has got much better."],["You should try it — it's completely free!","You should try it with me!","Why don't you have a look?"]];
+    var pick = [0,0,0];
+    function msg() { return parts.map(function(p,i){return p[pick[i]];}).join(" "); }
+    var html = '<div class="tp-kicker">🌍 Real-life English task</div><h2>Tell someone about your progress</h2><p>Real English is about <b>communicating</b>. Build a message to a friend or family member. Notice the grammar: <b>I\'ve + past participle</b> (present perfect) and <b>You should + verb</b> (advice).</p><div class="tp-build">'+parts.map(function(p,i){return '<p style="margin:12px 0 2px;font-weight:700">'+["Start","Your progress","Advice for them"][i]+'</p>'+p.map(function(x,j){return '<button data-pi="'+i+'" data-pj="'+j+'" class="'+(j===0?"on":"")+'">'+x+'</button>';}).join("");}).join("")+'</div><p style="font-weight:700;margin-top:14px">Your message:</p><div class="tp-msg" id="msg"></div><div class="tp-nav"><button class="btn btn-secondary" id="say">🔊 Hear it</button><button class="btn btn-primary" id="send">📤 Send it to someone</button></div><p style="text-align:center;margin-top:16px"><a href="coach.html">← Back to my Coach</a></p>';
+    $("#prog").style.width = "100%";
+    $("#stage").innerHTML = '<div class="tp-card">'+html+'</div>';
+    function upd(){ $("#msg").textContent = msg() + " ilearnenglishhere.academy"; }
+    upd();
+    document.querySelectorAll("[data-pi]").forEach(function(b){ b.onclick = function(){ var i = +b.dataset.pi; pick[i] = +b.dataset.pj; document.querySelectorAll('[data-pi="'+i+'"]').forEach(function(x){x.classList.toggle("on", x===b);}); upd(); }; });
+    $("#say").onclick = function(){ I.speak(msg(), 0.9); };
+    $("#send").onclick = function(){ I.openShare(msg() + " "); };
+  }
+  $("#go").onclick = function () { var w = I.weak(2).map(function (x) { return x.id; }); startTrip(w); };
+  $("#quit").onclick = function () { location.href = "coach.html"; };
+  I.loadKB(function (kb) {
+    KB = kb; renderAge(); renderPace(); renderDash();
+    var m = location.search.match(/topic=([\w-]+)/); if (m && KB.topics[m[1]]) startTrip([m[1]]);
+  });
+});
+</script>
+
+
+<div class="tony-courses" data-first="english"></div>
+<script src="assets/courses-banner.js" defer></script>
+</main>
+
+<footer class="site">
+  <a class="oba" href="index.html"><span>An Online Business Awareness project</span><img src="assets/oba-logo.svg" alt="Online Business Awareness"></a>
+  <nav aria-label="Footer">
+    <a href="start-here.html">Start Here</a><a href="lessons.html">Lessons</a><a href="coach.html">Coach</a><a href="speak.html">Speak</a><a href="english-story.html">Story</a><a href="faq.html">FAQ</a>
+    <a href="https://www.udemy.com/course/learn-english-like-a-local-uk-culture-accents-real-life/?referralCode=3CB23BDB35F22F4058F0" target="_blank" rel="noopener">Full Course</a>
+  </nav>
+  &copy; 2026 I Learn English Here
+</footer>
+
+<script src="assets/ileh.js" defer></script>
+<script src="https://pl31391907.profitableratecpmnetwork.com/61/77/5a/61775a6c292429a81ddb143525c67ebc.js"></script>
+</body>
+</html>

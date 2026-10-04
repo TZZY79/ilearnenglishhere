@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speech Lab — Free Talking English Dictionary | I Learn English Here</title>
+<meta name="description" content="Hear any English word with real recordings, slow it down, see it broken into syllables and practise saying it with your microphone. Free.">
+<link rel="canonical" href="https://ilearnenglishhere.academy/speak.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Speech Lab — Free Talking English Dictionary | I Learn English Here">
+<meta property="og:description" content="Hear any English word with real recordings, slow it down, see it broken into syllables and practise saying it with your microphone. Free.">
+<meta property="og:url" content="https://ilearnenglishhere.academy/speak.html">
+<meta name="author" content="Online Business Awareness">
+<meta name="theme-color" content="#1f7a6c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f7a6c'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='20' fill='white'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+
+</head>
+<body>
+
+<header class="site">
+  <a class="brand" href="index.html" aria-label="I Learn English Here — home">
+    <span class="logo"><span class="mark">E</span> I Learn English Here</span>
+    <span class="by">by <img src="assets/oba-logo.svg" alt="Online Business Awareness"></span>
+  </a>
+  <nav class="main" aria-label="Main">
+    <a href="start-here.html">Start Here</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="coach.html">Coach</a>
+    <a href="speak.html" aria-current="page">Speak</a>
+    <a href="english-story.html">Story</a>
+    <a href="faq.html">FAQ</a>
+    <a class="nav-cta" href="https://www.udemy.com/course/learn-english-like-a-local-uk-culture-accents-real-life/?referralCode=3CB23BDB35F22F4058F0" target="_blank" rel="noopener">Full Course</a>
+  </nav>
+</header>
+
+<main>
+<style>
+.sl{max-width:960px;margin:0 auto;padding:4vh 16px}
+.sl h1{font-size:clamp(1.7rem,4.5vw,2.5rem);margin-bottom:.4rem}
+.sl-grid{display:grid;grid-template-columns:230px minmax(0,1fr);gap:20px;align-items:start;margin-top:18px}
+
+.sl-av{background:linear-gradient(160deg,#e7f3ef,#fff7e8);border:1px solid var(--line);border-radius:24px;padding:12px;text-align:center;position:sticky;top:80px}
+.sl-av svg{width:100%;height:auto}
+.sl-av p{margin:.3rem 0 0;font-size:.9rem;color:var(--muted)}
+#eyes{animation:blink 4.5s infinite;transform-origin:100px 92px}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.sl-search{display:flex;gap:8px}
+.sl-search input{flex:1;min-width:0;font-size:1.15rem;padding:13px 14px;border:2px solid var(--line);border-radius:14px}
+.sl-search input:focus{outline:none;border-color:var(--accent)}
+.sl-sets{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 6px}
+.sl-sets button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;cursor:pointer;font-size:.9rem}
+.sl-sets button.on{border-color:var(--accent);background:#e8f4f1}
+.sl-words{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.sl-words button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:7px 11px;cursor:pointer;font-size:1rem}
+.sl-words button:hover{border-color:var(--accent)}
+.sl-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 10px 30px rgba(19,42,46,.07)}
+.sl-word{font-size:clamp(2rem,6vw,3rem);font-weight:800;margin:0;line-height:1.1;word-break:break-word}
+.sl-ipa{font-size:1.25rem;color:var(--accent);margin:.3rem 0}
+.sl-mean{color:var(--soft);margin:.4rem 0 0}
+.sl-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.sl-row button{border:0;border-radius:12px;padding:11px 15px;font-size:1rem;font-weight:700;cursor:pointer;background:#e8f4f1;color:var(--accent)}
+.sl-row button.main{background:var(--accent);color:#fff}
+.sl-row button.on{outline:3px solid var(--accent2)}
+.sl-row button.stop{background:#d0493a;color:#fff}
+.sl-syl{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.sl-syl button{border:2px solid var(--line);background:#f8fbfa;border-radius:12px;padding:10px 14px;font-size:1.3rem;font-weight:700;cursor:pointer}
+.sl-syl button.stress{border-color:var(--accent2);background:#fff6df}
+.sl-syl button.lit{background:var(--accent);color:#fff;border-color:var(--accent)}
+.sl-say{border-top:1px dashed var(--line);margin-top:16px;padding-top:14px}
+.sl-fb{border-radius:12px;padding:10px 12px;margin-top:8px}
+.sl-fb.ok{background:#e3f6ec}.sl-fb.no{background:#fde8e5}.sl-fb.info{background:#eef6f4}
+.sl-small{font-size:.82rem;color:var(--muted)}
+@media (prefers-color-scheme:dark){.sl-card{color:#132a2e}}
+@media (max-width:720px){.sl-grid{grid-template-columns:minmax(0,1fr)}.sl-av{position:static;display:flex;align-items:center;gap:12px;text-align:left;padding:8px 12px}.sl-av svg{width:84px;flex:none}}
+</style>
+
+<div class="sl">
+  <div class="eyebrow">Speech Lab · free talking dictionary</div>
+  <h1>Hear it. See it. <span>Say it.</span></h1>
+  <p style="color:var(--soft);max-width:640px;margin:0">Type any English word. Listen to a real recording (or our reader), slow it down, see it broken into parts — then practise saying it yourself.</p>
+
+  <div class="sl-grid">
+    <div class="sl-av" aria-hidden="true">
+      <svg viewBox="0 0 200 220">
+        <circle cx="100" cy="112" r="78" fill="#f1c9a5"/>
+        <path d="M24 100 Q30 30 100 28 Q172 30 176 100 Q160 62 100 60 Q42 62 24 100Z" fill="#3a2a22"/>
+        <circle cx="24" cy="116" r="12" fill="#f1c9a5"/><circle cx="176" cy="116" r="12" fill="#f1c9a5"/>
+        <path d="M18 112 Q18 40 100 38 Q182 40 182 112" fill="none" stroke="#1f7a6c" stroke-width="8"/>
+        <rect x="6" y="100" width="22" height="34" rx="10" fill="#1f7a6c"/><rect x="172" y="100" width="22" height="34" rx="10" fill="#1f7a6c"/>
+        <g id="eyes"><ellipse cx="72" cy="104" rx="9" ry="11" fill="#2b2b2b"/><ellipse cx="128" cy="104" rx="9" ry="11" fill="#2b2b2b"/><circle cx="75" cy="100" r="3" fill="#fff"/><circle cx="131" cy="100" r="3" fill="#fff"/></g>
+        <path d="M60 86 Q72 80 84 86" stroke="#3a2a22" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M116 86 Q128 80 140 86" stroke="#3a2a22" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <circle cx="60" cy="132" r="9" fill="#ee9f8f" opacity=".5"/><circle cx="140" cy="132" r="9" fill="#ee9f8f" opacity=".5"/>
+        <g id="mouth"><path id="m0" d="M82 146 Q100 160 118 146" stroke="#8a3b2e" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <ellipse id="m1" cx="100" cy="150" rx="13" ry="10" fill="#8a3b2e" style="display:none"/>
+        <ellipse id="m2" cx="100" cy="150" rx="19" ry="6" fill="#8a3b2e" style="display:none"/>
+        <ellipse id="m3" cx="100" cy="150" rx="8" ry="8" fill="#8a3b2e" style="display:none"/></g>
+      </svg>
+      <p><b>Lexi</b>, your speaking buddy</p>
+    </div>
+
+    <div>
+      <form class="sl-search" id="f"><input id="q" placeholder="Type a word… e.g. Wednesday" autocomplete="off" autocapitalize="off" aria-label="Word to look up"><button class="btn btn-primary">Look up</button></form>
+      <div class="sl-sets" id="sets"></div>
+      <div class="sl-words" id="words"></div>
+      <div class="sl-card" id="card"><p class="sl-word">Pick a word</p><p class="sl-mean">Start with the <b>Tricky British</b> list — even native speakers get some of these wrong!</p></div>
+      <p class="sl-small">Word data and many real recordings come from the free Dictionary API (dictionaryapi.dev); recordings are by Wiktionary/Wikimedia Commons contributors (CC BY-SA). If no recording exists, your device's reader speaks the word. Syllable splits are a guide.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var I = window.ILEH, P = I.profile, $ = function (s) { return document.querySelector(s); };
+  var SETS = {
+    "🇬🇧 Tricky British": ["Wednesday","Leicester","Worcestershire","Edinburgh","Gloucester","thorough","colonel","queue","island","comfortable","vegetable","library"],
+    "👋 Greetings": ["hello","goodbye","please","thank you","sorry","excuse me","cheers","nice to meet you"],
+    "🍎 Food": ["water","vegetable","chocolate","banana","tomato","breakfast","biscuit","sandwich"],
+    "✈️ Travel": ["airport","ticket","passport","hotel","luggage","journey","platform","reservation"],
+    "🏠 Home": ["kitchen","bedroom","cupboard","furniture","neighbour","garden","flat","rent"],
+    "😊 Feelings": ["happy","worried","excited","embarrassed","surprised","proud","nervous","grateful"],
+    "🔢 Numbers": ["thirteen","thirty","forty","hundred","thousand","eighth","twelfth","million"]
+  };
+  var setNames = Object.keys(SETS), curSet = setNames[0], audio = null, word = "", rate = P.listenRate || 1, mouthT = null;
+  function renderSets() {
+    $("#sets").innerHTML = setNames.map(function (n) { return '<button class="' + (n === curSet ? "on" : "") + '">' + n + "</button>"; }).join("");
+    $("#sets").querySelectorAll("button").forEach(function (b, i) { b.onclick = function () { curSet = setNames[i]; renderSets(); }; });
+    $("#words").innerHTML = SETS[curSet].map(function (w) { return "<button>" + w + "</button>"; }).join("");
+    $("#words").querySelectorAll("button").forEach(function (b) { b.onclick = function () { look(b.textContent); }; });
+  }
+  /* avatar mouth */
+  var shapes = ["m0","m1","m2","m3"];
+  function mouth(k) { shapes.forEach(function (s) { document.getElementById(s).style.display = s === k ? "" : "none"; }); }
+  function talk(on) { clearInterval(mouthT); if (!on) return mouth("m0"); mouthT = setInterval(function () { mouth(shapes[1 + Math.floor(Math.random() * 3)]); }, 130); }
+  setInterval(function () { var busy = (window.speechSynthesis && speechSynthesis.speaking) || (audio && !audio.paused); if (!busy && mouthT) talk(false); }, 300);
+  /* syllables (guide) */
+  function syllables(w) {
+    if (/\s/.test(w)) return w.split(/\s+/);
+    var m = w.toLowerCase().match(/[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/g);
+    if (!m) return [w];
+    if (m.length > 1 && /^[^aeiouy]*e$/.test(m[m.length - 1]) && !/le$/.test(w)) { var e = m.pop(); m[m.length - 1] += e; }
+    var out = [], i = 0; m.forEach(function (s) { out.push(w.substr(i, s.length)); i += s.length; }); if (i < w.length) out[out.length - 1] += w.slice(i);
+    return out;
+  }
+  function stressIndex(ipa, n) {
+    if (!ipa || n < 2) return 0; var k = ipa.indexOf("ˈ"); if (k < 0) return 0;
+    var before = (ipa.slice(0, k).match(/[aeiouæɑɒɔəɛɜɪʊʌɐ]+/g) || []).length; return Math.min(n - 1, before);
+  }
+  function stop() { try { speechSynthesis.cancel(); } catch (e) {} if (audio) { audio.pause(); audio.currentTime = 0; } talk(false); }
+  function play(r) {
+    stop(); rate = r || rate; P.listenRate = rate; I.save(); mark();
+    if (audio) { audio.playbackRate = rate; audio.play().catch(function () { I.speak(word, 0.9 * rate); }); talk(true); }
+    else { I.speak(word, 0.9, null, function () { talk(false); }); talk(true); }
+  }
+  function mark() { document.querySelectorAll("[data-rate]").forEach(function (b) { b.classList.toggle("on", parseFloat(b.dataset.rate) === rate); }); }
+  function sylPlay(parts) {
+    stop(); var btns = document.querySelectorAll(".sl-syl button"), i = 0;
+    (function next() {
+      btns.forEach(function (b) { b.classList.remove("lit"); });
+      if (i >= parts.length) { setTimeout(function () { play(0.75); }, 300); return; }
+      btns[i].classList.add("lit"); talk(true);
+      I.speak(parts[i], 0.7, null, function () { talk(false); i++; setTimeout(next, 250); });
+    })();
+  }
+  function look(w) {
+    w = String(w).trim(); if (!w) return; word = w; $("#q").value = w; audio = null; stop();
+    $("#card").innerHTML = '<p class="sl-word">' + I.esc(w) + '</p><p class="sl-mean">Looking it up…</p>';
+    var done = function (d) { show(w, d); };
+    if (/\s/.test(w) || !window.fetch) return done(null);
+    fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + encodeURIComponent(w.toLowerCase())).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { done(j && j[0] ? j : null); }).catch(function () { done(null); });
+  }
+  function show(w, data) {
+    var ipa = "", src = "", def = "", pos = "", ex = "";
+    if (data) {
+      data.forEach(function (e) { (e.phonetics || []).forEach(function (p) { if (p.audio && (!src || /-uk\.mp3/.test(p.audio))) { src = p.audio; if (p.text) ipa = p.text; } if (!ipa && p.text) ipa = p.text; }); if (!ipa && e.phonetic) ipa = e.phonetic; });
+      var m = data[0].meanings && data[0].meanings[0]; if (m) { pos = m.partOfSpeech; def = m.definitions[0].definition; ex = m.definitions[0].example || ""; }
+    }
+    if (src) { audio = new Audio(src); audio.onended = function () { talk(false); }; }
+    var parts = syllables(w), st = stressIndex(ipa, parts.length);
+    var uk = /-uk\.mp3/.test(src);
+    $("#card").innerHTML = '<p class="sl-word">' + I.esc(w) + '</p>' + (ipa ? '<p class="sl-ipa">' + I.esc(ipa) + ' <span class="sl-small">(ˈ = the strong part)</span></p>' : "") +
+      (def ? '<p class="sl-mean"><i>' + I.esc(pos) + '</i> — ' + I.esc(def) + (ex ? '<br><span class="sl-small">e.g. "' + I.esc(ex) + '"</span>' : "") + "</p>" : "") +
+      '<div class="sl-row"><button class="main" data-rate="1">▶ Listen</button><button data-rate="0.75">🐢 0.75×</button><button data-rate="0.5">🐌 0.5×</button><button class="stop" id="st">⏹ Stop</button></div>' +
+      '<p class="sl-small">' + (src ? (uk ? "🇬🇧 Real British recording" : "🎙️ Real recording") : "🔊 Read by your device (British voice if available)") + "</p>" +
+      '<p style="margin:12px 0 2px;font-weight:700">Break it down <span class="sl-small">— tap a part to hear it. The orange part is said strongest.</span></p><div class="sl-syl">' +
+      parts.map(function (p, i) { return '<button class="' + (i === st && parts.length > 1 ? "stress" : "") + '">' + I.esc(p) + "</button>"; }).join('<span style="align-self:center;color:#aaa">·</span>') + '</div>' +
+      '<div class="sl-row"><button id="sylp">🧩 Part by part, then together</button></div>' +
+      '<div class="sl-say"><p style="margin:0 0 6px;font-weight:700">Your turn! 🎤</p><div class="sl-row"><button class="main" id="rec">🎤 Say it</button><button id="mine" style="display:none">▶ Hear myself</button></div><div id="sfb"></div></div>';
+    document.querySelectorAll("[data-rate]").forEach(function (b) { b.onclick = function () { play(parseFloat(b.dataset.rate)); }; });
+    $("#st").onclick = stop; mark();
+    document.querySelectorAll(".sl-syl button").forEach(function (b, i) { b.onclick = function () { stop(); talk(true); I.speak(parts[i], 0.7, null, function () { talk(false); }); }; });
+    $("#sylp").onclick = function () { sylPlay(parts); };
+    $("#rec").onclick = function () { practise(w); };
+    if (window.innerWidth < 720) $("#card").scrollIntoView({ behavior: "smooth", block: "start" });
+    play(1);
+  }
+  /* speaking practice: speech recognition if available, otherwise record & compare */
+  function practise(w) {
+    var fb = $("#sfb"), SR = window.SpeechRecognition || window.webkitSpeechRecognition; stop();
+    var stat = P.pron[w.toLowerCase()] = P.pron[w.toLowerCase()] || { tries: 0, ok: 0 };
+    if (SR) {
+      var r = new SR(); r.lang = "en-GB"; r.maxAlternatives = 5; r.interimResults = false;
+      fb.innerHTML = '<div class="sl-fb info">🎙️ Listening… say <b>' + I.esc(w) + '</b></div>';
+      r.onresult = function (e) {
+        var alts = []; for (var i = 0; i < e.results[0].length; i++) alts.push(e.results[0][i].transcript.toLowerCase().trim());
+        var target = w.toLowerCase(), ok = alts.some(function (a) { return a.replace(/[.!?]/g, "") === target || a.indexOf(target) >= 0; });
+        stat.tries++; if (ok) stat.ok++; I.save();
+        fb.innerHTML = ok ? '<div class="sl-fb ok">✅ <b>Great!</b> I heard "' + I.esc(alts[0]) + '". Try it at normal speed 3 times to make it stick.</div>'
+          : '<div class="sl-fb no">🤔 I heard "<b>' + I.esc(alts[0] || "…") + '</b>". Listen at 🐌 0.5×, copy the orange (strong) part, and try again.</div>';
+      };
+      r.onerror = function (e) { fb.innerHTML = '<div class="sl-fb no">' + (e.error === "not-allowed" ? "Please allow the microphone to practise speaking." : "I couldn't hear you — check your microphone and try again.") + "</div>"; recordFallback(w); };
+      try { r.start(); } catch (x) { recordFallback(w); }
+    } else recordFallback(w);
+  }
+  function recordFallback(w) {
+    var fb = $("#sfb");
+    if (!navigator.mediaDevices || !window.MediaRecorder) { fb.innerHTML += '<div class="sl-fb info">Say the word out loud 3 times, copying Lexi. (Your browser can\'t record — that\'s OK!)</div>'; return; }
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) {
+      var rec = new MediaRecorder(s), ch = []; rec.ondataavailable = function (e) { ch.push(e.data); };
+      rec.onstop = function () { s.getTracks().forEach(function (t) { t.stop(); }); var url = URL.createObjectURL(new Blob(ch)); var b = $("#mine"); b.style.display = ""; b.onclick = function () { new Audio(url).play(); };
+        fb.innerHTML = '<div class="sl-fb info">✅ Recorded! Press <b>▶ Hear myself</b>, then <b>▶ Listen</b> — do they sound the same?</div>'; };
+      fb.innerHTML = '<div class="sl-fb info">🔴 Recording for 3 seconds… say <b>' + I.esc(w) + "</b></div>"; rec.start(); setTimeout(function () { rec.stop(); }, 3000);
+    }).catch(function () { fb.innerHTML = '<div class="sl-fb no">Microphone not available. Say it out loud 3 times instead!</div>'; });
+  }
+  $("#f").onsubmit = function (e) { e.preventDefault(); look($("#q").value); };
+  renderSets();
+  var m = location.search.match(/[?&]w=([^&]+)/); if (m) look(decodeURIComponent(m[1]));
+});
+</script>
+
+
+<div class="tony-courses" data-first="english"></div>
+<script src="assets/courses-banner.js" defer></script>
+</main>
+
+<footer class="site">
+  <a class="oba" href="index.html"><span>An Online Business Awareness project</span><img src="assets/oba-logo.svg" alt="Online Business Awareness"></a>
+  <nav aria-label="Footer">
+    <a href="start-here.html">Start Here</a><a href="lessons.html">Lessons</a><a href="coach.html">Coach</a><a href="speak.html">Speak</a><a href="english-story.html">Story</a><a href="faq.html">FAQ</a>
+    <a href="https://www.udemy.com/course/learn-english-like-a-local-uk-culture-accents-real-life/?referralCode=3CB23BDB35F22F4058F0" target="_blank" rel="noopener">Full Course</a>
+  </nav>
+  &copy; 2026 I Learn English Here
+</footer>
+
+<script src="assets/ileh.js" defer></script>
+<script src="https://pl31391907.profitableratecpmnetwork.com/61/77/5a/61775a6c292429a81ddb143525c67ebc.js"></script>
+</body>
+</html>
