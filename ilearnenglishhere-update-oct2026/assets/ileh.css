@@ -1,0 +1,92 @@
+/* I Learn English Here — engine UI (ticker, help buttons, panel, listening bar). Scoped with .ileh- prefixes so lessons are not affected. */
+.ileh-ui,.ileh-ui *{box-sizing:border-box;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+/* ticker */
+.ileh-ticker{position:relative;z-index:30;display:flex;align-items:center;gap:6px;height:34px;background:linear-gradient(90deg,#132a2e,#1f4b45);color:#f4efe2;font-size:13.5px;line-height:34px;overflow:hidden;border-bottom:2px solid #e0a548}
+.ileh-ticker.pinned{position:fixed;top:0;left:0;right:0;z-index:2147482000}
+.ileh-tlabel{flex:none;padding:0 10px;background:#e0a548;color:#132a2e;font-weight:800;font-size:12px;letter-spacing:.02em;white-space:nowrap}
+@media (max-width:600px){
+.ileh-tlabel{font-size:0;padding:0 8px}.ileh-tlabel::first-letter{font-size:15px}}
+.ileh-tview{flex:1;min-width:0;overflow:hidden;white-space:nowrap;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
+.ileh-ttrack{display:inline-block;animation:ileh-scroll 120s linear infinite;will-change:transform}
+.ileh-ticker:hover .ileh-ttrack,.ileh-ticker.paused .ileh-ttrack,.ileh-ticker:focus-within .ileh-ttrack{animation-play-state:paused}
+@keyframes ileh-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ileh-ttrack{animation-duration:600s!important}}
+.ileh-ti{color:#f4efe2!important;text-decoration:none!important}
+.ileh-ti b{color:#ffd68a;font-weight:700}
+a.ileh-ti:hover,a.ileh-ti:focus{text-decoration:underline!important}
+.ileh-sep{margin:0 14px;color:#e0a548}
+.ileh-tbtn{flex:none;width:30px;height:34px;border:0;background:transparent;color:#f4efe2;font-size:13px;cursor:pointer;padding:0}
+.ileh-tbtn:hover{background:rgba(255,255,255,.12)}
+/* floating help buttons (right edge, middle — away from lesson Next buttons and the ad bar) */
+.ileh-fab{position:fixed;right:6px;top:42%;z-index:2147483000;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.ileh-fab button{pointer-events:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;width:58px;min-height:54px;padding:5px 2px;border:2px solid #fff;border-radius:16px;background:#1f7a6c;color:#fff;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);transition:transform .15s}
+.ileh-fab button[data-h=idk]{background:#e07a2e}
+.ileh-fab button[data-h=share]{background:#3b5bab}
+.ileh-fab button:hover{transform:scale(1.06)}
+.ileh-fab .ileh-tog{display:none}
+.ileh-fab span{font-size:20px;line-height:1}
+.ileh-fab small{font-size:9.5px;line-height:1.1;margin-top:2px;font-weight:700;text-align:center}
+@media (max-width:600px){.ileh-fab{top:auto;bottom:110px;right:4px;gap:6px}.ileh-fab button{width:50px;min-height:48px}
+.ileh-fab span{font-size:18px}.ileh-fab small{font-size:8.5px}
+.ileh-fab .ileh-tog{display:flex;background:#132a2e;opacity:.92}.ileh-fab button:not(.ileh-tog){display:none}.ileh-fab.open button{display:flex}.ileh-fab.open .ileh-tog{background:#54706c}}
+@media print{.ileh-ui{display:none!important}}
+/* panel */
+.ileh-panel{position:fixed;inset:0;z-index:2147483600;background:rgba(10,25,28,.55);display:none;align-items:flex-end;justify-content:center}
+.ileh-panel.on{display:flex}
+.ileh-sheet{width:min(640px,100%);max-height:88vh;display:flex;flex-direction:column;background:#fffdf7;color:#132a2e;border-radius:20px 20px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.3);animation:ileh-up .22s ease-out}
+@media (min-width:700px){.ileh-panel{align-items:center}.ileh-sheet{border-radius:20px}}
+@keyframes ileh-up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.ileh-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-bottom:1px solid #eadfca}
+.ileh-age{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12px;color:#54706c}
+.ileh-age button{border:1px solid #cfdcd8;background:#fff;border-radius:999px;padding:4px 9px;font-size:12px;cursor:pointer;color:#132a2e}
+.ileh-age button.on{background:#1f7a6c;color:#fff;border-color:#1f7a6c}
+.ileh-x{border:0;background:#f0e8d8;border-radius:50%;width:34px;height:34px;font-size:16px;cursor:pointer;flex:none;color:#132a2e}
+.ileh-body{padding:14px 16px 22px;overflow:auto;font-size:15.5px;line-height:1.55}
+.ileh-body h3{margin:2px 0 6px;font-size:1.2rem}
+.ileh-lead{margin:0 0 10px;color:#2d4a46}
+.ileh-q{margin:12px 0 6px;font-weight:700;color:#1f7a6c}
+.ileh-chips{display:flex;flex-wrap:wrap;gap:7px}
+.ileh-chips button,.ileh-opts button{border:2px solid #d6e5e1;background:#fff;color:#132a2e;border-radius:12px;padding:9px 12px;font-size:14.5px;cursor:pointer;text-align:left}
+.ileh-chips button:hover,.ileh-opts button:hover{border-color:#1f7a6c}
+.ileh-chips button.on{border-color:#1f7a6c;background:#e5f3ef}
+.ileh-out{margin-top:12px}
+.ileh-card{background:#fff;border:1px solid #eadfca;border-radius:14px;padding:12px 14px;margin:8px 0}
+.ileh-card.big{font-size:1.12rem}
+.ileh-card.trick{background:#fff6df;border-color:#f0d391}
+.ileh-card.hist{background:#f3eefc;border-color:#d9cdf3}
+.ileh-card.soft{background:#eef6f4;border-color:#cfe3de;font-size:14px}
+.ileh-formula{background:#132a2e;color:#f4efe2;border-radius:14px;padding:10px 14px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14.5px}
+.ileh-formula div{padding:4px 0;border-bottom:1px dashed rgba(255,255,255,.18)}
+.ileh-formula div:last-child{border:0}
+.ileh-formula b{color:#ffd68a}
+.ileh-formula.small{font-size:13px;margin:8px 0}
+.ileh-ex{display:block;width:100%;text-align:left;margin:5px 0;padding:8px 10px;border:1px solid #d6e5e1;border-radius:10px;background:#f9fcfb;cursor:pointer;font-size:15px;color:#132a2e}
+.ileh-ex::before{content:"🔊 "}
+.ileh-qq{font-size:1.1rem;font-weight:600;margin:0 0 8px}
+.ileh-gap{display:inline-block;min-width:60px;border-bottom:3px solid #e07a2e;color:transparent}
+.ileh-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:7px}
+.ileh-opts button.ok{border-color:#2f9e6a;background:#e3f6ec}
+.ileh-opts button.no{border-color:#d0493a;background:#fde8e5}
+.ileh-fb{margin-top:10px}
+.ileh-mini{border:0;background:#1f7a6c;color:#fff;border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;margin:4px 4px 0 0}
+.ileh-btn{display:inline-block;border:0;background:#1f7a6c;color:#fff!important;text-decoration:none!important;border-radius:999px;padding:9px 15px;font-size:14px;font-weight:700;cursor:pointer;margin:6px 6px 0 0}
+.ileh-btn.ghost{background:#fff;color:#1f7a6c!important;border:2px solid #1f7a6c}
+.ileh-share{display:flex;flex-wrap:wrap}
+.ileh-foot{margin:14px 0 0;border-top:1px solid #eadfca;padding-top:8px}
+.ileh-body details{margin-top:6px}
+.ileh-body ol{padding-left:22px;margin:6px 0}
+.ileh-body li{margin:5px 0}
+/* listening bar */
+.ileh-lbar{position:fixed;left:50%;bottom:14px;transform:translate(-50%,140%);z-index:2147483500;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:5px;max-width:calc(100% - 20px);padding:7px 9px;border-radius:16px;background:#132a2e;color:#fff;box-shadow:0 8px 26px rgba(0,0,0,.35);transition:transform .2s;pointer-events:none}
+.ileh-lbar.on{transform:translate(-50%,0);pointer-events:auto}
+.ileh-lbl{font-size:12px;font-weight:700;color:#ffd68a;margin-right:2px}
+.ileh-lbar button{border:0;border-radius:999px;padding:8px 11px;font-size:13.5px;font-weight:700;background:#2a4a4f;color:#fff;cursor:pointer}
+.ileh-lbar button.on{background:#e0a548;color:#132a2e}
+.ileh-lbar button.stop{background:#d0493a}
+@media (max-width:600px){.ileh-lbl{display:none}.ileh-lbar button{padding:8px 9px;font-size:13px}}
+@media (prefers-color-scheme:dark){
+  .ileh-sheet{background:#1b2426;color:#eef4f2}.ileh-top{border-color:#33403f}.ileh-lead{color:#c6d6d2}
+  .ileh-card,.ileh-chips button,.ileh-opts button,.ileh-ex,.ileh-age button{background:#222e30;color:#eef4f2;border-color:#3a4a4c}
+  .ileh-card.trick{background:#3a3220;border-color:#6b5a2e}.ileh-card.hist{background:#2c2840;border-color:#4b4370}.ileh-card.soft{background:#1f3330}
+  .ileh-chips button.on{background:#1f4b45}.ileh-x{background:#33403f;color:#eef4f2}.ileh-btn.ghost{background:transparent;color:#5fc2ae!important;border-color:#5fc2ae}
+}
