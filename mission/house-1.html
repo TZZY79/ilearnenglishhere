@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buying a Home in England — Part 1: Getting Started | I Learn English Here</title>
+    <meta name="description" content="Special Mission Part 1: follow two buyers through their first weeks of buying a home in England — budgets, mortgages, viewings and offers — and practise advanced English.">
+    <meta name="author" content="Online Business Awareness">
+    <link rel="canonical" href="https://ilearnenglishhere.academy/mission/house-1.html">
+    <meta name="robots" content="index,follow">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f7a6c'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='20' fill='white'%3EE%3C/text%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0f1419; 
+            color: #e9e9f4; 
+            background-image: radial-gradient(circle at center, #1a2332 10%, #0f1419 90%);
+        }
+        .slide-card { 
+            background-color: #1a2332; 
+            border-left: 6px solid #4a90e2;
+            transition: all 0.5s ease-out; 
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.15);
+        }
+        .progress-bar-fill { transition: width 0.5s ease-in-out; }
+        .action-button { 
+            transition: all 0.15s ease; 
+            box-shadow: 0 4px #2563eb;
+        }
+        .action-button:hover { transform: translateY(-1px); box-shadow: 0 5px #4a90e2; }
+        .action-button:active { transform: translateY(3px); box-shadow: 0 1px #2563eb; }
+
+        .task-input { 
+            background-color: #0f1419; 
+            border: 1px solid #4a4e69; 
+        }
+        .custom-scroll::-webkit-scrollbar { width: 8px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #1a2332; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #4a90e2; border-radius: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+        .neon-text { color: #4a90e2; text-shadow: 0 0 5px #4a90e2; }
+        .header-bg { background-color: #1a2332; border: 1px solid #4a90e230; }
+
+        @keyframes xp-pop { 0% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(1); opacity: 0.5; } }
+        .xp-animation { animation: xp-pop 0.3s ease-in-out; }
+        
+        .info-box { background-color: #1a2f4d; border-left: 4px solid #4a90e2; }
+        .warning-box { background-color: #4d1a1a; border-left: 4px solid #e24a4a; }
+        .tip-box { background-color: #1a4d2f; border-left: 4px solid #4ae290; }
+        .story-box { background-color: #2f1a4d; border-left: 4px solid #904ae2; }
+        .resource-item { background-color: #2a3245; border-left: 3px solid #6a8ea8; }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen" data-mission="house" data-series="1">
+<div style="max-width:80rem;margin:0 auto 14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font:14px system-ui,sans-serif"><a href="../index.html" style="color:#e9e9f4;text-decoration:none;font-weight:800;display:flex;align-items:center;gap:8px"><span style="width:30px;height:30px;border-radius:8px;background:#1f7a6c;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:Georgia,serif">E</span> I Learn English Here</a><span style="color:#ffd68a;font-weight:700">🏠 Special Mission · Level B2–C1 · <a href="../mission.html" style="color:#9ecbff">Mission home</a></span></div>
+
+    <div id="app" class="max-w-7xl mx-auto">
+        
+        <header class="mb-8 p-4 header-bg rounded-xl shadow-2xl">
+            <h1 class="text-4xl font-extrabold text-neon-text tracking-tight"><i class="fas fa-home mr-2"></i> BUYING A HOME IN ENGLAND · PART 1</h1>
+            <p class="text-blue-300/80 mb-4">Getting Started - Follow Leila & Daniel through Weeks 0-2 of their property journey</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-3 bg-gray-900 rounded-lg shadow-md">
+                    <p class="text-xs uppercase font-semibold text-blue-400">Progress</p>
+                    <p id="progress-display" class="text-xl font-bold text-yellow-400">0%</p>
+                </div>
+                <div class="p-3 bg-gray-900 rounded-lg shadow-md">
+                    <p class="text-xs uppercase font-semibold text-blue-400">Current Slide</p>
+                    <p id="quest-display" class="text-xl font-bold text-white">1/15</p>
+                </div>
+                <div class="p-3 bg-gray-900 rounded-lg shadow-md col-span-2 md:col-span-2">
+                    <p class="text-xs uppercase font-semibold text-blue-400 mb-1">Course Progress</p>
+                    <div class="h-3 bg-gray-600 rounded-full">
+                        <div id="progress-bar" class="h-3 progress-bar-fill bg-neon-text rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <section class="lg:col-span-2 space-y-6">
+                
+                <div id="slide-container" class="slide-card p-6 rounded-xl shadow-lg custom-scroll" style="max-height: 75vh; overflow-y: auto;">
+                    <h2 id="slide-title" class="text-2xl font-bold text-yellow-400 mb-4"></h2>
+                    <div id="slide-content" class="text-lg text-blue-100 space-y-4"></div>
+                </div>
+
+                <div class="flex gap-4">
+                    <button id="prev-btn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl action-button disabled:opacity-50" onclick="prevSlide()" disabled>
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button id="next-btn" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl action-button" onclick="nextSlide()">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+                
+            </section>
+
+            <section class="lg:col-span-1">
+                <div class="bg-gray-800/80 p-6 rounded-xl shadow-2xl sticky top-8 border border-gray-700">
+                    <h2 class="text-xl font-bold text-gray-200 mb-4 flex items-center"><i class="fas fa-lightbulb mr-2 text-yellow-400"></i> Learning Resources</h2>
+                    <p class="text-sm text-gray-400 mb-3">Additional materials to help you understand this topic better</p>
+                    
+                    <div id="resources-panel" class="h-96 custom-scroll overflow-y-auto p-3 bg-gray-900 rounded-lg border border-gray-700 space-y-3">
+                        <p class="text-gray-400 italic text-center mt-8">📚 Resources will appear here for each slide</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        let gameState = {
+            currentSlideIndex: 0
+        };
+
+        const COURSE_DATA = [
+            {
+                title: "🏠 Welcome to Your Property Buying Journey",
+                content: `
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 About This Course</h3>
+                        <p class="mb-3">This isn't just a course about forms and facts. This is a <strong>real journey</strong> following two people as they buy their first homes in England.</p>
+                        <p class="mb-2"><strong>You'll experience:</strong></p>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li>Every decision they make</li>
+                            <li>Every conversation they have</li>
+                            <li>Every form they complete - and WHY they need it</li>
+                            <li>The excitement, stress, and disappointments</li>
+                            <li>The REAL timeline - what happens each week</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📅 PART 1 Timeline: The Beginning</h3>
+                        <div class="space-y-3">
+                            <div class="bg-blue-900/30 p-3 rounded">
+                                <p class="font-bold text-yellow-300">WEEK 0: The Decision</p>
+                                <p class="text-sm">Making the choice to buy, assessing if you're ready</p>
+                            </div>
+                            <div class="bg-blue-900/30 p-3 rounded">
+                                <p class="font-bold text-yellow-300">WEEK 1: Getting Prepared</p>
+                                <p class="text-sm">Checking finances, getting mortgage approval in principle, choosing a solicitor</p>
+                            </div>
+                            <div class="bg-blue-900/30 p-3 rounded">
+                                <p class="font-bold text-yellow-300">WEEK 2: Property Search Begins</p>
+                                <p class="text-sm">Registering with estate agents, starting to view properties online</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-red-300 mb-2">⚠️ Important: How This Course Works</h3>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><strong>NO ANSWERS PROVIDED</strong> - You'll get tips and guidance, but YOU must figure out the solutions</li>
+                            <li><strong>Research Required</strong> - You'll need to search online, watch videos, read articles</li>
+                            <li><strong>Real Life Includes Setbacks</strong> - Not everything goes smoothly (just like reality!)</li>
+                            <li><strong>English Skills Practice</strong> - Every slide includes reading, writing, speaking, or listening tasks</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box p-4 rounded-lg">
+                        <h3 class="text-xl font-bold text-green-300 mb-2">💡 How to Get the Most from This Course</h3>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li>Watch the suggested YouTube videos (they really help!)</li>
+                            <li>Read the Wikipedia articles (quick background knowledge)</li>
+                            <li>Complete ALL tasks - don't skip them</li>
+                            <li>Take notes as you go (and download your work regularly)</li>
+                            <li>Write your answers in the boxes under each task — they save automatically</li>
+                        </ul>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "First time buyer UK guide 2024" },
+                    { type: "youtube", text: "How to buy a house UK step by step" },
+                    { type: "youtube", text: "UK mortgage explained" },
+                    { type: "wiki", text: "Conveyancing", url: "https://en.wikipedia.org/wiki/Conveyancing" },
+                    { type: "wiki", text: "Mortgage loan", url: "https://en.wikipedia.org/wiki/Mortgage_loan" }
+                ]
+            },
+            {
+                title: "👤 Meet Leila: First-Time Buyer",
+                content: `
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="w-24 h-24 bg-green-600 rounded-full flex items-center justify-center text-4xl font-bold flex-shrink-0">L</div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-purple-300">Leila Haddad, Age 28</h3>
+                                <p class="text-sm text-gray-300 mt-2"><strong>Job:</strong> Marketing Assistant in Manchester</p>
+                                <p class="text-sm text-gray-300"><strong>Salary:</strong> £28,000 per year</p>
+                                <p class="text-sm text-gray-300"><strong>Savings:</strong> £20,000 (saved over 4 years)</p>
+                                <p class="text-sm text-gray-300"><strong>Current Housing:</strong> Renting 1-bed flat for £750/month</p>
+                                <p class="text-sm text-gray-300"><strong>Goal:</strong> Buy a 2-bedroom terraced house</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="font-bold text-purple-200 mt-4 mb-2">Leila's Situation:</h4>
+                        <p>Leila has been renting for 6 years since university. She's tired of "wasting money on rent" and wants somewhere that's actually hers. Her parents can't help with money, so she's done this completely on her own.</p>
+                        <p class="mt-2">She's nervous because she doesn't know much about buying property and is worried about making expensive mistakes.</p>
+                    </div>
+
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 Week 0: Leila's Decision</h3>
+                        <p class="italic text-gray-300"><em>"I'm scrolling through a property website again. £750 rent every month - that's £9,000 a year just... gone. If I could buy something for £180,000 with my £20,000 deposit, I'd have a mortgage payment of maybe £800-£850. Not much more than rent, but it would be MINE.</em></p>
+                        <p class="italic text-gray-300 mt-2"><em>But what if I can't afford it? What if something goes wrong? What if I choose the wrong house? God, this is scary."</em></p>
+                    </div>
+
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Reading Comprehension</h3>
+                        <p class="mb-2"><strong>Read Leila's story above and answer these questions in the answer boxes below:</strong></p>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>How much does Leila earn per year?</li>
+                            <li>Why does Leila describe her rent as "wasted money"?</li>
+                            <li>Calculate: How much has Leila paid in rent over 6 years? (£750 × 12 months × 6 years)</li>
+                            <li>What emotion is Leila feeling about buying? Find the word in the text.</li>
+                            <li>Write 3 sentences explaining why Leila wants to buy instead of rent.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tip-box p-4 rounded-lg">
+                        <h3 class="text-xl font-bold text-green-300 mb-2">💡 Tips (No Answers!)</h3>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li>For question 3: Use a calculator. Multiply the monthly rent by the number of months in a year, then by 6.</li>
+                            <li>For question 4: Look for words that describe feelings (adjectives or emotional verbs).</li>
+                            <li>For question 5: Think about advantages of owning vs renting (control, investment, stability).</li>
+                        </ul>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "renting vs buying UK pros and cons" },
+                    { type: "wiki", text: "Owner-occupancy", url: "https://en.wikipedia.org/wiki/Owner-occupancy" }
+                ]
+            },
+            {
+                title: "👤 Meet Daniel: Moving Up the Ladder",
+                content: `
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center text-4xl font-bold flex-shrink-0">D</div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-purple-300">Daniel Mensah, Age 35</h3>
+                                <p class="text-sm text-gray-300 mt-2"><strong>Job:</strong> IT Project Manager in Birmingham</p>
+                                <p class="text-sm text-gray-300"><strong>Salary:</strong> £45,000 per year</p>
+                                <p class="text-sm text-gray-300"><strong>Current Property:</strong> Owns 2-bed flat (bought 5 years ago)</p>
+                                <p class="text-sm text-gray-300"><strong>Flat Value:</strong> £160,000 (bought for £140,000)</p>
+                                <p class="text-sm text-gray-300"><strong>Mortgage Remaining:</strong> £110,000</p>
+                                <p class="text-sm text-gray-300"><strong>Goal:</strong> Sell flat and buy 3-bed semi-detached house</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="font-bold text-purple-200 mt-4 mb-2">Daniel's Situation:</h4>
+                        <p>Daniel bought his flat as a first-time buyer 5 years ago. Now he wants more space - maybe for a family in the future. He needs to sell his flat first before he can buy the new house.</p>
+                        <p class="mt-2">This means Daniel will be part of a "chain" - his purchase depends on someone buying his flat. This makes everything more complicated and stressful.</p>
+                    </div>
+
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 Week 0: Daniel's Decision</h3>
+                        <p class="italic text-gray-300"><em>"The flat's been great, but I need more space. I've seen a house I love for £280,000. If I sell my flat for £160,000, pay off the £110,000 mortgage, I'll have £50,000. That's a decent deposit.</em></p>
+                        <p class="italic text-gray-300 mt-2"><em>But what if my flat doesn't sell quickly? What if I sell it but then can't find a house? Or worse - what if I find a house but can't sell my flat in time and lose it?</em></p>
+                        <p class="italic text-gray-300 mt-2"><em>This 'chain' thing worries me. My purchase depends on someone buying my flat. Their purchase might depend on them selling THEIR house. It could all fall apart so easily."</em></p>
+                    </div>
+
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-red-300 mb-2">⚠️ Real-Life Challenge: Being in a Chain</h3>
+                        <p class="mb-2">Daniel is about to experience one of the most stressful parts of buying property in England: <strong>the property chain</strong>.</p>
+                        <p class="mb-2">A chain means:</p>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li>Daniel needs to sell his flat to buy the house</li>
+                            <li>The house seller might also be buying another property</li>
+                            <li>If ANYONE in the chain pulls out, the whole chain collapses</li>
+                            <li>About 30% of property chains collapse before completion</li>
+                        </ul>
+                        <p class="mt-2 font-bold text-red-200">This WILL cause Daniel problems later in the course!</p>
+                    </div>
+
+                    <div class="warning-box p-4 rounded-lg">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Calculations & Writing</h3>
+                        <p class="mb-2"><strong>Complete these tasks in the answer boxes below:</strong></p>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li><strong>Calculate:</strong> Daniel bought his flat for £140,000. It's now worth £160,000. How much profit has he made?</li>
+                            <li><strong>Calculate:</strong> From the £160,000 sale price, Daniel must pay off £110,000 mortgage. How much will he have left for his deposit?</li>
+                            <li><strong>Calculate:</strong> If the new house costs £280,000 and Daniel has the deposit from question 2, how much mortgage does he need?</li>
+                            <li><strong>Writing:</strong> In 150 words, explain what a "property chain" is in your own words. Why is it stressful?</li>
+                        </ol>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "property chain explained UK" },
+                    { type: "wiki", text: "Real estate chain", url: "https://en.wikipedia.org/wiki/Real_estate_chain" }
+                ]
+            },
+            {
+                title: "✅ Week 0: Are You Ready to Buy?",
+                content: `
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 The Readiness Checklist</h3>
+                        <p class="mb-2">Before Leila and Daniel speak to a bank, they check five things. Lenders look at all of them.</p>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><strong>Savings:</strong> a deposit (usually 5–20% of the price) PLUS money for fees</li>
+                            <li><strong>Stable income:</strong> lenders like permanent jobs and at least 6–12 months in the role</li>
+                            <li><strong>Credit history:</strong> paying bills and phone contracts on time builds a good record</li>
+                            <li><strong>Debts:</strong> car loans and credit cards reduce how much you can borrow</li>
+                            <li><strong>Monthly budget:</strong> can you pay the mortgage AND bills, food and travel?</li>
+                        </ul>
+                    </div>
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 Leila Checks Her Credit Report</h3>
+                        <p class="italic text-gray-300"><em>"I downloaded my free credit report. One late phone bill from three years ago! I didn't even remember it. Everything else looks fine. I've registered on the electoral roll at my address too — apparently that helps."</em></p>
+                    </div>
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Vocabulary & Self-Check</h3>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>Explain in your own words: <strong>deposit</strong>, <strong>credit history</strong>, <strong>lender</strong>.</li>
+                            <li>Write 3 sentences with "should" giving advice to someone who wants to buy a home (e.g. "You should check your credit report.").</li>
+                            <li>Imagine YOU want to buy. Answer the five checklist questions about yourself in full sentences.</li>
+                        </ol>
+                    </div>
+                    <div class="tip-box p-4 rounded-lg">
+                        <h3 class="text-xl font-bold text-green-300 mb-2">💡 Tips (No Answers!)</h3>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li>"Should + base verb" — no "to": you should save, NOT you should to save.</li>
+                            <li>Use linking words: firstly, also, however, finally.</li>
+                        </ul>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "how to check your credit score UK" },
+                    { type: "wiki", text: "Credit history" }
+                ]
+            },
+            {
+                title: "🧮 Week 1: How Much Can You Borrow?",
+                content: `
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 The Income Multiple</h3>
+                        <p class="mb-2">Most UK lenders will lend roughly <strong>4 to 4.5 times your yearly income</strong>. Some lend a little more to higher earners. They also check your spending (an "affordability assessment").</p>
+                        <div class="bg-blue-900/30 p-3 rounded mt-2">
+                            <p class="font-bold text-yellow-300">Formula</p>
+                            <p>Maximum borrowing ≈ Annual salary × 4.5</p>
+                            <p>Budget = Maximum borrowing + Deposit − Fees</p>
+                        </div>
+                    </div>
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 Leila Does the Maths</h3>
+                        <p class="italic text-gray-300"><em>"£28,000 times 4.5... that's £126,000. Add my £20,000 deposit — £146,000. But I need money for fees too. So really I'm looking at about £140,000. The 2-bed houses I liked were £180,000. That's a big gap."</em></p>
+                    </div>
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 Daniel Does the Maths</h3>
+                        <p class="italic text-gray-300"><em>"£45,000 times 5 is £225,000 — my broker thinks I can get that because of my salary and clean credit. Plus about £50,000 from my flat. Budget: around £275,000."</em></p>
+                    </div>
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Calculations & Explanations</h3>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>Calculate: someone earns £32,000. What is 4 × and 4.5 × their salary?</li>
+                            <li>Calculate: Leila's maximum borrowing (£28,000 × 4.5) + her deposit (£20,000). Show your working.</li>
+                            <li>Why does Leila say her real budget is "about £140,000" and not £146,000? Answer in 2–3 sentences.</li>
+                            <li>Write a short paragraph (80 words) explaining an "income multiple" to a friend, using "If you earn…, you can borrow…".</li>
+                        </ol>
+                    </div>
+                    <div class="tip-box p-4 rounded-lg">
+                        <h3 class="text-xl font-bold text-green-300 mb-2">💡 Tips (No Answers!)</h3>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li>Say large numbers in words too: £126,000 = "a hundred and twenty-six thousand pounds".</li>
+                            <li>Your paragraph uses the first conditional: If + present, will/can + verb.</li>
+                        </ul>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "how much can I borrow mortgage UK" },
+                    { type: "wiki", text: "Mortgage loan" }
+                ]
+            },
+            {
+                title: "📊 Week 1: Deposits and Loan-to-Value (LTV)",
+                content: `
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 What Is LTV?</h3>
+                        <p class="mb-2"><strong>Loan-to-Value</strong> compares the mortgage to the price of the home. A lower LTV usually means a lower interest rate.</p>
+                        <div class="bg-blue-900/30 p-3 rounded mt-2">
+                            <p class="font-bold text-yellow-300">Formula</p>
+                            <p>LTV % = (Mortgage ÷ Property price) × 100</p>
+                            <p>Example: £180,000 mortgage on a £200,000 home → 90% LTV (a 10% deposit)</p>
+                        </div>
+                        <p class="mt-2">Common bands: 95%, 90%, 85%, 75%, 60%. Moving into a lower band can save a lot of money each month.</p>
+                    </div>
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 Leila's Choice</h3>
+                        <p class="italic text-gray-300"><em>"If I buy for £140,000 with my £20,000, I borrow £120,000. That's about 86% LTV. If I find something for £133,000, I'd only borrow £113,000 — that's under 85%, and the rate is better. Cheaper home, cheaper mortgage. Interesting."</em></p>
+                    </div>
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: LTV Practice</h3>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>Calculate the LTV: £150,000 mortgage on a £200,000 home.</li>
+                            <li>Calculate the LTV: £120,000 mortgage on a £140,000 home (round to one decimal place).</li>
+                            <li>Complete the sentence in 3 different ways: "The bigger your deposit, the …"</li>
+                            <li>Write 4–5 sentences comparing a 95% and a 75% mortgage. Use comparatives (higher, lower, more expensive, safer).</li>
+                        </ol>
+                    </div>
+                    <div class="tip-box p-4 rounded-lg">
+                        <h3 class="text-xl font-bold text-green-300 mb-2">💡 Tips (No Answers!)</h3>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li>"The + comparative…, the + comparative" is a useful pattern: the more you save, the less you borrow.</li>
+                        </ul>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "loan to value explained UK mortgage" },
+                    { type: "wiki", text: "Loan-to-value ratio" }
+                ]
+            },
+            {
+                title: "📄 Week 1: The Agreement in Principle (AIP)",
+                content: `
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 What Is an AIP?</h3>
+                        <p class="mb-2">An <strong>Agreement in Principle</strong> (also called a Decision in Principle or Mortgage in Principle) is a written statement from a lender saying how much they would <em>probably</em> lend you. It is <strong>not</strong> a final mortgage offer.</p>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li>Estate agents often ask to see one before they accept your offer</li>
+                            <li>It usually involves a credit check</li>
+                            <li>It is normally valid for 60–90 days</li>
+                        </ul>
+                    </div>
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 Leila Calls a Mortgage Broker</h3>
+                        <p class="text-gray-300"><strong>Broker:</strong> "Good afternoon. How can I help?"</p>
+                        <p class="text-gray-300"><strong>Leila:</strong> "Hello. I'm a first-time buyer and I'd like to find out how much I could borrow."</p>
+                        <p class="text-gray-300"><strong>Broker:</strong> "Of course. Could you tell me your salary and any monthly commitments, like loans?"</p>
+                        <p class="text-gray-300"><strong>Leila:</strong> "I earn £28,000 and I have no loans — just a phone contract."</p>
+                        <p class="text-gray-300"><strong>Broker:</strong> "Thank you. Based on that, I can get you an Agreement in Principle for £120,000."</p>
+                        <p class="italic text-gray-300 mt-2"><em>"£120,000. Less than I calculated, but it's real now. I have a number!"</em></p>
+                    </div>
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Polite Requests & Formal Email</h3>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>Find three polite request forms in the dialogue (e.g. "I'd like to…"). Write them down.</li>
+                            <li>Rewrite these as polite requests: "Tell me the rate." / "Send me the form." / "Call me tomorrow."</li>
+                            <li>Write a formal email (120 words) to a broker asking for an AIP appointment. Include your situation, two questions and your availability.</li>
+                        </ol>
+                    </div>
+                    <div class="tip-box p-4 rounded-lg">
+                        <h3 class="text-xl font-bold text-green-300 mb-2">💡 Tips (No Answers!)</h3>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li>Polite forms: Could you…? Would you mind + -ing? I'd be grateful if you could…</li>
+                            <li>Formal email: Dear…, I am writing to…, I look forward to hearing from you, Kind regards.</li>
+                        </ul>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "agreement in principle explained UK" },
+                    { type: "youtube", text: "what does a mortgage broker do UK" }
+                ]
+            },
+            {
+                title: "💸 Week 1: The Hidden Costs of Buying",
+                content: `
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 It's Not Just the Deposit!</h3>
+                        <p class="mb-2">Typical extra costs when buying in England (these change — always check current prices):</p>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><strong>Solicitor / conveyancer:</strong> about £1,000–£2,000</li>
+                            <li><strong>Searches:</strong> about £250–£350</li>
+                            <li><strong>Survey:</strong> about £400–£1,500 depending on the type</li>
+                            <li><strong>Mortgage fees:</strong> £0–£1,500 (some products have no fee)</li>
+                            <li><strong>Stamp Duty Land Tax:</strong> depends on price and whether you are a first-time buyer (check the official GOV.UK calculator)</li>
+                            <li><strong>Moving costs:</strong> van or removal company, new furniture, changing the locks</li>
+                        </ul>
+                    </div>
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 Leila Builds a Budget</h3>
+                        <p class="italic text-gray-300"><em>"Solicitor £1,400. Searches £300. Survey £500. Moving £400. That's £2,600 — and that's if nothing goes wrong. I'll keep £3,000 aside, which means £17,000 for the deposit, not £20,000."</em></p>
+                    </div>
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Budget Table & Report</h3>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>Add up Leila's costs. Check her total of £2,600.</li>
+                            <li>Make your own table of costs for a £150,000 home, with a "Low estimate" and a "High estimate" column.</li>
+                            <li>Write a short report (100 words): "The real cost of buying a home". Use: in addition, as well as, furthermore, on top of that.</li>
+                        </ol>
+                    </div>
+                    <div class="tip-box p-4 rounded-lg">
+                        <h3 class="text-xl font-bold text-green-300 mb-2">💡 Tips (No Answers!)</h3>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li>Reports use headings, short paragraphs and a neutral tone (no "I think it's awful!").</li>
+                        </ul>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "hidden costs of buying a house UK" },
+                    { type: "wiki", text: "Stamp duty in the United Kingdom" }
+                ]
+            },
+            {
+                title: "⚖️ Week 1: Choosing a Solicitor",
+                content: `
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 What Does a Conveyancer Do?</h3>
+                        <p class="mb-2">A <strong>solicitor</strong> or <strong>licensed conveyancer</strong> does the legal work: checks the property's title, orders searches, reads the contract, handles the money and registers you as the new owner.</p>
+                        <p class="mb-2"><strong>Good questions to ask before choosing:</strong></p>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li>Is your quote fixed, or could it go up?</li>
+                            <li>What is included, and what are the "disbursements" (third-party costs)?</li>
+                            <li>Will one person handle my case? How quickly do you reply?</li>
+                            <li>Do you charge if the purchase falls through?</li>
+                        </ul>
+                    </div>
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 Three Quotes</h3>
+                        <p class="text-gray-300">Firm A: £950 + disbursements, online only, "no completion, no fee".</p>
+                        <p class="text-gray-300">Firm B: £1,400 fixed, local office, named solicitor.</p>
+                        <p class="text-gray-300">Firm C: £1,150 + VAT, reviews say "slow to reply".</p>
+                        <p class="italic text-gray-300 mt-2"><em>"The cheapest isn't always the best. If they're slow, I could lose the flat."</em></p>
+                    </div>
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Compare & Decide</h3>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>Firm C charges £1,150 + VAT at 20%. What is the total?</li>
+                            <li>Write one advantage and one disadvantage for each firm.</li>
+                            <li>Which firm would you choose? Write 120 words giving reasons. Use: although, whereas, on the other hand.</li>
+                        </ol>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "how to choose a conveyancing solicitor UK" },
+                    { type: "wiki", text: "Conveyancing" }
+                ]
+            },
+            {
+                title: "🏷️ Week 1: Daniel Puts His Flat on the Market",
+                content: `
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 The Valuation</h3>
+                        <p class="text-gray-300"><strong>Estate agent:</strong> "It's a lovely flat. Similar ones nearby have sold for £155,000 to £162,000. I'd suggest an asking price of £160,000."</p>
+                        <p class="text-gray-300"><strong>Daniel:</strong> "And your fee?"</p>
+                        <p class="text-gray-300"><strong>Estate agent:</strong> "1.2% plus VAT on completion. We'll need an Energy Performance Certificate before we list it."</p>
+                        <p class="italic text-gray-300 mt-2"><em>"£160,000. Perfect. Photos on Tuesday, online by Friday. Hopefully it sells fast."</em></p>
+                    </div>
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 Persuasive Language in Property Adverts</h3>
+                        <p>Agents choose words carefully: <em>"cosy"</em> can mean small, <em>"up-and-coming area"</em> can mean not popular yet, <em>"in need of modernisation"</em> means old-fashioned and probably needs work.</p>
+                    </div>
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Persuasive Writing</h3>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>Calculate the agent's fee: 1.2% of £160,000, then add VAT at 20%.</li>
+                            <li>What could these really mean? "compact", "characterful", "easy access to the motorway".</li>
+                            <li>Write a persuasive advert (100 words) for Daniel's 2-bed flat. Use at least 5 positive adjectives — but stay honest!</li>
+                        </ol>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "how estate agents value a property UK" },
+                    { type: "wiki", text: "Energy Performance Certificate (United Kingdom)" }
+                ]
+            },
+            {
+                title: "🔎 Week 2: Searching Online & Reading Adverts",
+                content: `
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 Advert Abbreviations</h3>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><strong>2-bed / 3-bed</strong> = number of bedrooms</li>
+                            <li><strong>Semi</strong> = semi-detached · <strong>Terrace</strong> = a row of joined houses · <strong>Detached</strong> = stands alone</li>
+                            <li><strong>GCH</strong> = gas central heating · <strong>DG</strong> = double glazing</li>
+                            <li><strong>OIRO</strong> = offers in the region of · <strong>OIEO</strong> = offers in excess of</li>
+                            <li><strong>STC</strong> = sold subject to contract (an offer has been accepted)</li>
+                        </ul>
+                    </div>
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 Leila's Search Filters</h3>
+                        <p class="italic text-gray-300"><em>"Max price £140,000. Within 30 minutes of work. I've registered with three local agents so they call me first when something new comes up. Here's one: '1-bed first-floor flat, OIRO £135,000, GCH, DG, communal garden, 10 mins to tram stop.'"</em></p>
+                    </div>
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Reading Adverts</h3>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>Rewrite Leila's advert in full sentences with no abbreviations.</li>
+                            <li>What is the difference between OIRO and OIEO? Explain with an example price.</li>
+                            <li>Find 2 real adverts on a property website. Copy the descriptions and underline any abbreviations you don't know. Look them up.</li>
+                        </ol>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "property advert abbreviations explained UK" },
+                    { type: "wiki", text: "Semi-detached" }
+                ]
+            },
+            {
+                title: "😔 Week 2: Leila's Reality Check",
+                content: `
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 Disappointment #1</h3>
+                        <p class="italic text-gray-300"><em>"I've looked at every 2-bed terraced house in my area. The cheapest is £172,000 — and it needs a new roof. With £120,000 from the bank and my deposit, I simply can't reach that."</em></p>
+                        <p class="italic text-gray-300 mt-2"><em>"I cried a bit last night, honestly. I've saved for four years. But my sister said something that helped: 'Your first home doesn't have to be your forever home.' So… I'm looking at 1-bed flats now. They're £125,000 to £140,000. It's a compromise, but it's a start."</em></p>
+                    </div>
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 Language of Feelings</h3>
+                        <p><strong>Disappointed</strong>, <strong>frustrated</strong>, <strong>let down</strong>, <strong>hopeful</strong>, <strong>relieved</strong>, <strong>determined</strong>. In British English people often soften feelings: "a bit upset", "not ideal", "it's not the end of the world".</p>
+                    </div>
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Empathy & Opinion</h3>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>Find 3 words or phrases that show Leila's feelings change from sad to hopeful.</li>
+                            <li>What does "Your first home doesn't have to be your forever home" mean? Explain in 2 sentences.</li>
+                            <li>Write a reply to Leila as a friend (100 words): show empathy, give advice with "should / could / why don't you".</li>
+                        </ol>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "first time buyer compromises UK" },
+                    { type: "wiki", text: "Property ladder" }
+                ]
+            },
+            {
+                title: "🚪 Week 2: Viewings — What to Ask and Check",
+                content: `
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 Viewing Checklist</h3>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li>Look for damp: black marks, a musty smell, peeling paint</li>
+                            <li>Check the water pressure, windows, boiler age and phone signal</li>
+                            <li>Ask: Why are the owners selling? How long has it been on the market?</li>
+                            <li>Ask: Is it leasehold or freehold? What are the service charge and ground rent?</li>
+                            <li>Visit at different times of day — what is the area like at night?</li>
+                        </ul>
+                    </div>
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 Flat 2B, 14 Beech Road, Chorlton</h3>
+                        <p class="text-gray-300"><strong>Leila:</strong> "How long has the flat been on the market?"</p>
+                        <p class="text-gray-300"><strong>Agent:</strong> "About five weeks. The owner is moving abroad, so she'd like a quick sale."</p>
+                        <p class="text-gray-300"><strong>Leila:</strong> "Is it leasehold? How many years are left on the lease?"</p>
+                        <p class="text-gray-300"><strong>Agent:</strong> "Yes, leasehold, with 112 years remaining. The service charge is £900 a year."</p>
+                        <p class="italic text-gray-300 mt-2"><em>"It's bright, the kitchen is new, and I can walk to the tram. The bathroom is tiny… but I love it."</em></p>
+                    </div>
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Speaking & Questions</h3>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>Write 6 questions to ask at a viewing. Use different forms: How long…? Is there…? Have they ever…? Could you…?</li>
+                            <li>The owner wants a "quick sale". Why is that good news for Leila? (2–3 sentences)</li>
+                            <li>Speaking: read the dialogue aloud with a partner (or record yourself). Then change the answers and act it again.</li>
+                        </ol>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "what to look for when viewing a flat UK" },
+                    { type: "wiki", text: "Leasehold estate" }
+                ]
+            },
+            {
+                title: "🤝 Week 2: Making an Offer",
+                content: `
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 Leila Negotiates</h3>
+                        <p class="text-gray-300"><strong>Leila:</strong> "I'd like to make an offer of £128,000. I'm a first-time buyer with no chain, and I have an Agreement in Principle."</p>
+                        <p class="text-gray-300"><strong>Agent (next day):</strong> "The vendor has come back at £133,000."</p>
+                        <p class="text-gray-300"><strong>Leila:</strong> "Would she consider £131,000? That's my best and final offer."</p>
+                        <p class="text-gray-300"><strong>Agent:</strong> "Good news — she's accepted £131,000, subject to contract."</p>
+                        <p class="italic text-gray-300 mt-2"><em>"I did it! I actually did it! Now the legal part begins…"</em></p>
+                    </div>
+                    <div class="story-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">📖 Meanwhile… Daniel Loses His Dream House</h3>
+                        <p class="italic text-gray-300"><em>"Two weeks on the market and only one viewing for my flat. The £280,000 house I loved? A chain-free buyer offered the full price and the seller accepted. I wasn't in a position to proceed. I've reduced my flat to £152,000 and my budget has dropped. Back to square one."</em></p>
+                    </div>
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Negotiation Language</h3>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>Find 3 phrases Leila uses to negotiate politely. Why are they effective?</li>
+                            <li>What does "subject to contract" mean? Why isn't the deal final yet?</li>
+                            <li>Calculate: how much below the vendor's counter-offer (£133,000) did Leila buy? What % saving is that?</li>
+                            <li>Write the phone conversation (10–12 lines) where Daniel's agent tells him the house has gone to another buyer. Show his feelings politely.</li>
+                        </ol>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "how to make an offer on a house UK" },
+                    { type: "wiki", text: "Gazumping" }
+                ]
+            },
+            {
+                title: "📌 Part 1 Summary: Where Are We Now?",
+                content: `
+                    <div class="info-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-blue-300 mb-2">📖 End of Week 2</h3>
+                        <p><strong>Leila (28, first-time buyer):</strong> ✅ AIP for £120,000 · ✅ Offer accepted on a 1-bed flat for £131,000 · ✅ Choosing her solicitor · ⏳ Legal work about to start</p>
+                        <p class="mt-2"><strong>Daniel (35, second-stepper):</strong> ❌ Lost his dream house · ❌ Flat reduced to £152,000 · ⚠️ Needs a buyer before he can buy</p>
+                    </div>
+                    <div class="tip-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-green-300 mb-2">🔑 Key Words from Part 1</h3>
+                        <p>deposit · lender · credit history · income multiple · Loan-to-Value (LTV) · Agreement in Principle · conveyancer · disbursements · asking price · valuation · viewing · vendor · offer · subject to contract · chain</p>
+                    </div>
+                    <div class="warning-box p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-2">✍️ ENGLISH SKILLS TASK: Review & Reflect</h3>
+                        <ol class="list-decimal list-inside ml-4 space-y-2">
+                            <li>Choose 8 key words above and write one sentence for each that shows its meaning.</li>
+                            <li>Summarise Leila's and Daniel's situations in 120 words. Use the present perfect (She has…, He hasn't…).</li>
+                            <li>Reflection: What was the most difficult part of Part 1 for your English? What will you practise before Part 2?</li>
+                        </ol>
+                    </div>
+                    <div class="story-box p-4 rounded-lg">
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">🎬 Coming in Part 2</h3>
+                        <p>Solicitors, surveys, searches, the TA6 form — and more problems for both buyers. Download your work before you continue!</p>
+                    </div>
+                `,
+                resources: [
+                    { type: "youtube", text: "UK house buying process timeline" },
+                    { type: "wiki", text: "Conveyancing" }
+                ]
+            }
+        ];
+
+        function renderSlide() {
+            if (gameState.currentSlideIndex >= COURSE_DATA.length) {
+                document.getElementById('slide-title').textContent = "🏆 Part 1 Complete! 🏆";
+                document.getElementById('slide-content').innerHTML = `
+                    <div class="tip-box p-6 rounded-lg text-center">
+                        <p class="text-3xl font-bold mb-4 text-green-300">Congratulations! You've completed Part 1!</p>
+                        <p class="text-xl mb-4">You've learned the foundations of property buying in England.</p>
+                        <p class="text-lg">Continue to Part 2 to follow Leila and Daniel through the legal process!</p>
+                        <button class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl action-button" onclick="location.reload()">
+                            Restart Part 1
+                        </button>
+                    </div>
+                `;
+                document.getElementById('resources-panel').innerHTML = '<p class="text-gray-400 italic text-center mt-8">Course complete!</p>';
+                return;
+            }
+
+            const slide = COURSE_DATA[gameState.currentSlideIndex];
+            document.getElementById('slide-title').textContent = slide.title;
+            document.getElementById('slide-content').innerHTML = slide.content;
+
+            // Update resources panel
+            const resourcesPanel = document.getElementById('resources-panel');
+            resourcesPanel.innerHTML = '';
+            
+            if (slide.resources && slide.resources.length > 0) {
+                slide.resources.forEach(resource => {
+                    const icon = resource.type === 'youtube' ? 'fa-youtube' : 'fa-wikipedia-w';
+                    const color = resource.type === 'youtube' ? 'text-red-400' : 'text-blue-400';
+                    resourcesPanel.innerHTML += `
+                        <div class="resource-item p-3 rounded-lg">
+                            <p class="text-sm font-semibold ${color}"><i class="fab ${icon} mr-2"></i>${resource.type === 'youtube' ? 'YouTube' : 'Wikipedia'}</p>
+                            <p class="text-xs text-gray-300 mt-1">${resource.text}</p>
+                        </div>
+                    `;
+                });
+            } else {
+                resourcesPanel.innerHTML = '<p class="text-gray-400 italic text-center mt-8">No additional resources for this slide</p>';
+            }
+
+            updateUI();
+        }
+
+        function updateUI() {
+            const totalSlides = COURSE_DATA.length;
+            const currentSlide = gameState.currentSlideIndex + 1;
+            const progress = (currentSlide / totalSlides) * 100;
+
+            document.getElementById('progress-display').textContent = `${progress.toFixed(0)}%`;
+            document.getElementById('quest-display').textContent = `${currentSlide}/${totalSlides}`;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+
+            document.getElementById('prev-btn').disabled = gameState.currentSlideIndex === 0;
+            document.getElementById('next-btn').disabled = gameState.currentSlideIndex >= totalSlides;
+        }
+
+        function nextSlide() {
+            if (gameState.currentSlideIndex < COURSE_DATA.length) {
+                gameState.currentSlideIndex++;
+                renderSlide();
+                document.getElementById('slide-container').scrollTop = 0;
+            }
+        }
+
+        function prevSlide() {
+            if (gameState.currentSlideIndex > 0) {
+                gameState.currentSlideIndex--;
+                renderSlide();
+                document.getElementById('slide-container').scrollTop = 0;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSlide();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+<footer style="max-width:80rem;margin:30px auto 10px;text-align:center;font:13px system-ui,sans-serif;color:#9fb3c8"><a href="../index.html" style="color:#9ecbff">I Learn English Here</a> · An Online Business Awareness project · Practice material for learning English — not legal or financial advice. Always check current rules on GOV.UK and use a qualified solicitor for a real purchase.</footer>
+    <script src="../assets/ileh.js" defer></script>
+    <script src="../assets/mission.js" defer></script>
+    <script src="https://pl31391907.profitableratecpmnetwork.com/61/77/5a/61775a6c292429a81ddb143525c67ebc.js"></script>
+</body>
+</html>

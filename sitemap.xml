@@ -21,4 +21,14 @@
   <url><loc>https://ilearnenglishhere.academy/coach.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ilearnenglishhere.academy/speak.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ilearnenglishhere.academy/english-story.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ilearnenglishhere.academy/mission.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ilearnenglishhere.academy/mission-check.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ilearnenglishhere.academy/mission-prep.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ilearnenglishhere.academy/mission/house-1.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ilearnenglishhere.academy/mission/house-2.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ilearnenglishhere.academy/mission/house-3.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ilearnenglishhere.academy/mission/britain-1.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ilearnenglishhere.academy/mission/creator-1.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ilearnenglishhere.academy/mission/royal-1.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ilearnenglishhere.academy/mission/executive-1.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

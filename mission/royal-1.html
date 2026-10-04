@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Royal Saga | Special Mission | I Learn English Here</title>
+    <meta name="description" content="Special Mission: travel through 1,000 years of the British monarchy — history vocabulary, debate and the royal way of speaking.">
+    <meta name="author" content="Online Business Awareness">
+    <link rel="canonical" href="https://ilearnenglishhere.academy/mission/royal-1.html">
+    <meta name="robots" content="index,follow">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f7a6c'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='20' fill='white'%3EE%3C/text%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f1419; color: #e9e9f4; background-image: radial-gradient(circle at center, #1a2332 10%, #0f1419 90%); }
+        .slide-card { background-color: #1a2332; border-left: 6px solid #e29044; box-shadow: 0 10px 30px rgba(226, 144, 68, 0.15); }
+        .custom-scroll::-webkit-scrollbar { width: 8px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #1a2332; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #e29044; border-radius: 4px; }
+        .info-box { background-color: #1a2f4d; border-left: 4px solid #4a90e2; }
+        .warning-box { background-color: #4d1a1a; border-left: 4px solid #e24a4a; }
+        .tip-box { background-color: #1a4d2f; border-left: 4px solid #4ae290; }
+        .story-box { background-color: #2f1a4d; border-left: 4px solid #904ae2; }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen" data-mission="royal" data-series="1">
+<div style="max-width:80rem;margin:0 auto 14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font:14px system-ui,sans-serif"><a href="../index.html" style="color:#e9e9f4;text-decoration:none;font-weight:800;display:flex;align-items:center;gap:8px"><span style="width:30px;height:30px;border-radius:8px;background:#1f7a6c;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:Georgia,serif">E</span> I Learn English Here</a><span style="color:#ffd68a;font-weight:700">🏠 Special Mission · Level B2 · <a href="../mission.html" style="color:#9ecbff">Mission home</a></span></div>
+    <div class="max-w-7xl mx-auto">
+        <header class="mb-8 p-4 rounded-xl shadow-2xl" style="background-color: #1a2332; border: 1px solid rgba(226,144,68,0.3);">
+            <h1 class="text-4xl font-extrabold tracking-tight" style="color: #e29044; text-shadow: 0 0 5px #e29044;"><i class="fas fa-file-contract mr-2"></i> THE ROYAL SAGA</h1>
+            <p class="text-orange-300 mb-4">From divine right to modern diplomacy — 1,000 years of the British monarchy, in English.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-3 bg-gray-900 rounded-lg"><p class="text-xs uppercase font-semibold text-orange-400">Series</p><p class="text-xl font-bold text-yellow-400">2 of 6</p></div>
+                <div class="p-3 bg-gray-900 rounded-lg"><p class="text-xs uppercase font-semibold text-orange-400">Slide</p><p id="quest-display" class="text-xl font-bold text-white">1/15</p></div>
+                <div class="p-3 bg-gray-900 rounded-lg col-span-2"><p class="text-xs uppercase font-semibold text-orange-400 mb-1">Progress</p><div class="h-3 bg-gray-600 rounded-full"><div id="progress-bar" class="h-3 bg-orange-500 rounded-full" style="width: 0%; transition: width 0.5s;"></div></div></div>
+            </div>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <section class="lg:col-span-2 space-y-6">
+                <div id="slide-container" class="slide-card p-6 rounded-xl shadow-lg custom-scroll" style="max-height: 75vh; overflow-y: auto;">
+                    <h2 id="slide-title" class="text-2xl font-bold text-yellow-400 mb-4"></h2>
+                    <div id="slide-content" class="space-y-4"></div>
+                </div>
+                <div class="flex gap-4">
+                    <button id="prev-btn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl disabled:opacity-50" onclick="prevSlide()" disabled><i class="fas fa-arrow-left mr-2"></i> Previous</button>
+                    <button id="next-btn" class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl" onclick="nextSlide()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+                </div>
+            </section>
+
+            <section class="lg:col-span-1">
+                <div class="bg-gray-800 p-6 rounded-xl shadow-2xl sticky top-8 border border-gray-700">
+                    <h2 class="text-xl font-bold text-gray-200 mb-4"><i class="fas fa-book-open mr-2 text-yellow-400"></i> Resources</h2>
+                    <div id="resources-panel" class="h-96 custom-scroll overflow-y-auto p-3 bg-gray-900 rounded-lg border border-gray-700 space-y-3"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        let state = { slide: 0 };
+        
+        const SLIDES = [
+ {
+  "title": "1.0 Welcome to the Royal Archives! 👋",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 1: The King's Sword 🛡️<\/strong> · History Vocabulary (Succession, Conquest, Heir) | Simple Past Tense · Level: Easy<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>Welcome, Royal Scholar! Your mission is to travel through 1,000 years of English history to understand how the monarchy changed from a powerful ruler to a respectful symbol. We begin with the very first kings who ruled with absolute power.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "10 Welcome to the Royal Archives English"
+   }
+  ]
+ },
+ {
+  "title": "1.0.5 Lesson: The Start of the Story",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 1: The King's Sword 🛡️<\/strong> · History Vocabulary (Succession, Conquest, Heir) | Simple Past Tense · Level: Easy<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <p>Our story starts in 1066 with <strong>William the Conqueror<\/strong>. He wasn't English, but a powerful French duke who invaded England. By winning the battle of Hastings, he <em>took<\/em> the crown by force, establishing the idea that the King owns the land and rules by might.<\/p>\n                            \n                            <h3>The Tudor Drama: Henry VIII<\/h3>\n                            <p>Later, King Henry VIII showed the full power of a monarch. He wanted a son, but the Pope wouldn't let him divorce. So, Henry simply created his own church—the <strong>Church of England<\/strong>—making himself the Head of both Church and State! This is the peak of <strong>Absolute Power<\/strong>.<\/p>\n\n                            <p class=\"royal-tip p-3 mt-4\">\n                                <strong>English Focus: Simple Past Tense:<\/strong> To talk about these historical actions, use the Past Tense: <em>William <strong>won<\/strong> the battle. Henry <strong>created<\/strong> his own church.<\/em>\n                            <\/p>\n                            \n                            <p class=\"royal-tip p-3 mt-4\">\n                                <strong>Family Tree:<\/strong> \n                            <\/p>\n                        <\/div><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "105 Lesson The Start of the Story English"
+   }
+  ]
+ },
+ {
+  "title": "1.1 The Royal Land Claim 🏰",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 1: The King's Sword 🛡️<\/strong> · History Vocabulary (Succession, Conquest, Heir) | Simple Past Tense · Level: Easy<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Research<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Who currently manages the land and properties owned by the Monarch and the Royal Family? Search for <strong>'The Crown Estate'<\/strong>. Write one short sentence explaining what the Crown Estate is and one interesting place they own.<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>find (V), manage (V), land (N), property (N), wealth (N)<\/p><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">🔎 How to research<\/h3><p>Use the search links on the right (or any search engine). Write the facts you find in your own words — don't copy whole sentences.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "web",
+    "text": "What is the Crown Estate?"
+   },
+   {
+    "type": "web",
+    "text": "Crown Estate interesting places"
+   }
+  ]
+ },
+ {
+  "title": "1.2 The King's Decree 📜",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 1: The King's Sword 🛡️<\/strong> · History Vocabulary (Succession, Conquest, Heir) | Simple Past Tense · Level: Easy<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Imagine you are King Henry VIII and you want a new castle built. Write a short, powerful decree (min 15 words). Use strong words and the <strong>Past Simple tense<\/strong> to describe something you already did (e.g., <em>I already defeated my enemies.<\/em>).<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>write (V), command (V), power (N), decree (N)<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "12 The King's Decree English"
+   }
+  ]
+ },
+ {
+  "title": "2.0 The People Say 'Stop!'",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 2: Power and the People ⚖️<\/strong> · Comparative Adjectives (Bigger, Less powerful, More important) | Debating & Justifying · Level: Medium<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>Absolute power caused problems! In the 17th century, the King (Charles I) and Parliament disagreed so much it led to the English Civil War. This war was a huge step toward limiting the monarch’s power.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "20 The People Say 'Stop' English"
+   }
+  ]
+ },
+ {
+  "title": "2.0.5 Lesson: Constitutional Change",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 2: Power and the People ⚖️<\/strong> · Comparative Adjectives (Bigger, Less powerful, More important) | Debating & Justifying · Level: Medium<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <p>After the Civil War, Parliament became <strong>more powerful<\/strong> than the King. The 1689 <strong>Bill of Rights<\/strong> set rules: the monarch could not make laws or raise taxes without Parliament's agreement. This created the <strong>Constitutional Monarchy<\/strong>.<\/p>\n                            \n                            <h3>Reign, Not Rule<\/h3>\n                            <p>The King or Queen still has lots of important jobs, but they do not make the laws. They <strong>reign<\/strong> (they are the symbol of the country) but they do not <strong>rule<\/strong> (they don't lead the government). Think of them as the captain of a historical ship, but the Prime Minister steers it!<\/p>\n\n                            <p class=\"royal-tip p-3 mt-4\">\n                                <strong>English Focus: Comparative Adjectives:<\/strong> Use these to show change over time: <em>The King is <strong>less powerful<\/strong> today, but Parliament is <strong>more important<\/strong>.<\/em>\n                            <\/p>\n                            <p class=\"royal-tip p-3 mt-4\">\n                                <strong>Historical Figures:<\/strong> \n                            <\/p>\n                        <\/div><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "205 Lesson Constitutional Change English"
+   }
+  ]
+ },
+ {
+  "title": "2.1 The Prime Minister's Power 🤝",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 2: Power and the People ⚖️<\/strong> · Comparative Adjectives (Bigger, Less powerful, More important) | Debating & Justifying · Level: Medium<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Research<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Every week, the King meets with the Prime Minister. Search for <strong>'UK Prime Minister's job'<\/strong>. Write one sentence explaining what the Prime Minister does and one sentence explaining why the monarch meets with them (focus on 'advice').<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>explain (V), role (N), power (N), advice (N), leader (N)<\/p><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">🔎 How to research<\/h3><p>Use the search links on the right (or any search engine). Write the facts you find in your own words — don't copy whole sentences.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "web",
+    "text": "Role of the UK Prime Minister"
+   },
+   {
+    "type": "web",
+    "text": "Why does the King meet the PM?"
+   }
+  ]
+ },
+ {
+  "title": "2.2 Debating Power 💪",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 2: Power and the People ⚖️<\/strong> · Comparative Adjectives (Bigger, Less powerful, More important) | Debating & Justifying · Level: Medium<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Write a short paragraph (min 15 words) arguing which is <strong>more important<\/strong> in the UK today: the <strong>King's ceremonial role<\/strong> OR the <strong>Prime Minister's ruling role<\/strong>? Use at least two comparative adjectives (e.g., 'bigger', 'more influential').<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>compare (V), important (A), role (N), ruling (V)<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "22 Debating Power English"
+   }
+  ]
+ },
+ {
+  "title": "3.0 Queen Elizabeth II's Reign",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 3: Global Diplomacy 🌍<\/strong> · Formal/Polite Language & Elocution (Pronunciation) | Complex Sentence Structure · Level: Hard<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>Queen Elizabeth II was Queen for over 70 years! Her job was about unity and travel. She was the Head of the Commonwealth, a group of countries that were once part of the British Empire and are now equal partners.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "30 Queen Elizabeth II's Reign English"
+   }
+  ]
+ },
+ {
+  "title": "3.0.5 Lesson: The Royal Way of Speaking",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 3: Global Diplomacy 🌍<\/strong> · Formal/Polite Language & Elocution (Pronunciation) | Complex Sentence Structure · Level: Hard<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <p>Royals often use a clear, formal style of speaking known as <strong>Received Pronunciation (RP)<\/strong>, though today's Royals speak slightly more casually than their grandparents.<\/p>\n                            \n                            <h3>The Royal Speech Tip: Clarity and Formality<\/h3>\n                            <ul>\n                                <li><strong>No Slang:<\/strong> Always use full, clear words. (e.g., <em>Yes<\/em> instead of <em>Yeah<\/em>.)<\/li>\n                                <li><strong>Politeness:<\/strong> Use 'May I' or 'I would be grateful' when making a request.<\/li>\n                                <li><strong>Full T's:<\/strong> Pronounce the 'T' at the end of words clearly (e.g., 'light' not 'ligh').<\/li>\n                            <\/ul>\n                            \n                            <p class=\"royal-tip p-3 mt-4\">\n                                <strong>Elocution Practice:<\/strong> Say this formal request out loud, using slow and clear pronunciation: \"I would be grateful if you could pass the salt, as I believe the meal requires a slightly enhanced flavour.\"\n                            <\/p>\n                            <p class=\"royal-tip p-3 mt-4\">\n                                <strong>Hierarchy:<\/strong> \n                            <\/p>\n                        <\/div><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "305 Lesson The Royal Way of Speaking English"
+   }
+  ]
+ },
+ {
+  "title": "3.1 The Commonwealth Connection 🌐",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 3: Global Diplomacy 🌍<\/strong> · Formal/Polite Language & Elocution (Pronunciation) | Complex Sentence Structure · Level: Hard<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Research<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Find three countries that are currently members of the <strong>Commonwealth of Nations<\/strong> (the Royal Family's global family). List them below, and write one sentence explaining the main purpose of the Commonwealth.<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>list (V), explain (V), purpose (N), nation (N), diplomacy (N)<\/p><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">🔎 How to research<\/h3><p>Use the search links on the right (or any search engine). Write the facts you find in your own words — don't copy whole sentences.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "web",
+    "text": "Three countries in the Commonwealth of Nations"
+   },
+   {
+    "type": "web",
+    "text": "What is the purpose of the Commonwealth?"
+   }
+  ]
+ },
+ {
+  "title": "3.2 A Formal Request 🙏",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 3: Global Diplomacy 🌍<\/strong> · Formal/Polite Language & Elocution (Pronunciation) | Complex Sentence Structure · Level: Hard<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Write a very polite, formal note (min 15 words) to a palace employee, asking them to help prepare for a State Visit. Use <strong>formal language<\/strong> (no contractions) and at least one complex sentence using the word <strong>'although'<\/strong> (e.g., Although the weather is poor, we must continue).<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>request (V), formal (A), polite (A), visit (N)<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "32 A Formal Request English"
+   }
+  ]
+ },
+ {
+  "title": "4.0 The Windsor Family Today",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 4: The Modern Crown 👑<\/strong> · Summary Writing & Cohesive Devices (Firstly, Furthermore, Finally) | Modern Issues · Level: Expert<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>Today, King Charles III and Queen Camilla lead the Royal Family, focusing heavily on service and charity. Their lifestyle is carefully balanced between tradition and modern life. This final mission is to summarize everything you've learned.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "40 The Windsor Family Today English"
+   }
+  ]
+ },
+ {
+  "title": "4.0.5 Lesson: The New Generation",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 4: The Modern Crown 👑<\/strong> · Summary Writing & Cohesive Devices (Firstly, Furthermore, Finally) | Modern Issues · Level: Expert<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <p>Prince William and Princess Catherine (Kate) represent the future. They focus on modern issues like mental health, conservation, and early childhood development. This shows that the Monarchy's role is to reflect the needs of the people, not just enjoy privilege.<\/p>\n                            \n                            <h3>Cohesive Devices for Reports<\/h3>\n                            <p>To write a good summary, your sentences need to flow. Use these linking words (Cohesive Devices):<\/p>\n                            <ul>\n                                <li><strong>Starting:<\/strong> <em>Firstly, To begin.<\/em><\/li>\n                                <li><strong>Adding Points:<\/strong> <em>Furthermore, Moreover, In addition.<\/em><\/li>\n                                <li><strong>Finishing:<\/strong> <em>In conclusion, Finally, Therefore.<\/em><\/li>\n                            <\/ul>\n                            \n                            <p class=\"royal-tip p-3 mt-4\">\n                                <strong>English Aura Check:<\/strong> The King and Queen work hard supporting charities, attending military events, and representing the UK. They are working royals, not just tea drinkers!\n                            <\/p>\n                            <p class=\"royal-tip p-3 mt-4\">\n                                <strong>Modern Issues:<\/strong> \n                            <\/p>\n                        <\/div><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "405 Lesson The New Generation English"
+   }
+  ]
+ },
+ {
+  "title": "4.1 Royal Charities and Causes ❤️",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 4: The Modern Crown 👑<\/strong> · Summary Writing & Cohesive Devices (Firstly, Furthermore, Finally) | Modern Issues · Level: Expert<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Research<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Find one charity or environmental cause strongly supported by <strong>King Charles III<\/strong> and one supported by <strong>Prince William<\/strong>. Write down their names and one sentence on why that cause is important.<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>support (V), charity (N), importance (N), cause (N), conservation (N)<\/p><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">🔎 How to research<\/h3><p>Use the search links on the right (or any search engine). Write the facts you find in your own words — don't copy whole sentences.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "web",
+    "text": "King Charles III supported charities"
+   },
+   {
+    "type": "web",
+    "text": "Prince William environmental cause"
+   }
+  ]
+ },
+ {
+  "title": "4.2 Final Royal Report 📊",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 4: The Modern Crown 👑<\/strong> · Summary Writing & Cohesive Devices (Firstly, Furthermore, Finally) | Modern Issues · Level: Expert<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Write a <strong>formal summary report<\/strong> (min 20 words) detailing the Royal Family's role today. Your report must use at least <strong>three different cohesive devices<\/strong> (e.g., 'Firstly', 'Furthermore', 'Finally') to organize your points about service, diplomacy, and history. This is the final assessment!<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>summarize (V), report (N), cohesion (N), service (N), diplomacy (N)<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "42 Final Royal Report English"
+   }
+  ]
+ },
+ {
+  "title": "5.0 Mission Complete! 🎉",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 4: The Modern Crown 👑<\/strong> · Summary Writing & Cohesive Devices (Firstly, Furthermore, Finally) | Modern Issues · Level: Expert<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>You are now a certified Royal Historian and English Elocution expert! Your understanding of the Monarchy's past, present, and future is truly exceptional. Congratulations on completing this challenging mission.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "50 Mission Complete English"
+   }
+  ]
+ }
+];
+
+        function render() {
+            const slide = SLIDES[state.slide];
+            document.getElementById('slide-title').textContent = slide.title;
+            document.getElementById('slide-content').innerHTML = slide.content;
+            document.getElementById('quest-display').textContent = `${state.slide+1}/${SLIDES.length}`;
+            document.getElementById('progress-bar').style.width = `${((state.slide+1)/SLIDES.length)*100}%`;
+            document.getElementById('prev-btn').disabled = state.slide === 0;
+            document.getElementById('next-btn').disabled = state.slide >= SLIDES.length-1;
+            
+            const panel = document.getElementById('resources-panel');
+            panel.innerHTML = slide.resources.map(r => `
+                <div style="background-color: #2a3245; border-left: 3px solid #6a8ea8;" class="p-3 rounded-lg">
+                    <p class="text-sm font-semibold ${r.type==='youtube'?'text-red-400':'text-blue-400'}">
+                        <i class="fab fa-${r.type==='youtube'?'youtube':'wikipedia-w'} mr-2"></i>${r.type==='youtube'?'YouTube':'Wikipedia'}
+                    </p>
+                    <p class="text-xs text-gray-300 mt-1">${r.text}</p>
+                </div>
+            `).join('');
+            
+            document.getElementById('slide-container').scrollTop = 0;
+        }
+
+        function nextSlide() { if(state.slide < SLIDES.length-1) { state.slide++; render(); } }
+        function prevSlide() { if(state.slide > 0) { state.slide--; render(); } }
+        
+        document.addEventListener('DOMContentLoaded', render);
+        document.addEventListener('keydown', e => {
+            if(e.key === 'ArrowRight') nextSlide();
+            if(e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+<footer style="max-width:80rem;margin:30px auto 10px;text-align:center;font:13px system-ui,sans-serif;color:#9fb3c8"><a href="../index.html" style="color:#9ecbff">I Learn English Here</a> · An Online Business Awareness project · Practice material for learning English.</footer>
+    <script src="../assets/ileh.js" defer></script>
+    <script src="../assets/mission.js" defer></script>
+    <script src="https://pl31391907.profitableratecpmnetwork.com/61/77/5a/61775a6c292429a81ddb143525c67ebc.js"></script>
+</body>
+</html>

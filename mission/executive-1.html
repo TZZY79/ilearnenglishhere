@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Executive Ascent | Special Mission | I Learn English Here</title>
+    <meta name="description" content="Special Mission: professional English for job applications and interviews — job adverts, action verbs, achievement statements and interview answers.">
+    <meta name="author" content="Online Business Awareness">
+    <link rel="canonical" href="https://ilearnenglishhere.academy/mission/executive-1.html">
+    <meta name="robots" content="index,follow">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f7a6c'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='20' fill='white'%3EE%3C/text%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f1419; color: #e9e9f4; background-image: radial-gradient(circle at center, #1a2332 10%, #0f1419 90%); }
+        .slide-card { background-color: #1a2332; border-left: 6px solid #e29044; box-shadow: 0 10px 30px rgba(226, 144, 68, 0.15); }
+        .custom-scroll::-webkit-scrollbar { width: 8px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #1a2332; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #e29044; border-radius: 4px; }
+        .info-box { background-color: #1a2f4d; border-left: 4px solid #4a90e2; }
+        .warning-box { background-color: #4d1a1a; border-left: 4px solid #e24a4a; }
+        .tip-box { background-color: #1a4d2f; border-left: 4px solid #4ae290; }
+        .story-box { background-color: #2f1a4d; border-left: 4px solid #904ae2; }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen" data-mission="executive" data-series="1">
+<div style="max-width:80rem;margin:0 auto 14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font:14px system-ui,sans-serif"><a href="../index.html" style="color:#e9e9f4;text-decoration:none;font-weight:800;display:flex;align-items:center;gap:8px"><span style="width:30px;height:30px;border-radius:8px;background:#1f7a6c;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:Georgia,serif">E</span> I Learn English Here</a><span style="color:#ffd68a;font-weight:700">🏠 Special Mission · Level C1 · <a href="../mission.html" style="color:#9ecbff">Mission home</a></span></div>
+    <div class="max-w-7xl mx-auto">
+        <header class="mb-8 p-4 rounded-xl shadow-2xl" style="background-color: #1a2332; border: 1px solid rgba(226,144,68,0.3);">
+            <h1 class="text-4xl font-extrabold tracking-tight" style="color: #e29044; text-shadow: 0 0 5px #e29044;"><i class="fas fa-file-contract mr-2"></i> THE EXECUTIVE ASCENT</h1>
+            <p class="text-orange-300 mb-4">Job interview English: analyse job adverts, write achievement statements and prepare your answers.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-3 bg-gray-900 rounded-lg"><p class="text-xs uppercase font-semibold text-orange-400">Series</p><p class="text-xl font-bold text-yellow-400">2 of 6</p></div>
+                <div class="p-3 bg-gray-900 rounded-lg"><p class="text-xs uppercase font-semibold text-orange-400">Slide</p><p id="quest-display" class="text-xl font-bold text-white">1/15</p></div>
+                <div class="p-3 bg-gray-900 rounded-lg col-span-2"><p class="text-xs uppercase font-semibold text-orange-400 mb-1">Progress</p><div class="h-3 bg-gray-600 rounded-full"><div id="progress-bar" class="h-3 bg-orange-500 rounded-full" style="width: 0%; transition: width 0.5s;"></div></div></div>
+            </div>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <section class="lg:col-span-2 space-y-6">
+                <div id="slide-container" class="slide-card p-6 rounded-xl shadow-lg custom-scroll" style="max-height: 75vh; overflow-y: auto;">
+                    <h2 id="slide-title" class="text-2xl font-bold text-yellow-400 mb-4"></h2>
+                    <div id="slide-content" class="space-y-4"></div>
+                </div>
+                <div class="flex gap-4">
+                    <button id="prev-btn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl disabled:opacity-50" onclick="prevSlide()" disabled><i class="fas fa-arrow-left mr-2"></i> Previous</button>
+                    <button id="next-btn" class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl" onclick="nextSlide()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+                </div>
+            </section>
+
+            <section class="lg:col-span-1">
+                <div class="bg-gray-800 p-6 rounded-xl shadow-2xl sticky top-8 border border-gray-700">
+                    <h2 class="text-xl font-bold text-gray-200 mb-4"><i class="fas fa-book-open mr-2 text-yellow-400"></i> Resources</h2>
+                    <div id="resources-panel" class="h-96 custom-scroll overflow-y-auto p-3 bg-gray-900 rounded-lg border border-gray-700 space-y-3"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        let state = { slide: 0 };
+        
+        const SLIDES = [
+ {
+  "title": "TASK 1: Protocol Overview",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 1: Target Acquisition<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Acknowledge the scope. Your mission is to master the English necessary for all phases of securing a professional role. Focus on formal, precise, and persuasive communication.<\/p><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Before you start<\/h3><p>This is an <strong>Acknowledgement<\/strong> slide. Read the tips below carefully to prepare for the first phase: Job Analysis.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Protocol Overview job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 2: Deconstruct the Job Ad",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 1: Target Acquisition<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Select a job advertisement in English (real or imagined) and analyze its core requirements. Extract the five most important nouns from the 'Requirements' section.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Write <strong>ONE<\/strong> sentence summarizing the job (5-10 words). Then, list the <strong>5 key requirement nouns<\/strong> using commas only (no bullet points). <em>(at least 6 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Deconstruct the Job Ad job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 3: Action Verb Synthesis",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 1: Target Acquisition<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Prepare your CV power verbs. Action verbs (e.g., 'managed', 'developed') are crucial for sounding strong and active. They should always be in the past tense for previous roles.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Write <strong>FIVE<\/strong> sentences, each using a <strong>different<\/strong> powerful, past-tense action verb (e.g., <em>designed<\/em> the project). Each sentence must be exactly <strong>7 words<\/strong> long. <em>(at least 35 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Action Verb Synthesis job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 4: Future Aspiration Log",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 1: Target Acquisition<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Articulate your professional goals. Use modal verbs to express different levels of certainty and possibility regarding your career trajectory in the next 5 years.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Write <strong>THREE<\/strong> sentences about your future goals. Sentence 1 must use <strong>'will'<\/strong>, Sentence 2 must use <strong>'might'<\/strong>, and Sentence 3 must use <strong>'must'<\/strong>. (All three modals required). <em>(at least 15 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Future Aspiration Log job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 5: Quantifiable Achievement Report",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 2: Application File Creation<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Practice writing resume bullet points that include quantifiable data. This proves value. (e.g., 'Increased sales by 20% in Q4').<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Write <strong>TWO<\/strong> separate bullet points for a fictional job achievement. Each bullet point <strong>MUST<\/strong> contain at least one <strong>NUMBER<\/strong> and one <strong>PERCENTAGE<\/strong>. <em>(at least 15 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Quantifiable Achievement Report job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 6: Formal Salutation Protocol",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 2: Application File Creation<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Master the formal tone required for professional emails and cover letters. Improper tone or punctuation can immediately disqualify you.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Write a short, formal email opening (3 sentences max). It must include: 1. A formal <strong>salutation<\/strong> ('Dear Ms. Smith:'), 2. A <strong>semicolon<\/strong> (;), and 3. The phrase <strong>'look forward to'<\/strong>. <em>(at least 15 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Formal Salutation Protocol job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 7: Closing Statement Synthesis",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 2: Application File Creation<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Craft a strong, professional closing statement for a cover letter. Your goal is to leave the reader with a sense of anticipation and professionalism.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Write <strong>ONE<\/strong> concluding paragraph (max 3 sentences). It must end with a formal closing ('Sincerely, [Your Name]') and must include the phrase <strong>'further discussion'<\/strong>. <em>(at least 20 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Closing Statement Synthesis job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 8: 'Tell Me About Yourself' Script",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 3: Verbal Readiness Check<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Prepare the opening self-introduction statement. This must be concise, relevant, and engaging. Avoid casual language.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Write a <strong>4-sentence<\/strong> summary of your background. Sentence 1 must use a <strong>compound adjective<\/strong> (e.g., 'fast-paced'), and Sentence 4 must use the <strong>Present Perfect<\/strong> tense (e.g., 'I have worked...'). <em>(at least 25 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "'Tell Me About Yourself' Script job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 9: STAR Narrative Breakdown",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 3: Verbal Readiness Check<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: The STAR method (Situation, Task, Action, Result) is key for behavioral questions. Practice structuring a response using sequential language.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Describe a successful project using <strong>FOUR<\/strong> separate sentences. Each sentence must start with a <strong>different<\/strong> adverb of sequence: <strong>First<\/strong>, <strong>Next<\/strong>, <strong>Subsequently<\/strong>, and <strong>Finally<\/strong>. <em>(at least 30 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "STAR Narrative Breakdown job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 10: Weakness Mitigation Plan",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 3: Verbal Readiness Check<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Address the 'What is your biggest weakness?' question. The key is to state a professional weakness and pivot immediately to an action plan using contrasting language.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Write <strong>TWO<\/strong> sentences using the contrasting conjunction <strong>'although'<\/strong> in Sentence 1 and <strong>'however'<\/strong> in Sentence 2. Focus on weakness followed by solution. <em>(at least 20 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Weakness Mitigation Plan job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 11: Salary Negotiation Phraseology",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 3: Verbal Readiness Check<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Practice indirect, polite language for salary discussion. Direct demands are often considered unprofessional. Use hedging and softening language.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Write <strong>TWO<\/strong> polite negotiation sentences. Sentence 1 must use the phrase <strong>'I am open to'<\/strong> and Sentence 2 must use the modal verb <strong>'could'<\/strong> to suggest a compromise. <em>(at least 15 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Salary Negotiation Phraseology job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 12: Question Formulation Protocol",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 4: Advanced Comms Protocol<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Generate insightful questions for the interviewer. Your questions reflect your professionalism and interest. They must be grammatically flawless.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Write <strong>TWO<\/strong> questions using <strong>inversion<\/strong> (e.g., 'Are there...?' or 'How often should...?'). Question 1 must use the verb <strong>'expect'<\/strong> and Question 2 must use the verb <strong>'measure'<\/strong>. <em>(at least 10 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Question Formulation Protocol job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 13: Vocal Practice: Pacing & Clarity",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 4: Advanced Comms Protocol<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Test vocal pacing and clear articulation. Speed and mumbling are fatal flaws in an interview. Practice three key phrases with calm, deliberate pace.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Speaking<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Requires a voice note. Read the following three phrases slowly and clearly: 1. 'I appreciate this opportunity.' 2. 'I thrive in team environments.' 3. 'I look forward to starting.' (Write 'VERBALIZED' to confirm completion.) <em>(at least 1 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Vocal Practice: Pacing & Clarity job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 14: Thank You Note: Formal Tone",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>MISSION 4: Advanced Comms Protocol<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Write the crucial post-interview 'Thank You' email. This reinforces your interest and professionalism.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Write <strong>TWO<\/strong> separate sentences for a follow-up email. Sentence 1 must use an <strong>adverb of manner<\/strong> (e.g., 'sincerely' or 'greatly'). Sentence 2 must include the phrase <strong>'next steps'<\/strong>. <em>(at least 15 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Thank You Note: Formal Tone job interview English"
+   }
+  ]
+ },
+ {
+  "title": "TASK 15: Final Deployment Report",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">💼 <strong>PROTOCOL COMPLETE<\/strong><\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">🎯 Objective<\/h3><p>Objective: Transmit your final positive assessment of the Interview Hacking Protocol. This is your final professional self-reflection.<\/p><\/div><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Send your final, single sentence: <strong>“The Executive Ascent Protocol taught me…”<\/strong> Be honest, one sentence only, and keep it positive. <em>(at least 3 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "Final Deployment Report job interview English"
+   }
+  ]
+ }
+];
+
+        function render() {
+            const slide = SLIDES[state.slide];
+            document.getElementById('slide-title').textContent = slide.title;
+            document.getElementById('slide-content').innerHTML = slide.content;
+            document.getElementById('quest-display').textContent = `${state.slide+1}/${SLIDES.length}`;
+            document.getElementById('progress-bar').style.width = `${((state.slide+1)/SLIDES.length)*100}%`;
+            document.getElementById('prev-btn').disabled = state.slide === 0;
+            document.getElementById('next-btn').disabled = state.slide >= SLIDES.length-1;
+            
+            const panel = document.getElementById('resources-panel');
+            panel.innerHTML = slide.resources.map(r => `
+                <div style="background-color: #2a3245; border-left: 3px solid #6a8ea8;" class="p-3 rounded-lg">
+                    <p class="text-sm font-semibold ${r.type==='youtube'?'text-red-400':'text-blue-400'}">
+                        <i class="fab fa-${r.type==='youtube'?'youtube':'wikipedia-w'} mr-2"></i>${r.type==='youtube'?'YouTube':'Wikipedia'}
+                    </p>
+                    <p class="text-xs text-gray-300 mt-1">${r.text}</p>
+                </div>
+            `).join('');
+            
+            document.getElementById('slide-container').scrollTop = 0;
+        }
+
+        function nextSlide() { if(state.slide < SLIDES.length-1) { state.slide++; render(); } }
+        function prevSlide() { if(state.slide > 0) { state.slide--; render(); } }
+        
+        document.addEventListener('DOMContentLoaded', render);
+        document.addEventListener('keydown', e => {
+            if(e.key === 'ArrowRight') nextSlide();
+            if(e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+<footer style="max-width:80rem;margin:30px auto 10px;text-align:center;font:13px system-ui,sans-serif;color:#9fb3c8"><a href="../index.html" style="color:#9ecbff">I Learn English Here</a> · An Online Business Awareness project · Practice material for learning English.</footer>
+    <script src="../assets/ileh.js" defer></script>
+    <script src="../assets/mission.js" defer></script>
+    <script src="https://pl31391907.profitableratecpmnetwork.com/61/77/5a/61775a6c292429a81ddb143525c67ebc.js"></script>
+</body>
+</html>

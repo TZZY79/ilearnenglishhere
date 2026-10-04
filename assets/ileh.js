@@ -35,6 +35,12 @@
     "coach": {what:"Your personal Study Coach. It remembers what you find difficult and builds a lesson trip just for you.",steps:["Tell the Coach your age group so explanations fit you.","Press <b>Start my trip</b>.","Learn the rule your way, then practise until you get it right.","Come back tomorrow — the Coach adapts to you."],simple:"Press the big button. Learn. Practise. The Coach helps you.",example:"If you keep mixing up 'much' and 'many', the Coach will teach the COUNT TEST and give you practice until it's easy."},
     "speak": {what:"The Speech Lab is a talking dictionary. Hear a word, see it broken into parts, slow it down and practise saying it.",steps:["Type a word or tap a word from a list.","Press <b>▶ Listen</b> — try the slow speeds.","Look at the syllables and the stressed part.","Press <b>🎤 Say it</b> and try to copy the sound."],simple:"Type a word. Listen. Say it. Repeat.",example:"Try <b>Wednesday</b> — it's spelt with a 'd' but most people say 'WENZ-day'!"},
     "english-story": {what:"The story of English — where the language came from, how it changed and how British people really use it today.",steps:["Read one chapter at a time.","Answer the quick check at the end of each chapter.","Visit <b>The British Way</b> to learn what people really mean."],simple:"Read a short story about English. Answer one question.",example:"Did you know 'sky' and 'egg' came from the Vikings?"},
+    "mission": {what:"The home page of the Special Mission: Buying a Home in England — our most advanced course (B2–C1).",steps:["Read why the mission is advanced.","Take the readiness test (you need more than 49%).","Open Part 1 and work through each slide.","Write your answers in the boxes — they save automatically."],simple:"Pass the test. Then start Part 1.",example:"Not ready? Do the Road to the Mission tasks first — they build the skills you need."},
+    "mission-check": {what:"A 30-question readiness test for the advanced Buying a Home mission. More than 49% unlocks it.",steps:["Read each question carefully — there's no feedback until the end.","Choose the best answer.","See your score and your strongest and weakest skills.","Follow the plan to improve, then try again."],simple:"Answer 30 questions. Get more than 15 right to unlock the mission.",example:"Low score? That's normal — it means 'not yet', not 'never'."},
+    "mission-prep": {what:"The Road to the Mission: a step-by-step route plus five pre-mission tasks that build the skills for the advanced course.",steps:["Check the ladder — are you at Foundation, Elementary or B1?","Do Tasks 1–5 below. Score 70%+ to tick each one off.","Your writing saves automatically — download it to keep it.","When all 5 are done, take the readiness test."],simple:"Do the 5 tasks. Then take the test.",example:"Task 3 checks your formal email for a greeting, a polite request and a formal ending."},
+    "house-1": {topics:["present-perfect","first-conditional","comparatives"],what:"Mission Part 1: the first weeks of buying a home — budgets, borrowing, the AIP, costs, viewings and making an offer.",steps:["Read the story box on each slide.","Do every ENGLISH SKILLS TASK — write your answers in the boxes under each question.","Use the research links on the right (YouTube and Wikipedia).","Download your work at the end of each session."],simple:"Read. Answer in the boxes. Your work saves.",example:"Calculations: show your working, e.g. £28,000 × 4.5 = £126,000."},
+    "house-2": {topics:["present-perfect","advice-should"],what:"Mission Part 2: the legal work — solicitors, surveys, searches and the TA6/TA10 forms.",steps:["Read each slide's story.","Answer every task in the boxes.","Formal letters: Dear…, I am writing to…, Yours sincerely/faithfully.","Download your work regularly."],simple:"Read. Answer in the boxes. Save your work.",example:"'Yours sincerely' if you know the name, 'Yours faithfully' after 'Dear Sir or Madam'."},
+    "house-3": {topics:["future","first-conditional"],what:"Mission Part 3: exchange of contracts, stamp duty, the TR1 form and completion day.",steps:["Read each slide.","Answer every task in the boxes.","Check calculations twice.","Finish with the final reflection and download all your work."],simple:"Read. Answer. Finish the mission!",example:"Stamp duty: work band by band, e.g. the first £125,000 at 0%."},
     "present-perfect": {topics:["present-perfect"],what:"This lesson teaches the Present Perfect (have/has + past participle) and its time words: already, yet, ever, never, just, for, since.",steps:["Read each slide and tap to reveal the answers.","Do the vote, quiz and fill-the-gap activities.","Check the feedback — it explains WHY.","Use the summary slide at the end to review."],simple:"Learn 'I have done'. Practise. Check.",example:"I <b>have visited</b> London. (some time in my life — not when)"},
     "stative-verbs": {topics:["stative-verbs","go-do-play"],what:"This lesson teaches stative verbs (know, love, have…) and which sports go with GO, DO and PLAY.",steps:["Read the slides and look at the pictures.","Learn which verbs don't use -ing.","Learn PLAY (ball), GO (-ing), DO (others).","Take the quiz at the end."],simple:"Some verbs don't use -ing. Learn play / go / do.",example:"I <b>know</b> him ✓ (not 'I am knowing') · I <b>play</b> football, <b>go</b> swimming, <b>do</b> yoga."},
     "bring-words-to-life": {topics:["punctuation"],what:"A reading lesson: read sentences with emotion and use punctuation to guide your voice.",steps:["Read each sentence aloud in different ways.","Learn how . , ? and ! change your voice.","Guess the emotion your partner used.","Perform in the reading theatre."],simple:"Read aloud with feeling.",example:"'You're here.' 😐 / 'You're here?' 🤔 / 'You're here!' 🎉"},
@@ -181,6 +187,8 @@
     ["🆕 Learn","Hear any word, slowed down and broken into parts — try the Speech Lab →","speak.html"],
     ["🆕 Learn","Where did English come from? Read The Story of English →","english-story.html"],
     ["🆕 Learn","What Brits REALLY mean when they say 'not bad' — The British Way →","english-story.html#british-way"],
+    ["🗺️ Special Missions","Real-life English missions from easier to expert — Britain trip, Creator Academy, Buying a Home →","mission.html"],
+    ["🏠 Special Mission","Not ready yet? The Road to the Mission builds your skills step by step →","mission-prep.html"],
     ["🆕 Lesson","Present Perfect: connect the past to now →","lessons/present-perfect.html"],
     ["🆕 Lesson","Why 'I am knowing' is wrong — Stative Verbs →","lessons/stative-verbs.html"],
     ["🆕 Lesson","Read with feeling — Bring Words to Life →","lessons/bring-words-to-life.html"],
@@ -404,11 +412,61 @@
     lbar.onclick = function (ev) { var b = ev.target.closest("[data-s]"); if (!b) return; var s = b.dataset.s; if (s === "stop") { m.pause(); m.currentTime = 0; lbarHide(); } else if (s === "replay") { m.currentTime = 0; m.play(); } else { P.listenRate = parseFloat(s); save(); marks(); m.playbackRate = P.listenRate; } ev.stopImmediatePropagation(); };
   }, true);
 
+  /* ---------- save my work: pages with <body data-ileh-save> autosave every answer box on this device,
+     plus "Download my work" (a file the student keeps) and "Load my work" (restore it on any device) ---------- */
+  var WKEY = "ileh.work." + page;
+  function fieldsAll() { return Array.prototype.filter.call(document.querySelectorAll("input,textarea,select"), function (el) { return !el.closest(".ileh-ui") && el.type !== "file" && el.type !== "button" && el.type !== "submit" && !el.hasAttribute("data-nosave"); }); }
+  function fkey(el, i) { return el.id || el.name && (el.name + (el.type === "radio" || el.type === "checkbox" ? ":" + el.value : "")) || "f" + i; }
+  function workRead() { try { return JSON.parse(localStorage.getItem(WKEY)) || {}; } catch (e) { return {}; } }
+  function workSave() {
+    var d = { _t: Date.now(), v: {} };
+    fieldsAll().forEach(function (el, i) { var k = fkey(el, i); d.v[k] = (el.type === "checkbox" || el.type === "radio") ? el.checked : el.value; });
+    try { localStorage.setItem(WKEY, JSON.stringify(d)); } catch (e) {}
+    var st = document.querySelector(".ileh-wstat"); if (st) st.textContent = "✓ Saved on this device " + new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    return d;
+  }
+  function workApply(d) {
+    if (!d || !d.v) return 0; var n = 0;
+    fieldsAll().forEach(function (el, i) { var k = fkey(el, i); if (!(k in d.v)) return; if (el.type === "checkbox" || el.type === "radio") el.checked = !!d.v[k]; else el.value = d.v[k]; n++; el.dispatchEvent(new Event("input", { bubbles: true })); });
+    return n;
+  }
+  function workDownload() {
+    var d = workSave(), title = document.title.replace(/\s*\|.*$/, "");
+    var lines = ["I Learn English Here — my work", title, "Saved: " + new Date().toLocaleString(), "Page: " + location.href, ""];
+    fieldsAll().forEach(function (el, i) {
+      var lab = (el.labels && el.labels[0] && el.labels[0].textContent) || el.getAttribute("aria-label") || el.placeholder || fkey(el, i);
+      var v = (el.type === "checkbox" || el.type === "radio") ? (el.checked ? "✓" : "") : el.value;
+      if (v !== "" && v !== false) lines.push("• " + lab.trim().replace(/\s+/g, " ") + ": " + v);
+    });
+    lines.push("", "----- data for 'Load my work' (keep this line) -----", "ILEHWORK:" + page + ":" + btoa(unescape(encodeURIComponent(JSON.stringify(d)))));
+    var blob = new Blob([lines.join("\n")], { type: "text/plain" }), a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = "my-work-" + page + "-" + new Date().toISOString().slice(0, 10) + ".txt"; document.body.appendChild(a); a.click(); setTimeout(function () { a.remove(); }, 500);
+  }
+  function workLoad() {
+    var inp = document.createElement("input"); inp.type = "file"; inp.accept = ".txt,text/plain";
+    inp.onchange = function () { var f = inp.files[0]; if (!f) return; f.text().then(function (t) {
+      var m = t.match(/ILEHWORK:([\w-]+):([A-Za-z0-9+\/=]+)/); if (!m) return alert("This file doesn't contain saved work from I Learn English Here.");
+      if (m[1] !== page && !confirm("This work was saved from a different page (" + m[1] + "). Load it anyway?")) return;
+      var d = JSON.parse(decodeURIComponent(escape(atob(m[2])))); var n = workApply(d); workSave(); alert("✓ Loaded " + n + " answers.");
+    }); };
+    inp.click();
+  }
+  function workInit() {
+    if (!document.body.hasAttribute("data-ileh-save")) return;
+    var bar = h("div", { "class": "ileh-ui ileh-work" });
+    bar.innerHTML = '<span class="ileh-wstat">💾 Your answers save automatically on this device</span><button data-w="dl">⬇️ Download my work</button><button data-w="ld">📂 Load my work</button>';
+    var spot = document.querySelector("[data-ileh-workbar]"); spot ? spot.appendChild(bar) : document.body.appendChild(bar);
+    bar.addEventListener("click", function (e) { var b = e.target.closest("[data-w]"); if (!b) return; b.dataset.w === "dl" ? workDownload() : workLoad(); });
+    setTimeout(function () { workApply(workRead()); }, 300);
+    var t = null; document.addEventListener("input", function (e) { if (e.target.closest && e.target.closest(".ileh-ui")) return; clearTimeout(t); t = setTimeout(workSave, 600); }, true);
+    document.addEventListener("change", function (e) { if (e.target.closest && !e.target.closest(".ileh-ui")) workSave(); }, true);
+  }
+
   /* ---------- public API ---------- */
   window.ILEH = { ready: true, base: BASE, page: page, guide: guide, profile: P, save: save, log: log, idk: idk, mastery: mastery, weak: weak, likeStyle: likeStyle, topStyle: topStyle,
-    loadKB: loadKB, speak: speak, strip: strip, fill: fill, shuffle: shuffle, person: person, openShare: openShare, openIdk: openIdk, openWhat: openWhat, esc: esc };
+    loadKB: loadKB, speak: speak, strip: strip, fill: fill, shuffle: shuffle, person: person, openShare: openShare, openIdk: openIdk, workSave: workSave, workApply: workApply, workRead: workRead, openWhat: openWhat, esc: esc };
 
-  function init() { ui(); buildTicker(); loadKB(function () { buildTicker(); onThisDay(); }); }
+  function init() { ui(); workInit(); buildTicker(); loadKB(function () { buildTicker(); onThisDay(); }); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
 

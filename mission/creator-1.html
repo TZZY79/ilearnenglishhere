@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Academy | Special Mission | I Learn English Here</title>
+    <meta name="description" content="Special Mission: plan an online channel in English — find your niche, understand your audience, compare platforms and write persuasive posts.">
+    <meta name="author" content="Online Business Awareness">
+    <link rel="canonical" href="https://ilearnenglishhere.academy/mission/creator-1.html">
+    <meta name="robots" content="index,follow">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f7a6c'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='20' fill='white'%3EE%3C/text%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f1419; color: #e9e9f4; background-image: radial-gradient(circle at center, #1a2332 10%, #0f1419 90%); }
+        .slide-card { background-color: #1a2332; border-left: 6px solid #e29044; box-shadow: 0 10px 30px rgba(226, 144, 68, 0.15); }
+        .custom-scroll::-webkit-scrollbar { width: 8px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #1a2332; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #e29044; border-radius: 4px; }
+        .info-box { background-color: #1a2f4d; border-left: 4px solid #4a90e2; }
+        .warning-box { background-color: #4d1a1a; border-left: 4px solid #e24a4a; }
+        .tip-box { background-color: #1a4d2f; border-left: 4px solid #4ae290; }
+        .story-box { background-color: #2f1a4d; border-left: 4px solid #904ae2; }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen" data-mission="creator" data-series="1">
+<div style="max-width:80rem;margin:0 auto 14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font:14px system-ui,sans-serif"><a href="../index.html" style="color:#e9e9f4;text-decoration:none;font-weight:800;display:flex;align-items:center;gap:8px"><span style="width:30px;height:30px;border-radius:8px;background:#1f7a6c;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:Georgia,serif">E</span> I Learn English Here</a><span style="color:#ffd68a;font-weight:700">🏠 Special Mission · Level B1–B2 · <a href="../mission.html" style="color:#9ecbff">Mission home</a></span></div>
+    <div class="max-w-7xl mx-auto">
+        <header class="mb-8 p-4 rounded-xl shadow-2xl" style="background-color: #1a2332; border: 1px solid rgba(226,144,68,0.3);">
+            <h1 class="text-4xl font-extrabold tracking-tight" style="color: #e29044; text-shadow: 0 0 5px #e29044;"><i class="fas fa-file-contract mr-2"></i> CREATOR ACADEMY</h1>
+            <p class="text-orange-300 mb-4">Plan your own online channel in English: niche, audience, platforms, tools and persuasive posts.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-3 bg-gray-900 rounded-lg"><p class="text-xs uppercase font-semibold text-orange-400">Series</p><p class="text-xl font-bold text-yellow-400">2 of 6</p></div>
+                <div class="p-3 bg-gray-900 rounded-lg"><p class="text-xs uppercase font-semibold text-orange-400">Slide</p><p id="quest-display" class="text-xl font-bold text-white">1/15</p></div>
+                <div class="p-3 bg-gray-900 rounded-lg col-span-2"><p class="text-xs uppercase font-semibold text-orange-400 mb-1">Progress</p><div class="h-3 bg-gray-600 rounded-full"><div id="progress-bar" class="h-3 bg-orange-500 rounded-full" style="width: 0%; transition: width 0.5s;"></div></div></div>
+            </div>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <section class="lg:col-span-2 space-y-6">
+                <div id="slide-container" class="slide-card p-6 rounded-xl shadow-lg custom-scroll" style="max-height: 75vh; overflow-y: auto;">
+                    <h2 id="slide-title" class="text-2xl font-bold text-yellow-400 mb-4"></h2>
+                    <div id="slide-content" class="space-y-4"></div>
+                </div>
+                <div class="flex gap-4">
+                    <button id="prev-btn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl disabled:opacity-50" onclick="prevSlide()" disabled><i class="fas fa-arrow-left mr-2"></i> Previous</button>
+                    <button id="next-btn" class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl" onclick="nextSlide()">Next <i class="fas fa-arrow-right ml-2"></i></button>
+                </div>
+            </section>
+
+            <section class="lg:col-span-1">
+                <div class="bg-gray-800 p-6 rounded-xl shadow-2xl sticky top-8 border border-gray-700">
+                    <h2 class="text-xl font-bold text-gray-200 mb-4"><i class="fas fa-book-open mr-2 text-yellow-400"></i> Resources</h2>
+                    <div id="resources-panel" class="h-96 custom-scroll overflow-y-auto p-3 bg-gray-900 rounded-lg border border-gray-700 space-y-3"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        let state = { slide: 0 };
+        
+        const SLIDES = [
+ {
+  "title": "1.0 Creator Launch Sequence! 🚀",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 1: Launch Sequence 🚀<\/strong> · English Focus: Defining Audience & Purpose, Identifying Tone. · Level: Setup<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>Welcome to the Academy! Your mission: to stop being a viewer and start becoming a leader. This course is your first <strong>90-Day Plan<\/strong> for building a real online business using social media. The most successful creators are highly specific. Ready? Let's find your <strong>Secret Weapon<\/strong>.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "10 Creator Launch Sequence English"
+   }
+  ]
+ },
+ {
+  "title": "1.0.5 Instruction: Find Your Niche GPS 🗺️",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 1: Launch Sequence 🚀<\/strong> · English Focus: Defining Audience & Purpose, Identifying Tone. · Level: Setup<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <h3>Rule #1: Narrow Beats Broad!<\/h3>\n                            <p>If you are 'about gaming,' you compete with everyone. If you are 'about cheap gaming setups for students with low budgets,' you are the <strong>ONLY<\/strong> choice for a huge audience.<\/p>\n                            <ul>\n                                <li><strong>Specific Audience (WHO):<\/strong> Who exactly are you helping? (e.g., Busy students, young gamers, professional dog walkers?)<\/li>\n                                <li><strong>Specific Promise (WHAT):<\/strong> What exact problem do you solve for them? (e.g., Save time, teach a skill, make them laugh?)<\/li>\n                            <\/ul>\n                            \n                            <p class=\"creator-tip p-3 mt-4\">\n                                <strong>English Focus: Audience & Purpose:<\/strong> When you define your Niche, you lock in your <strong>Audience<\/strong> (who you speak to) and your content's <strong>Purpose<\/strong> (what you want to achieve). Your writing must match this focus!\n                            <\/p>\n                        <\/div><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "105 Instruction Find Your Niche GPS English"
+   }
+  ]
+ },
+ {
+  "title": "1.1 Action: Define Your Niche GPS (Q1.1)",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 1: Launch Sequence 🚀<\/strong> · English Focus: Defining Audience & Purpose, Identifying Tone. · Level: Setup<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Write a clear, single-sentence statement (min 50 words) that locks in your <strong>Specific Audience<\/strong> AND your <strong>Specific Promise<\/strong>. This is your Creator GPS. Example: 'I provide quick, low-cost plant care tips for teens who forget to water their bedroom jungle.' <em>(at least 50 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "11 Action Define Your Niche GPS Q11 English"
+   }
+  ]
+ },
+ {
+  "title": "1.2 Instruction: The 7-Second Value Bomb 💣",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 1: Launch Sequence 🚀<\/strong> · English Focus: Defining Audience & Purpose, Identifying Tone. · Level: Setup<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <h3>The 7-Second Rule<\/h3>\n                            <p>You have 7 seconds to hook a viewer. They must know immediately what they <strong>GET<\/strong> from your video. Value falls into four types:<\/p>\n                            <ul>\n                                <li><strong>Laugh 😂:<\/strong> Entertainment/Comedy.<\/li>\n                                <li><strong>Learn 💡:<\/strong> Tutorials/Facts/Reviews.<\/li>\n                                <li><strong>Feel ❤️:<\/strong> Motivation/Storytelling.<\/li>\n                                <li><strong>Save 💰:<\/strong> Tips on time or money.<\/li>\n                            <\/ul>\n                            <p>Every post must follow the ultimate structure:<\/p>\n                            <p class=\"font-extrabold text-neon-text text-xl mt-3\">HOOK (1-3s) → VALUE (Deliver 1 Big Idea) → CTA (Simple Call to Action)<\/p>\n                        <\/div><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "12 Instruction The 7-Second Value Bomb English"
+   }
+  ]
+ },
+ {
+  "title": "1.3 CCQ: The Content Flow (Q1.3)",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 1: Launch Sequence 🚀<\/strong> · English Focus: Defining Audience & Purpose, Identifying Tone. · Level: Setup<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Check Your Understanding<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Check for Understanding: The ultimate content structure has three simple parts. What are they? Use arrows to show the flow (e.g., Start → Middle → End). <em>(at least 5 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "13 CCQ The Content Flow Q13 English"
+   }
+  ]
+ },
+ {
+  "title": "1.4 Action: The Persuasive Post (Q1.4)",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 1: Launch Sequence 🚀<\/strong> · English Focus: Defining Audience & Purpose, Identifying Tone. · Level: Setup<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Write a short, persuasive social media post (min 50 words) that uses your Niche GPS. Your purpose is to convince a new follower to hit the 'Save' button. Use at least <strong>one<\/strong> strong persuasive technique (e.g., hyperbole, direct address). <em>(at least 50 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "14 Action The Persuasive Post Q14 English"
+   }
+  ]
+ },
+ {
+  "title": "2.0 Where is Your Audience? 📡",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 2: Platform Selection 🚀<\/strong> · English Focus: Comparison and Contrast, Summary Writing. · Level: Core<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>You can't be everywhere at once! You must pick one <strong>Flagship Platform<\/strong> to focus all your energy on first. Where does your niche spend the most time? This is where you launch your best long-form content.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "20 Where is Your Audience English"
+   }
+  ]
+ },
+ {
+  "title": "2.0.5 Lesson: Platform Deep Dive 🧠",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 2: Platform Selection 🚀<\/strong> · English Focus: Comparison and Contrast, Summary Writing. · Level: Core<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <h3>YouTube: The Authority Engine 🎥<\/h3>\n                            <p>Best for: <strong>Long-form, searchable content<\/strong> (tutorials, deep dives). It’s great for monetization and traffic. Analytics focus: <strong>Watch Time<\/strong> and <strong>Retention Curve<\/strong>.<\/p>\n                            <h3>TikTok: The Discovery Rocket 🎶<\/h3>\n                            <p>Best for: <strong>Rapid reach<\/strong> and <strong>trends<\/strong>. Volume matters! You must nail the <strong>first 1–3 seconds<\/strong> (the hook). TikTok prefers native (in-app) editing for authenticity.<\/p>\n                            <h3>Instagram: The Community Hub 💖<\/h3>\n                            <p>Use <strong>Reels<\/strong> for reach/discovery and <strong>Stories<\/strong> for daily, casual connection. Focus on <strong>Saves<\/strong> and <strong>Shares<\/strong>—the algorithm loves when content is valuable enough to keep.<\/p>\n\n                            <p class=\"creator-tip p-3 mt-4\">\n                                <strong>English Focus: Comparison:<\/strong> When writing about platforms, use comparative connectives like <em>whereas<\/em>, <em>unlike<\/em>, <em>similarly<\/em>, <em>more<\/em>, and <em>less<\/em> to show the difference clearly.\n                            <\/p>\n                            \n                        <\/div><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "205 Lesson Platform Deep Dive English"
+   }
+  ]
+ },
+ {
+  "title": "2.1 CCQ: YouTube Focus (Q2.1)",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 2: Platform Selection 🚀<\/strong> · English Focus: Comparison and Contrast, Summary Writing. · Level: Core<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Check Your Understanding<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Check for Understanding: What is YouTube best used for, and what are the two main analytics metrics you need to watch on the platform to succeed? <em>(at least 15 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "21 CCQ YouTube Focus Q21 English"
+   }
+  ]
+ },
+ {
+  "title": "2.2 Research Task: Community Hubs (Q2.4)",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 2: Platform Selection 🚀<\/strong> · English Focus: Comparison and Contrast, Summary Writing. · Level: Core<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Check Your Understanding<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Research Task: Use the <strong>Creator's Research Terminal<\/strong> (the search bar!) to find the main difference between <strong>Telegram<\/strong> and <strong>WhatsApp<\/strong> in terms of <strong>community size<\/strong> and <strong>monetization features<\/strong>. Write a short summary. <em>(at least 20 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "22 Research Task Community Hubs Q24 English"
+   }
+  ]
+ },
+ {
+  "title": "2.3 Action: The Platform Comparison (Q2.3)",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 2: Platform Selection 🚀<\/strong> · English Focus: Comparison and Contrast, Summary Writing. · Level: Core<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Write a short paragraph (min 50 words) comparing the main use of <strong>Reels<\/strong> versus <strong>Stories<\/strong> on Instagram. Use at least two <strong>comparative adjectives<\/strong> (e.g., 'more engaging,' 'less permanent') and an appropriate connective (e.g., 'whereas'). <em>(at least 50 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "23 Action The Platform Comparison Q23 English"
+   }
+  ]
+ },
+ {
+  "title": "3.0 Work Smarter, Not Harder! 🔋",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 3: The Toolkit 🛠️<\/strong> · English Focus: Procedural Writing (Instructions), Cohesive Devices. · Level: Technical<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>The secret of top creators is not <em>more<\/em> videos, it's getting <em>more<\/em> content from <em>one<\/em> video. This is called <strong>Repurposing<\/strong>. Let's learn the system for maximum reach.<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "30 Work Smarter Not Harder English"
+   }
+  ]
+ },
+ {
+  "title": "3.0.5 Instruction: The Repurpose Machine 🔄",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 3: The Toolkit 🛠️<\/strong> · English Focus: Procedural Writing (Instructions), Cohesive Devices. · Level: Technical<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <h3>The 1-to-5 Rule<\/h3>\n                            <p>You record <strong>one<\/strong> long-form video (e.g., a YouTube tutorial). You instantly turn it into <strong>five<\/strong> other pieces of content!<\/p>\n                            <ul>\n                                <li>3-5 Short Clips (TikTok/Reels)<\/li>\n                                <li>1 Text Thread (X/LinkedIn)<\/li>\n                                <li>1 Carousel Post (Instagram)<\/li>\n                                <li>1 Short Blog Post (SEO asset)<\/li>\n                            <\/ul>\n                            \n                            <h3>SEO: How People Find You<\/h3>\n                            <p>SEO (Search Engine Optimization) means using the right keywords so people who are <em>looking<\/em> for your content can <em>find<\/em> it. The main keyword must be in your video <strong>Title<\/strong> and in the first few lines of your <strong>Description<\/strong>.<\/p>\n                            \n                            <p class=\"creator-tip p-3 mt-4\">\n                                <strong>English Focus: Procedural Text:<\/strong> Use clear sequencing words to write instructions (e.g., <em>Firstly, Next, After that, Finally<\/em>) to guide the reader through the process.\n                            <\/p>\n                        <\/div><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "305 Instruction The Repurpose Machine English"
+   }
+  ]
+ },
+ {
+  "title": "3.1 CCQ: The Repurpose System (Q3.1)",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 3: The Toolkit 🛠️<\/strong> · English Focus: Procedural Writing (Instructions), Cohesive Devices. · Level: Technical<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Check Your Understanding<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Check for Understanding: What are the three main types of content you must create when you repurpose one long video (Hint: short video, text post, and what else?) <em>(at least 15 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "31 CCQ The Repurpose System Q31 English"
+   }
+  ]
+ },
+ {
+  "title": "3.2 Action: SEO Secrets (Q3.3)",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 3: The Toolkit 🛠️<\/strong> · English Focus: Procedural Writing (Instructions), Cohesive Devices. · Level: Technical<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Write a set of 5 clear instructions (min 50 words) for optimizing a new YouTube video's SEO. Use at least three <strong>cohesive devices<\/strong> (e.g., 'Firstly', 'In addition', 'Finally') to sequence your steps. <em>(at least 50 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "32 Action SEO Secrets Q33 English"
+   }
+  ]
+ },
+ {
+  "title": "3.3 CCQ: Analytics Mastery (Q3.2)",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 3: The Toolkit 🛠️<\/strong> · English Focus: Procedural Writing (Instructions), Cohesive Devices. · Level: Technical<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Check Your Understanding<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Check for Understanding: What is the 'Retention Curve' in your video analytics, and why is the first 10 seconds so critical to fix if the curve drops sharply? <em>(at least 20 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "33 CCQ Analytics Mastery Q32 English"
+   }
+  ]
+ },
+ {
+  "title": "4.0 Turning Views into Value 💵",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 4: The Business 💰<\/strong> · English Focus: Formal Report Writing, Evaluation, and Summary. · Level: Business<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>This is the endgame: Monetization! You've built an audience. Now, we build reliable income streams. The best strategy is to have <em>many<\/em> income sources (The Creator Portfolio).<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "40 Turning Views into Value English"
+   }
+  ]
+ },
+ {
+  "title": "4.0.5 Lesson: Income Streams & Legal Must-Dos 🛑",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 4: The Business 💰<\/strong> · English Focus: Formal Report Writing, Evaluation, and Summary. · Level: Business<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <h3>Reliable Income Ladder<\/h3>\n                            <p>Monetization Streams, ordered by highest reliability/lowest effort:<\/p>\n                            <ol>\n                                <li>Ad Revenue (YouTube, Creator Funds)<\/li>\n                                <li>Sponsored Posts / Brand Deals<\/li>\n                                <li>Affiliate Marketing (selling other people's products)<\/li>\n                                <li>Digital Products / Courses (your own high-value items)<\/li>\n                            <\/ol>\n                            \n                            <h3>Legal Must-Do: Disclosure<\/h3>\n                            <p>If you are paid to talk about a product, you <strong>MUST<\/strong> disclose it clearly. This is an FTC rule (Federal Trade Commission). Use #ad or #sponsored visibly in the post and description.<\/p>\n\n                            <p class=\"creator-tip p-3 mt-4\">\n                                <strong>English Focus: Formal Report:<\/strong> Use a formal tone (no slang, no contractions like <em>don't<\/em> or <em>can't<\/em>), clear headings, and precise terminology.\n                            <\/p>\n                        <\/div><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "405 Lesson Income Streams  Legal Must-Dos English"
+   }
+  ]
+ },
+ {
+  "title": "4.1 CCQ: Legal & Ethics (Q4.2)",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 4: The Business 💰<\/strong> · English Focus: Formal Report Writing, Evaluation, and Summary. · Level: Business<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Check Your Understanding<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Check for Understanding: What is the single most important legal rule regarding sponsored posts that you must follow on all platforms? (Hint: The FTC requires you to clearly show this) <em>(at least 10 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "41 CCQ Legal  Ethics Q42 English"
+   }
+  ]
+ },
+ {
+  "title": "4.2 CCQ: Mistakes to Avoid (Q4.3)",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 4: The Business 💰<\/strong> · English Focus: Formal Report Writing, Evaluation, and Summary. · Level: Business<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Check Your Understanding<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Check for Understanding: Name two major mistakes you must avoid in the first 90 days, especially concerning copying other creators or consistency. <em>(at least 15 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "42 CCQ Mistakes to Avoid Q43 English"
+   }
+  ]
+ },
+ {
+  "title": "4.3 Action: Final Business Report 📊 (Q4.4)",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 4: The Business 💰<\/strong> · English Focus: Formal Report Writing, Evaluation, and Summary. · Level: Business<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Write a <strong>Formal Summary Report<\/strong> (min 55 words) detailing the essential steps (Niche, Platform, Repurposing, Monetization) required to turn your content into a profitable business. Use at least two <strong>formal cohesive devices<\/strong> (e.g., 'Furthermore', 'In conclusion'). This is the final assessment! <em>(at least 55 words)<\/em><\/li><\/ol><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "43 Action Final Business Report  Q44 English"
+   }
+  ]
+ },
+ {
+  "title": "5.0 Mission Complete! 🎉",
+  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>MISSION 4: The Business 💰<\/strong> · English Focus: Formal Report Writing, Evaluation, and Summary. · Level: Business<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>Congratulations, Future Creator CEO! You have completed Series 1 and are now ready to execute your 90-Day Plan. You've mastered strategy, platforms, and the business side. Now, go create!<\/p><\/div>",
+  "resources": [
+   {
+    "type": "youtube",
+    "text": "50 Mission Complete English"
+   }
+  ]
+ }
+];
+
+        function render() {
+            const slide = SLIDES[state.slide];
+            document.getElementById('slide-title').textContent = slide.title;
+            document.getElementById('slide-content').innerHTML = slide.content;
+            document.getElementById('quest-display').textContent = `${state.slide+1}/${SLIDES.length}`;
+            document.getElementById('progress-bar').style.width = `${((state.slide+1)/SLIDES.length)*100}%`;
+            document.getElementById('prev-btn').disabled = state.slide === 0;
+            document.getElementById('next-btn').disabled = state.slide >= SLIDES.length-1;
+            
+            const panel = document.getElementById('resources-panel');
+            panel.innerHTML = slide.resources.map(r => `
+                <div style="background-color: #2a3245; border-left: 3px solid #6a8ea8;" class="p-3 rounded-lg">
+                    <p class="text-sm font-semibold ${r.type==='youtube'?'text-red-400':'text-blue-400'}">
+                        <i class="fab fa-${r.type==='youtube'?'youtube':'wikipedia-w'} mr-2"></i>${r.type==='youtube'?'YouTube':'Wikipedia'}
+                    </p>
+                    <p class="text-xs text-gray-300 mt-1">${r.text}</p>
+                </div>
+            `).join('');
+            
+            document.getElementById('slide-container').scrollTop = 0;
+        }
+
+        function nextSlide() { if(state.slide < SLIDES.length-1) { state.slide++; render(); } }
+        function prevSlide() { if(state.slide > 0) { state.slide--; render(); } }
+        
+        document.addEventListener('DOMContentLoaded', render);
+        document.addEventListener('keydown', e => {
+            if(e.key === 'ArrowRight') nextSlide();
+            if(e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+<footer style="max-width:80rem;margin:30px auto 10px;text-align:center;font:13px system-ui,sans-serif;color:#9fb3c8"><a href="../index.html" style="color:#9ecbff">I Learn English Here</a> · An Online Business Awareness project · Practice material for learning English.</footer>
+    <script src="../assets/ileh.js" defer></script>
+    <script src="../assets/mission.js" defer></script>
+    <script src="https://pl31391907.profitableratecpmnetwork.com/61/77/5a/61775a6c292429a81ddb143525c67ebc.js"></script>
+</body>
+</html>

@@ -76,6 +76,11 @@ a.ileh-ti:hover,a.ileh-ti:focus{text-decoration:underline!important}
 .ileh-body details{margin-top:6px}
 .ileh-body ol{padding-left:22px;margin:6px 0}
 .ileh-body li{margin:5px 0}
+/* save-my-work bar */
+.ileh-work{display:flex;flex-wrap:wrap;align-items:center;gap:8px;max-width:1000px;margin:16px auto;padding:10px 14px;border-radius:14px;background:#eef6f4;border:1px solid #cfe3de;color:#132a2e;font-size:14px}
+.ileh-work button{border:0;border-radius:999px;padding:8px 13px;font-weight:700;background:#1f7a6c;color:#fff;cursor:pointer;font-size:13.5px}
+.ileh-work button[data-w=ld]{background:#fff;color:#1f7a6c;border:2px solid #1f7a6c}
+.ileh-wstat{flex:1;min-width:180px}
 /* listening bar */
 .ileh-lbar{position:fixed;left:50%;bottom:14px;transform:translate(-50%,140%);z-index:2147483500;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:5px;max-width:calc(100% - 20px);padding:7px 9px;border-radius:16px;background:#132a2e;color:#fff;box-shadow:0 8px 26px rgba(0,0,0,.35);transition:transform .2s;pointer-events:none}
 .ileh-lbar.on{transform:translate(-50%,0);pointer-events:auto}
