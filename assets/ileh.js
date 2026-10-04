@@ -411,3 +411,89 @@
   function init() { ui(); buildTicker(); loadKB(function () { buildTicker(); onThisDay(); }); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
+
+/* ---------- Donations (crypto) — shown on every page ----------
+   EVM address: the same address works on Ethereum, BNB Smart Chain, Polygon, Arbitrum, Base, Optimism.
+   To hide everywhere, set ADDR = "". */
+(function () {
+  "use strict";
+  var ADDR = "0x6a7B8640969e11cb436f178E7950e5f9aeBf8f77";
+  var NETS = ["Ethereum", "BNB Smart Chain (BEP-20)", "Polygon", "Arbitrum", "Base", "Optimism"];
+  var TOKS = ["USDT", "USDC", "ETH", "BNB", "POL"];
+  if (!ADDR) return;
+  var me = document.querySelector('script[src*="ileh.js"]');
+  var BASE = me ? me.src.replace(/assets\/ileh\.js.*$/, "") : "/";
+  var inLesson = /\/lessons\//.test(location.pathname);
+  var A6 = ADDR.slice(0, 6), Z4 = ADDR.slice(-4);
+
+  var css = ".ileh-don{--d-ink:#132a2e;--d-acc:#1f7a6c;--d-acc2:#e0a548;--d-line:#dbe8e5;--d-soft:#3f5a56;--d-warn:#a8321e;font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;max-width:760px;margin:2rem auto 1.2rem;padding:0 16px;box-sizing:border-box;color:var(--d-ink);text-align:left;position:relative;z-index:2}" +
+    ".ileh-don *{box-sizing:border-box}" +
+    ".ileh-don-card{background:#fff;border:2px solid var(--d-acc);border-radius:16px;padding:1.1rem 1.2rem 1rem;box-shadow:0 10px 26px rgba(19,42,46,.10)}" +
+    ".ileh-don-head{display:flex;gap:.75rem;align-items:flex-start}.ileh-don-ico{font-size:1.8rem;line-height:1}" +
+    ".ileh-don h2{margin:0 0 .2rem;font-size:1.2rem;color:var(--d-ink)}.ileh-don-head p{margin:0;font-size:.92rem;line-height:1.45;color:var(--d-soft)}" +
+    ".ileh-don-row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.9rem 0 .5rem}" +
+    ".ileh-don-addr{flex:1 1 270px;min-width:0;display:block;background:#f6faf9;border:2px dashed var(--d-acc);border-radius:10px;padding:.55rem .7rem;font:600 .85rem/1.35 ui-monospace,Menlo,Consolas,monospace;color:var(--d-ink);word-break:break-all;user-select:all}" +
+    ".ileh-don-btn{cursor:pointer;border:0;border-radius:999px;padding:.55em 1em;font:700 .85rem system-ui,Arial,sans-serif;background:var(--d-acc);color:#fff;transition:transform .15s,background .15s}.ileh-don-btn:hover{background:#175f54;transform:translateY(-1px)}" +
+    ".ileh-don-btn.alt{background:#fff;color:var(--d-acc);border:2px solid var(--d-acc)}" +
+    ".ileh-don-lbl{margin:.55rem 0 .3rem;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--d-soft)}" +
+    ".ileh-don-chips{display:flex;flex-wrap:wrap;gap:.35rem}.ileh-don-chips span{font-size:.78rem;padding:.2em .65em;border-radius:999px;border:1.5px solid var(--d-line);background:#f6faf9}.ileh-don-chips.tok span{background:#fdf3e1;border-color:#f0d9a8;font-weight:700}" +
+    ".ileh-don details{margin:.85rem 0 .3rem;border:1.5px solid var(--d-line);border-radius:10px;background:#f6faf9}.ileh-don summary{cursor:pointer;padding:.55rem .8rem;font-weight:700;font-size:.9rem;color:var(--d-acc)}" +
+    ".ileh-don ol{margin:0;padding:.1rem 1rem .8rem 2.1rem;font-size:.88rem;line-height:1.5;color:var(--d-soft)}.ileh-don li{margin:.3rem 0}.ileh-don code.s{background:#fdf3e1;padding:0 .3em;border-radius:4px}" +
+    ".ileh-don-warn{margin:.55rem 0 0;font-size:.77rem;line-height:1.45;color:var(--d-warn)}" +
+    ".ileh-don.mini .ileh-don-card{padding:.2rem .9rem .8rem}.ileh-don.mini>.ileh-don-card>details{border:0;background:none;margin:0}.ileh-don.mini>.ileh-don-card>details>summary{font-size:.95rem;padding:.6rem 0}" +
+    ".ileh-don-modal{position:fixed;inset:0;z-index:100000;background:rgba(19,42,46,.55);display:flex;align-items:center;justify-content:center;padding:16px}" +
+    ".ileh-don-modal>div{background:#fff;border-radius:16px;max-width:340px;width:100%;padding:1.1rem;text-align:center;font-family:system-ui,Arial,sans-serif;color:#132a2e;position:relative}" +
+    ".ileh-don-modal h3{margin:.2rem 0 .5rem}.ileh-don-modal .qr{width:210px;height:210px;margin:.4rem auto;padding:8px;border:1px solid #dbe8e5;border-radius:10px}.ileh-don-modal .qr svg{width:100%;height:100%}" +
+    ".ileh-don-modal p{font-size:.85rem;line-height:1.4;margin:.5rem 0}.ileh-don-modal .x{position:absolute;top:8px;right:10px;border:0;background:none;font-size:1.4rem;cursor:pointer;color:#132a2e}" +
+    ".ileh-don-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#132a2e;color:#fff;padding:.6rem 1rem;border-radius:999px;font:600 .85rem system-ui,Arial,sans-serif;z-index:100001;max-width:92vw;text-align:center}" +
+    "@media(max-width:520px){.ileh-don-row .ileh-don-btn{flex:1 1 auto}}";
+
+  function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+  function toast(msg) { var t = el("div", "ileh-don-toast"); t.textContent = msg; document.body.appendChild(t); setTimeout(function () { t.remove(); }, 2800); }
+  function copy() {
+    function ok() { toast("Address copied ✓ Check it starts " + A6 + " and ends " + Z4); }
+    function legacy() { var ta = el("textarea"); ta.value = ADDR; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); ok(); } catch (e) { toast("Copy failed — select the address and copy it manually"); } ta.remove(); }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(ADDR).then(ok, legacy); else legacy();
+  }
+  function qr() {
+    var m = el("div", "ileh-don-modal", '<div role="dialog" aria-modal="true" aria-label="Donation QR code"><button class="x" aria-label="Close">×</button><h3>Scan to donate</h3><div class="qr">Loading…</div>' +
+      "<p>Scan with MetaMask, Trust Wallet, Binance, Coinbase Wallet or any wallet that supports Ethereum, BNB Smart Chain, Polygon and similar networks.</p>" +
+      '<code class="ileh-don-addr" style="font-size:.74rem">' + ADDR + "</code>" +
+      '<p class="ileh-don-warn">⚠️ EVM networks only — do NOT send Bitcoin, Solana or TRON (TRC-20) to this address.</p></div>');
+    function close() { m.remove(); document.removeEventListener("keydown", esc); }
+    function esc(e) { if (e.key === "Escape") close(); }
+    m.addEventListener("click", function (e) { if (e.target === m || e.target.className === "x") close(); });
+    document.addEventListener("keydown", esc);
+    document.body.appendChild(m);
+    var box = m.querySelector(".qr");
+    function draw() { try { var q = window.qrcode(0, "M"); q.addData(ADDR); q.make(); box.innerHTML = q.createSvgTag({ scalable: true, margin: 0 }); } catch (e) { box.textContent = "Could not draw the code — use Copy instead."; } }
+    if (window.qrcode) draw(); else { var s = document.createElement("script"); s.src = BASE + "assets/qrcode.js"; s.onload = draw; s.onerror = function () { box.textContent = "Could not load the QR code — use Copy instead."; }; document.head.appendChild(s); }
+  }
+  function chips(list, cls) { return '<div class="ileh-don-chips ' + cls + '">' + list.map(function (t) { return "<span>" + t + "</span>"; }).join("") + "</div>"; }
+
+  function build() {
+    if (document.querySelector(".ileh-don")) return;
+    var st = el("style"); st.textContent = css; document.head.appendChild(st);
+    var inner =
+      '<div class="ileh-don-row"><code class="ileh-don-addr" title="' + ADDR + '">' + ADDR + "</code>" +
+      '<button type="button" class="ileh-don-btn" data-d="copy">📋 Copy</button><button type="button" class="ileh-don-btn alt" data-d="qr">▦ QR code</button></div>' +
+      '<p class="ileh-don-lbl">Accepted networks (same address on all):</p>' + chips(NETS, "net") +
+      '<p class="ileh-don-lbl">Popular coins:</p>' + chips(TOKS, "tok") +
+      "<details><summary>How to send a donation (4 quick steps)</summary><ol>" +
+      "<li><b>Open your wallet or exchange</b> — MetaMask, Trust Wallet, Coinbase Wallet, Binance, Bybit, OKX… (on an exchange use <i>Withdraw</i>, in a wallet use <i>Send</i>).</li>" +
+      "<li><b>Pick a coin</b> (USDT or USDC are easiest) and choose one of the networks above — <i>BNB Smart Chain (BEP-20)</i>, <i>Polygon</i> or <i>Arbitrum</i> have the lowest fees.</li>" +
+      '<li><b>Paste the address</b> (tap <i>Copy</i>) or scan the QR code. Double-check it starts <code class="s">' + A6 + '</code> and ends <code class="s">' + Z4 + "</code>.</li>" +
+      "<li><b>No memo or tag is needed.</b> Enter any amount, confirm, and you're done. Sending a lot? Send a small test amount first.</li></ol></details>" +
+      '<p class="ileh-don-warn">⚠️ <b>EVM networks only.</b> Do <b>not</b> send Bitcoin (BTC), Solana (SOL) or TRON / USDT-TRC20 to this address — those coins would be lost. Crypto payments can\'t be reversed, so please double-check before sending. Donations are voluntary gifts and don\'t buy any product or service.</p>';
+    var intro = "I Learn English Here is free — no sign-up, no paywall. If it's helped your English, a crypto tip of any size keeps new lessons coming. Thank you!";
+    var box = el("section", "ileh-don" + (inLesson ? " mini" : ""));
+    box.id = "donate"; box.setAttribute("aria-label", "Support I Learn English Here");
+    box.innerHTML = inLesson
+      ? '<div class="ileh-don-card"><details><summary>☕ Enjoyed this free lesson? Support I Learn English Here (crypto donation)</summary><p style="margin:.1rem 0 0;font-size:.9rem;line-height:1.45;color:#3f5a56">' + intro + "</p>" + inner + "</details></div>"
+      : '<div class="ileh-don-card"><div class="ileh-don-head"><span class="ileh-don-ico" aria-hidden="true">☕</span><div><h2>Support free English lessons</h2><p>' + intro + "</p></div></div>" + inner + "</div>";
+    box.addEventListener("click", function (e) { var b = e.target.closest("[data-d]"); if (!b) return; if (b.dataset.d === "copy") copy(); else qr(); });
+    var foot = document.querySelector("footer");
+    if (foot && foot.parentNode) foot.parentNode.insertBefore(box, foot); else document.body.appendChild(box);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build); else build();
+})();
