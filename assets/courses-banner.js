@@ -91,3 +91,6 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();
+
+/* OBA Analytics loader — Online Business Awareness (visitor + click stats for Tony's dashboard) */
+(function(){if(window.__obaL)return;window.__obaL=1;var s=document.createElement('script');s.src='https://ilearnenglishhere.academy/assets/oba-analytics.js';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
