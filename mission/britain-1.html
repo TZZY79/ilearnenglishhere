@@ -1,279 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Great British Adventure | Special Mission | I Learn English Here</title>
-    <meta name="description" content="Special Mission: plan a real trip from London to Edinburgh in English — train tickets, B&Bs, museums, timetables and formal enquiries.">
-    <meta name="author" content="Online Business Awareness">
-    <link rel="canonical" href="https://ilearnenglishhere.academy/mission/britain-1.html">
-    <meta name="robots" content="index,follow">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f7a6c'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='20' fill='white'%3EE%3C/text%3E%3C/svg%3E">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #0f1419; color: #e9e9f4; background-image: radial-gradient(circle at center, #1a2332 10%, #0f1419 90%); }
-        .slide-card { background-color: #1a2332; border-left: 6px solid #e29044; box-shadow: 0 10px 30px rgba(226, 144, 68, 0.15); }
-        .custom-scroll::-webkit-scrollbar { width: 8px; }
-        .custom-scroll::-webkit-scrollbar-track { background: #1a2332; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #e29044; border-radius: 4px; }
-        .info-box { background-color: #1a2f4d; border-left: 4px solid #4a90e2; }
-        .warning-box { background-color: #4d1a1a; border-left: 4px solid #e24a4a; }
-        .tip-box { background-color: #1a4d2f; border-left: 4px solid #4ae290; }
-        .story-box { background-color: #2f1a4d; border-left: 4px solid #904ae2; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Great British Adventure 🇬🇧 | I Learn English Here</title>
+<meta name="description" content="Plan a real trip from London to Bath, Bristol and Edinburgh using real websites.">
+<meta name="author" content="Online Business Awareness">
+<link rel="canonical" href="https://ilearnenglishhere.academy/mission/britain-1.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Great British Adventure 🇬🇧 | Special Mission">
+<meta property="og:description" content="Plan a real trip from London to Bath, Bristol and Edinburgh using real websites.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#1f7a6c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f7a6c'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='20' fill='white'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/mission-kit.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7046048459108768" crossorigin="anonymous"></script>
 <meta name="google-adsense-account" content="ca-pub-7046048459108768">
 </head>
-<body class="p-4 md:p-8 min-h-screen" data-mission="britain" data-series="1">
-<div style="max-width:80rem;margin:0 auto 14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font:14px system-ui,sans-serif"><a href="../index.html" style="color:#e9e9f4;text-decoration:none;font-weight:800;display:flex;align-items:center;gap:8px"><span style="width:30px;height:30px;border-radius:8px;background:#1f7a6c;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:Georgia,serif">E</span> I Learn English Here</a><span style="color:#ffd68a;font-weight:700">🏠 Special Mission · Level B1 · <a href="../mission.html" style="color:#9ecbff">Mission home</a></span></div>
-    <div class="max-w-7xl mx-auto">
-        <header class="mb-8 p-4 rounded-xl shadow-2xl" style="background-color: #1a2332; border: 1px solid rgba(226,144,68,0.3);">
-            <h1 class="text-4xl font-extrabold tracking-tight" style="color: #e29044; text-shadow: 0 0 5px #e29044;"><i class="fas fa-file-contract mr-2"></i> THE GREAT BRITISH ADVENTURE</h1>
-            <p class="text-orange-300 mb-4">Plan a real trip from London to Edinburgh using real information — practical English for travel.</p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div class="p-3 bg-gray-900 rounded-lg"><p class="text-xs uppercase font-semibold text-orange-400">Series</p><p class="text-xl font-bold text-yellow-400">2 of 6</p></div>
-                <div class="p-3 bg-gray-900 rounded-lg"><p class="text-xs uppercase font-semibold text-orange-400">Slide</p><p id="quest-display" class="text-xl font-bold text-white">1/15</p></div>
-                <div class="p-3 bg-gray-900 rounded-lg col-span-2"><p class="text-xs uppercase font-semibold text-orange-400 mb-1">Progress</p><div class="h-3 bg-gray-600 rounded-full"><div id="progress-bar" class="h-3 bg-orange-500 rounded-full" style="width: 0%; transition: width 0.5s;"></div></div></div>
-            </div>
-        </header>
-
-        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <section class="lg:col-span-2 space-y-6">
-                <div id="slide-container" class="slide-card p-6 rounded-xl shadow-lg custom-scroll" style="max-height: 75vh; overflow-y: auto;">
-                    <h2 id="slide-title" class="text-2xl font-bold text-yellow-400 mb-4"></h2>
-                    <div id="slide-content" class="space-y-4"></div>
-                </div>
-                <div class="flex gap-4">
-                    <button id="prev-btn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl disabled:opacity-50" onclick="prevSlide()" disabled><i class="fas fa-arrow-left mr-2"></i> Previous</button>
-                    <button id="next-btn" class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl" onclick="nextSlide()">Next <i class="fas fa-arrow-right ml-2"></i></button>
-                </div>
-            </section>
-
-            <section class="lg:col-span-1">
-                <div class="bg-gray-800 p-6 rounded-xl shadow-2xl sticky top-8 border border-gray-700">
-                    <h2 class="text-xl font-bold text-gray-200 mb-4"><i class="fas fa-book-open mr-2 text-yellow-400"></i> Resources</h2>
-                    <div id="resources-panel" class="h-96 custom-scroll overflow-y-auto p-3 bg-gray-900 rounded-lg border border-gray-700 space-y-3"></div>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <script>
-        let state = { slide: 0 };
-        
-        const SLIDES = [
- {
-  "title": "1.0 Welcome Aboard! 👋",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 1: The London Gateway 🇬🇧<\/strong> · Forming Questions (Wh- & How) | Verbs: find, check, book, arrive · Level: Easy<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>Welcome to The Great British Adventure! Your mission is to plan a seamless, budget-friendly trip from London to Edinburgh, using only real-world information you find online. This quest focuses on getting from London to your first stop: <strong>Bath<\/strong>. Time to learn practical English while you travel!<\/p><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "10 Welcome Aboard English"
-   }
+<body>
+<div id="mk"><noscript><p style="padding:1rem">This interactive lesson needs JavaScript. Please open it in Chrome, Firefox or Safari.</p></noscript></div>
+<script>
+window.MISSION = {
+  id: "britain-1", file: "britain-1.html", mission: "britain", part: 1, min: 25, title: "The Great British Adventure 🇬🇧", level: "B2", next: "creator", nextUrl: "creator-1.html",
+  desc: "Plan a real trip from London to Bath, Bristol and Edinburgh using real websites.",
+  test: [
+   {t:"mc",q:"Which is the most polite question at a train ticket office?",o:["Give me a ticket to Bath.","Could you tell me what time the next train to Bath leaves?","When train Bath?","You tell me the train time."],a:1,why:"“Could you tell me…” is polite and indirect — perfect for strangers and staff."},
+   {t:"mc",q:"Choose the correct indirect question: “Do you know where ______?”",o:["is the station","the station is","is station the","the station"],a:1,why:"In indirect questions the word order is normal: subject + verb → the station is."},
+   {t:"mc",q:"You are writing to a hotel and you don't know the person's name. How do you start?",o:["Hi there,","Dear Sir or Madam,","Hey hotel,","To my friend,"],a:1,why:"“Dear Sir or Madam” is the formal opening when you don't know the name."},
+   {t:"mc",q:"If you start “Dear Sir or Madam”, how should you end the letter?",o:["Yours sincerely,","Yours faithfully,","Cheers,","Love,"],a:1,why:"British rule: unknown name → Yours faithfully; known name → Yours sincerely."},
+   {t:"mc",q:"Timetables: “The museum ______ at 9 a.m. every day.”",o:["opens","is opening","opened","open"],a:0,why:"Timetables and fixed schedules use the present simple: opens."},
+   {t:"mc",q:"“If the train is late, we ______ a taxi.”",o:["will take","would take","took","taking"],a:0,why:"First conditional (real possibility): If + present, will + verb."},
+   {t:"gap",q:"Complete: “Last summer we ______ (go) to Edinburgh.”",acc:["went"],why:"Go is irregular: go → went → gone."},
+   {t:"mc",q:"Which adjective best describes a room that is small but warm and comfortable?",o:["cosy","cramped","spacious","filthy"],a:0,why:"Cosy = small in a nice way. Cramped = small in a bad way."},
+   {t:"web",q:"🌐 Search online: What is the name of the famous castle on a rock in the centre of Edinburgh?",acc:["edinburgh castle"],hint:"Search: “castle on the rock Edinburgh”.",why:"Edinburgh Castle sits on Castle Rock, an old volcano."},
+   {t:"write",q:"✍️ Write a polite question to a hotel asking about breakfast times (at least 8 words, end with ?).",min:8,max:60,must:/breakfast/i,end:"?",why:"You need the word “breakfast”, at least 8 words and a question mark."}
+  ],
+  glossary: [
+    ["return ticket", "a ticket to go somewhere and come back (US: round trip)"], ["single ticket", "a ticket for one direction only"],
+    ["off-peak", "cheaper times to travel, when trains are less busy"], ["railcard", "a card that gives you about 1/3 off train tickets"],
+    ["platform", "the place in a station where you get on the train"], ["B&B", "bed and breakfast — a small, often family-run guest house"],
+    ["en-suite", "a bedroom with its own private bathroom"], ["enquiry", "a question asking for information (formal)"],
+    ["Georgian", "the style of buildings from about 1714–1830 in Britain"], ["itinerary", "a plan of your journey: places, dates and times"],
+    ["admission", "the price or permission to enter a museum or attraction"], ["landmark", "a famous building or place that is easy to recognise"],
+    ["recommend", "to say something is good and suggest it"], ["budget", "the amount of money you plan to spend"]
+  ],
+  steps: [
+    { t: "intro", emoji: "🧳", title: "Your British adventure starts now", html: "<p>You have won a <b>10-day trip around Britain</b>. Your route: <b>London → Bath → Bristol → Edinburgh</b>. But there is a catch: <i>you</i> must plan everything — in English, using real British websites.</p><p>There are 4 quests. Each one teaches a language skill first, then sends you to research real information.</p>",
+      goals: ["ask polite and indirect travel questions", "read real train and attraction websites", "write a formal enquiry email to a B&B", "use tenses correctly for timetables and plans", "write a short travel report"],
+      how: "<p>Look for the <b>🔎 Research Lab</b> on research steps. It searches an online encyclopedia for you, gives you trusted British websites, and has buttons for web search, YouTube, translation and an AI explainer.</p>" },
+    { t: "teach", kicker: "Quest 1 · London", emoji: "🚆", title: "Mastering travel questions", html: "<p>In Britain, people are very polite with staff and strangers. Direct questions can sound rude.</p>",
+      formula: "Direct: <b>Where is platform 4?</b><br>Polite (indirect): <b>Could you tell me where platform 4 is?</b> ← verb moves to the END",
+      vocab: [["Could you tell me…?", "the most useful polite opener", "Could you tell me when the next train leaves?"], ["Do you know if…?", "for yes/no questions", "Do you know if this train stops at Bath?"], ["I was wondering…", "extra polite", "I was wondering whether there are any cheaper tickets."]],
+      reveal: [["Make it polite: “How much is a return to Bath?”", "Could you tell me how much a return ticket to Bath is?"], ["Make it polite: “Does this train have Wi-Fi?”", "Do you know if this train has Wi-Fi?"]],
+      tip: "Brits also say “Sorry…” to start a question to a stranger: “Sorry, could you tell me…?”" },
+    { t: "mcq", kicker: "Quest 1 · Check", q: "Which question is correct AND polite?", o: ["Could you tell me where is the ticket office?", "Could you tell me where the ticket office is?", "Where the ticket office is?", "Tell me where is ticket office."], a: 1, why: "In indirect questions the word order is normal: the ticket office (subject) + is (verb)." },
+    { t: "research", kicker: "Quest 1 · Research", emoji: "🔎", title: "The great train race: London to Bath",
+      task: "Find out how to travel from <b>London</b> to <b>Bath</b> by train. Write <b>3–4 sentences</b> including:<ul><li>the London station trains leave from</li><li>roughly how long the journey takes</li><li>the train company</li><li>one way to save money</li></ul>",
+      steps: ["Use the National Rail journey planner (link below). From: London · To: Bath Spa.", "Look at journey time and the station name.", "Look for words like Off-Peak, Advance or Railcard.", "Write your answer with the sentence starters."],
+      queries: ["London to Bath Spa train", "Great Western Railway", "London Paddington station", "Railcard UK"],
+      sources: [["National Rail — journey planner", "https://www.nationalrail.co.uk/", "Official times and fares for all British trains"], ["GWR (Great Western Railway)", "https://www.gwr.com/", "The train company that runs London–Bath trains"], ["Railcards", "https://www.railcard.co.uk/", "Discount cards, e.g. 16–25 Railcard"]],
+      starters: ["Trains to Bath leave from…", "The journey takes about…", "The trains are run by…", "To save money, you can…"], minWords: 40,
+      model: "Trains to Bath Spa leave from London Paddington. The journey takes about 1 hour 20 minutes. The trains are run by Great Western Railway (GWR). To save money, you can book an Advance ticket early, travel Off-Peak, or use a Railcard to get around a third off." },
+    { t: "speak", kicker: "Quest 1 · Speak", title: "At the ticket office", task: "Record yourself buying a ticket. Use <b>2 indirect questions</b>.", model: "Good morning. Sorry, could you tell me how much an off-peak return to Bath Spa is? And do you know which platform the next train leaves from? Thank you very much.", checklist: ["A greeting", "2 indirect questions", "Please / thank you"] },
+    { t: "teach", kicker: "Quest 2 · Bath", emoji: "🏛️", title: "Formal enquiries and descriptive power", html: "<p>Bath is a UNESCO World Heritage city famous for its <b>Roman Baths</b> and golden <b>Georgian</b> buildings. Now you need a place to stay.</p>",
+      vocab: [["charming", "pleasant and attractive", "a charming B&B"], ["spacious", "with lots of space", "a spacious room"], ["conveniently located", "in a useful place", "conveniently located near the station"], ["cosy", "small, warm and comfortable", "a cosy lounge"]],
+      formula: "Formal email: <b>Dear Sir or Madam,</b> → reason → questions → <b>I look forward to hearing from you.</b> → <b>Yours faithfully,</b><br>If you know the name: <b>Dear Ms Smith,</b> … <b>Yours sincerely,</b>",
+      reveal: [["Informal → formal: “I want to know if you have a room.”", "I would like to enquire whether you have a room available."], ["Informal → formal: “Can you send me the price?”", "Could you please let me know the price?"]] },
+    { t: "research", kicker: "Quest 2 · Research", emoji: "🛏️", title: "B&B description challenge",
+      task: "Find a <b>real B&B or small hotel in Bath</b> on a booking or tourism site. Describe it in <b>4–5 sentences</b> using at least <b>3 descriptive adjectives</b>. Include the price per night (roughly) and one thing guests like.",
+      steps: ["Open Visit Bath's accommodation page (or any booking site).", "Choose one B&B. Read the description and 2 guest reviews.", "Note: location, price, room, breakfast.", "Write your description with adjectives from the Key words."],
+      queries: ["Bath England", "bed and breakfast", "Georgian architecture"],
+      sources: [["Visit Bath — where to stay", "https://visitbath.co.uk/", "The city's official tourism website"], ["Booking.com — Bath", "https://www.booking.com/city/gb/bath.html", "Prices and real guest reviews"]],
+      vocab: [["charming / elegant / cosy / spacious / quiet / modern", "useful adjectives"], ["within walking distance of", "near enough to walk", "within walking distance of the Roman Baths"]],
+      starters: ["I found a charming B&B called…", "It is located…", "The rooms are…", "Guests love the…", "A double room costs about…"], minWords: 45,
+      model: "I found a charming B&B called The Abbey Rooms. It is located in a quiet street within walking distance of the Roman Baths. The rooms are spacious and elegant, and some have views of the hills. Guests love the homemade breakfast. A double room costs about £140 per night." },
+    { t: "write", kicker: "Quest 2 · Write", emoji: "📧", title: "Formal enquiry email", task: "Write a <b>formal email</b> to the B&B you found (70–150 words). Ask about: <b>availability</b> for 2 nights, <b>breakfast</b>, and <b>parking or the distance from the station</b>.",
+      frame: "Dear Sir or Madam,\n\nI am writing to enquire about \n\n\nI look forward to hearing from you.\n\nYours faithfully,\n",
+      auto: [{ has: /dear (sir|madam|mr|mrs|ms|miss)/i, msg: "A formal greeting (Dear Sir or Madam / Dear Ms …)" }, { has: /yours (faithfully|sincerely)/i, msg: "A formal ending (Yours faithfully / sincerely)" }, { has: /breakfast/i, msg: "Ask about breakfast" }, { has: /\?/, msg: "At least one question mark" }], minWords: 70, maxWords: 170,
+      checklist: ["No contractions (I'm → I am)", "Polite phrases: Could you…? I would be grateful if…", "Dates are clear (e.g. 14–16 May)"],
+      model: "Dear Sir or Madam,<br><br>I am writing to enquire about the availability of a double room for two nights, from 14 to 16 May. Could you please confirm whether breakfast is included in the price? I would also be grateful if you could tell me how far the B&B is from Bath Spa station, as I will be arriving by train.<br><br>I look forward to hearing from you.<br><br>Yours faithfully,<br>Maria Lopez" },
+    { t: "teach", kicker: "Quest 3 · Bristol", emoji: "🎨", title: "Scheduling with tenses", html: "<p>Bristol is a creative city with a famous harbour, street art and the Clifton Suspension Bridge. To plan your day you need three tenses:</p>",
+      vocab: [["Present simple", "timetables & opening times", "The museum opens at 10 a.m."], ["Past simple", "what happened / history", "The bridge opened in 1864."], ["First conditional", "real future possibilities", "If it rains, we will visit the museum."]],
+      reveal: [["Correct it: “The museum is opening at 10 every day.”", "The museum opens at 10 every day. (timetable → present simple)"], ["Complete: If we ___ (have) time, we ___ (see) the bridge.", "If we have time, we will see the bridge."]] },
+    { t: "gap", kicker: "Quest 3 · Check", q: "“The Clifton Suspension Bridge ______ (open) in 1864.”", acc: ["opened", "was opened"], why: "A finished past event → past simple: opened." },
+    { t: "research", kicker: "Quest 3 · Research", emoji: "🕰️", title: "Museum times & history", task: "Choose <b>one attraction in Bristol</b> (e.g. the SS Great Britain, M Shed, Bristol Museum & Art Gallery or the Clifton Suspension Bridge). Write <b>4 sentences</b>: 1) when it opens (present simple), 2) how much it costs, 3) one fact from its history (past simple), 4) a plan with <b>If…, I will…</b>",
+      queries: ["SS Great Britain", "Clifton Suspension Bridge", "Isambard Kingdom Brunel", "M Shed Bristol"],
+      sources: [["Visit Bristol", "https://visitbristol.co.uk/", "Official guide to attractions"], ["Brunel's SS Great Britain", "https://www.ssgreatbritain.org/", "Opening times and history"], ["Bristol Museums (M Shed, Museum & Art Gallery)", "https://www.bristolmuseums.org.uk/", "Free museums — times and events"]],
+      auto: [{ has: /\bif\b[^.]*\bwill\b/i, msg: "A first conditional (If…, I will…)" }, { sentences: 4 }], minWords: 45,
+      starters: ["It opens at…", "Tickets cost…", "It was built in…", "If the weather is good, I will…"],
+      model: "Brunel's SS Great Britain opens at 10 a.m. every day. Adult tickets cost about £25 and you can return free for a year. The ship was designed by Isambard Kingdom Brunel and launched in 1843. If the weather is good, I will walk along the harbour after my visit." },
+    { t: "video", kicker: "Quest 3 · Watch", title: "Street art in Bristol", task: "Watch one short video about street art in Bristol. Write <b>3 things you learned</b> and <b>1 opinion</b> (Do you think street art is art?).", search: "Bristol street art walking tour", minWords: 35, starters: ["I learned that…", "I was surprised that…", "In my opinion, street art…"] },
+    { t: "teach", kicker: "Quest 4 · Edinburgh", emoji: "🏰", title: "Writing a travel report", html: "<p>Your final stop is Edinburgh, Scotland's capital. A good report is clear and organised:</p>",
+      formula: "<b>Title</b> → <b>Introduction</b> (where & why) → <b>Highlights</b> (2–3 places) → <b>Practical tips</b> (transport, money) → <b>Recommendation</b>",
+      vocab: [["highlight", "the best part", "The highlight was the castle."], ["breathtaking", "extremely beautiful", "breathtaking views"], ["I would highly recommend…", "strong recommendation phrase"], ["worth visiting", "good enough to visit", "The museum is well worth visiting."]] },
+    { t: "research", kicker: "Quest 4 · Final report", emoji: "📊", title: "Edinburgh final report", task: "Research Edinburgh and write a <b>travel report (110–200 words)</b> with the 5 parts: title, introduction, 2–3 highlights, practical tips, recommendation. Include <b>at least one real fact or number</b> you found.",
+      queries: ["Edinburgh Castle", "Royal Mile", "Arthur's Seat", "Edinburgh Festival Fringe", "London to Edinburgh train"],
+      sources: [["Edinburgh Castle (official)", "https://www.edinburghcastle.scot/", "Tickets, history and opening times"], ["VisitScotland — Edinburgh", "https://www.visitscotland.com/places-to-go/edinburgh", "Scotland's official tourism site"], ["National Rail", "https://www.nationalrail.co.uk/", "London King's Cross to Edinburgh Waverley"]],
+      auto: [{ digit: true }, { has: /recommend/i, msg: "A recommendation (I would recommend…)" }], minWords: 110, maxWords: 220,
+      starters: ["Edinburgh: A City of Castles and Culture", "Edinburgh is the capital of Scotland and…", "The highlight of my visit was…", "A practical tip is to…", "I would highly recommend…"],
+      model: "<b>Edinburgh: Castles, Hills and History</b><br>Edinburgh is the capital of Scotland and one of the most beautiful cities in Europe. The train from London King's Cross takes about four and a half hours. The highlight was Edinburgh Castle, which sits on an ancient volcano called Castle Rock. From there, I walked down the Royal Mile, a long street full of shops and street performers, to the Palace of Holyroodhouse. On my last day I climbed Arthur's Seat, a 251-metre hill with breathtaking views. A practical tip is to book castle tickets online, because it is often busy, especially in August during the Festival Fringe. I would highly recommend Edinburgh to anyone who loves history and walking." },
+    { t: "summary", title: "Adventure complete!", points: ["ask polite indirect questions", "use real British travel websites", "write a formal enquiry email", "use present simple, past simple and the first conditional", "write an organised travel report"] }
   ]
- },
- {
-  "title": "1.0.5 Lesson: Mastering Travel Questions",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 1: The London Gateway 🇬🇧<\/strong> · Forming Questions (Wh- & How) | Verbs: find, check, book, arrive · Level: Easy<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <p>When you arrive in a new country, asking clear questions is your most important skill. In English, we rely heavily on <strong>Wh-words<\/strong> and <strong>'How'<\/strong> to seek specific information.<\/p>\n                            \n                            <h3>Grammar Focus: Wh-Questions<\/h3>\n                            <p>The structure is always: <strong>(Wh-word) + Auxiliary Verb + Subject + Main Verb<\/strong>.<\/p>\n                            <p>Example: <em>What<\/em> is the departure time? <em>Where<\/em> can I find the ticket office?<\/p>\n                            \n                            <h3>Grammar Focus: 'How' Questions<\/h3>\n                            <p>'How' is often used to ask about <strong>method, cost, or distance<\/strong>.<\/p>\n                            <ul>\n                                <li><strong>Method/Process:<\/strong> <em>How<\/em> do I get to Bath?<\/li>\n                                <li><strong>Cost:<\/strong> <em>How much<\/em> does a single ticket cost?<\/li>\n                                <li><strong>Distance/Time:<\/strong> <em>How far<\/em> is the station? / <em>How long<\/em> is the journey?<\/li>\n                            <\/ul>\n                            \n\n                            <h3>Vocabulary Tip: UK Rail Fares<\/h3>\n                            <p>You will encounter specific UK travel terms in your search:<\/p>\n                            <ul>\n                                <li><strong>Single ticket:<\/strong> One-way ticket (not 'round trip').<\/li>\n                                <li><strong>Return ticket:<\/strong> Round trip ticket.<\/li>\n                                <li><strong>Off-Peak:<\/strong> Cheaper tickets valid outside of busy travel times (usually before 9:30 am and after 4:00 pm on weekdays).<\/li>\n                                <li><strong>Platform:<\/strong> The area where you wait for the train.<\/li>\n                            <\/ul>\n                        <\/div><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "105 Lesson Mastering Travel Questions English"
-   }
-  ]
- },
- {
-  "title": "1.1 The Great Train Race 🚆",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 1: The London Gateway 🇬🇧<\/strong> · Forming Questions (Wh- & How) | Verbs: find, check, book, arrive · Level: Easy<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Research<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: You need to book a train ticket from <strong>London Paddington to Bath Spa<\/strong> for <strong>next Saturday<\/strong> at a time between 9:00 AM and 12:00 PM. Use the search box to find the <strong>cheapest off-peak single ticket price<\/strong>. Write the price (with currency) and the name of the rail company below.<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>find (V), ticket (N), price (N), rail company (N)<\/p><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">🔎 How to research<\/h3><p>Use the search links on the right (or any search engine). Write the facts you find in your own words — don't copy whole sentences.<\/p><\/div>",
-  "resources": [
-   {
-    "type": "web",
-    "text": "cheapest train ticket London Paddington to Bath Spa next Saturday"
-   }
-  ]
- },
- {
-  "title": "1.2 Forming a Clear Question ❓",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 1: The London Gateway 🇬🇧<\/strong> · Forming Questions (Wh- & How) | Verbs: find, check, book, arrive · Level: Easy<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Based on your research, write a short email (min 20 words) to a friend. Ask them if they agree with your choice of train ticket. Your response must include: <strong>1. A question using 'Wh-' (e.g., Which, What) and 2. A question using 'How'<\/strong>. Focus on clear communication.<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>write (V), ask (V), question (N), agreement (N)<\/p><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "12 Forming a Clear Question English"
-   }
-  ]
- },
- {
-  "title": "2.0 Arrival in Bath",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 2: A Stay in Bath 🏛️<\/strong> · Descriptive Adjectives & Adverbs | Verbs: describe, compare, recommend, require · Level: Medium<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>Bath is famous for its Georgian architecture and Roman Baths. Now that you've arrived, you need to find a place to stay and eat. We'll focus on using descriptive language to evaluate options.<\/p><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "20 Arrival in Bath English"
-   }
-  ]
- },
- {
-  "title": "2.0.5 Lesson: Formal Inquiry and Descriptive Power",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 2: A Stay in Bath 🏛️<\/strong> · Descriptive Adjectives & Adverbs | Verbs: describe, compare, recommend, require · Level: Medium<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <p>When dealing with accommodation owners or service providers, especially via email, using the appropriate level of formality is key to professionalism.<\/p>\n                            \n                            <h3>Writing Tip: Formal vs. Informal<\/h3>\n                            <p>Emails to businesses (like a B&B) should be <strong>formal<\/strong>. This means:<\/p>\n                            <ul>\n                                <li><strong>Avoid contractions<\/strong> (e.g., use <em>I would<\/em> instead of <em>I'd<\/em>).<\/li>\n                                <li>Use polite phrases like: <em>I would be grateful if you could...<\/em>, <em>I am writing to inquire about...<\/em>, and <em>Could you please confirm...<\/em><\/li>\n                                <li>End with a formal sign-off: <em>Sincerely<\/em>, <em>Yours faithfully<\/em>, or <em>Best regards<\/em>.<\/li>\n                            <\/ul>\n                            \n\n                            <h3>Vocabulary Focus: Descriptive Adjectives<\/h3>\n                            <p>To write engaging reviews or inquiries about lodging, you need strong adjectives:<\/p>\n                            <ul>\n                                <li><strong>Architecture:<\/strong> <em>Georgian, stunning, period, quaint, iconic.<\/em><\/li>\n                                <li><strong>Service/Atmosphere:<\/strong> <em>Welcoming, attentive, impeccable, relaxed, charming.<\/em><\/li>\n                                <li><strong>Location:<\/strong> <em>Convenient, central, secluded, peaceful, accessible.<\/em><\/li>\n                            <\/ul>\n                            <p class=\"mt-4 p-3 bg-blue-900/40 rounded-lg text-sm\">\n                                <strong>Challenge:<\/strong> When you search for your B&B, pay attention to the reviews. Circle 5 descriptive adjectives the reviewer used and try to use them in your next task!\n                            <\/p>\n                        <\/div><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "205 Lesson Formal Inquiry and Descriptive Power English"
-   }
-  ]
- },
- {
-  "title": "2.1 B&B Description Challenge 📝",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 2: A Stay in Bath 🏛️<\/strong> · Descriptive Adjectives & Adverbs | Verbs: describe, compare, recommend, require · Level: Medium<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Research<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Search for a highly-rated <strong>Bed & Breakfast (B&B) in Bath, UK<\/strong>. Find one that costs less than £120 per night. In the box below, write a short, <strong>3-sentence description of the B&B<\/strong> using at least <strong>three different descriptive adjectives<\/strong> (e.g., 'charming', 'convenient', 'spacious'). Include its real address.<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>describe (V), bed (N), breakfast (N), address (N), adjective (N)<\/p><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">🔎 How to research<\/h3><p>Use the search links on the right (or any search engine). Write the facts you find in your own words — don't copy whole sentences.<\/p><\/div>",
-  "resources": [
-   {
-    "type": "web",
-    "text": "best B&B in Bath under £120 per night"
-   }
-  ]
- },
- {
-  "title": "2.2 Formal Inquiry Letter 📧",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 2: A Stay in Bath 🏛️<\/strong> · Descriptive Adjectives & Adverbs | Verbs: describe, compare, recommend, require · Level: Medium<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Write a <strong>formal opening paragraph<\/strong> (min 20 words) for an email to the B&B owner, inquiring about parking availability and breakfast times. Use formal language (e.g., 'I would be grateful if you could...') and a <strong>complex sentence structure<\/strong> (e.g., using 'although' or 'because').<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>inquire (V), parking (N), availability (N), gratitude (N)<\/p><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "22 Formal Inquiry Letter English"
-   }
-  ]
- },
- {
-  "title": "3.0 Journey to Bristol",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 3: Bristol's Culture & Cost 🎨<\/strong> · Tenses (Past Simple & Future) | Verbs: visit, explore, cost, plan, decide · Level: Hard<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>Bristol, known for its creative atmosphere and maritime history, is your next stop. This quest requires more complex planning and communication skills. We'll focus on tenses for scheduling.<\/p><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "30 Journey to Bristol English"
-   }
-  ]
- },
- {
-  "title": "3.0.5 Lesson: Scheduling with Tenses",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 3: Bristol's Culture & Cost 🎨<\/strong> · Tenses (Past Simple & Future) | Verbs: visit, explore, cost, plan, decide · Level: Hard<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <p>When planning an itinerary or discussing history, you must be precise with verb tenses to clearly indicate <em>when<\/em> an action occurred.<\/p>\n                            \n                            <h3>Grammar Focus: Past Simple<\/h3>\n                            <p>Use the <strong>Past Simple<\/strong> to discuss completed actions or events at a specific time in the past (like historical facts or last week's travel). Remember irregular verbs!<\/p>\n                            <ul>\n                                <li><strong>Structure:<\/strong> Subject + Verb (Past Form) + Object/Time.<\/li>\n                                <li><strong>Example:<\/strong> Isambard Kingdom Brunel <em>designed<\/em> the SS Great Britain. / We <em>took<\/em> the train from London.<\/li>\n                            <\/ul>\n                            \n                            <h3>Grammar Focus: Future Tenses<\/h3>\n                            <p>We use different forms for the future, depending on certainty:<\/p>\n                            <ul>\n                                <li><strong>'Will' / 'Be going to':<\/strong> For definite plans or decisions (e.g., We <strong>will visit<\/strong> the museum tomorrow).<\/li>\n                                <li><strong>'Might' / 'Could' / 'May':<\/strong> For possibilities or uncertain plans (e.g., We <strong>might explore<\/strong> the harbour if the weather is nice).<\/li>\n                            <\/ul>\n                            [Image of a timeline illustrating the correct use of Past Simple and Future Tenses]\n\n                            <h3>Conditional Sentences (First Conditional)<\/h3>\n                            <p>The First Conditional is vital for planning based on variables (like weather or time): <strong>If + Present Simple, Will + Verb.<\/strong><\/p>\n                            <p>Example: <em>If<\/em> the museum is closed, we <em>will go<\/em> to the market instead.<\/p>\n                        <\/div><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "305 Lesson Scheduling with Tenses English"
-   }
-  ]
- },
- {
-  "title": "3.1 Museum Opening Times & Past Tense 🕰️",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 3: Bristol's Culture & Cost 🎨<\/strong> · Tenses (Past Simple & Future) | Verbs: visit, explore, cost, plan, decide · Level: Hard<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Research<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Find the <strong>opening hours and entrance fee for the Brunel's SS Great Britain museum in Bristol<\/strong>. Write down the hours, the fee (with currency), and then write one sentence in the <strong>Past Simple tense<\/strong> about a famous ship built by Brunel (you may need a second search for the sentence).<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>find (V), open (V), museum (N), fee (N), history (N)<\/p><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">🔎 How to research<\/h3><p>Use the search links on the right (or any search engine). Write the facts you find in your own words — don't copy whole sentences.<\/p><\/div>",
-  "resources": [
-   {
-    "type": "web",
-    "text": "Brunel's SS Great Britain opening hours and price"
-   },
-   {
-    "type": "web",
-    "text": "Isambard Kingdom Brunel famous ships"
-   }
-  ]
- },
- {
-  "title": "3.2 Future Plans & Conditional Sentences 🔮",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 3: Bristol's Culture & Cost 🎨<\/strong> · Tenses (Past Simple & Future) | Verbs: visit, explore, cost, plan, decide · Level: Hard<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: You are discussing tomorrow's plans. Write a full, cohesive paragraph (min 20 words) about what you <strong>will do<\/strong> and what you <strong>might do<\/strong> in Bristol. Include at least <strong>one conditional sentence<\/strong> (e.g., 'If it rains, we will...').<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>will (V), might (V), plan (N), weather (N), sentence (N)<\/p><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "32 Future Plans  Conditional Sentences English"
-   }
-  ]
- },
- {
-  "title": "4.0 Final Destination: Edinburgh",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 4: Edinburgh & Final Report 📊<\/strong> · Cohesive Devices & Summary Writing | Verbs: summarize, calculate, present, recommend · Level: Expert<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>You've made it to the beautiful capital of Scotland! The final challenge is to compile all your research into a cohesive report, demonstrating your mastery of English vocabulary and structure.<\/p><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "40 Final Destination Edinburgh English"
-   }
-  ]
- },
- {
-  "title": "4.0.5 Lesson: Building Cohesion in Reports",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 4: Edinburgh & Final Report 📊<\/strong> · Cohesive Devices & Summary Writing | Verbs: summarize, calculate, present, recommend · Level: Expert<\/p><div class=\"info-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📘 Lesson<\/h3><div class=\"lesson-content\">\n                            <p>A 'cohesive' report is one where all the sentences and paragraphs flow logically together, making it easy for the reader to follow your argument or information.<\/p>\n                            \n                            <h3>Writing Focus: Cohesive Devices (Linking Words)<\/h3>\n                            <p>These words act like bridges, connecting your ideas. Use them at the beginning of sentences to transition between points:<\/p>\n                            <ul>\n                                <li><strong>Adding Information:<\/strong> <em>Furthermore, Moreover, In addition, Additionally.<\/em><\/li>\n                                <li><strong>Contrasting:<\/strong> <em>However, Nevertheless, On the other hand, Conversely.<\/em><\/li>\n                                <li><strong>Concluding/Summarizing:<\/strong> <em>In conclusion, To summarize, Therefore, In essence.<\/em><\/li>\n                                <li><strong>Sequencing:<\/strong> <em>First, Next, Finally.<\/em><\/li>\n                            <\/ul>\n                            \n\n                            <h3>Vocabulary Focus: Finance and Budgeting<\/h3>\n                            <p>Your report must use precise financial terms:<\/p>\n                            <ul>\n                                <li><strong>Budget:<\/strong> The total money available/spent.<\/li>\n                                <li><strong>Expenditure:<\/strong> The act of spending money.<\/li>\n                                <li><strong>Estimated Cost:<\/strong> The predicted price.<\/li>\n                                <li><strong>Total Sum:<\/strong> The final amount when everything is added together.<\/li>\n                            <\/ul>\n                            <p class=\"mt-4 p-3 bg-blue-900/40 rounded-lg text-sm\">\n                                <strong>Report Structure Tip:<\/strong> Your formal summary should follow a pattern: Introduction (purpose of the report) $\to$ Body (route, activities) $\to$ Conclusion (summary of costs and final recommendation).\n                            <\/p>\n                        <\/div><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "405 Lesson Building Cohesion in Reports English"
-   }
-  ]
- },
- {
-  "title": "4.1 Calculating the Total Budget 💰",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 4: Edinburgh & Final Report 📊<\/strong> · Cohesive Devices & Summary Writing | Verbs: summarize, calculate, present, recommend · Level: Expert<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Research<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: You have found a train ticket for £75 and accommodation for £120. Now, find the <strong>cost of a standard adult ticket for Edinburgh Castle<\/strong>. Then, write the <strong>TOTAL cost of all three items<\/strong> (Train + B&B + Castle) in the box, using the correct currency symbol. (Example: £220.50)<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>calculate (V), cost (N), budget (N), ticket (N), castle (N)<\/p><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">🔎 How to research<\/h3><p>Use the search links on the right (or any search engine). Write the facts you find in your own words — don't copy whole sentences.<\/p><\/div>",
-  "resources": [
-   {
-    "type": "web",
-    "text": "Edinburgh Castle standard adult ticket price"
-   }
-  ]
- },
- {
-  "title": "4.2 The Grand Summary Report ✍️",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 4: Edinburgh & Final Report 📊<\/strong> · Cohesive Devices & Summary Writing | Verbs: summarize, calculate, present, recommend · Level: Expert<\/p><div class=\"warning-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-yellow-300 mb-2\">✍️ ENGLISH SKILLS TASK: Writing<\/h3><ol class=\"list-decimal list-inside ml-4 space-y-2\"><li>Task: Write a <strong>formal summary report<\/strong> (min 30 words) of your entire trip plan. Use at least <strong>three cohesive devices<\/strong> (e.g., 'Furthermore', 'However', 'In conclusion'). Summarize the route, main activity, and total budget. This is the final task!<\/li><\/ol><\/div><div class=\"tip-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-green-300 mb-2\">💡 Key words to use<\/h3><p>summarize (V), conclude (V), report (N), route (N), budget (N)<\/p><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "42 The Grand Summary Report English"
-   }
-  ]
- },
- {
-  "title": "5.0 Journey Complete! 🎉",
-  "content": "<p class=\"text-sm text-blue-300 mb-3\">🧭 <strong>QUEST 4: Edinburgh & Final Report 📊<\/strong> · Cohesive Devices & Summary Writing | Verbs: summarize, calculate, present, recommend · Level: Expert<\/p><div class=\"story-box p-4 rounded-lg mb-4\"><h3 class=\"text-xl font-bold text-blue-300 mb-2\">📖 Read<\/h3><p>You have finished the course! Your ability to research, synthesize information, and write clearly in English has greatly improved. You are now ready for your next real-world adventure. Check your final XP score!<\/p><\/div>",
-  "resources": [
-   {
-    "type": "youtube",
-    "text": "50 Journey Complete English"
-   }
-  ]
- }
-];
-
-        function render() {
-            const slide = SLIDES[state.slide];
-            document.getElementById('slide-title').textContent = slide.title;
-            document.getElementById('slide-content').innerHTML = slide.content;
-            document.getElementById('quest-display').textContent = `${state.slide+1}/${SLIDES.length}`;
-            document.getElementById('progress-bar').style.width = `${((state.slide+1)/SLIDES.length)*100}%`;
-            document.getElementById('prev-btn').disabled = state.slide === 0;
-            document.getElementById('next-btn').disabled = state.slide >= SLIDES.length-1;
-            
-            const panel = document.getElementById('resources-panel');
-            panel.innerHTML = slide.resources.map(r => `
-                <div style="background-color: #2a3245; border-left: 3px solid #6a8ea8;" class="p-3 rounded-lg">
-                    <p class="text-sm font-semibold ${r.type==='youtube'?'text-red-400':'text-blue-400'}">
-                        <i class="fab fa-${r.type==='youtube'?'youtube':'wikipedia-w'} mr-2"></i>${r.type==='youtube'?'YouTube':'Wikipedia'}
-                    </p>
-                    <p class="text-xs text-gray-300 mt-1">${r.text}</p>
-                </div>
-            `).join('');
-            
-            document.getElementById('slide-container').scrollTop = 0;
-        }
-
-        function nextSlide() { if(state.slide < SLIDES.length-1) { state.slide++; render(); } }
-        function prevSlide() { if(state.slide > 0) { state.slide--; render(); } }
-        
-        document.addEventListener('DOMContentLoaded', render);
-        document.addEventListener('keydown', e => {
-            if(e.key === 'ArrowRight') nextSlide();
-            if(e.key === 'ArrowLeft') prevSlide();
-        });
-    </script>
-<footer style="max-width:80rem;margin:30px auto 10px;text-align:center;font:13px system-ui,sans-serif;color:#9fb3c8"><a href="../index.html" style="color:#9ecbff">I Learn English Here</a> · An Online Business Awareness project · Practice material for learning English.</footer>
-    <script src="../assets/ileh.js" defer></script>
-    <script src="../assets/mission.js" defer></script>
-    <script src="https://pl31391907.profitableratecpmnetwork.com/61/77/5a/61775a6c292429a81ddb143525c67ebc.js"></script>
+};
+</script>
+<script src="../assets/mission-kit.js"></script>
+<script src="../assets/ileh.js" defer></script>
+<script src="https://pl31391907.profitableratecpmnetwork.com/61/77/5a/61775a6c292429a81ddb143525c67ebc.js"></script>
 </body>
 </html>
