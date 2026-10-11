@@ -85,19 +85,29 @@
 
   /* ---------- progress ---------- */
   function addXP(n) { S.xp += n; save(); $("#mk-xp").textContent = "⭐ " + S.xp + " XP"; }
+  /* every step must be finished before the next one opens */
+  function stepDone(st) {
+    if (S.done[S.i]) return true;
+    if (st.t === "intro" || st.t === "summary") return true;
+    if (st.t === "teach" || st.t === "story") { var n = (st.reveal || []).length; if (!n) { S.done[S.i] = 1; return true; } return ((S.rv || {})[S.i] || 0) >= n; }
+    return false;
+  }
+  function needText(st) {
+    return { mcq: "Choose the right answer", gap: "Type the right answer", write: "Finish the checklist", research: "Finish the checklist", video: "Write your notes", speak: "Record or write what you said", teach: "Tap every card to continue", story: "Tap every card to continue", text: "Listen or tick 'I have read it'" }[st.t] || "Finish this step";
+  }
   function upd() {
     $("#mk-prog").style.width = Math.round(S.i / (steps.length - 1) * 100) + "%";
     $("#mk-xp").textContent = "⭐ " + S.xp + " XP";
     $("#mk-pos").textContent = (S.i + 1) + " / " + steps.length;
     $("#mk-back").disabled = S.i === 0;
-    var st = steps[S.i], gated = ((st.t === "mcq" || st.t === "gap") && !S.done[S.i]) || (!isOpen() && S.i >= PREVIEW - 1);
+    var st = steps[S.i], gated = !stepDone(st) || (!isOpen() && S.i >= PREVIEW - 1);
     $("#mk-next").disabled = gated;
-    $("#mk-next").textContent = S.i === steps.length - 1 ? "🏁 Finish" : (!isOpen() && S.i >= PREVIEW - 1 ? "🔒 Unlock to continue" : gated ? "Answer to continue" : "Next →");
+    $("#mk-next").textContent = S.i === steps.length - 1 ? "🏁 Finish" : (!isOpen() && S.i >= PREVIEW - 1 ? "🔒 Unlock to continue" : gated ? "🔒 " + needText(st) : "Next →");
   }
   $("#mk-back").addEventListener("click", function () { if (S.i > 0) { S.i--; save(); show(); } });
   $("#mk-next").addEventListener("click", function () {
     var st = steps[S.i];
-    if ((st.t === "write" || st.t === "research") && !S.done[S.i] && !confirm("Your answer isn't finished yet (see the checklist). Move on anyway? You can come back later.")) return;
+    if (!stepDone(st)) return;
     if (S.i < steps.length - 1) { S.i++; save(); show(); } else { location.href = M.home || "../mission.html"; }
   });
 
@@ -117,7 +127,7 @@
     return '<div class="mk-card">' + head(st, st.kicker || "Learn first") + (st.html || "") + (st.formula ? '<div class="mk-formula">' + st.formula + '</div>' : "") +
       vocabTable(st.vocab) + reveal(st.reveal) + (st.tip ? '<div class="mk-tip">💡 ' + st.tip + '</div>' : "") + '</div>';
   };
-  R.text = function (st) { return '<div class="mk-card">' + head(st, st.kicker || "Read") + (st.html || "") + '<div class="mk-text">' + st.text + '</div><button class="mk-btn" data-say="' + esc(strip(st.text)) + '">🔊 Listen</button> <button class="mk-btn" data-sayslow="' + esc(strip(st.text)) + '">🐢 Listen slowly</button>' + vocabTable(st.vocab) + '</div>'; };
+  R.text = function (st) { return '<div class="mk-card">' + head(st, st.kicker || "Read") + (st.html || "") + '<div class="mk-text">' + st.text + '</div><button class="mk-btn" data-say="' + esc(strip(st.text)) + '">🔊 Listen</button> <button class="mk-btn" data-sayslow="' + esc(strip(st.text)) + '">🐢 Listen slowly</button><p><label style="font-weight:600"><input type="checkbox" id="mk-rd"' + (S.done[S.i] ? " checked" : "") + '> I have read the whole text</label></p>' + vocabTable(st.vocab) + '</div>'; };
   R.mcq = function (st, i) {
     if (!st._o) { var idx = shuffle(st.o.map(function (_, k) { return k; })); st._o = idx; }
     return '<div class="mk-card">' + head(st, st.kicker || "Check your understanding") + '<p><b>' + st.q + '</b></p><div class="mk-opts">' +
@@ -144,7 +154,7 @@
       '<h3>Record yourself (only you can hear it)</h3><div class="mk-rec"><button class="mk-btn gold" id="mk-rec">🎙 Start recording</button><span id="mk-rt"></span></div><audio id="mk-au" controls style="display:none;width:100%"></audio>' +
       '<p style="font-size:.85rem;color:#46625e">Studying with a teacher or group? Record a voice note in your messaging app instead and send it there.</p>' +
       (st.checklist ? '<details class="mk-d" open><summary>✅ Your recording must include</summary><ul>' + st.checklist.map(function (c) { return "<li>" + c + "</li>"; }).join("") + '</ul></details>' : "") +
-      '<h3>Write what you said (optional, for your answer sheet)</h3>' + writer(Object.assign({}, st, { model: null, starters: null, checklist: null })) + '</div>';
+      '<h3>No microphone? Write what you would say instead (12+ words)</h3>' + writer(Object.assign({}, st, { model: null, starters: null, checklist: null })) + '</div>';
   };
   R.video = function (st) {
     return '<div class="mk-card">' + head(st, st.kicker || "Watch & learn") + (st.html || "") + '<div class="mk-task">' + st.task + '</div>' +
@@ -276,7 +286,7 @@
     }
     $("#mk-drb").onclick = function (e) {
       var o = e.target.closest("[data-k]"); if (o) { ans[n] = +o.dataset.k; q1(); return; }
-      if (e.target.closest("[data-tn]")) { grab(); if (n < qs.length - 1) { n++; q1(); } else mark(); }
+      if (e.target.closest("[data-tn]")) { grab(); if (ans[n] == null || String(ans[n]).trim() === "") { var w = $("#mk-drb .mk-tb"); if (w && !$("#mk-need")) w.insertAdjacentHTML("beforebegin", '<div class="mk-fb no" id="mk-need">Answer this question first.</div>'); return; } if (n < qs.length - 1) { n++; q1(); } else mark(); }
       if (e.target.closest("[data-tb]")) { grab(); n--; q1(); }
       if (e.target.closest("[data-again]")) { n = 0; ans = []; qs = shuffle(T.slice(0, T.length - 2)).concat(T.slice(-2)); q1(); }
       if (e.target.closest("[data-go]")) { $("#mk-dr").classList.remove("on"); $("#mk-drb").onclick = null; S.i = PREVIEW; save(); show(); }
@@ -312,7 +322,8 @@
     $$("[data-say]", box).forEach(function (b) { b.addEventListener("click", function () { say(b.getAttribute("data-say")); }); });
     $$("[data-sayslow]", box).forEach(function (b) { b.addEventListener("click", function () { say(b.getAttribute("data-sayslow"), 0.65); }); });
     $$("[data-open]", box).forEach(function (b) { b.addEventListener("click", function () { open(b.getAttribute("data-open")); }); });
-    $$(".mk-reveal button", box).forEach(function (b) { b.addEventListener("click", function () { if (!b.classList.contains("on")) { b.classList.add("on"); addXP(1); } }); });
+    $$(".mk-reveal button", box).forEach(function (b, k) { if (((S.rvk || {})[S.i] || {})[k]) b.classList.add("on"); b.addEventListener("click", function () { if (!b.classList.contains("on")) { b.classList.add("on"); addXP(1); S.rvk = S.rvk || {}; S.rvk[S.i] = S.rvk[S.i] || {}; S.rvk[S.i][k] = 1; S.rv = S.rv || {}; S.rv[S.i] = Object.keys(S.rvk[S.i]).length; if (stepDone(st)) S.done[S.i] = 1; save(); upd(); } }); });
+    if (st.t === "text") { var rd = $("#mk-rd"), mark = function () { S.done[S.i] = 1; if (rd) rd.checked = true; save(); upd(); }; if (rd) rd.addEventListener("change", function () { if (rd.checked) { addXP(3); mark(); } }); $$("[data-say],[data-sayslow]", box).forEach(function (b) { b.addEventListener("click", mark); }); }
     if (st.t === "mcq") {
       if (S.done[S.i]) { var rb = box.querySelector('[data-k="' + st.a + '"]'); if (rb) rb.classList.add("right"); $("#mk-fb").innerHTML = '<div class="mk-fb ok">✅ ' + (st.why || "Correct!") + '</div>'; }
       $$(".mk-opts button", box).forEach(function (b) { b.addEventListener("click", function () {
@@ -338,8 +349,8 @@
         $("#mk-wc").textContent = words(t).length + " words";
         var list = checks(st, t), ck = $("#mk-ck");
         if (ck) ck.innerHTML = list.map(function (c) { return '<li class="' + (c[0] ? "ok" : "no") + '">' + (c[0] ? "✅ " : "⬜ ") + esc(c[1]) + '</li>'; }).join("");
-        var ready = list.length ? list.every(function (c) { return c[0]; }) : words(t).length >= 3;
-        if (ready && !S.done[S.i]) { S.done[S.i] = 1; addXP(st.t === "research" ? 20 : 15); save(); }
+        var ready = list.length ? list.every(function (c) { return c[0]; }) : words(t).length >= (st.t === "speak" ? 12 : 3);
+        if (ready && !S.done[S.i]) { S.done[S.i] = 1; addXP(st.t === "research" ? 20 : 15); save(); upd(); }
         if (st.model && $("#mk-modelwrap")) $("#mk-modelwrap").innerHTML = words(t).length >= 5 ? '<details class="mk-d"><summary>📝 Compare with a model answer</summary><div class="mk-model">' + st.model + '</div><p style="font-size:.85rem">Don\'t copy it — notice one idea or phrase you could add to yours.</p></details>' : '<p style="font-size:.85rem;color:#46625e">📝 A model answer appears here after you write a few words.</p>';
       };
       w.addEventListener("input", live); live();
@@ -371,7 +382,7 @@
         if (!navigator.mediaDevices || !window.MediaRecorder) { rt.textContent = "Recording isn't supported here — use your phone's voice-note app."; return; }
         navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) {
           chunks = []; mr = new MediaRecorder(s); mr.ondataavailable = function (e) { chunks.push(e.data); };
-          mr.onstop = function () { s.getTracks().forEach(function (tr) { tr.stop(); }); clearInterval(timer); au.src = URL.createObjectURL(new Blob(chunks)); au.style.display = "block"; rb2.textContent = "🎙 Record again"; rt.textContent = "Listen back. Happy? Great!"; if (!S.done[S.i]) { S.done[S.i] = 1; addXP(15); save(); } };
+          mr.onstop = function () { s.getTracks().forEach(function (tr) { tr.stop(); }); clearInterval(timer); au.src = URL.createObjectURL(new Blob(chunks)); au.style.display = "block"; rb2.textContent = "🎙 Record again"; rt.textContent = "Listen back. Happy? Great!"; if (!S.done[S.i]) { S.done[S.i] = 1; addXP(15); save(); upd(); } };
           mr.start(); t0 = Date.now(); rb2.textContent = "⏹ Stop"; timer = setInterval(function () { var sec = Math.round((Date.now() - t0) / 1000); rt.textContent = "Recording… " + sec + "s" + (st.limit && sec > st.limit ? " (over " + st.limit + "s!)" : ""); }, 250);
         }).catch(function () { rt.textContent = "Microphone blocked. Allow it in your browser, or use your phone's voice-note app."; });
       });
