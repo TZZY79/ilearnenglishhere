@@ -7,19 +7,19 @@
 (function () {
   "use strict";
   var MISSIONS = window.ILEH_MISSIONS = [
-    { id: "kpop", icon: "🎤", title: "K-Pop Love Stories", level: "A2–B1", min: 0, parts: 1, soon: true, blurb: "Fun reading, vocabulary and role-play about a pop star's love story — the perfect first mission." },
-    { id: "britain", icon: "🚆", title: "The Great British Adventure", level: "B1", min: 0, parts: 1, blurb: "Plan a real trip from London to Edinburgh: train tickets, B&Bs, museums and formal enquiries." },
-    { id: "precision", icon: "🎯", title: "The Precision Strike: Writing Mission", level: "B1–B2", min: 25, parts: 1, soon: true, blurb: "Short, sharp writing and speaking challenges that train clear, precise English." },
-    { id: "creator", icon: "🚀", title: "Creator Academy", level: "B1–B2", min: 30, parts: 1, blurb: "Plan an online channel in English: your niche, your audience, persuasive posts and a content plan." },
-    { id: "royal", icon: "👑", title: "The Royal Saga", level: "B2", min: 40, parts: 1, blurb: "1,000 years of the British monarchy — history vocabulary, debate and the royal way of speaking." },
-    { id: "house", icon: "🏠", title: "Buying a Home in England", level: "B2–C1", min: 50, parts: 3, blurb: "Follow two buyers for 12 weeks: mortgages, solicitors, legal forms, exchange and completion." },
-    { id: "executive", icon: "💼", title: "The Executive Ascent: Job Interview English", level: "C1", min: 60, parts: 1, blurb: "Analyse job adverts, write achievement statements and prepare for professional interviews." }
+    { id: "kpop", icon: "🎤", title: "Love Stories: Romeo & Juliet × K-Pop", level: "A2–B1", min: 0, parts: 1, blurb: "Relationship vocabulary, past-simple storytelling and role play — a classic love story meets a modern K-pop drama. Open to everyone." },
+    { id: "precision", icon: "🎯", title: "AAA: Apex Articulation Arena", level: "B1+", min: 20, parts: 1, blurb: "13 precision writing and speaking challenges with live checkers: exact word counts, banned letters, secret codes and voice notes." },
+    { id: "britain", icon: "🚆", title: "The Great British Adventure", level: "B1–B2", min: 25, parts: 1, blurb: "Plan a real trip from London to Bath, Bristol and Edinburgh using real train, hotel and museum websites." },
+    { id: "creator", icon: "🚀", title: "Creator Academy: Series 1", level: "B2", min: 30, parts: 1, blurb: "Plan an online channel in English: niche, hooks, platforms, SEO, advertising rules and a 90-day roadmap." },
+    { id: "royal", icon: "👑", title: "The Royal Saga", level: "B2–C1", min: 40, parts: 1, blurb: "1,000 years of the British monarchy — the passive for history, formal and diplomatic English, research and debate." },
+    { id: "executive", icon: "💼", title: "The Executive Ascent: Job Interview English", level: "C1", min: 45, parts: 1, blurb: "Decode real job adverts, write CV points with numbers, send a professional application and answer with STAR." },
+    { id: "house", icon: "🏠", title: "Buying a Home in England", level: "C1–C2 · hardest", min: 50, parts: 3, blurb: "The final challenge. Follow two buyers for 12 weeks: market, money, solicitors, surveys, forms, exchange and completion." }
   ];
   function sig(m) { var s = m.score + "|" + m.date + "|ILEH-missions-2026", h = 5381; for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; return h.toString(36); }
   window.ILEH_missionSig = sig;
   function testPct(P) { var m = P.mission; if (!m || m.sig !== sig(m)) return -1; return m.best != null ? m.best : m.pct; }
   window.ILEH_missionPct = testPct;
-  window.ILEH_missionUnlocked = function (P, mm) { return mm.min === 0 || testPct(P) >= mm.min; };
+  window.ILEH_missionUnlocked = function (P, mm) { if (mm.min === 0 || testPct(P) >= mm.min) return true; try { return !!(JSON.parse(localStorage.getItem("ileh.missions.unlocked") || "{}")[mm.id]); } catch (e) { return false; } };
 
   var I = window.ILEH; if (!I) return;
   var mid = document.body.getAttribute("data-mission"); if (!mid) return;
