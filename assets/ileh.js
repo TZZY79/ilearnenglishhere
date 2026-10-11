@@ -558,3 +558,72 @@
 
 /* OBA Analytics loader — Online Business Awareness (visitor + click stats for Tony's dashboard) */
 (function(){if(window.__obaL)return;window.__obaL=1;var s=document.createElement('script');s.src='https://ilearnenglishhere.academy/assets/oba-analytics.js';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
+
+/* Site navigation on every page — I Learn English Here (Online Business Awareness)
+   Adds the main menu + Home to lesson and mission pages that don't have the site header,
+   a floating ☰ Menu button so nobody gets stuck inside a course (especially on phones),
+   and "Back to the start of this course". */
+(function () {
+  if (window.__ilehNav) return; window.__ilehNav = 1;
+  var me = document.currentScript || Array.prototype.filter.call(document.scripts, function (s) { return /assets\/ileh\.js/.test(s.src); })[0];
+  var B = me ? me.src.replace(/assets\/ileh\.js.*$/, "") : "/";
+  var LINKS = [["🏠 Home", "index.html"], ["🚀 Start Here", "start-here.html"], ["📚 Lessons", "lessons.html"], ["🗺️ Missions", "mission.html"], ["🤖 Coach", "coach.html"], ["🎙 Speak", "speak.html"], ["📖 Story", "english-story.html"], ["❓ FAQ", "faq.html"], ["📕 Books", "books.html"]];
+  var inCourse = /\/(lessons|mission)\//.test(location.pathname) || !!window.MISSION;
+  function css() {
+    var s = document.createElement("style");
+    s.textContent =
+      ".ileh-sitebar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;background:#fff;border-bottom:1px solid #d8e6e2;font:600 14px/1.3 system-ui,-apple-system,'Segoe UI',Arial,sans-serif;position:relative;z-index:40}" +
+      ".ileh-sitebar a.home{color:#132a2e;text-decoration:none;display:flex;align-items:center;gap:6px;white-space:nowrap}" +
+      ".ileh-sitebar a.home b{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:7px;background:#1f7a6c;color:#fff;font-family:Georgia,serif}" +
+      ".ileh-sitebar nav{display:flex;gap:4px 14px;flex-wrap:wrap;justify-content:flex-end}" +
+      ".ileh-sitebar nav a{color:#132a2e;text-decoration:none;font-weight:500}.ileh-sitebar nav a:hover{color:#1f7a6c}" +
+      ".ileh-sitebar button{display:none}" +
+      "@media (max-width:760px){.ileh-sitebar nav{display:none}.ileh-sitebar button{display:inline-block}}" +
+      ".ileh-navbtn{font:700 14px system-ui,-apple-system,'Segoe UI',Arial,sans-serif;border:0;border-radius:999px;background:#132a2e;color:#fff;padding:9px 14px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}" +
+      ".ileh-navfab{position:fixed;left:10px;bottom:78px;z-index:2147483000;opacity:.92;transition:transform .2s}" +
+      ".ileh-navfab.hide{transform:translateX(-160%)}" +
+      ".ileh-navdr{position:fixed;inset:0;z-index:2147483600;background:rgba(19,42,46,.55);display:none;align-items:flex-end;justify-content:center}" +
+      ".ileh-navdr.on{display:flex}" +
+      ".ileh-navdr .p{background:#fff;width:100%;max-width:520px;max-height:85vh;overflow:auto;border-radius:20px 20px 0 0;padding:14px 16px 22px;font:16px/1.4 system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#132a2e}" +
+      ".ileh-navdr h2{font-size:1.05rem;margin:.2rem 0 .6rem}.ileh-navdr .x{float:right;border:0;background:none;font-size:1.6rem;line-height:1;cursor:pointer;color:#46625e}" +
+      ".ileh-navdr .g{display:grid;grid-template-columns:1fr 1fr;gap:8px}" +
+      ".ileh-navdr .g a,.ileh-navdr .r{display:block;text-align:left;padding:11px 12px;border:1.5px solid #d8e6e2;border-radius:12px;color:#132a2e;text-decoration:none;font:600 15px system-ui,-apple-system,'Segoe UI',Arial,sans-serif;background:#f6faf9;cursor:pointer}" +
+      ".ileh-navdr .r{width:100%;margin-top:10px;background:#fff7e8;border-color:#e0a548}" +
+      "@media print{.ileh-sitebar,.ileh-navfab,.ileh-navdr{display:none!important}}";
+    document.head.appendChild(s);
+  }
+  function restart() {
+    if (window.MISSION && window.MISSION.id) {
+      try { var k = "ileh.mk." + window.MISSION.id, S = JSON.parse(localStorage.getItem(k) || "{}"); S.i = 0; localStorage.setItem(k, JSON.stringify(S)); } catch (e) {}
+    }
+    location.href = location.pathname + location.search;
+  }
+  function build() {
+    if (!document.body || document.querySelector(".ileh-sitebar")) return;
+    css();
+    var hasHeader = !!document.querySelector("header.site");
+    var dr = document.createElement("div"); dr.className = "ileh-ui ileh-navdr"; dr.setAttribute("role", "dialog"); dr.setAttribute("aria-label", "Site menu");
+    dr.innerHTML = '<div class="p"><button class="x" aria-label="Close">×</button><h2>Where do you want to go?</h2><div class="g">' +
+      LINKS.map(function (l) { return '<a href="' + B + l[1] + '">' + l[0] + '</a>'; }).join("") + '</div>' +
+      (inCourse ? '<button class="r" data-restart="1">↺ Back to the start of this ' + (window.MISSION ? "mission" : "lesson") + '</button><p style="font-size:.8rem;color:#46625e;margin:.5rem 0 0">' + (window.MISSION ? "Your answers stay saved — you just go back to step 1." : "") + '</p>' : "") + '</div>';
+    document.body.appendChild(dr);
+    function openDr() { dr.classList.add("on"); }
+    dr.addEventListener("click", function (e) { if (e.target === dr || e.target.closest(".x")) dr.classList.remove("on"); if (e.target.closest("[data-restart]")) restart(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") dr.classList.remove("on"); });
+    var bar = null;
+    if (!hasHeader) {
+      bar = document.createElement("header"); bar.className = "ileh-ui ileh-sitebar";
+      bar.innerHTML = '<a class="home" href="' + B + 'index.html" aria-label="I Learn English Here — home"><b>E</b> I Learn English Here</a><nav aria-label="Main">' +
+        LINKS.slice(1).map(function (l) { return '<a href="' + B + l[1] + '">' + l[0].replace(/^\S+\s/, "") + '</a>'; }).join("") + '</nav><button class="ileh-navbtn" type="button">☰ Menu</button>';
+      bar.querySelector("button").addEventListener("click", openDr);
+      var tick = document.querySelector(".ileh-ticker");
+      if (tick && tick.parentNode === document.body) document.body.insertBefore(bar, tick.nextSibling); else document.body.insertBefore(bar, document.body.firstChild);
+    }
+    if (inCourse || !hasHeader) {
+      var fab = document.createElement("button"); fab.type = "button"; fab.className = "ileh-ui ileh-navbtn ileh-navfab"; fab.textContent = "☰ Menu"; fab.setAttribute("aria-label", "Open the site menu");
+      fab.addEventListener("click", openDr); document.body.appendChild(fab);
+      if (bar && "IntersectionObserver" in window) { new IntersectionObserver(function (es) { fab.classList.toggle("hide", es[0].isIntersecting); }).observe(bar); }
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build); else build();
+})();
