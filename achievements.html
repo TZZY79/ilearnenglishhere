@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Awards — Certificates, Skill Keys &amp; Mission Readiness | I Learn English Here</title>
+<meta name="description" content="Your English learning certificates, Skill Keys and mission readiness — saved on your device. Free, no sign-up.">
+<link rel="canonical" href="https://ilearnenglishhere.academy/achievements.html">
+<meta name="robots" content="noindex,follow">
+<meta name="author" content="Online Business Awareness">
+<meta name="theme-color" content="#1f7a6c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f7a6c'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='20' fill='white'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.aw{max-width:1000px;margin:0 auto;padding:4vh 16px}
+.aw h2{margin:2.2rem 0 .6rem}
+.aw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.aw-tile{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 6px 18px rgba(19,42,46,.06)}
+.aw-tile canvas{width:100%;border-radius:8px;border:1px solid var(--line);display:block;margin-bottom:8px}
+.aw-tile b{display:block} .aw-tile small{color:var(--muted)}
+.aw-tile .row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.aw-tile button,.aw-btn{cursor:pointer;border:0;border-radius:999px;padding:.45em .9em;font:700 .82rem system-ui,sans-serif;background:var(--accent);color:#fff}
+.aw-tile button.alt,.aw-btn.alt{background:#fff;color:var(--accent);border:2px solid var(--accent)}
+.aw-bar{height:12px;border-radius:99px;background:#e6efed;overflow:hidden;margin:6px 0}.aw-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}
+.aw-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:1.2rem 0}
+.aw-stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}.aw-stat span{font-size:2rem;display:block}.aw-stat b{font-size:1.5rem}
+.aw-lad{display:grid;gap:10px}.aw-lad .aw-tile{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.aw-lad .ic{font-size:2rem} .aw-lad a{font-weight:700}
+.aw-in{width:100%;padding:.6em .8em;border:2px solid var(--line);border-radius:10px;font:1rem system-ui,sans-serif}
+.aw-empty{background:#fff;border:2px dashed var(--line);border-radius:16px;padding:1.2rem;text-align:center;color:var(--soft)}
+.aw-tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+@media (max-width:600px){.aw-lad .aw-tile{grid-template-columns:auto 1fr}.aw-lad .aw-tile>:last-child{grid-column:1/-1}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a class="brand" href="index.html" aria-label="I Learn English Here — home">
+    <span class="logo"><span class="mark">E</span> I Learn English Here</span>
+    <span class="by">by <img src="assets/oba-logo.svg" alt="Online Business Awareness"></span>
+  </a>
+  <nav class="main" aria-label="Main">
+    <a href="start-here.html">Start Here</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="mission.html">Missions</a>
+    <a href="coach.html">Coach</a>
+    <a href="speak.html">Speak</a>
+    <a href="english-story.html">Story</a>
+    <a href="faq.html">FAQ</a>
+    <a class="nav-cta" href="https://www.udemy.com/course/learn-english-like-a-local-uk-culture-accents-real-life/?referralCode=3CB23BDB35F22F4058F0" target="_blank" rel="noopener">Full Course</a>
+  </nav>
+</header>
+
+<main class="aw">
+  <div class="eyebrow">My Awards</div>
+  <h1>Every step counts. <span>Here's yours.</span></h1>
+  <p style="color:var(--soft);max-width:680px">Finish a lesson → 🥉 Mini Certificate + Skill Keys. Finish a whole collection → 🥈 Silver. Complete a real-life mission → 🥇 Gold. Finish all 3 parts of <i>Buying a Home in England</i> → 🏆 Grand Master. Your awards are saved on this device only — use a progress code to move them.</p>
+  <label style="display:block;max-width:420px;margin-top:1rem"><b>Name on my certificates</b><input class="aw-in" id="aw-name" maxlength="40" placeholder="First name or nickname" data-nosave></label>
+  <div class="aw-stats" id="aw-stats"></div>
+
+  <h2>🎓 My certificates</h2>
+  <div class="aw-grid" id="aw-certs"></div>
+
+  <h2>🗝️ My Skill Keys</h2>
+  <p style="color:var(--soft)">Every lesson gives you keys for the skills it practises. Missions test several skills at once — collect keys to get ready.</p>
+  <div class="aw-grid" id="aw-keys"></div>
+
+  <h2>📚 Collections</h2>
+  <div class="aw-grid" id="aw-cols"></div>
+
+  <h2 id="missions">🗺️ Mission readiness</h2>
+  <p style="color:var(--soft)">Missions are the big challenges: reading, writing, speaking and research all together. The bar shows how many of the Skill Keys each mission needs you already hold. The hardest missions also need the <a href="mission-check.html">readiness test</a>.</p>
+  <div class="aw-lad" id="aw-miss"></div>
+
+  <h2>🔄 Move my progress to another phone</h2>
+  <div class="aw-tile">
+    <p style="margin-top:0">1. On this device: <button class="aw-btn" id="aw-copy">📋 Copy my progress code</button></p>
+    <p>2. On the other device, open this page and paste the code here:</p>
+    <textarea class="aw-in" id="aw-code" rows="3" placeholder="Paste your progress code" data-nosave></textarea>
+    <p><button class="aw-btn alt" id="aw-load">⬆️ Load progress</button> <span id="aw-msg"></span></p>
+  </div>
+</main>
+
+<footer class="site">
+  <a class="oba" href="index.html"><span>An Online Business Awareness project</span><img src="assets/oba-logo.svg" alt="Online Business Awareness"></a>
+  <nav aria-label="Footer">
+    <a href="start-here.html">Start Here</a><a href="lessons.html">Lessons</a><a href="mission.html">Missions</a><a href="coach.html">Coach</a><a href="speak.html">Speak</a><a href="english-story.html">Story</a><a href="faq.html">FAQ</a><a href="books.html">Books</a><a href="achievements.html">🏆 My Awards</a>
+    <a href="https://www.udemy.com/course/learn-english-like-a-local-uk-culture-accents-real-life/?referralCode=3CB23BDB35F22F4058F0" target="_blank" rel="noopener">Full Course</a>
+  </nav>
+  &copy; 2026 I Learn English Here
+</footer>
+<script>
+(function(){
+function go(){
+  var RW=window.ILEH_RW; if(!RW) return setTimeout(go,120);
+  var R=RW.data,esc=RW.esc;
+  var ni=document.getElementById('aw-name'); ni.value=R.name||'';
+  ni.addEventListener('input',function(){R.name=ni.value.trim().slice(0,40);R.certs.forEach(function(c){c.name=R.name;});RW.save();certs();});
+  var lessons=Object.keys(RW.L).filter(function(k){return R.done[k];}).length, miss=Object.keys(RW.M).filter(function(k){return R.done[k];}).length, keys=0; for(var k in R.keys) keys+=R.keys[k];
+  var streak=0; try{streak=(JSON.parse(localStorage.getItem('ileh.v1'))||{}).streak||0;}catch(e){}
+  document.getElementById('aw-stats').innerHTML=[['🎓',R.certs.length,'certificates'],['📘',lessons+' / '+Object.keys(RW.L).length,'lessons done'],['🗺️',miss+' / '+Object.keys(RW.M).length,'mission parts done'],['🗝️',keys,'Skill Keys'],['🔥',streak,'day streak']].map(function(s){return '<div class="aw-stat"><span>'+s[0]+'</span><b>'+s[1]+'</b><br><small>'+s[2]+'</small></div>';}).join('');
+  function certs(){
+    var box=document.getElementById('aw-certs'); var order=['grand','mission','coll','mini'];
+    var list=R.certs.slice().sort(function(a,b){return order.indexOf(a.type)-order.indexOf(b.type);});
+    if(!list.length){box.innerHTML='<div class="aw-empty">No certificates yet. Open any <a href="lessons.html">lesson</a>, work through it, then press <b>Claim my certificate</b> at the bottom. 🥉</div>';return;}
+    box.innerHTML=''; list.forEach(function(c){ if(!c.name&&R.name)c.name=R.name;
+      var t=document.createElement('div');t.className='aw-tile';var cv=RW.drawCert(c);cv.style.width='100%';cv.style.height='auto';t.appendChild(cv);
+      t.insertAdjacentHTML('beforeend','<b>'+RW.TIERS[c.type].medal+' '+esc(c.title)+'</b><small>'+RW.TIERS[c.type].name+' · '+esc(c.date)+'</small><div class="row"><button data-dl>⬇️ Save</button><button class="alt" data-sh>📤 Share</button></div>');
+      t.querySelector('[data-dl]').onclick=function(){RW.downloadCert(c);}; t.querySelector('[data-sh]').onclick=function(){RW.shareCert(c);};
+      box.appendChild(t);});
+  }
+  certs();
+  document.getElementById('aw-keys').innerHTML=Object.keys(RW.SK).map(function(k){var n=R.keys[k]||0,p=Math.min(100,n*10);return '<div class="aw-tile"><b>'+RW.SK[k][0]+' '+RW.SK[k][1]+'</b><div class="aw-bar"><i style="width:'+p+'%"></i></div><small>'+n+' keys'+(n>=10?' · 🌟 strong!':'')+'</small></div>';}).join('');
+  document.getElementById('aw-cols').innerHTML=Object.keys(RW.C).map(function(c){var s=RW.collectionStatus(c),p=Math.round(100*s.done/s.total);return '<div class="aw-tile"><b>'+(s.done===s.total?'🥈 ':'')+esc(RW.C[c].t)+' <small>('+RW.C[c].lvl+')</small></b><small>'+esc(RW.C[c].note)+'</small><div class="aw-bar"><i style="width:'+p+'%"></i></div><small>'+s.done+' / '+s.total+' lessons</small><ul style="margin:.5rem 0 0;padding-left:1.1rem;font-size:.88rem">'+s.ids.map(function(id){return '<li>'+(R.done[id]?'✅ ':'⬜ ')+'<a href="'+RW.L[id].p+'">'+esc(RW.L[id].t)+'</a></li>';}).join('')+'</ul></div>';}).join('');
+  var mp={'precision-1':'mission/precision-1.html','britain-1':'mission/britain-1.html','creator-1':'mission/creator-1.html','royal-1':'mission/royal-1.html','executive-1':'mission/executive-1.html','house-1':'mission/house-1.html','house-2':'mission/house-2.html','house-3':'mission/house-3.html'};
+  document.getElementById('aw-miss').innerHTML=Object.keys(RW.M).map(function(m){var r=RW.readiness(m),d=R.done[m];return '<div class="aw-tile"><span class="ic">'+(d?'🥇':r>=80?'🟢':r>=40?'🟡':'🔒')+'</span><div><b>'+esc(RW.M[m].t)+'</b> <small>'+RW.M[m].lvl+' · tests '+RW.M[m].need.split('').map(function(k){return RW.SK[k][0];}).join(' ')+'</small><div class="aw-bar"><i style="width:'+(d?100:r)+'%"></i></div><small>'+(d?'Completed — Gold Certificate earned!':r+'% of the Skill Keys this mission needs')+'</small></div><a href="'+mp[m]+'">'+(d?'Revisit':'Open')+' →</a></div>';}).join('');
+  document.getElementById('aw-copy').onclick=function(){var c=RW.exportCode(),m=document.getElementById('aw-msg');try{navigator.clipboard.writeText(c).then(function(){m.textContent='✓ Copied — keep it somewhere safe.';});}catch(e){document.getElementById('aw-code').value=c;m.textContent='Copy the code from the box.';}};
+  document.getElementById('aw-load').onclick=function(){var m=document.getElementById('aw-msg');try{RW.importCode(document.getElementById('aw-code').value);m.textContent='✓ Progress loaded!';setTimeout(function(){location.reload();},800);}catch(e){m.textContent='That code didn\'t work — copy the whole code and try again.';}};
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+})();
+</script>
+<script src="assets/ileh.js" defer></script>
+</body>
+</html>
