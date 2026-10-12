@@ -18,6 +18,7 @@
      TG_GROUP   = public link to the group where reviews should appear, e.g. "https://t.me/yourgroup". */
   var REVIEW_EP = "";
   var TG_GROUP = "";
+  var REVIEWS_ON = false; /* Telegram reviews switched off until the next phase — set to true to bring the button back */
 
   /* ===== Skills ===== */
   var SK = { R: ["📖", "Reading"], W: ["✍️", "Writing"], S: ["🗣️", "Speaking"], L: ["👂", "Listening"], G: ["🧩", "Grammar"], V: ["🔤", "Vocabulary"] };
@@ -254,7 +255,7 @@
     var html = head + '<div class="rw-keys" style="justify-content:center">' + keys + "</div>" + missionTeaser +
       (top ? nameRow + '<canvas class="rw-cert" id="rw-cv"></canvas><div class="rw-row" style="justify-content:center"><button class="rw-btn" data-a="dl">⬇️ Save certificate</button><button class="rw-btn alt" data-a="share">📤 Share it</button></div>' : "") +
       '<h3 style="margin-top:1rem">What next? (picked for you)</h3><div class="rw-route">' + routes(feel) + "</div>" +
-      '<div class="rw-row" style="justify-content:center"><button class="rw-btn gold" data-a="review">⭐ Write a review for the group</button><a class="rw-btn alt" href="' + BASE + 'achievements.html">🏆 My awards</a></div>';
+      '<div class="rw-row" style="justify-content:center">' + (REVIEWS_ON ? '<button class="rw-btn gold" data-a="review">⭐ Write a review for the group</button>' : '') + '<a class="rw-btn alt" href="' + BASE + 'achievements.html">🏆 My awards</a></div>';
     openModal(html, function (e) {
       var a = e.target.closest("[data-a]"), s = e.target.closest("[data-share]");
       if (s) { e.preventDefault(); closeModal(); if (window.ILEH && ILEH.openShare) ILEH.openShare(); return; }
