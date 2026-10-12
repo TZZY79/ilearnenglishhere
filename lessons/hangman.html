@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Hangman — Free English Vocabulary Game | I Learn English Here</title>
+<meta name="description" content="Play classic hangman with words from our free English lessons: sports, health, travel in Britain, feelings, jobs and real British slang. Hints, examples and read-aloud. Free, no sign-up.">
+<link rel="canonical" href="https://ilearnenglishhere.academy/lessons/hangman.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Word Hangman — Free English Vocabulary Game">
+<meta property="og:description" content="Guess the word, learn the meaning, hear it in British English. 8 topics, 3 levels.">
+<meta property="og:url" content="https://ilearnenglishhere.academy/lessons/hangman.html">
+<meta name="author" content="Online Business Awareness">
+<meta name="theme-color" content="#1f7a6c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f7a6c'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='20' fill='white'%3EE%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LearningResource","name":"Word Hangman — English Vocabulary Game","description":"Classic hangman with vocabulary from I Learn English Here lessons, with hints, example sentences and British read-aloud.","learningResourceType":"Game","educationalLevel":"A1–B2","inLanguage":"en-GB","isAccessibleForFree":true,"teaches":"English vocabulary and spelling","url":"https://ilearnenglishhere.academy/lessons/hangman.html","provider":{"@type":"Organization","name":"I Learn English Here","url":"https://ilearnenglishhere.academy/","parentOrganization":{"@type":"Organization","name":"Online Business Awareness"}}}
+</script>
+<style>
+:root{--ink:#132a2e;--paper:#f6faf9;--acc:#1f7a6c;--acc-dk:#175f54;--gold:#e0a548;--gold-lt:#ffd68a;--line:#dbe8e5;--soft:#3f5a56;--chalk:#f4efe2;--board1:#132a2e;--board2:#1f4b45;--bad:#e57361}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5}
+a{color:var(--acc)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 16px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--ink);font-weight:700}
+.brand .mark{width:32px;height:32px;border-radius:9px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif}
+.top nav a{margin-left:1rem;text-decoration:none;font-weight:600;font-size:.92rem}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:clamp(1.7rem,4.5vw,2.6rem);margin:.2rem 0 .3rem;line-height:1.15}
+h1 span{color:var(--acc)}
+.sub{color:var(--soft);margin:0 0 1rem}
+.pick{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0}
+.pick button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:.4em .9em;font:600 .88rem inherit;font-family:inherit;cursor:pointer;color:var(--ink)}
+.pick button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.lbl{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--soft);margin-top:.8rem}
+.game{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px;margin-top:16px}
+@media (max-width:820px){.game{grid-template-columns:minmax(0,1fr)}}
+.board{position:relative;background:radial-gradient(ellipse at 30% 20%,var(--board2),var(--board1));border-radius:22px;border:6px solid #8a5a2b;box-shadow:inset 0 0 40px rgba(0,0,0,.35),0 14px 30px rgba(19,42,46,.18);padding:10px;min-height:300px;overflow:hidden}
+.board svg{width:100%;height:auto;display:block}
+.board .ch{stroke:var(--chalk);stroke-width:6;stroke-linecap:round;stroke-linejoin:round;fill:none;filter:url(#chalk)}
+.part{stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset .7s ease}
+.part.on{stroke-dashoffset:0}
+.face{opacity:0;transition:opacity .4s}
+.face.on{opacity:1}
+#man{transform-origin:200px 120px}
+.board.win #man{animation:jump .6s ease-in-out 4}
+.board.win #rope{opacity:0;transition:opacity .3s}
+.board.lose #man{animation:sway 2.4s ease-in-out infinite}
+@keyframes jump{0%,100%{transform:translateY(0)}50%{transform:translateY(-26px)}}
+@keyframes sway{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-3deg)}}
+.lives{position:absolute;top:12px;left:14px;color:var(--gold-lt);font-weight:800;font-size:.9rem;letter-spacing:.05em}
+.score{position:absolute;top:12px;right:14px;color:var(--chalk);font-weight:700;font-size:.9rem;text-align:right}
+.score b{color:var(--gold-lt)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 8px 22px rgba(19,42,46,.07)}
+.cat{display:inline-block;background:#fdf3e1;border:1.5px solid #f0d9a8;border-radius:999px;padding:.2em .8em;font-weight:700;font-size:.82rem}
+.word{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:18px 0 12px;min-height:64px}
+.slot{width:clamp(30px,8vw,46px);height:clamp(42px,10vw,58px);border-bottom:4px solid var(--ink);display:flex;align-items:flex-end;justify-content:center;font:800 clamp(1.4rem,5vw,2.1rem) Georgia,serif;text-transform:uppercase;padding-bottom:2px;color:var(--acc)}
+.slot.sp{border:0;width:16px}
+.slot.show{animation:flip .45s ease}
+.slot.miss{color:var(--bad)}
+@keyframes flip{0%{transform:rotateX(90deg)}100%{transform:none}}
+.hint{background:var(--paper);border-left:4px solid var(--gold);border-radius:10px;padding:.6rem .8rem;margin:.6rem 0;font-size:.95rem}
+.kb{display:grid;gap:6px;margin-top:12px}
+.kb .r{display:flex;justify-content:center;gap:5px}
+.kb button{flex:1 1 0;max-width:46px;min-width:0;height:48px;border:0;border-radius:10px;background:#e8f4f1;color:var(--ink);font:800 1.05rem system-ui,sans-serif;cursor:pointer;box-shadow:0 3px 0 #b9d6d0;transition:transform .1s,background .2s;text-transform:uppercase;touch-action:manipulation}
+.kb button:hover:not(:disabled){transform:translateY(-2px)}
+.kb button:active:not(:disabled){transform:translateY(2px);box-shadow:0 1px 0 #b9d6d0}
+.kb button.ok{background:var(--acc);color:#fff;box-shadow:0 3px 0 var(--acc-dk)}
+.kb button.no{background:#f6d5cf;color:#a8321e;box-shadow:none;opacity:.7}
+.kb button:disabled{cursor:default}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+.btn{cursor:pointer;border:0;border-radius:999px;padding:.65em 1.2em;font:700 .92rem system-ui,sans-serif;background:var(--acc);color:#fff;text-decoration:none;display:inline-block}
+.btn.alt{background:#fff;color:var(--acc);border:2px solid var(--acc)}
+.btn.gold{background:var(--gold);color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:.6rem}
+.result{display:none;margin-top:12px;border-radius:16px;padding:14px;animation:pop .4s cubic-bezier(.2,1.6,.4,1)}
+.result.on{display:block}
+.result.w{background:#e8f4f1;border:2px solid var(--acc)}
+.result.l{background:#fdf0ed;border:2px solid var(--bad)}
+.result h3{margin:0 0 .3rem}
+@keyframes pop{from{transform:scale(.85);opacity:0}to{transform:none;opacity:1}}
+.how{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.how div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}
+.how b{display:block;margin-bottom:.2rem}
+.foot{text-align:center;color:var(--soft);font-size:.85rem;margin-top:30px}
+@media (prefers-reduced-motion:reduce){.board.win #man,.board.lose #man,.slot.show,.shake,.result{animation:none}}
+</style>
+</head>
+<body>
+<div class="top">
+  <a class="brand" href="../index.html"><span class="mark">E</span> I Learn English Here</a>
+  <nav><a href="../lessons.html">All lessons</a><a href="../achievements.html">🏆 Awards</a></nav>
+</div>
+
+<main class="wrap">
+  <h1>Word <span>Hangman</span></h1>
+  <p class="sub">Guess the word one letter at a time before the drawing is finished. Every word comes from our lessons — learn the meaning, hear it in British English and use it in a sentence.</p>
+
+  <div class="lbl">Topic</div>
+  <div class="pick" id="cats"></div>
+  <div class="lbl">Level</div>
+  <div class="pick" id="lvls">
+    <button data-l="1" class="on">🌱 Easy — hint + first letter</button>
+    <button data-l="2">🌿 Medium — hint</button>
+    <button data-l="3">🏔️ Hard — no free hint</button>
+  </div>
+
+  <div class="game">
+    <div class="board" id="board">
+      <div class="lives" id="lives">♥♥♥♥♥♥</div>
+      <div class="score">Score <b id="sc">0</b><br>Streak <b id="st">0</b> · Best <b id="bs">0</b></div>
+      <svg viewBox="0 0 320 300" aria-label="Hangman drawing" role="img">
+        <defs><filter id="chalk"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter></defs>
+        <g class="ch">
+          <path d="M40 280 H190" />
+          <path d="M80 280 V30 H200" />
+          <path d="M80 70 L120 30" />
+          <path id="rope" d="M200 30 V62" />
+        </g>
+        <g id="man" class="ch">
+          <circle class="part" id="p0" cx="200" cy="84" r="22" />
+          <path class="part" id="p1" d="M200 106 V180" />
+          <path class="part" id="p2" d="M200 125 L168 158" />
+          <path class="part" id="p3" d="M200 125 L232 158" />
+          <path class="part" id="p4" d="M200 180 L174 228" />
+          <path class="part" id="p5" d="M200 180 L226 228" />
+          <g class="face" id="f-happy" style="stroke-width:3.5"><circle cx="192" cy="80" r="1.5"/><circle cx="208" cy="80" r="1.5"/><path d="M190 90 Q200 98 210 90"/></g>
+          <g class="face" id="f-worry" style="stroke-width:3.5"><circle cx="192" cy="80" r="1.5"/><circle cx="208" cy="80" r="1.5"/><path d="M191 94 H209"/></g>
+          <g class="face" id="f-sad" style="stroke-width:3.5"><circle cx="192" cy="80" r="1.5"/><circle cx="208" cy="80" r="1.5"/><path d="M190 96 Q200 88 210 96"/></g>
+          <g class="face" id="f-out" style="stroke-width:3.5"><path d="M188 76 l7 7 m0 -7 l-7 7 M205 76 l7 7 m0 -7 l-7 7"/><path d="M191 95 Q200 90 209 95"/></g>
+          <g class="face" id="f-win" style="stroke-width:3.5"><path d="M188 80 Q192 75 196 80 M204 80 Q208 75 212 80"/><path d="M188 89 Q200 102 212 89 Z"/></g>
+          <g id="arms-up" style="display:none"><path d="M200 125 L170 95"/><path d="M200 125 L230 95"/></g>
+        </g>
+        <text id="chalk-msg" x="160" y="22" text-anchor="middle" fill="#ffd68a" font-family="Georgia" font-size="16" font-weight="700"></text>
+      </svg>
+    </div>
+
+    <div class="panel">
+      <span class="cat" id="catlbl">Topic</span> <span class="cat" id="len" style="background:#e8f4f1;border-color:#b9d6d0"></span>
+      <div class="word" id="word" aria-live="polite"></div>
+      <div class="hint" id="hint" hidden></div>
+      <div class="row">
+        <button class="btn alt" id="hintBtn">💡 Show hint (−1 ♥)</button>
+        <button class="btn alt" id="sayBtn" title="Hear the word with the missing letters as blanks">🔊 Example sentence</button>
+        <button class="btn alt" id="newBtn">↻ New word</button>
+      </div>
+      <div class="kb" id="kb"></div>
+      <div class="result" id="res"></div>
+    </div>
+  </div>
+
+  <div class="how">
+    <div><b>🎯 How to play</b>Tap a letter (or use your keyboard). Right letters appear in the word. Each wrong letter adds a part to the drawing — 6 wrong letters and the round is over.</div>
+    <div><b>🧠 Smart tips</b>Start with vowels: <b>E, A, O, I</b>. Then try common letters: <b>T, N, S, R, L</b>. Use the topic to guess the word family.</div>
+    <div><b>🗣️ After every word</b>Read the meaning, press 🔊 to hear it, then say your own sentence with the word. Teachers: play in teams on the board!</div>
+    <div><b>🏆 Rewards</b>Play for a few minutes, then claim your 🥉 Mini Certificate at the bottom of the page — it counts towards the Starter Steps collection.</div>
+  </div>
+  <p class="foot">Word Hangman · © 2026 I Learn English Here · An Online Business Awareness project</p>
+</main>
+
+<script>
+(function(){
+"use strict";
+var W={
+ pp:{n:"🕰️ Present Perfect",topic:"present-perfect",w:[
+  ["visited","past participle of 'visit' — to go and see a place","I have ___ London twice."],
+  ["eaten","past participle of 'eat'","Have you ever ___ durian?"],
+  ["written","past participle of 'write'","She has ___ three emails today."],
+  ["seen","past participle of 'see'","I've never ___ snow."],
+  ["forgotten","past participle of 'forget'","Oh no! I've ___ my keys."],
+  ["chosen","past participle of 'choose'","We have ___ a new class leader."],
+  ["broken","past participle of 'break'","He has ___ his phone screen."],
+  ["already","a time word: before now, sooner than expected","I've ___ finished my homework."],
+  ["since","used with a start point in time","I have lived here ___ 2020."],
+  ["never","not at any time in your life","I have ___ been to Japan."]]},
+ sport:{n:"⚽ Sports & Hobbies",topic:"go-do-play",w:[
+  ["football","a ball game — we PLAY it","On Saturdays I play ___ with my friends."],
+  ["swimming","a water sport — we GO swimming","Let's go ___ at the beach."],
+  ["yoga","slow stretching exercise — we DO yoga","My mum does ___ every morning."],
+  ["karate","a martial art — we DO karate","He does ___ after school."],
+  ["tennis","a racket game for two or four people","We play ___ on Sundays."],
+  ["cycling","riding a bike — we GO cycling","They go ___ in the park."],
+  ["chess","a board game with a king and queen","Do you play ___?"],
+  ["badminton","a racket game with a shuttlecock","Badminton is very popular in Asia — I play ___ too."],
+  ["hiking","walking in the hills or mountains","We went ___ in the national park."],
+  ["basketball","a ball game with a high hoop","He's tall, so he's great at ___."]]},
+ health:{n:"💪 Health & Fitness",topic:null,w:[
+  ["exercise","physical activity to stay fit","You should do some ___ every day."],
+  ["healthy","good for your body","Fruit is a ___ snack."],
+  ["muscles","parts of the body that help you move","Lifting weights makes your ___ stronger."],
+  ["energy","the power to be active","I have lots of ___ in the morning."],
+  ["stretch","to make your body long to relax muscles","___ before you run."],
+  ["vegetables","plants we eat, like carrots and beans","Eat more ___!"],
+  ["tired","needing rest or sleep","I'm too ___ to go out tonight."],
+  ["protein","food that builds muscle, e.g. beans and tofu","Lentils are full of ___."],
+  ["injury","damage to the body","He can't play because of an ___."],
+  ["water","drink lots of this every day","Drink enough ___ when it's hot."]]},
+ travel:{n:"🚆 Travel in Britain",topic:null,w:[
+  ["ticket","a paper or code that lets you travel","Can I have a return ___ to Bath, please?"],
+  ["platform","where you wait for the train","The train leaves from ___ 4."],
+  ["castle","a big old stone building for kings and queens","We visited Edinburgh ___."],
+  ["journey","a trip from one place to another","How long is the ___ to Bristol?"],
+  ["passport","the document you show at the border","Don't forget your ___!"],
+  ["luggage","your bags and suitcases","Put your ___ on the rack."],
+  ["timetable","a list of times for trains or buses","Check the ___ before you go."],
+  ["souvenir","a small gift to remember a trip","I bought a ___ for my sister."],
+  ["queue","a line of people waiting (very British!)","Please join the ___."],
+  ["underground","London's trains below the streets (the Tube)","Take the ___ to Oxford Circus."]]},
+ home:{n:"🏠 Home & Money",topic:null,w:[
+  ["mortgage","a loan from a bank to buy a home","They need a ___ to buy the house."],
+  ["deposit","money you pay first, at the start","We saved a 10% ___."],
+  ["budget","a plan for how to spend money","Let's make a ___ for the month."],
+  ["solicitor","a lawyer who does the legal work for a house","The ___ checks the contract."],
+  ["landlord","the person who owns the home you rent","Our ___ fixed the heating."],
+  ["neighbour","a person who lives next to you (British spelling)","My ___ has a friendly dog."],
+  ["kitchen","the room where you cook","The ___ is small but bright."],
+  ["garden","the area of grass and plants by a house","We grow tomatoes in the ___."],
+  ["bills","money you pay for electricity, water and internet","The ___ are included in the rent."],
+  ["savings","money you keep for the future","I put 20% of my pay into ___."]]},
+ feel:{n:"💛 Feelings & Stories",topic:null,w:[
+  ["excited","very happy about something coming","I'm so ___ about the trip!"],
+  ["nervous","a bit worried or scared","I feel ___ before exams."],
+  ["jealous","wanting what someone else has","He was ___ of his brother's new bike."],
+  ["proud","happy about something you or others did","My parents are ___ of me."],
+  ["grateful","thankful","I'm ___ for your help."],
+  ["curious","wanting to know or learn more","Cats are very ___ animals."],
+  ["surprised","feeling something unexpected happened","She was ___ by the party."],
+  ["lonely","sad because you are alone","He felt ___ in the new city."],
+  ["brave","not afraid to do something difficult","It was ___ to speak in front of everyone."],
+  ["embarrassed","feeling silly in front of others","I was ___ when I fell over."]]},
+ brit:{n:"🇬🇧 The British Way",topic:null,w:[
+  ["cuppa","informal: a cup of tea","Fancy a ___?"],
+  ["brilliant","British for 'great!' or 'excellent!'","You passed? ___!"],
+  ["cheers","thanks / goodbye / a toast","___, mate! See you later."],
+  ["knackered","informal British: very, very tired","I'm ___ after that walk."],
+  ["lovely","nice — British people say it all the time","What a ___ day!"],
+  ["mate","informal: friend","Alright, ___?"],
+  ["rubbish","British for 'trash' — or 'bad quality'","That film was ___."],
+  ["fortnight","two weeks","I'm on holiday for a ___."],
+  ["biscuit","British for 'cookie'","Tea and a ___ — perfect."],
+  ["sorted","informal: done, fixed, organised","Don't worry, it's all ___."]]},
+ jobs:{n:"💼 Jobs & Careers",topic:null,w:[
+  ["interview","a meeting where they decide to give you a job","I have a job ___ on Monday."],
+  ["manager","the person in charge of a team","Please speak to the ___."],
+  ["salary","the money you earn every year or month","The ___ is paid monthly."],
+  ["experience","the skills you get from doing a job","Do you have any ___ in sales?"],
+  ["teamwork","working well with other people","This job needs good ___."],
+  ["deadline","the last time or day to finish work","The ___ is Friday at 5pm."],
+  ["nurse","a person who cares for people in hospital","She works as a ___."],
+  ["engineer","a person who designs and builds machines or roads","He's a software ___."],
+  ["colleague","a person you work with","My ___ helped me with the report."],
+  ["confident","sure of yourself","Be ___ in your interview!"]]}
+};
+var KEYS="qwertyuiop asdfghjkl zxcvbnm".split(" ");
+var cat="all",lvl=1,cur=null,guessed={},wrong=0,over=false,usedHint=false,score=0,streak=0,best=0,played={};
+try{var sv=JSON.parse(localStorage.getItem("ileh.hm"))||{};best=sv.best||0;}catch(e){}
+var $=function(id){return document.getElementById(id);};
+
+/* topic buttons */
+var cb='<button data-c="all" class="on">🎲 Mixed</button>';for(var k in W)cb+='<button data-c="'+k+'">'+W[k].n+'</button>';$("cats").innerHTML=cb;
+$("cats").onclick=function(e){var b=e.target.closest("button");if(!b)return;cat=b.dataset.c;this.querySelectorAll("button").forEach(function(x){x.classList.toggle("on",x===b);});newWord();};
+$("lvls").onclick=function(e){var b=e.target.closest("button");if(!b)return;lvl=+b.dataset.l;this.querySelectorAll("button").forEach(function(x){x.classList.toggle("on",x===b);});newWord();};
+
+/* keyboard */
+$("kb").innerHTML=KEYS.map(function(r){return '<div class="r">'+r.split("").map(function(c){return '<button data-k="'+c+'" aria-label="'+c+'">'+c+'</button>';}).join("")+'</div>';}).join("");
+$("kb").onclick=function(e){var b=e.target.closest("[data-k]");if(b)guess(b.dataset.k);};
+document.addEventListener("keydown",function(e){if(e.ctrlKey||e.metaKey||e.altKey)return;if(/^[a-z]$/i.test(e.key)&&!/input|textarea/i.test((e.target.tagName||""))){guess(e.key.toLowerCase());}else if(e.key==="Enter"&&over){newWord();}});
+
+/* sound */
+var AC=null;function tone(f,d,type,v){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();var o=AC.createOscillator(),g=AC.createGain();o.type=type||"triangle";o.frequency.value=f;o.connect(g);g.connect(AC.destination);var t=AC.currentTime;g.gain.setValueAtTime(v||.15,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.start(t);o.stop(t+d);}catch(e){}}
+function ding(){tone(880,.25);setTimeout(function(){tone(1175,.3);},90);}
+function thud(){tone(140,.35,"sawtooth",.12);}
+function fanfare(){[523,659,784,1047].forEach(function(f,i){setTimeout(function(){tone(f,.4);},i*130);});}
+function say(t){t=String(t).replace(/___/g,"blank");if(window.ILEH&&ILEH.speak){ILEH.speak(t,.9);return;}try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang="en-GB";u.rate=.9;var v=speechSynthesis.getVoices().filter(function(x){return/en-GB/i.test(x.lang);})[0];if(v)u.voice=v;speechSynthesis.speak(u);}catch(e){}}
+
+function pool(){var list=[];for(var k in W){if(cat!=="all"&&cat!==k)continue;W[k].w.forEach(function(x){var L=x[0].length;if(lvl===1&&L>8)return;if(lvl===3&&L<6)return;list.push({w:x[0],h:x[1],ex:x[2],c:k});});}
+ var fresh=list.filter(function(x){return!played[x.w];});if(!fresh.length){played={};fresh=list;}return fresh.length?fresh:list;}
+function newWord(){
+ var p=pool();cur=p[Math.floor(Math.random()*p.length)];played[cur.w]=1;
+ guessed={};wrong=0;over=false;usedHint=false;
+ $("board").className="board";$("arms-up").style.display="none";$("p2").style.display=$("p3").style.display="";$("chalk-msg").textContent="";
+ for(var i=0;i<6;i++)$("p"+i).classList.remove("on");
+ face(null);
+ $("catlbl").textContent=W[cur.c].n;$("len").textContent=cur.w.length+" letters";
+ $("res").className="result";$("res").innerHTML="";
+ document.querySelectorAll("#kb button").forEach(function(b){b.disabled=false;b.className="";});
+ if(lvl<3){showHint();}else{$("hint").hidden=true;$("hintBtn").style.display="";}
+ if(lvl===1){guessed[cur.w[0]]=1;mark(cur.w[0],true);}
+ $("hintBtn").style.display=lvl===3?"":"none";
+ draw();lives();
+}
+function showHint(){$("hint").hidden=false;$("hint").innerHTML="💡 <b>Clue:</b> "+cur.h;}
+function mark(c,ok){var b=document.querySelector('#kb [data-k="'+c+'"]');if(b){b.disabled=true;b.className=ok?"ok":"no";}}
+function draw(reveal){
+ var h="";cur.w.split("").forEach(function(c){var show=guessed[c]||reveal;h+='<div class="slot'+(show&&!guessed[c]?" miss":"")+(show?" show":"")+'">'+(show?c:"")+'</div>';});
+ var old=$("word").children;$("word").innerHTML=h;
+}
+function lives(){$("lives").textContent="♥".repeat(6-wrong)+"♡".repeat(wrong);$("sc").textContent=score;$("st").textContent=streak;$("bs").textContent=best;}
+function face(which){["happy","worry","sad","out","win"].forEach(function(f){$("f-"+f).classList.toggle("on",f===which);});}
+function guess(c){
+ if(over||!cur||guessed[c])return;guessed[c]=1;
+ if(cur.w.indexOf(c)>-1){mark(c,true);ding();var n=cur.w.split(c).length-1;score+=n*5*lvl;draw();
+   if(cur.w.split("").every(function(x){return guessed[x];}))win();}
+ else{mark(c,false);thud();hit();}
+ lives();
+}
+function hit(){wrong++;$("p"+(wrong-1)).classList.add("on");if(wrong===1)face("happy");else if(wrong<4)face("worry");else face("sad");
+ $("word").classList.remove("shake");void $("word").offsetWidth;$("word").classList.add("shake");
+ if(wrong>=6)lose();}
+function save(){try{localStorage.setItem("ileh.hm",JSON.stringify({best:best}));}catch(e){}}
+function log(ok){try{if(window.ILEH&&ILEH.log&&W[cur.c].topic)ILEH.log(W[cur.c].topic,ok);}catch(e){}}
+function win(){over=true;streak++;var bonus=(6-wrong)*10*lvl+streak*5;score+=bonus;if(score>best)best=score;save();log(true);
+ for(var i=0;i<6;i++)$("p"+i).classList.add("on");
+ $("p2").style.display=$("p3").style.display="none";$("arms-up").style.display="";
+ face("win");$("board").className="board win";$("chalk-msg").textContent=["Brilliant!","Lovely job!","Smashed it!","Well done!","Spot on!"][Math.floor(Math.random()*5)];
+ fanfare();try{if(window.ILEH_RW)ILEH_RW.confetti(90);}catch(e){}
+ result(true,bonus);lives();}
+function lose(){over=true;streak=0;log(false);face("out");$("board").className="board lose";$("chalk-msg").textContent="Not this time…";draw(true);
+ document.querySelectorAll("#kb button").forEach(function(b){b.disabled=true;});result(false,0);lives();}
+function result(ok,bonus){
+ var ex=cur.ex.replace("___","<b>"+cur.w+"</b>");
+ $("res").className="result on "+(ok?"w":"l");
+ $("res").innerHTML="<h3>"+(ok?"🎉 You got it! +"+bonus+" points":"😵 The word was…")+"</h3><p style='font:800 1.6rem Georgia,serif;margin:.2rem 0;color:var(--acc)'>"+cur.w.toUpperCase()+"</p><p><b>Meaning:</b> "+cur.h+"</p><p><b>Example:</b> "+ex+"</p><p style='font-size:.9rem;color:var(--soft)'>🗣️ Your turn: say your own sentence with <b>"+cur.w+"</b>.</p><div class='row'><button class='btn' data-n>Next word ➜</button><button class='btn alt' data-s>🔊 Hear it</button></div>";
+ $("res").querySelector("[data-n]").onclick=newWord;$("res").querySelector("[data-s]").onclick=function(){say(cur.w+". "+cur.ex.replace("___",cur.w));};
+ say(cur.w);
+}
+$("hintBtn").onclick=function(){if(over||usedHint)return;usedHint=true;showHint();this.style.display="none";hit();lives();};
+$("sayBtn").onclick=function(){if(cur)say(cur.ex);};
+$("newBtn").onclick=function(){if(!over&&cur&&Object.keys(guessed).length>(lvl===1?1:0)){streak=0;}newWord();lives();};
+newWord();
+})();
+</script>
+<script src="../assets/ileh.js" defer></script>
+</body>
+</html>
