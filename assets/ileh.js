@@ -627,3 +627,5 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build); else build();
 })();
+/* Rewards engine: certificates, Skill Keys, next-step routes, reviews (assets/ileh-rewards.js) */
+(function(){if(window.__ilehRW)return;window.__ilehRW=1;var me=document.querySelector('script[src*="ileh.js"]');var b=me?me.src.replace(/assets\/ileh\.js.*$/,""):"/";var s=document.createElement('script');s.src=b+'assets/ileh-rewards.js';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
