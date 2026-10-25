@@ -12,6 +12,7 @@
   var KEY = "ileh.v1";
   var page = (location.pathname.split("/").pop() || "index").replace(/\.html?$/, "") || "index";
   var inLesson = /\/lessons\//.test(location.pathname);
+  var KIDS = !!(document.body && document.body.hasAttribute("data-ileh-kids"));
 
   /* ---------- storage (safe) ---------- */
   function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
@@ -31,6 +32,10 @@
     "index": {what:"This is the home page. Pick a free lesson, or use the Coach to practise the things you find difficult.",steps:["Tap <b>Start Here</b> if you are new — take the 1-minute level check.","Open any lesson card and follow it slide by slide.","Visit the <b>Coach</b> — it remembers your mistakes and makes a lesson just for you.","Try <b>Speak</b> to hear and practise any word."],simple:"Choose a lesson. Learn. Practise. Come back tomorrow!",example:"Example: open <b>Present Perfect</b> → read the rule → try the quiz → the Coach saves what you got wrong."},
     "lessons": {what:"This is the lesson library. Every lesson teaches the rule first, then lets you practise.",steps:["Look at the level (Foundation, Elementary, B1).","Tap a lesson to open it.","Use the <b>❓</b> and <b>🤷</b> buttons on the right of any page if you get stuck."],simple:"Pick one lesson. Start at the top.",example:"Not sure where to start? Try <b>Stative Verbs + Go, Do & Play</b> — it's short and fun."},
     "start-here": {what:"Answer a few quick questions to find your level, then we show you where to start.",steps:["Answer each question — don't worry about mistakes.","See your level.","Open the lessons we suggest for that level."],simple:"Answer. See your level. Start learning.",example:"Score low? Start with Foundation lessons. That's normal and smart!"},
+    "foundation": {what:"First Steps: for people who are just starting English. Learn sounds, first words, first phrases and your first sentence — with pictures, sound and your own language.",steps:["Tap <b>🌍 Choose your language</b> at the top.","Open the first step on the path.","<b>Learn</b>: tap each card to hear it, then say it.","<b>Practise</b>: listen and tap the right picture.","<b>Check</b>: get 8 out of 10 to open the next step."],simple:"Listen. Tap the picture. Say it.",example:"Hear 'apple' → tap 🍎 → say 'apple'!"},
+    "skills": {what:"The Skills Lab: spelling and letter rules, reading (understand it and put paragraphs in order), Fix It corrections and writing tasks that put all your skills together.",steps:["Press <b>▶ Next for me</b> — it always picks your next challenge.","Learn each rule, then practise it.","Read, answer, and move the paragraphs into the right order.","Fix the mistakes, then write your own text and press Check.","Pass the Combo Challenge (8/10) to move up a level."],simple:"Press ▶ Next for me. Learn. Read. Fix. Write.",example:"Rule: every sentence starts with a capital letter → fix 'she is my friend.' → 'She is my friend.'"},
+    "kids": {what:"Little Learners: English games for young children to play with a parent — ABC, colours, animals, counting, body parts, tracing and colouring sheets.",steps:["Parent and child sit together.","Pick a game.","Listen, tap, and say the word together.","Every right answer = a star. 5 stars = a sticker!"],simple:"Pick a game. Listen. Tap. Win a star!",example:"'Find red!' → tap the red circle → ⭐"},
+    "about": {what:"Our story: why this site was made by an English teacher, and what makes it different — common mistakes, breaking bad patterns, and the why, how and when of English.",steps:["Read the story (or press 🔊 Listen).","See what makes the site different.","Choose where to start: First Steps, the level check or the Coach."],simple:"Read why this site is different. Then start learning.",example:"'I have 20 years' → why learners say it, and how to say it right: 'I am 20.'"},
     "faq": {what:"Answers to common questions about this free website.",steps:["Read the question that matches yours.","Still stuck? Use the help buttons or open the Coach."],simple:"Questions and answers.",example:"Example: 'Is it really free?' — yes, every lesson is free."},
     "coach": {what:"Your personal Study Coach. It remembers what you find difficult and builds a lesson trip just for you.",steps:["Tell the Coach your age group so explanations fit you.","Press <b>Start my trip</b>.","Learn the rule your way, then practise until you get it right.","Come back tomorrow — the Coach adapts to you."],simple:"Press the big button. Learn. Practise. The Coach helps you.",example:"If you keep mixing up 'much' and 'many', the Coach will teach the COUNT TEST and give you practice until it's easy."},
     "speak": {what:"The Speech Lab is a talking dictionary. Hear a word, see it broken into parts, slow it down and practise saying it.",steps:["Type a word or tap a word from a list.","Press <b>▶ Listen</b> — try the slow speeds.","Look at the syllables and the stressed part.","Press <b>🎤 Say it</b> and try to copy the sound."],simple:"Type a word. Listen. Say it. Repeat.",example:"Try <b>Wednesday</b> — it's spelt with a 'd' but most people say 'WENZ-day'!"},
@@ -377,7 +382,7 @@
       });
     }
     marks(); lbar.classList.add("on");
-    clearInterval(poll); var idle = 0; poll = setInterval(function () { if (!speechSynthesis.speaking && !speechSynthesis.pending) { idle += 400; if (idle >= 5000) lbarHide(); } else idle = 0; }, 400);
+    clearInterval(poll); var idle = 0; poll = setInterval(function () { if (!speechSynthesis.speaking && !speechSynthesis.pending) { idle += 400; if (idle >= 3000) lbarHide(); } else idle = 0; }, 400);
   }
   function lbarHide() { if (lbar) lbar.classList.remove("on"); clearInterval(poll); }
   function marks() { if (lbar) lbar.querySelectorAll("[data-s]").forEach(function (b) { b.classList.toggle("on", parseFloat(b.dataset.s) === P.listenRate); }); }
@@ -408,7 +413,7 @@
   /* <audio>/<video> listening tasks get the same bar */
   document.addEventListener("play", function (e) {
     var m = e.target; if (!(m instanceof HTMLMediaElement)) return; m.playbackRate = P.listenRate;
-    lbarShow(); clearInterval(poll); var idle = 0; poll = setInterval(function () { if (m.paused || m.ended) { idle += 400; if (idle >= 5000) lbarHide(); } else idle = 0; }, 400);
+    lbarShow(); clearInterval(poll); var idle = 0; poll = setInterval(function () { if (m.paused || m.ended) { idle += 400; if (idle >= 3000) lbarHide(); } else idle = 0; }, 400);
     lbar.onclick = function (ev) { var b = ev.target.closest("[data-s]"); if (!b) return; var s = b.dataset.s; if (s === "stop") { m.pause(); m.currentTime = 0; lbarHide(); } else if (s === "replay") { m.currentTime = 0; m.play(); } else { P.listenRate = parseFloat(s); save(); marks(); m.playbackRate = P.listenRate; } ev.stopImmediatePropagation(); };
   }, true);
 
@@ -466,7 +471,7 @@
   window.ILEH = { ready: true, base: BASE, page: page, guide: guide, profile: P, save: save, log: log, idk: idk, mastery: mastery, weak: weak, likeStyle: likeStyle, topStyle: topStyle,
     loadKB: loadKB, speak: speak, strip: strip, fill: fill, shuffle: shuffle, person: person, openShare: openShare, openIdk: openIdk, workSave: workSave, workApply: workApply, workRead: workRead, openWhat: openWhat, esc: esc };
 
-  function init() { ui(); workInit(); buildTicker(); loadKB(function () { buildTicker(); onThisDay(); }); }
+  function init() { ui(); workInit(); if (KIDS) return; buildTicker(); loadKB(function () { buildTicker(); onThisDay(); }); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
 
@@ -530,7 +535,7 @@
   function chips(list, cls) { return '<div class="ileh-don-chips ' + cls + '">' + list.map(function (t) { return "<span>" + t + "</span>"; }).join("") + "</div>"; }
 
   function build() {
-    if (document.querySelector(".ileh-don")) return;
+    if (document.querySelector(".ileh-don") || document.body.hasAttribute("data-ileh-kids")) return;
     var st = el("style"); st.textContent = css; document.head.appendChild(st);
     var inner =
       '<div class="ileh-don-row"><code class="ileh-don-addr" title="' + ADDR + '">' + ADDR + "</code>" +
@@ -557,7 +562,7 @@
 })();
 
 /* OBA Analytics loader — Online Business Awareness (visitor + click stats for Tony's dashboard) */
-(function(){if(window.__obaL)return;window.__obaL=1;var s=document.createElement('script');s.src='https://ilearnenglishhere.academy/assets/oba-analytics.js';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
+(function(){if(window.__obaL)return;window.__obaL=1;if(document.body&&document.body.hasAttribute('data-ileh-kids'))return;var s=document.createElement('script');s.src='https://ilearnenglishhere.academy/assets/oba-analytics.js';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
 
 /* Site navigation on every page — I Learn English Here (Online Business Awareness)
    Adds the main menu + Home to lesson and mission pages that don't have the site header,
@@ -567,7 +572,7 @@
   if (window.__ilehNav) return; window.__ilehNav = 1;
   var me = document.currentScript || Array.prototype.filter.call(document.scripts, function (s) { return /assets\/ileh\.js/.test(s.src); })[0];
   var B = me ? me.src.replace(/assets\/ileh\.js.*$/, "") : "/";
-  var LINKS = [["🏠 Home", "index.html"], ["🚀 Start Here", "start-here.html"], ["📚 Lessons", "lessons.html"], ["🗺️ Missions", "mission.html"], ["🤖 Coach", "coach.html"], ["🎙 Speak", "speak.html"], ["📖 Story", "english-story.html"], ["❓ FAQ", "faq.html"], ["📕 Books", "books.html"]];
+  var LINKS = [["🏠 Home", "index.html"], ["🚀 Start Here", "start-here.html"], ["🌱 First Steps", "foundation.html"], ["🧪 Skills Lab", "skills.html"], ["🧸 Little Learners", "kids.html"], ["📚 Lessons", "lessons.html"], ["🗺️ Missions", "mission.html"], ["🤖 Coach", "coach.html"], ["🎙 Speak", "speak.html"], ["📖 Story", "english-story.html"], ["💡 Our Story", "about.html"], ["❓ FAQ", "faq.html"], ["📕 Books", "books.html"]];
   var inCourse = /\/(lessons|mission)\//.test(location.pathname) || !!window.MISSION;
   function css() {
     var s = document.createElement("style");
@@ -629,3 +634,93 @@
 })();
 /* Rewards engine: certificates, Skill Keys, next-step routes, reviews (assets/ileh-rewards.js) */
 (function(){if(window.__ilehRW)return;window.__ilehRW=1;var me=document.querySelector('script[src*="ileh.js"]');var b=me?me.src.replace(/assets\/ileh\.js.*$/,""):"/";var s=document.createElement('script');s.src=b+'assets/ileh-rewards.js';s.defer=true;(document.head||document.documentElement).appendChild(s);})();
+
+/* ---------- Repair Stop — I Learn English Here (Online Business Awareness) ----------
+   The site is about getting the basics right, not racing through. Rule:
+   • the same topic answered wrong 3 times in the last 10 tries, OR
+   • under 60% after 8+ answers on one lesson page
+   → a Repair Stop opens for that topic. The learner is taken to the Coach automatically after a 6-second notice (common mistake → formula → memory trick → practice
+     until they reapply it correctly). Until it is fixed, other lessons and missions stay closed.
+   Stored only on this device. Not used on First Steps, Little Learners, the Coach itself or tests. */
+(function () {
+  "use strict";
+  if (window.ILEH_REPAIR) return;
+  var KEY = "ileh.repair.v1", AUTO = 6, WRONGS = 3, WINDOW = 10, MIN_ANS = 8, MIN_PCT = 0.6;
+  var me = Array.prototype.filter.call(document.scripts, function (s) { return /assets\/ileh\.js/.test(s.src); })[0];
+  var B = me ? me.src.replace(/assets\/ileh\.js.*$/, "") : "/";
+  var page = (location.pathname.split("/").pop() || "index").replace(/\.html?$/, "") || "index";
+  var SKIP = { coach: 1, foundation: 1, kids: 1, "start-here": 1, "mission-check": 1, achievements: 1 };
+  var gated = /\/(lessons|mission)\//.test(location.pathname);
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+  var R = load(); R.recent = R.recent || {};
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(R)); } catch (e) {} }
+  var sess = { n: 0, ok: 0, wrong: {} }, firedHere = false;
+
+  function title(t, cb) {
+    var fall = t.replace(/-/g, " ").replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+    if (window.ILEH && ILEH.loadKB) ILEH.loadKB(function (kb) { cb(kb && kb.topics[t] ? kb.topics[t].title : fall, kb && kb.topics[t]); }); else cb(fall, null);
+  }
+  function css() {
+    if (document.getElementById("ileh-rp-css")) return;
+    var s = document.createElement("style"); s.id = "ileh-rp-css";
+    s.textContent = ".ileh-rp{position:fixed;inset:0;z-index:2147483500;background:rgba(19,42,46,.7);display:flex;align-items:center;justify-content:center;padding:16px;font:16px/1.45 system-ui,-apple-system,'Segoe UI',Arial,sans-serif}" +
+      ".ileh-rp>div{background:#fff;border-radius:18px;max-width:460px;width:100%;padding:1.2rem 1.2rem 1rem;color:#132a2e;text-align:center;border-top:8px solid #e0a548}" +
+      ".ileh-rp h2{margin:.2rem 0 .4rem;font-size:1.3rem}.ileh-rp p{margin:.4rem 0;color:#3f5a56}.ileh-rp .f{background:#fff7e8;border-radius:12px;padding:.6rem;margin:.6rem 0;color:#132a2e;text-align:left;font-size:.95rem}" +
+      ".ileh-rp a,.ileh-rp button{display:block;width:100%;margin:.45rem 0 0;padding:.8em 1em;border-radius:12px;font:700 1rem system-ui,Arial,sans-serif;cursor:pointer;text-decoration:none;box-sizing:border-box}" +
+      ".ileh-rp .go{background:#1f7a6c;color:#fff;border:0}.ileh-rp .later{background:#fff;color:#3f5a56;border:1.5px solid #dbe8e5}" +
+      ".ileh-rp-bar{background:#fff7e8;border:2px solid #e0a548;border-radius:14px;padding:.7rem 1rem;margin:12px auto;max-width:1080px;font:600 15px/1.4 system-ui,Arial,sans-serif;color:#132a2e;display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;justify-content:space-between;box-sizing:border-box}" +
+      ".ileh-rp-bar a{background:#1f7a6c;color:#fff;border-radius:999px;padding:.5em 1em;text-decoration:none;white-space:nowrap}";
+    document.head.appendChild(s);
+  }
+  function fixUrl(t) { return B + "coach.html?topic=" + encodeURIComponent(t) + "&repair=1"; }
+  function modal(blocking) {
+    var p = R.pending; if (!p || document.querySelector(".ileh-rp")) return; css();
+    title(p.t, function (name, topic) {
+      var m = document.createElement("div"); m.className = "ileh-ui ileh-rp"; m.setAttribute("role", "dialog"); m.setAttribute("aria-modal", "true");
+      m.innerHTML = "<div><div style=\"font-size:2.4rem\">🛠️</div><h2>Repair Stop: " + name + "</h2>" +
+        "<p>" + (p.why === "pct" ? "This lesson was hard — under 60% right." : "You have made the same mistake " + WRONGS + " times.") + " Good learners fix the basics before going on. It takes about 3 minutes.</p>" +
+        (topic && topic.formula ? '<div class="f"><b>The formula:</b><br>' + topic.formula.slice(0, 2).join("<br>") + "</div>" : "") +
+        (blocking ? "<p><b>Other lessons open again as soon as you fix it.</b></p>" : "") +
+        '<a class="go" href="' + fixUrl(p.t) + '">🛠️ Fix it now →</a>' +
+        (blocking ? '<a class="later" href="' + B + 'lessons.html">← Back to the lessons</a>' : '<p class="cd" style="font-size:.9rem;margin:.6rem 0 0">Taking you to your Coach in <b>' + AUTO + '</b>…</p>') + "</div>";
+      document.body.appendChild(m);
+      if (!blocking) { var n = AUTO, cd = m.querySelector(".cd b"); var iv = setInterval(function () { n--; if (cd) cd.textContent = n; if (n <= 0) { clearInterval(iv); location.href = fixUrl(p.t); } }, 1000); }
+    });
+  }
+  function trigger(t, why) {
+    if (R.pending) return;
+    if (window.ILEH && ILEH.loadKB && !trigger.ok) { return ILEH.loadKB(function (kb) { if (kb && kb.topics[t]) { trigger.ok = 1; trigger(t, why); trigger.ok = 0; } }); }
+    R.pending = { t: t, why: why, at: Date.now(), page: page }; save(); firedHere = true;
+    try { document.dispatchEvent(new CustomEvent("ileh:repair", { detail: R.pending })); } catch (e) {}
+    modal(false);
+  }
+  function onLog(e) {
+    var d = e.detail || {}, t = d.topic; if (!t || SKIP[page] || /^f-/.test(t)) return;
+    var a = R.recent[t] = (R.recent[t] || []); a.push(d.correct ? 1 : 0); while (a.length > WINDOW) a.shift(); save();
+    sess.n++; if (d.correct) sess.ok++; else sess.wrong[t] = (sess.wrong[t] || 0) + 1;
+    var w = a.filter(function (x) { return !x; }).length;
+    if (w >= WRONGS) return trigger(t, "repeat");
+    if (sess.n >= MIN_ANS && sess.ok / sess.n < MIN_PCT) { var top = Object.keys(sess.wrong).sort(function (x, y) { return sess.wrong[y] - sess.wrong[x]; })[0]; if (top) trigger(top, "pct"); }
+  }
+  function clear(t) {
+    if (R.pending && (!t || R.pending.t === t)) { R.done = (R.done || 0) + 1; R.pending = null; }
+    if (t) R.recent[t] = []; save();
+  }
+  window.ILEH_REPAIR = { data: R, clear: clear, check: function () { return R.pending; }, rule: { wrongs: WRONGS, window: WINDOW, minAnswers: MIN_ANS, minPct: MIN_PCT } };
+  document.addEventListener("ileh:log", onLog);
+
+  function start() {
+    if (document.body.hasAttribute("data-ileh-kids")) return;
+    var p = R.pending;
+    if (page === "coach" && /repair=1/.test(location.search) && p) {
+      css(); title(p.t, function (name) { var b = document.createElement("div"); b.className = "ileh-ui ileh-rp-bar"; b.innerHTML = "<span>🛠️ <b>Repair Stop: " + name + "</b> — finish this trip and get the practice right. Then all lessons open again.</span>"; var m = document.querySelector("main") || document.body; m.insertBefore(b, m.firstChild); });
+      return;
+    }
+    if (!p) return;
+    if (gated && p.page !== page) return modal(true);
+    if (page === "lessons" || page === "index" || page === "mission") {
+      css(); title(p.t, function (name) { var b = document.createElement("div"); b.className = "ileh-ui ileh-rp-bar"; b.innerHTML = "<span>🛠️ <b>Repair Stop waiting: " + name + ".</b> Fix it first — lessons and missions stay closed until you do.</span><a href=\"" + fixUrl(p.t) + "\">Fix it now →</a>"; var m = document.querySelector("main") || document.body; m.insertBefore(b, m.firstChild); });
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();

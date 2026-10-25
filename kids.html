@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Learners — Free English for Young Children and Parents | I Learn English Here</title>
+<meta name="description" content="Free English games for young children to play with a parent: ABC, colours, animals, counting, body parts, letter tracing and printable colouring sheets. No ads, no sign-up. Parent tips in 12 languages.">
+<link rel="canonical" href="https://ilearnenglishhere.academy/kids.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Little Learners — English for young children, with a parent">
+<meta property="og:description" content="ABC, colours, animals, counting and tracing. No ads, no sign-up.">
+<meta property="og:url" content="https://ilearnenglishhere.academy/kids.html">
+<meta name="author" content="Online Business Awareness">
+<meta name="theme-color" content="#f5871f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f7a6c'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-weight='700' font-size='20' fill='white'%3EE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+<!-- Child-directed page: deliberately NO ad scripts, NO analytics, NO donation box, NO external links for children. -->
+<style>
+body{background:#fffaf0}
+.k-wrap{max-width:900px;margin:0 auto;padding:0 16px 2rem}
+.k-hero{text-align:center;padding:1.6rem 0 .6rem}
+.k-hero h1{font-size:clamp(1.8rem,6vw,2.8rem);margin:.2rem 0;color:#c2410c}
+.k-hero p{color:var(--soft);margin:.2rem auto;max-width:600px}
+.parent{background:#fff;border:2px dashed #e0a548;border-radius:18px;padding:.9rem 1rem;margin:1rem 0}
+.parent h2{margin:0 0 .3rem;font-size:1.05rem}
+.parent ul{margin:.3rem 0;padding-left:1.1rem}
+.parent li{margin:.25rem 0}
+.tr{display:block;color:#7a4e0e;font-size:.92em}
+.tr:empty{display:none}
+.chip{border:2px solid var(--accent);background:#fff;color:var(--accent);border-radius:999px;padding:.4em .9em;font:700 .9rem system-ui,Arial,sans-serif;cursor:pointer}
+.starbar{position:sticky;top:0;z-index:30;background:#fffaf0;display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.5rem 0;border-bottom:2px solid #fde3c4}
+.starbar b{font-size:1.3rem}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:1rem 0}
+.gm{border:0;border-radius:22px;padding:1rem .5rem;cursor:pointer;font:800 1.15rem system-ui,Arial,sans-serif;color:#fff;box-shadow:0 6px 0 rgba(0,0,0,.15);transition:transform .1s}
+.gm:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.15)}
+.gm span{display:block;font-size:2.8rem;line-height:1.2}
+.g1{background:#e53935}.g2{background:#1e66d0}.g3{background:#2e9d48}.g4{background:#f5871f}.g5{background:#7b3fb8}.g6{background:#0e8a8a}.g7{background:#a0522d}
+#play{display:none}
+.top{display:flex;align-items:center;gap:.5rem;margin:.8rem 0}
+.top h2{margin:0;flex:1;font-size:1.4rem}
+.board{background:#fff;border-radius:24px;border:3px solid #fde3c4;padding:1rem;text-align:center;min-height:320px}
+.big{font-size:5rem;line-height:1.1;margin:.3rem 0}
+.say{font:800 1.6rem system-ui,Arial,sans-serif;margin:.3rem 0}
+.k4{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1rem}
+.k4 button{border:3px solid #fde3c4;background:#fffaf0;border-radius:22px;padding:.6rem;cursor:pointer;font:800 1.4rem system-ui,Arial,sans-serif;min-height:6rem}
+.k4 button .e{font-size:3.2rem;display:block}
+.k4 button.right{border-color:#2e9d48;background:#e3f6e7}
+.k4 button.wrong{animation:wob .4s}
+@keyframes wob{25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
+.blob{width:100%;aspect-ratio:1;border-radius:50%;display:block;border:3px solid rgba(0,0,0,.08)}
+.abc{display:grid;grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:8px}
+.abc button{border:0;border-radius:16px;padding:.5rem 0;cursor:pointer;font:800 1.6rem Georgia,serif;color:#fff}
+.abc button small{display:block;font:400 1.3rem system-ui}
+.btn-k{border:0;border-radius:999px;padding:.8em 1.5em;font:800 1.1rem system-ui,Arial,sans-serif;cursor:pointer;background:#c2410c;color:#fff;margin:.3rem}
+.btn-k.alt{background:#fff;color:#c2410c;border:2px solid #c2410c}
+canvas{touch-action:none;background:#fff;border:3px dashed #fde3c4;border-radius:20px;max-width:100%}
+.stick{font-size:2rem;letter-spacing:.2em}
+.pop{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%) scale(.5);font-size:6rem;opacity:0;pointer-events:none;transition:all .4s;z-index:9999}
+.pop.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+#printArea{display:none}
+.ileh-lbar{display:none!important}
+@media print{
+  body *{visibility:hidden!important}
+  #printArea,#printArea *{visibility:visible!important}
+  #printArea{display:block!important;position:absolute;left:0;top:0;width:100%}
+}
+</style>
+</head>
+<body data-ileh-kids>
+
+<header class="site">
+  <a class="brand" href="index.html" aria-label="I Learn English Here — home">
+    <span class="logo"><span class="mark">E</span> I Learn English Here</span>
+    <span class="by">by <img src="assets/oba-logo.svg" alt="Online Business Awareness"></span>
+  </a>
+  <nav class="main" aria-label="Main">
+    <a href="start-here.html">Start Here</a>
+    <a href="foundation.html">First Steps</a>
+    <a href="skills.html">Skills Lab</a>
+    <a href="kids.html" aria-current="page">Little Learners</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+</header>
+
+<main class="k-wrap">
+  <div class="k-hero">
+    <div class="eyebrow">🧸 Little Learners · ages 3–7 · with a parent</div>
+    <h1>Let's play in English!</h1>
+    <p>Tap, listen, say it, win a star. Every 5 stars = a new sticker.</p>
+  </div>
+
+  <section class="parent" aria-label="For parents">
+    <h2>👪 For parents <button class="chip" type="button" id="langBtn" style="margin-left:.4rem">🌍 <span id="langName">My language</span></button></h2>
+    <ul>
+      <li>Sit together. Ten minutes a day is enough.<span class="tr" data-ui="p1"></span></li>
+      <li>Say the English words out loud with your child — even if you are learning too.<span class="tr" data-ui="p2"></span></li>
+      <li>Praise trying, not only right answers.<span class="tr" data-ui="p3"></span></li>
+      <li>Point at real things at home and say the English word.<span class="tr" data-ui="p4"></span></li>
+      <li>This page has no ads and no sign-up. Stars are saved only on this device.<span class="tr" data-ui="p5"></span></li>
+    </ul>
+    <p style="margin:.4rem 0 0;font-size:.9rem">Learning too? Start your own <a href="foundation.html">First Steps</a> course — same words, with your language.</p>
+  </section>
+
+  <div class="starbar"><b>⭐ <span id="stars">0</span></b><span class="stick" id="stickers" aria-label="My stickers"></span></div>
+
+  <section id="menu">
+    <div class="games">
+      <button class="gm g1" type="button" data-g="abc"><span>🔤</span>ABC</button>
+      <button class="gm g2" type="button" data-g="colours"><span>🎨</span>Colours</button>
+      <button class="gm g3" type="button" data-g="animals"><span>🐮</span>Animals</button>
+      <button class="gm g4" type="button" data-g="count"><span>🔢</span>Count</button>
+      <button class="gm g5" type="button" data-g="body"><span>🙆</span>Touch your…</button>
+      <button class="gm g6" type="button" data-g="trace"><span>✏️</span>Trace</button>
+      <button class="gm g7" type="button" data-g="print"><span>🖨️</span>Colouring sheets</button>
+    </div>
+  </section>
+
+  <section id="play">
+    <div class="top"><button class="chip" type="button" id="back">← Games</button><h2 id="gTitle"></h2><button class="chip" type="button" id="slowBtn">🐢 Slow</button></div>
+    <div class="board" id="board"></div>
+  </section>
+</main>
+
+<div class="pop" id="pop">⭐</div>
+<div id="printArea"></div>
+
+<div class="lp" id="lp" style="position:fixed;inset:0;z-index:100001;background:rgba(19,42,46,.6);display:none;align-items:center;justify-content:center;padding:16px">
+  <div style="background:#fff;border-radius:18px;max-width:520px;width:100%;max-height:90vh;overflow:auto;padding:1rem">
+    <h2 style="margin:.1rem 0 .6rem;text-align:center">🌍 Choose your language</h2>
+    <div id="lpGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px"></div>
+    <p style="text-align:center"><button class="chip" type="button" data-l="">English only</button></p>
+  </div>
+</div>
+
+<footer class="site">
+  <a class="oba" href="index.html"><span>An Online Business Awareness project</span><img src="assets/oba-logo.svg" alt="Online Business Awareness"></a>
+  <nav aria-label="Footer"><a href="foundation.html">First Steps</a><a href="skills.html">Skills Lab</a><a href="kids.html">Little Learners</a><a href="about.html">Our Story</a><a href="faq.html">FAQ</a></nav>
+  &copy; 2026 I Learn English Here
+</footer>
+
+<script src="assets/ileh-foundation-data.js"></script>
+<script>
+(function () {
+  "use strict";
+  var F = window.ILEH_F, KEY = "ileh.kids.v1";
+  function $(s) { return document.querySelector(s); }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  var K = {}; try { K = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {} K.stars = K.stars || 0;
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(K)); } catch (e) {} }
+  var STICK = ["🦄", "🚀", "🌈", "🐳", "🦖", "🍦", "🎈", "🐼", "🏆", "🌻", "🐙", "🦋"];
+  function drawStars() { $("#stars").textContent = K.stars; $("#stickers").textContent = STICK.slice(0, Math.min(STICK.length, Math.floor(K.stars / 5))).join(""); }
+  function star() { K.stars++; save(); drawStars(); var p = $("#pop"); p.textContent = K.stars % 5 === 0 ? STICK[(K.stars / 5 - 1) % STICK.length] : "⭐"; p.classList.add("on"); setTimeout(function () { p.classList.remove("on"); }, 900); }
+
+  /* language for parent tips */
+  var lang = ""; try { lang = localStorage.getItem("ileh.lang") || ""; } catch (e) {}
+  function applyLang() {
+    var l = F.LANGS.filter(function (x) { return x[0] === lang; })[0];
+    $("#langName").textContent = l ? l[1] : "My language";
+    Array.prototype.forEach.call(document.querySelectorAll("[data-ui]"), function (el) { var o = F.UI[el.getAttribute("data-ui")]; el.textContent = lang && o ? o[lang] : ""; el.dir = l && l[4] ? "rtl" : "ltr"; if (lang) el.lang = lang; });
+  }
+  $("#langBtn").onclick = function () { $("#lpGrid").innerHTML = F.LANGS.map(function (l) { return '<button class="chip" type="button" data-l="' + l[0] + '" lang="' + l[0] + '">' + l[1] + "</button>"; }).join(""); $("#lp").style.display = "flex"; };
+  $("#lp").onclick = function (e) { var b = e.target.closest("[data-l]"); if (b) { lang = b.getAttribute("data-l"); try { localStorage.setItem("ileh.lang", lang); } catch (x) {} applyLang(); } if (b || e.target === $("#lp")) $("#lp").style.display = "none"; };
+
+  /* voice */
+  var slow = false, voice = null;
+  function pick() { try { var v = speechSynthesis.getVoices(); voice = v.filter(function (x) { return /en-GB/i.test(x.lang); })[0] || v.filter(function (x) { return /^en/i.test(x.lang); })[0] || null; } catch (e) {} }
+  if ("speechSynthesis" in window) { pick(); speechSynthesis.onvoiceschanged = pick; }
+  function say(t, cb) { if (!("speechSynthesis" in window)) return cb && cb(); speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(t); u.lang = "en-GB"; if (voice) u.voice = voice; u.rate = slow ? 0.6 : 0.85; u.pitch = 1.15; if (cb) { u.onend = cb; u.onerror = cb; } speechSynthesis.speak(u); }
+  $("#slowBtn").onclick = function () { slow = !slow; this.textContent = slow ? "🐇 Normal" : "🐢 Slow"; };
+
+  var COL = F.SETS.filter(function (s) { return s.id === "colours"; })[0].words;
+  var ANIMALS = [["cat", "🐱", "meow"], ["dog", "🐶", "woof woof"], ["cow", "🐮", "moo"], ["duck", "🦆", "quack quack"], ["pig", "🐷", "oink oink"], ["lion", "🦁", "roar"], ["sheep", "🐑", "baa"], ["horse", "🐴", "neigh"], ["frog", "🐸", "ribbit"], ["bird", "🐦", "tweet tweet"], ["monkey", "🐵", "ooh ooh aah aah"], ["chicken", "🐔", "cluck cluck"]];
+  var BODY = [["nose", "👃"], ["ears", "👂"], ["eyes", "👀"], ["mouth", "👄"], ["head", "🙆"], ["hands", "👐"], ["feet", "🦶"], ["hair", "💇"], ["knees", "🦵"], ["shoulders", "🤷"]];
+  var LETCOL = ["#e53935", "#1e66d0", "#2e9d48", "#f5871f", "#7b3fb8", "#0e8a8a"];
+  var board = $("#board");
+  var G = {
+    abc: { t: "🔤 ABC", run: function () {
+      board.innerHTML = '<p class="say">Tap a letter!</p><div class="big" id="shw">🔤</div><div class="abc">' + F.ABC.map(function (a, i) { return '<button type="button" data-i="' + i + '" style="background:' + LETCOL[i % 6] + '">' + a[0] + "<small>" + a[3] + "</small></button>"; }).join("") + '</div><p><button class="btn-k" type="button" id="sing">🎵 Say them all</button><button class="btn-k alt" type="button" id="findL">🔎 Find the letter game</button></p>';
+      var seen = {};
+      board.querySelector(".abc").onclick = function (e) { var b = e.target.closest("[data-i]"); if (!b) return; var a = F.ABC[+b.dataset.i]; $("#shw").textContent = a[0] + a[0].toLowerCase() + " " + a[3]; say(a[1] + "! " + a[1] + " is for " + a[2] + "!"); if (!seen[a[0]]) { seen[a[0]] = 1; if (Object.keys(seen).length % 5 === 0) star(); } };
+      $("#sing").onclick = function () { var i = 0; (function nx() { if (i >= F.ABC.length || cur !== "abc") return; var a = F.ABC[i++]; $("#shw").textContent = a[0] + a[0].toLowerCase() + " " + a[3]; say(a[1], function () { setTimeout(nx, 250); }); })(); };
+      $("#findL").onclick = function () { game(F.ABC.map(function (a) { return { k: a[0], q: a[1], show: '<span style="font:800 3rem Georgia,serif">' + a[0] + a[0].toLowerCase() + "</span>", prompt: "Find the letter!" }; })); };
+    } },
+    colours: { t: "🎨 Colours", run: function () { game(COL.map(function (c) { return { k: c.en, q: "Find " + c.en + "!", show: '<span class="blob" style="background:' + c.pic + '"></span>', after: c.en }; })); } },
+    animals: { t: "🐮 Animals", run: function () {
+      board.innerHTML = '<p class="say">Tap an animal!</p><div class="big" id="shw">🐾</div><div class="k4" style="grid-template-columns:repeat(auto-fill,minmax(90px,1fr))">' + ANIMALS.map(function (a, i) { return '<button type="button" data-i="' + i + '"><span class="e">' + a[1] + "</span>" + a[0] + "</button>"; }).join("") + '</div><p><button class="btn-k" type="button" id="who">🔊 Who says…? game</button></p>';
+      board.querySelector(".k4").onclick = function (e) { var b = e.target.closest("[data-i]"); if (!b) return; var a = ANIMALS[+b.dataset.i]; $("#shw").textContent = a[1] + " " + a[0]; say("A " + a[0] + ". The " + a[0] + " says " + a[2] + "!"); };
+      $("#who").onclick = function () { game(ANIMALS.map(function (a) { return { k: a[0], q: "Who says " + a[2] + "?", show: '<span class="e">' + a[1] + "</span>", after: "The " + a[0] + "!" }; })); };
+    } },
+    count: { t: "🔢 Count with me", run: function () {
+      var things = ["🍎", "⭐", "🐟", "🎈", "🐥", "🌸"];
+      var Q = []; for (var n = 1; n <= 10; n++) Q.push({ n: n });
+      var round = 0, list = shuffle(Q).slice(0, 6);
+      function one() {
+        if (round >= list.length) { board.innerHTML = '<div class="big">🏆</div><p class="say">Great counting!</p><button class="btn-k" type="button" id="ag">Play again</button>'; $("#ag").onclick = G.count.run; say("Great counting!"); return; }
+        var n = list[round].n, th = things[round % things.length], opts = shuffle([n].concat(shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10].filter(function (x) { return x !== n; })).slice(0, 3)));
+        board.innerHTML = '<p class="say">How many? Count with me!</p><div style="font-size:2.6rem;line-height:1.3;max-width:420px;margin:0 auto">' + new Array(n + 1).join(th) + '</div><div class="k4">' + opts.map(function (o) { return '<button type="button" data-k="' + o + '" style="font-size:2.4rem">' + o + "</button>"; }).join("") + "</div>";
+        say("How many? Count with me!");
+        board.querySelector(".k4").onclick = function (e) { var b = e.target.closest("[data-k]"); if (!b) return;
+          if (+b.dataset.k === n) { b.classList.add("right"); var words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"].slice(0, n).join(", "); say(words + "! " + n + "!", function () { round++; setTimeout(one, 500); }); star(); }
+          else { b.classList.add("wrong"); say("Let's count again!"); } };
+      }
+      one();
+    } },
+    body: { t: "🙆 Touch your…", run: function () {
+      var i = 0, list = shuffle(BODY);
+      function one() { var b = list[i % list.length]; board.innerHTML = '<p class="say">Touch your ' + b[0] + "!</p><div class=\"big\">" + b[1] + '</div><p>Parent: say it together, touch it together, then tap ⭐.</p><button class="btn-k" type="button" id="dn">⭐ We did it!</button><button class="btn-k alt" type="button" id="rp">🔊 Again</button>'; say("Touch your " + b[0] + "!"); $("#rp").onclick = function () { say("Touch your " + b[0] + "!"); }; $("#dn").onclick = function () { star(); i++; one(); }; }
+      one();
+    } },
+    trace: { t: "✏️ Trace a letter", run: function () {
+      var li = K.trace || 0;
+      function draw() {
+        var a = F.ABC[li % 26];
+        board.innerHTML = '<p class="say">Trace the letter <b>' + a[0] + "</b> " + a[3] + '</p><canvas id="cv" width="320" height="320"></canvas><p><button class="btn-k alt" type="button" id="cl">🧽 Clear</button><button class="btn-k" type="button" id="ok">⭐ Done!</button><button class="btn-k alt" type="button" id="nx">Next letter →</button></p>';
+        var cv = $("#cv"), x = cv.getContext("2d");
+        function bg() { x.clearRect(0, 0, 320, 320); x.font = "bold 220px Georgia"; x.textAlign = "center"; x.textBaseline = "middle"; x.setLineDash([10, 10]); x.lineWidth = 4; x.strokeStyle = "#e0a548"; x.strokeText(a[0], 160, 175); x.setLineDash([]); }
+        bg(); say("Trace the letter " + a[1] + ". " + a[1] + " is for " + a[2] + ".");
+        var down = false, inked = 0;
+        function pos(e) { var r = cv.getBoundingClientRect(), t = e.touches ? e.touches[0] : e; return [(t.clientX - r.left) * 320 / r.width, (t.clientY - r.top) * 320 / r.height]; }
+        function st(e) { e.preventDefault(); down = true; var p = pos(e); x.beginPath(); x.moveTo(p[0], p[1]); }
+        function mv(e) { if (!down) return; e.preventDefault(); var p = pos(e); x.lineTo(p[0], p[1]); x.strokeStyle = LETCOL[li % 6]; x.lineWidth = 14; x.lineCap = "round"; x.lineJoin = "round"; x.stroke(); inked++; }
+        function en() { down = false; }
+        cv.addEventListener("pointerdown", st); cv.addEventListener("pointermove", mv); window.addEventListener("pointerup", en);
+        $("#cl").onclick = function () { bg(); inked = 0; };
+        $("#ok").onclick = function () { if (inked > 15) { star(); say("Beautiful!"); } else say("Trace the letter first!"); };
+        $("#nx").onclick = function () { li++; K.trace = li; save(); draw(); };
+      }
+      draw();
+    } },
+    print: { t: "🖨️ Colouring sheets", run: function () {
+      board.innerHTML = '<p class="say">Pick a letter to print and colour.</p><div class="abc">' + F.ABC.map(function (a, i) { return '<button type="button" data-i="' + i + '" style="background:' + LETCOL[i % 6] + '">' + a[0] + "</button>"; }).join("") + '</div><p style="font-size:.9rem;margin-top:1rem">Parent: the sheet has a big outline letter to colour, the word to trace and a box for your child to draw it.</p>';
+      board.querySelector(".abc").onclick = function (e) { var b = e.target.closest("[data-i]"); if (!b) return; sheet(F.ABC[+b.dataset.i]); };
+    } }
+  };
+  function sheet(a) {
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100" width="100%" style="font-family:Georgia,serif">' +
+      '<text x="400" y="70" text-anchor="middle" font-size="30" font-family="system-ui,Arial">Colour the letter · Little Learners</text>' +
+      '<text x="260" y="470" text-anchor="middle" font-size="430" fill="none" stroke="#000" stroke-width="6">' + a[0] + '</text>' +
+      '<text x="590" y="470" text-anchor="middle" font-size="380" fill="none" stroke="#000" stroke-width="6">' + a[0].toLowerCase() + '</text>' +
+      '<text x="400" y="610" text-anchor="middle" font-size="64" font-family="system-ui,Arial">' + a[0] + ' is for ' + a[2] + '</text>' +
+      '<text x="400" y="760" text-anchor="middle" font-size="120" fill="none" stroke="#999" stroke-width="2.5" stroke-dasharray="8 8" font-family="system-ui,Arial">' + a[2] + '</text>' +
+      '<rect x="100" y="800" width="600" height="230" rx="20" fill="none" stroke="#000" stroke-width="3"/>' +
+      '<text x="400" y="1062" text-anchor="middle" font-size="26" font-family="system-ui,Arial">Now draw it in the box ✏️</text>' +
+      '<text x="400" y="1092" text-anchor="middle" font-size="18" fill="#555" font-family="system-ui,Arial">ilearnenglishhere.academy · I Learn English Here · an Online Business Awareness project</text></svg>';
+    $("#printArea").innerHTML = svg;
+    board.innerHTML = '<div style="max-width:360px;margin:0 auto">' + svg + '</div><p><button class="btn-k" type="button" id="pr">🖨️ Print</button><button class="btn-k alt" type="button" id="bk">← Letters</button></p>';
+    $("#pr").onclick = function () { window.print(); }; $("#bk").onclick = G.print.run;
+  }
+  /* generic "find it" game: 4 choices, a star for each right tap, 6 rounds */
+  function game(pool) {
+    var list = shuffle(pool).slice(0, 6), r = 0;
+    function one() {
+      if (r >= list.length) { board.innerHTML = '<div class="big">🏆</div><p class="say">You did it!</p><button class="btn-k" type="button" id="ag">Play again</button>'; $("#ag").onclick = function () { game(pool); }; say("You did it! Well done!"); return; }
+      var q = list[r], opts = shuffle([q].concat(shuffle(pool.filter(function (p) { return p.k !== q.k; })).slice(0, 3)));
+      board.innerHTML = '<p class="say">' + (q.prompt || q.q) + '</p><button class="btn-k alt" type="button" id="rp">🔊 Listen again</button><div class="k4">' + opts.map(function (o) { return '<button type="button" data-k="' + o.k + '">' + o.show + "</button>"; }).join("") + "</div>";
+      say(q.q); $("#rp").onclick = function () { say(q.q); };
+      board.querySelector(".k4").onclick = function (e) { var b = e.target.closest("[data-k]"); if (!b) return;
+        if (b.dataset.k === q.k) { b.classList.add("right"); star(); say((q.after || "Yes") + "! Well done!", function () { r++; setTimeout(one, 400); }); }
+        else { b.classList.add("wrong"); say("Try again!"); } };
+    }
+    one();
+  }
+  var cur = null;
+  $("#menu").onclick = function (e) { var b = e.target.closest("[data-g]"); if (!b) return; cur = b.dataset.g; $("#menu").style.display = "none"; $("#play").style.display = "block"; $("#gTitle").textContent = G[cur].t; G[cur].run(); window.scrollTo(0, 0); };
+  $("#back").onclick = function () { try { speechSynthesis.cancel(); } catch (e) {} cur = null; $("#play").style.display = "none"; $("#menu").style.display = "block"; };
+  drawStars(); applyLang();
+})();
+</script>
+<script src="assets/ileh.js" defer></script>
+</body>
+</html>

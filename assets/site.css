@@ -132,3 +132,10 @@ footer.site nav{display:flex;justify-content:center;flex-wrap:wrap;gap:.4rem 1.2
 footer.site nav a{color:var(--soft);text-decoration:none}
 footer.site nav a:hover{color:var(--accent)}
 @media (max-width:720px){footer.site{padding-bottom:130px}} /* room for the social bar */
+
+/* Phones: keep the main menu on ONE swipeable row so the sticky header stays small */
+@media (max-width:720px){
+  nav.main{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:1.1rem;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch;mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  nav.main::-webkit-scrollbar{display:none}
+  nav.main a{white-space:nowrap;flex:none}
+}

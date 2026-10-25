@@ -25,6 +25,7 @@
 
   /* ===== Catalogue: every lesson, its skills and its collection ===== */
   var L = {
+    "foundation": { t: "First Steps: Your First English", p: "foundation.html", s: "LVSR", c: "foundation" },
     "present-perfect": { t: "Present Perfect: Past → Now", p: "lessons/present-perfect.html", s: "GSV", c: "starter" },
     "stative-verbs": { t: "Stative Verbs + Go, Do & Play", p: "lessons/stative-verbs.html", s: "GVS", c: "starter" },
     "bring-words-to-life": { t: "Bring Words to Life", p: "lessons/bring-words-to-life.html", s: "RSL", c: "starter" },
@@ -44,6 +45,7 @@
     "english-story": { t: "The Story of English", p: "english-story.html", s: "RLV", c: "talk" }
   };
   var C = {
+    foundation: { t: "First Steps (Foundation)", lvl: "Pre-A1", note: "Your very first English words, phrases and sentence." },
     starter: { t: "Starter Steps", lvl: "A1–A2", note: "Your first big step in English." },
     b1: { t: "B1 Grammar & Vocabulary", lvl: "B1", note: "The grammar engine of everyday English." },
     talk: { t: "Talk, Play & Culture", lvl: "B1", note: "Speaking with confidence — the British way." }

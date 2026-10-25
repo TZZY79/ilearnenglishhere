@@ -396,3 +396,68 @@ britishWay: [
   {say:"Shall we call it a day?",mean:"Let's stop working now.",reply:"Good idea — see you tomorrow.",tip:"Polite way to finish a meeting or a task."}
 ]
 };
+
+/* ---------- Common mistakes new learners make (shown by the Coach, the Repair Stop and Fix It) ----------
+   wrong / right: the mistake and the fix · why: why so many learners make it · fix: the quick rule · story: optional history */
+window.ILEH_KB.mistakes = {
+"present-simple": [
+  {wrong:"She go to school every day.",right:"She <b>goes</b> to school every day.",why:"In most languages the verb doesn't change for he / she / it — so learners forget the -s. Even advanced speakers drop it when they talk fast.",fix:"See he, she, it or one name (Maria, my dad)? Add <b>-s</b> or <b>-es</b> to the verb.",story:"English used to have a different ending for every person (I love, thou lovest, he loveth). Almost all of them disappeared — the he/she/it -s is the last one left, so it's easy to forget."},
+  {wrong:"Does she likes tea?",right:"Does she <b>like</b> tea?",why:"Learners remember 'she → -s' so well that they add it twice.",fix:"Only ONE -s per sentence: if <b>does</b> or <b>doesn't</b> is there, the verb stays plain."}
+],
+"present-continuous": [
+  {wrong:"I watching TV now.",right:"I <b>am</b> watching TV now.",why:"Many languages (Chinese, Indonesian, Russian…) don't need a 'be' verb here, so am / is / are disappears.",fix:"-ing never works alone. It always needs <b>am / is / are</b> in front."},
+  {wrong:"I am go to school every day.",right:"I <b>go</b> to school every day.",why:"Learners think 'am' makes any sentence correct.",fix:"Every day / always / usually = present simple. Right now / at the moment = am/is/are + -ing."}
+],
+"past-simple": [
+  {wrong:"Yesterday I go to the market.",right:"Yesterday I <b>went</b> to the market.",why:"Languages like Chinese, Vietnamese, Thai and Indonesian show the past with a time word only, so the verb stays the same. In English the verb itself must change.",fix:"Time word in the past (yesterday, last week, ago)? Change the verb: -ed or the irregular form."},
+  {wrong:"Did you went to the party?",right:"Did you <b>go</b> to the party?",why:"Learners put the past in twice.",fix:"<b>Did</b> already carries the past, so the verb goes back to normal: did … go, did … eat.",story:"Irregular verbs like go → went are some of the oldest words in English. 'Went' was stolen from another old verb, 'wend' (to travel) — that's why it looks nothing like 'go'!"}
+],
+"past-continuous": [
+  {wrong:"When I was walking, it was starting to rain.",right:"While I was walking, it <b>started</b> to rain.",why:"Learners put both actions in the long form.",fix:"Long background action = was/were + -ing. Short action that interrupts = past simple."}
+],
+"present-perfect": [
+  {wrong:"I have seen him yesterday.",right:"I <b>saw</b> him yesterday.",why:"In many European languages (French, German, Italian, Spanish) the 'have + done' form is used for finished past times. English doesn't allow it.",fix:"A finished time (yesterday, last year, in 2020, ago) → past simple. No time / up to now → present perfect.",story:"Americans and Brits use this tense a bit differently too: a Brit says 'I've just eaten', many Americans say 'I just ate'. Both are understood!"},
+  {wrong:"I live here since 2020.",right:"I <b>have lived</b> here since 2020.",why:"Many languages use the present tense for 'started in the past and still true'.",fix:"Since / for + still true now → have / has + past participle."}
+],
+"stative-verbs": [
+  {wrong:"I am knowing the answer.",right:"I <b>know</b> the answer.",why:"Learners who have just learnt -ing use it everywhere — especially speakers of languages where every verb works the same way.",fix:"Thinking and feeling verbs (know, like, love, want, need, understand, believe) don't use -ing."}
+],
+"go-do-play": [
+  {wrong:"I play swimming.",right:"I <b>go</b> swimming.",why:"Many languages use one verb ('practise' or 'do') for every sport.",fix:"Ball or competition → PLAY. Ends in -ing → GO. Everything else (yoga, karate) → DO."}
+],
+"future": [
+  {wrong:"I will to call you tomorrow.",right:"I will <b>call</b> you tomorrow.",why:"Learners copy 'want to / need to'.",fix:"Will, can, must, should → plain verb, NO 'to'."},
+  {wrong:"Look at the clouds! It will rain.",right:"Look at the clouds! It's <b>going to</b> rain.",why:"Many languages have only one future.",fix:"You can SEE the evidence now → going to. A guess, a promise or a quick decision → will."}
+],
+"quantifiers": [
+  {wrong:"How much apples do you want?",right:"How <b>many</b> apples do you want?",why:"Many languages use one word for both.",fix:"Can you count it (1 apple, 2 apples)? → many / a few. Can't count it (water, money, time)? → much / a little."},
+  {wrong:"I need some informations.",right:"I need some <b>information</b>.",why:"In French, Spanish and many other languages this word can be plural. In English it can't.",fix:"Information, advice, furniture, homework, news — never add -s and never say 'an'.",story:"'News' looks plural but it's not: we say 'The news <b>is</b> good'. 400 years ago people said 'the news are' — it slowly changed."}
+],
+"comparatives": [
+  {wrong:"She is more tall than me.",right:"She is <b>taller</b> than me.",why:"Many languages make every comparison with one word like 'more' (plus, más, più, lebih).",fix:"Short words (1 syllable) → add -er. Long words (3+ syllables) → more."},
+  {wrong:"He is more better now.",right:"He is <b>better</b> now.",why:"Learners use both systems at once to be safe.",fix:"Choose ONE: -er OR more. Never both."}
+],
+"articles": [
+  {wrong:"I am student.",right:"I am <b>a</b> student.",why:"Chinese, Japanese, Russian, Hindi, Indonesian and many more have no 'a' or 'the' — so learners leave them out.",fix:"Jobs and one-of-many things need <b>a / an</b>: a student, an engineer, a car.",story:"'A' and 'an' come from the old English word 'ān', which meant 'one'. That's why we only use a / an with ONE thing."},
+  {wrong:"I like the music.",right:"I like <b>music</b>.",why:"In Spanish, French, Italian and Portuguese you say 'the music' for music in general.",fix:"Talking about things in general (music, dogs, coffee)? No 'the'."}
+],
+"prepositions-time": [
+  {wrong:"See you in Monday.",right:"See you <b>on</b> Monday.",why:"Many languages use one word for all times.",fix:"IN = big times (months, years). ON = days and dates. AT = clock times (at 5 o'clock, at night)."}
+],
+"advice-should": [
+  {wrong:"You should to rest.",right:"You should <b>rest</b>.",why:"Learners copy 'need to / have to'.",fix:"After should — no 'to', no -s, no -ing. Just the plain verb."}
+],
+"too-enough": [
+  {wrong:"I'm enough old to drive.",right:"I'm old <b>enough</b> to drive.",why:"Learners copy 'too old' and put enough in front.",fix:"TOO goes before the word (too hot). ENOUGH goes after an adjective (hot enough) but before a noun (enough money)."}
+],
+"first-conditional": [
+  {wrong:"If it will rain, I will stay home.",right:"If it <b>rains</b>, I will stay home.",why:"It's about the future, so learners put 'will' in both halves — many languages do exactly that.",fix:"The IF half stays in the present. Only the result half uses will."}
+],
+"punctuation": [
+  {wrong:"my name is ana i am from brazil",right:"<b>M</b>y name is <b>A</b>na. <b>I</b> am from <b>B</b>razil.",why:"Chinese, Arabic, Hindi, Japanese, Bengali and Urdu have no capital letters, and phone chats often skip them.",fix:"Capital letter at the start, for names, for countries and for I. Full stop at the end."}
+],
+"be": [
+  {wrong:"She teacher.",right:"She <b>is</b> a teacher.",why:"Many languages (Russian, Arabic, Indonesian, Chinese with adjectives…) don't need 'be' here.",fix:"Every English sentence needs a verb. No action? Use am / is / are."},
+  {wrong:"I have 20 years.",right:"I <b>am</b> 20 (years old).",why:"Spanish, French, Italian and Portuguese say 'have years'.",fix:"Age, hunger, cold, fear → be: I am 20, I am hungry, I am cold."}
+]
+};

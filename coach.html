@@ -27,6 +27,9 @@
   </a>
   <nav class="main" aria-label="Main">
     <a href="start-here.html">Start Here</a>
+    <a href="foundation.html">First Steps</a>
+    <a href="skills.html">Skills Lab</a>
+    <a href="kids.html">Little Learners</a>
     <a href="lessons.html">Lessons</a>
     <a href="mission.html">Missions</a>
     <a href="coach.html" aria-current="page">Coach</a>
@@ -176,7 +179,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   function addTopic(id) {
     var n = paceName();
-    steps.push({k:"hook",id:id},{k:"understand",id:id},{k:"formula",id:id},{k:"trick",id:id});
+    var hasM = KB.mistakes && KB.mistakes[id], rep = /repair=1/.test(location.search);
+    steps.push({k:"hook",id:id});
+    if (hasM && rep) steps.push({k:"mistake",id:id});
+    steps.push({k:"understand",id:id},{k:"formula",id:id});
+    if (hasM && !rep) steps.push({k:"mistake",id:id});
+    steps.push({k:"trick",id:id});
     if (n !== "fast" || I.topStyle() === "history") steps.push({k:"history",id:id});
     steps.push({k:"examples",id:id},{k:"practice",id:id},{k:"bw"},{k:"done",id:id});
   }
@@ -190,6 +198,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (s.k === "hook") html = '<div class="tp-kicker">'+t.icon+' New trip · '+t.level+'</div><h2>'+t.title+'</h2><p>'+t.hook+'</p><p>Meet <b>'+p1[0]+'</b> from <b>'+p1[1]+', '+p1[2]+'</b>. '+p1[0]+' is learning this too. Let\'s go together!</p>'+nav();
     if (s.k === "understand") html = '<div class="tp-kicker">Step 1 · Understand it</div><h2>What is it really?</h2><p>'+t.explain[age]+'</p>'+alt(s.id)+nav();
     if (s.k === "formula") html = '<div class="tp-kicker">Step 2 · The formula</div><h2>The pattern</h2>'+(paceName()==="slow"?'<p>Tap each line to reveal it, one at a time.</p>'+t.formula.map(function(f){return '<button class="tp-reveal" data-r="'+I.esc(f)+'">👆 Tap to reveal</button>';}).join(""):'<div class="tp-formula">'+t.formula.map(function(f){return "<div>"+f+"</div>";}).join("")+'</div>')+alt(s.id)+nav();
+    if (s.k === "mistake") { var ms = KB.mistakes[s.id];
+      html = '<div class="tp-kicker">⚠️ '+(/repair=1/.test(location.search)?"What went wrong":"Watch out")+' · a common mistake</div><h2>Lots of new learners make this mistake</h2><p>You are not alone — this is one of the most common mistakes in English. Here is why it happens and how to fix it.</p>' +
+        ms.map(function (m) { return '<div class="tp-formula" style="text-align:left"><div>❌ <s>'+m.wrong+'</s></div><div>✅ '+m.right+'</div></div><p><b>Why people make it:</b> '+m.why+'</p><p><b>The fix:</b> '+m.fix+'</p>'+(m.story?'<p>📜 <b>A bit of history:</b> '+m.story+'</p>':''); }).join("<hr style=\"border:0;border-top:1px solid var(--line);margin:1rem 0\">") + nav(); }
     if (s.k === "trick") html = '<div class="tp-kicker">Step 3 · Easy way to remember</div><h2>🧠 Memory trick</h2><p style="font-size:1.2rem">'+t.trick+'</p>'+nav();
     if (s.k === "history") html = '<div class="tp-kicker">Step 4 · A bit of history</div><h2>📜 The story behind it</h2><p>'+t.history+'</p>'+nav();
     if (s.k === "examples") html = '<div class="tp-kicker">Step 5 · Examples</div><h2>See it in real life</h2><p>Tap to reveal and hear each example.</p>'+t.examples.map(function(x){var f=I.fill(x,p1,p2);return '<button class="tp-reveal" data-r="'+I.esc(f)+'" data-say="1">👆 Tap to reveal</button>';}).join("")+nav();
@@ -197,6 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (s.k === "practice") return practice(s.id);
     if (s.k === "diag") return diag();
     if (s.k === "bw") { var bw = KB.britishWay[Math.floor(Math.random()*KB.britishWay.length)]; html = '<div class="tp-card tp-bw" style="box-shadow:none;border:0;padding:0"><div class="tp-kicker">🇬🇧 Break time · The British Way</div><h2>What Brits really mean</h2><p class="say">"'+bw.say+'" <button class="btn btn-secondary" data-say2="'+I.esc(bw.say)+'" style="padding:.3em .7em">🔊</button></p><p>👉 <b>Meaning:</b> '+bw.mean+'</p><p>💬 <b>You can reply:</b> "'+bw.reply+'"</p><p>💡 '+bw.tip+'</p><p style="font-size:.9rem;color:var(--muted)">Textbooks rarely teach this — but it is how English is really lived. Learn much more in <a href="english-story.html#british-way">The British Way</a>.</p></div>'+nav(); }
+    if (s.k === "done" && window.ILEH_REPAIR) ILEH_REPAIR.clear(s.id);
     if (s.k === "done") html = '<div class="tp-kicker">✅ Topic complete</div><h2>Brilliant work!</h2><p>You have practised <b>'+t.title+'</b>. Your Coach will check it again in a few days so it stays in your memory.</p>'+nav(false);
     render(html, s);
   }
@@ -237,6 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
           else setTimeout(next, 1300);
         } else { run = 0; fails++;
           fb.innerHTML = '<div class="tp-fb no">❌ <b>Not yet</b> — the answer is <b>'+I.esc(it.a)+'</b>. '+it.why+'<div class="tp-formula" style="margin-top:8px;font-size:.9rem">'+t.formula.slice(0,2).map(function(f){return "<div>"+f+"</div>";}).join("")+'</div></div>' +
+            (fails === 2 && KB.mistakes && KB.mistakes[id] ? '<p>⚠️ <b>This is a common mistake.</b> '+KB.mistakes[id][0].why+'</p><p><b>The fix:</b> '+KB.mistakes[id][0].fix+'</p>' : '') +
             (fails >= 3 ? '<p><b>Let\'s look at it another way.</b> '+t.explain.kid+'</p><p>🧠 '+t.trick+'</p>' : '') +
             '<div class="tp-nav"><span></span><button class="btn btn-primary" id="nx">Try a similar one →</button></div>';
           $("#nx").onclick = next;
@@ -292,7 +305,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <footer class="site">
   <a class="oba" href="index.html"><span>An Online Business Awareness project</span><img src="assets/oba-logo.svg" alt="Online Business Awareness"></a>
   <nav aria-label="Footer">
-    <a href="start-here.html">Start Here</a><a href="lessons.html">Lessons</a><a href="mission.html">Missions</a><a href="coach.html">Coach</a><a href="speak.html">Speak</a><a href="english-story.html">Story</a><a href="faq.html">FAQ</a><a href="books.html">Books</a><a href="achievements.html">🏆 My Awards</a>
+    <a href="start-here.html">Start Here</a><a href="foundation.html">First Steps</a><a href="skills.html">Skills Lab</a><a href="kids.html">Little Learners</a><a href="lessons.html">Lessons</a><a href="mission.html">Missions</a><a href="coach.html">Coach</a><a href="speak.html">Speak</a><a href="english-story.html">Story</a><a href="about.html">Our Story</a><a href="faq.html">FAQ</a><a href="books.html">Books</a><a href="achievements.html">🏆 My Awards</a>
     <a href="https://www.udemy.com/course/learn-english-like-a-local-uk-culture-accents-real-life/?referralCode=3CB23BDB35F22F4058F0" target="_blank" rel="noopener">Full Course</a>
   </nav>
   &copy; 2026 I Learn English Here
