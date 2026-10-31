@@ -42,7 +42,8 @@
     "plans-predictions-games": { t: "Plans & Predictions — 5 Games", p: "lessons/plans-predictions-games.html", s: "SG", c: "talk" },
     "plans-predictions-worksheet": { t: "Plans & Predictions Worksheet", p: "lessons/plans-predictions-worksheet.html", s: "WG", c: "talk" },
     "team-revision-battle": { t: "Team Revision Battle", p: "lessons/team-revision-battle.html", s: "GVS", c: "talk" },
-    "english-story": { t: "The Story of English", p: "english-story.html", s: "RLV", c: "talk" }
+    "english-story": { t: "The Story of English", p: "english-story.html", s: "RLV", c: "talk" },
+    "real-england": { t: "Real England: Everyday Conversations", p: "real-england.html", s: "LSVR", c: "talk" }
   };
   var C = {
     foundation: { t: "First Steps (Foundation)", lvl: "Pre-A1", note: "Your very first English words, phrases and sentence." },
